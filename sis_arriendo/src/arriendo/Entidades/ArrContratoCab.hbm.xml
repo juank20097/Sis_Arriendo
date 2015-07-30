@@ -6,7 +6,9 @@
     <class name="arriendo.Entidades.ArrContratoCab" table="ARRCONTRATOCAB">
         <id name="cabId" type="java.lang.Integer">
             <column name="CABID" />
-            <generator class="assigned" />
+            <generator class="sequence">
+   				<param name="sequence">seq_ArrContratoCab</param>
+   		</generator>
         </id>
         <property name="cabFecha" type="java.util.Date">
             <column name="CABFECHA" />

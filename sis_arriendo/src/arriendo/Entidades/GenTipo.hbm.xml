@@ -6,7 +6,9 @@
     <class name="arriendo.Entidades.GenTipo" table="GENTIPO">
         <id name="tipId" type="java.lang.Integer">
             <column name="TIPID" />
-            <generator class="assigned" />
+            <generator class="sequence">
+   				<param name="sequence">seq_GenTipo</param>
+   		</generator>
         </id>
         <property name="tipTipo" type="java.lang.String">
             <column name="TIPTIPO" />

@@ -6,7 +6,9 @@
     <class name="arriendo.Entidades.ArrItems" table="ARRITEMS">
         <id name="iteId" type="java.lang.Integer">
             <column name="ITEID" />
-            <generator class="assigned" />
+             <generator class="sequence">
+   				<param name="sequence">seq_ArrItems</param>
+   		</generator>
         </id>
         <property name="iteDescripcion" type="java.lang.String">
             <column name="ITEDESCRIPCION" />

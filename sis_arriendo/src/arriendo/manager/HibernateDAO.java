@@ -169,6 +169,18 @@ public class HibernateDAO {
 		listado=session.createQuery(senteciaHQL).setParameter("value1", value).list();
 		return listado;
 	}
+	
+	public Boolean Activado (){
+		Boolean r=null;
+		if (!session.getTransaction().isActive())
+			session.getTransaction().begin();
+			r=session.getTransaction().isActive();
+		if (session.getTransaction().isActive()){
+			session.getTransaction().commit();
+		}
+		return r;
+	}
+	
 
 	    /*private void manejaExcepcion(HibernateException he) throws HibernateException 
 	    { 

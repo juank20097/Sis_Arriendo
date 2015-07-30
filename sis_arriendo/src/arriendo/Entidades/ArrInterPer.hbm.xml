@@ -6,7 +6,9 @@
     <class name="arriendo.Entidades.ArrInterPer" table="ARRINTERPER">
         <id name="inpId" type="java.lang.Integer">
             <column name="INPID" />
-            <generator class="assigned" />
+            <generator class="sequence">
+   				<param name="sequence">seq_ArrInterPer</param>
+   		</generator>
         </id>
         <many-to-one name="con_cab" class="arriendo.Entidades.ArrContratoCab" fetch="join">
             <column name="CON_CAB" />

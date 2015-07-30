@@ -6,7 +6,9 @@
     <class name="arriendo.Entidades.ArrContratoDet" table="ARRCONTRATODET">
         <id name="detId" type="java.lang.Integer">
             <column name="DETID" />
-            <generator class="assigned" />
+            <generator class="sequence">
+   				<param name="sequence">seq_ArrContratoDet</param>
+   		</generator>
         </id>
         <property name="detObservacion" type="java.lang.String">
             <column name="DETOBSERVACION" />

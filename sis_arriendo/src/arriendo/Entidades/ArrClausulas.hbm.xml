@@ -6,7 +6,9 @@
     <class name="arriendo.Entidades.ArrClausulas" table="ARRCLAUSULAS">
         <id name="claId" type="java.lang.Integer">
             <column name="CLAID" />
-            <generator class="assigned" />
+            <generator class="sequence">
+   				<param name="sequence">seq_ArrClausulas</param>
+   		</generator>
         </id>
         <property name="claNombre" type="java.lang.String">
             <column name="CLANOMBRE" />

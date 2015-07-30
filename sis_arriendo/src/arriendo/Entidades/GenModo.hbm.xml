@@ -6,7 +6,9 @@
     <class name="arriendo.Entidades.GenModo" table="GENMODO">
         <id name="modId" type="int">
             <column name="MODID" />
-            <generator class="assigned" />
+            <generator class="sequence">
+   				<param name="sequence">seq_GenModo</param>
+   		</generator>
         </id>
         <property name="modNombre" type="int">
             <column name="MODNOMBRE" />

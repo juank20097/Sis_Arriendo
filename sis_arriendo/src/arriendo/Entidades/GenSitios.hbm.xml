@@ -6,7 +6,9 @@
     <class name="arriendo.Entidades.GenSitios" table="GENSITIOS">
         <id name="sitCapacidad" type="java.lang.Integer">
             <column name="SITCAPACIDAD" />
-            <generator class="assigned" />
+            <generator class="sequence">
+   				<param name="sequence">seq_GenSitios</param>
+   		</generator>
         </id>
         <property name="sitIdentificador" type="java.lang.String">
             <column name="SITIDENTIFICADOR" />
