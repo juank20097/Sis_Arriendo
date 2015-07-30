@@ -4,7 +4,7 @@
  * Purpose: Defines the Class GenSitios
  ***********************************************************************/
 
-package arriendo.Entidades;
+package arriendo.entidades;
 
 import java.util.*;
 

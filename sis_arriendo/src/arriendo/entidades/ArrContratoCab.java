@@ -4,7 +4,7 @@
  * Purpose: Defines the Class ArrContratoCab
  ***********************************************************************/
 
-package arriendo.Entidades;
+package arriendo.entidades;
 
 import java.util.*;
 

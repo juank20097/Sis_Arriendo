@@ -4,7 +4,7 @@
  * Purpose: Defines the Class ArrClausulas
  ***********************************************************************/
 
-package arriendo.Entidades;
+package arriendo.entidades;
 
 
 /** @pdOid b5403d3b-29f6-4b3f-a800-0871eb83db32 */
