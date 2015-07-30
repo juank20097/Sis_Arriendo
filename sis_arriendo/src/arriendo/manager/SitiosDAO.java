@@ -172,17 +172,17 @@ public class SitiosDAO {
 	 *            Tipo String de busqueda
 	 * @return El objeto Sitio encontrado mediante el Nombre
 	 */
-	public GEN_Sitios SitiobyNombre(String nombre) throws Exception{
-		GEN_Sitios s= null;
+	public GEN_Sitios SitiobyNombre(String nombre) throws Exception {
+		GEN_Sitios s = null;
 		List<GEN_Sitios> li = findAllSitios();
 		for (GEN_Sitios sitio : li) {
-			if (sitio.getSit_identificador().equals(nombre)){
-				s=sitio;
+			if (sitio.getSit_identificador().equals(nombre)) {
+				s = sitio;
 			}
 		}
 		return s;
-	}//Cierre del metodo
-	
+	}// Cierre del metodo
+
 	/**
 	 * Metodo para ingresar un Sitio a la base de datos
 	 * 
@@ -196,8 +196,6 @@ public class SitiosDAO {
 	 *            Tipo Integer el cual almacena el numero de personas permitidas
 	 * @param estado
 	 *            Tipo char el cual almacena el dato si es Activado/Desactivado
-	 * 
-	 * @return El objeto Sitio encontrado mediante el ID
 	 */
 	public void insertarSitio(String identificador, Double costo,
 			String direccion, Integer capacidad, char estado) throws Exception {
@@ -253,22 +251,6 @@ public class SitiosDAO {
 	}// Cierre del metodo
 
 	/**
-	 * Metodo para eliminar un Sitio en la base de datos
-	 * 
-	 * @param id
-	 *            Tipo Integer el cual sirve para su eliminacion
-	 */
-	public void eliminarSitio(Integer id) {
-		try {
-			manager.eliminar(GEN_Sitios.class, id);
-			System.out.println("Eliminar_sitio_correcto");
-		} catch (Exception e) {
-			System.out.println("Eliminar_sitio_incorrecto");
-			e.printStackTrace();
-		}
-	}// Cierre del metodo
-
-	/**
 	 * Metodo para asignar un Area a un Sitio en la base de datos
 	 * 
 	 * @param id
@@ -277,7 +259,7 @@ public class SitiosDAO {
 	 */
 	public GEN_Area asignarSitio(Integer id) {
 		try {
-			 area = this.AreaByID(id);
+			area = this.AreaByID(id);
 			System.out.println("Bien_asignar_Area");
 		} catch (Exception e) {
 			System.out.println("Mal_asignar_Area");
@@ -285,7 +267,7 @@ public class SitiosDAO {
 		}
 		return area;
 	}// Cierre del metodo
-	
+
 	/**
 	 * Metodo para asignar un Modo a un Sitio en la base de datos
 	 * 
@@ -295,7 +277,7 @@ public class SitiosDAO {
 	 */
 	public GEN_Modo asignarModo(Integer id) {
 		try {
-			 //modo = this.(id);
+			modo = this.ModoByID(id);
 			System.out.println("Bien_asignar_Modo");
 		} catch (Exception e) {
 			System.out.println("Mal_asignar_Modo");
@@ -303,4 +285,76 @@ public class SitiosDAO {
 		}
 		return modo;
 	}// Cierre del metodo
+
+	/**
+	 * Creación de metodos para el manejo de la tabla GEN_Modo
+	 */
+
+	/**
+	 * Metodo para listar todos los Modos existentes
+	 * 
+	 * @return La lista de todos los Modos encontradas
+	 */
+	@SuppressWarnings("unchecked")
+	public List<GEN_Modo> findAllModos() {
+		return manager.findAll(GEN_Modo.class);
+	}// Cierre del metodo
+
+	/**
+	 * Metodo para obtener el Modo mediante un ID
+	 * 
+	 * @param id
+	 *            Tipo integer de busqueda
+	 * @return El objeto Modo encontrado mediante el ID
+	 */
+	public GEN_Modo ModoByID(Integer id) throws Exception {
+		return (GEN_Modo) manager.findById(GEN_Modo.class, id);
+	}// Cierre del metodo
+
+	/**
+	 * Metodo para ingresar un Modo a la base de datos
+	 * 
+	 * @param nombre
+	 *            Tipo String el cual almacena el nombre para denotar el modo
+	 * @param descripcion
+	 *            Tipo String el cual almacena el enfoque para el modo
+	 */
+	public void insertarModo(String nombre, String descripcion) throws Exception {
+		try {
+			GEN_Modo p = new GEN_Modo();
+			p.setMod_nombre(nombre);
+			p.setMod_descripcion(descripcion);
+			manager.insertar(p);
+			System.out.println("Bien_insertar_modo");
+		} catch (Exception e) {
+			System.out.println("Error_insertar_modo");
+			e.printStackTrace();
+		}
+
+	}// Cierre del metodo
+
+	/**
+	 * Metodo para editar un Modo a la base de datos
+	 * 
+	 * @param id
+	 *            Tipo Integer el cual permite la busqueda para editar
+	 * @param nombre
+	 *            Tipo String el cual edita el nombre para denotar el modo
+	 * @param descripcion
+	 *            Tipo String el cual edita el enfoque para el modo
+	 */
+	public void editarModo(Integer id,String nombre, String descripcion) throws Exception {
+		try {
+			GEN_Modo r = this.ModoByID(id);
+			r.setMod_id(id);
+			r.setMod_nombre(nombre);
+			r.setMod_descripcion(descripcion);
+			manager.actualizar(r);
+			System.out.println("bien_mod_modo");
+		} catch (Exception e) {
+			System.out.println("Error_mod_modo");
+			e.printStackTrace();
+		}
+	}// Cierre del metodo
+
 }
