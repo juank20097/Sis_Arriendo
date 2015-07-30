@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+ <session-factory name="p">
+  <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+  <property name="hibernate.connection.password">root</property>
+  <property name="hibernate.connection.url">jdbc:postgresql:template1</property>
+  <property name="hibernate.connection.username">postgres</property>
+  <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+  <!-- Configuracion del pool interno -->
+  <property name="connection.pool_size">1</property>
+  <!-- Otras propiedades importantes -->
+  <property name="show_sql">true</property>
+  <property name="hbm2ddl.auto">update</property>
+  
+  <!-- Archivos de mapeo -->
+  <mapping resource="arriendo/Entidades/ArrClausulas.hbm.xml"/>
+  <mapping resource="arriendo/Entidades/ArrContratoCab.hbm.xml"/>
+  <mapping resource="arriendo/Entidades/ArrContratoDet.hbm.xml"/>
+  <mapping resource="arriendo/Entidades/ArrInter.hbm.xml"/>
+  <mapping resource="arriendo/Entidades/ArrInterPer.hbm.xml"/>
+  <mapping resource="arriendo/Entidades/ArrItems.hbm.xml"/>
+  <mapping resource="arriendo/Entidades/GenArea.hbm.xml"/>
+  <mapping resource="arriendo/Entidades/GenArticulos.hbm.xml"/>
+  <mapping resource="arriendo/Entidades/GenModo.hbm.xml"/>
+  <mapping resource="arriendo/Entidades/GenPersona.hbm.xml"/>
+  <mapping resource="arriendo/Entidades/GenSitios.hbm.xml"/>
+  <mapping resource="arriendo/Entidades/GenTipo.hbm.xml"/>
+  
+ </session-factory>
+</hibernate-configuration>

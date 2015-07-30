@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 30-jul-2015 10:13:37 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="arriendo.Entidades.ArrContratoCab" table="ARRCONTRATOCAB">
+        <id name="cabId" type="java.lang.Integer">
+            <column name="CABID" />
+            <generator class="assigned" />
+        </id>
+        <property name="cabFecha" type="java.util.Date">
+            <column name="CABFECHA" />
+        </property>
+        <property name="cabFechaini" type="java.util.Date">
+            <column name="CABFECHAINI" />
+        </property>
+        <property name="cabFechafin" type="java.util.Date">
+            <column name="CABFECHAFIN" />
+        </property>
+        <property name="cabArrendatario" type="java.lang.String">
+            <column name="CABARRENDATARIO" />
+        </property>
+        <property name="cabArrendador" type="java.lang.String">
+            <column name="CABARRENDADOR" />
+        </property>
+        <property name="cabObservacion" type="java.lang.String">
+            <column name="CABOBSERVACION" />
+        </property>
+        <property name="cabEstado" type="char">
+            <column name="CABESTADO" />
+        </property>
+        <list name="con_det" inverse="false" table="ARRCONTRATODET" lazy="true">
+            <key>
+                <column name="CABID" />
+            </key>
+            <list-index></list-index>
+            <one-to-many class="arriendo.Entidades.ArrContratoDet" />
+        </list>
+        <list name="intc" inverse="false" table="ARRINTER" lazy="true">
+            <key>
+                <column name="CABID" />
+            </key>
+            <list-index></list-index>
+            <one-to-many class="arriendo.Entidades.ArrInter" />
+        </list>
+        <list name="intp" inverse="false" table="ARRINTERPER" lazy="true">
+            <key>
+                <column name="CABID" />
+            </key>
+            <list-index></list-index>
+            <one-to-many class="arriendo.Entidades.ArrInterPer" />
+        </list>
+    </class>
+</hibernate-mapping>

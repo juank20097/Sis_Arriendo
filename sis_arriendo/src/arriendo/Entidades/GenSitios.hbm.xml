@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 30-jul-2015 10:13:37 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="arriendo.Entidades.GenSitios" table="GENSITIOS">
+        <id name="sitCapacidad" type="java.lang.Integer">
+            <column name="SITCAPACIDAD" />
+            <generator class="assigned" />
+        </id>
+        <property name="sitIdentificador" type="java.lang.String">
+            <column name="SITIDENTIFICADOR" />
+        </property>
+        <property name="sitCostoArriendo" type="java.lang.Double">
+            <column name="SITCOSTOARRIENDO" />
+        </property>
+        <property name="sitDireccion" type="java.lang.String">
+            <column name="SITDIRECCION" />
+        </property>
+        <property name="sitEstado" type="char">
+            <column name="SITESTADO" />
+        </property>
+        <array name="art" element-class="arriendo.Entidades.GenArticulos" table="GENARTICULOS" access="field" fetch="join">
+            <key>
+                <column name="SITCAPACIDAD" />
+            </key>
+            <list-index></list-index>
+            <one-to-many class="arriendo.Entidades.GenArticulos" />
+        </array>
+        <list name="con_det" inverse="false" table="ARRCONTRATODET" lazy="true">
+            <key>
+                <column name="SITCAPACIDAD" />
+            </key>
+            <list-index></list-index>
+            <one-to-many class="arriendo.Entidades.ArrContratoDet" />
+        </list>
+        <many-to-one name="mod" class="arriendo.Entidades.GenModo" fetch="join">
+            <column name="MOD" />
+        </many-to-one>
+        <many-to-one name="are" class="arriendo.Entidades.GenArea" fetch="join">
+            <column name="ARE" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>
