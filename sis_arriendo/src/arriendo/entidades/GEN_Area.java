@@ -1,7 +1,7 @@
 /***********************************************************************
- * Module:  GenArea.java
+ * Module:  GEN_Area.java
  * Author:  jestevez
- * Purpose: Defines the Class GenArea
+ * Purpose: Defines the Class GEN_Area
  ***********************************************************************/
 
 package arriendo.entidades;
@@ -9,133 +9,133 @@ package arriendo.entidades;
 import java.util.*;
 
 /** @pdOid feb47f28-54d1-446b-aa0e-a04653b54fc5 */
-public class GenArea {
+public class GEN_Area {
    /** @pdOid bca0ef32-e545-4668-b1ac-ece2f37e1df1 */
-   private Integer areId;
+   private Integer are_id;
    /** @pdOid 832bf661-039d-431b-8dda-21478b6a4890 */
-   private String areNombre;
+   private String are_nombre;
    /** @pdOid d51e55e0-d8c0-4c76-b3a2-5079b58e24cc */
-   private String areUbicacion;
+   private String are_ubicacion;
    /** @pdOid 524ac92d-59a3-4ba8-b5da-f2cdfeac3574 */
-   private String areDescripcion;
+   private String are_descripcion;
    /** @pdOid f1250a3c-63d1-478e-9548-97d3d39d2af2 */
-   private char areEstado = 1;
+   private char are_estado = 1;
    
    /** @pdOid a94e10fb-0724-4925-8d59-cb497188dff2 */
    protected void finalize() {
       // TODO: implement
    }
    
-   /** @pdRoleInfo migr=no name=GenSitios assc=association9 coll=java.util.List mult=* */
-   public java.util.List<GenSitios> sit;
+   /** @pdRoleInfo migr=no name=GEN_Sitios assc=association9 coll=java.util.List mult=* */
+   public java.util.List<GEN_Sitios> sit;
    
    /** @pdOid 01a3275a-097c-497b-b810-930470fcf9c6 */
-   public GenArea() {
+   public GEN_Area() {
       // TODO: implement
    }
    
    /** @pdOid f3227e72-7550-4685-960c-1c5b320e0569 */
-   public Integer getAreId() {
-      return areId;
+   public Integer getAre_id() {
+      return are_id;
    }
    
-   /** @param newAreId
+   /** @param newAre_id
     * @pdOid 87765521-f605-45a7-893d-68cfd640270a */
-   public void setAreId(Integer newAreId) {
-      areId = newAreId;
+   public void setAre_id(Integer newAre_id) {
+      are_id = newAre_id;
    }
    
    /** @pdOid 8e09f10a-2619-447f-bafc-470e7fb6d444 */
-   public String getAreNombre() {
-      return areNombre;
+   public String getAre_nombre() {
+      return are_nombre;
    }
    
-   /** @param newAreNombre
+   /** @param newAre_nombre
     * @pdOid 0b4e04e8-b028-4f9b-97d1-9caf16c171be */
-   public void setAreNombre(String newAreNombre) {
-      areNombre = newAreNombre;
+   public void setAre_nombre(String newAre_nombre) {
+      are_nombre = newAre_nombre;
    }
    
    /** @pdOid 9294bbc2-0ac1-49a9-bb5d-e3c90891d15c */
-   public String getAreUbicacion() {
-      return areUbicacion;
+   public String getAre_ubicacion() {
+      return are_ubicacion;
    }
    
-   /** @param newAreUbicacion
+   /** @param newAre_ubicacion
     * @pdOid ec327a2f-37a6-4f52-96d8-46c9de3d68c7 */
-   public void setAreUbicacion(String newAreUbicacion) {
-      areUbicacion = newAreUbicacion;
+   public void setAre_ubicacion(String newAre_ubicacion) {
+      are_ubicacion = newAre_ubicacion;
    }
    
    /** @pdOid 32a8247d-8088-4056-9a64-385955bc5332 */
-   public String getAreDescripcion() {
-      return areDescripcion;
+   public String getAre_descripcion() {
+      return are_descripcion;
    }
    
-   /** @param newAreDescripcion
+   /** @param newAre_descripcion
     * @pdOid 0c21884f-d4e2-49bd-8434-d5c95e4f93f9 */
-   public void setAreDescripcion(String newAreDescripcion) {
-      areDescripcion = newAreDescripcion;
+   public void setAre_descripcion(String newAre_descripcion) {
+      are_descripcion = newAre_descripcion;
    }
    
    /** @pdOid c75347a6-d217-46a8-bd9d-4469e96d67be */
-   public char getAreEstado() {
-      return areEstado;
+   public char getAre_estado() {
+      return are_estado;
    }
    
-   /** @param newAreEstado
+   /** @param newAre_estado
     * @pdOid 3825dcf5-a3dc-429b-98a7-92a0d2354802 */
-   public void setAreEstado(char newAreEstado) {
-      areEstado = newAreEstado;
+   public void setAre_estado(char newAre_estado) {
+      are_estado = newAre_estado;
    }
    
    
    /** @pdGenerated default getter */
-   public java.util.List<GenSitios> getSit() {
+   public java.util.List<GEN_Sitios> getSit() {
       if (sit == null)
-         sit = new java.util.Vector<GenSitios>();
+         sit = new java.util.Vector<GEN_Sitios>();
       return sit;
    }
    
    /** @pdGenerated default iterator getter */
    public java.util.Iterator getIteratorSit() {
       if (sit == null)
-         sit = new java.util.Vector<GenSitios>();
+         sit = new java.util.Vector<GEN_Sitios>();
       return sit.iterator();
    }
    
    /** @pdGenerated default setter
      * @param newSit */
-   public void setSit(java.util.List<GenSitios> newSit) {
+   public void setSit(java.util.List<GEN_Sitios> newSit) {
       removeAllSit();
       for (java.util.Iterator iter = newSit.iterator(); iter.hasNext();)
-         addSit((GenSitios)iter.next());
+         addSit((GEN_Sitios)iter.next());
    }
    
    /** @pdGenerated default add
-     * @param newGenSitios */
-   public void addSit(GenSitios newGenSitios) {
-      if (newGenSitios == null)
+     * @param newGEN_Sitios */
+   public void addSit(GEN_Sitios newGEN_Sitios) {
+      if (newGEN_Sitios == null)
          return;
       if (this.sit == null)
-         this.sit = new java.util.Vector<GenSitios>();
-      if (!this.sit.contains(newGenSitios))
+         this.sit = new java.util.Vector<GEN_Sitios>();
+      if (!this.sit.contains(newGEN_Sitios))
       {
-         this.sit.add(newGenSitios);
-         newGenSitios.setAre(this);      
+         this.sit.add(newGEN_Sitios);
+         newGEN_Sitios.setAre(this);      
       }
    }
    
    /** @pdGenerated default remove
-     * @param oldGenSitios */
-   public void removeSit(GenSitios oldGenSitios) {
-      if (oldGenSitios == null)
+     * @param oldGEN_Sitios */
+   public void removeSit(GEN_Sitios oldGEN_Sitios) {
+      if (oldGEN_Sitios == null)
          return;
       if (this.sit != null)
-         if (this.sit.contains(oldGenSitios))
+         if (this.sit.contains(oldGEN_Sitios))
          {
-            this.sit.remove(oldGenSitios);
-            oldGenSitios.setAre((GenArea)null);
+            this.sit.remove(oldGEN_Sitios);
+            oldGEN_Sitios.setAre((GEN_Area)null);
          }
    }
    
@@ -143,12 +143,12 @@ public class GenArea {
    public void removeAllSit() {
       if (sit != null)
       {
-         GenSitios oldGenSitios;
+         GEN_Sitios oldGEN_Sitios;
          for (java.util.Iterator iter = getIteratorSit(); iter.hasNext();)
          {
-            oldGenSitios = (GenSitios)iter.next();
+            oldGEN_Sitios = (GEN_Sitios)iter.next();
             iter.remove();
-            oldGenSitios.setAre((GenArea)null);
+            oldGEN_Sitios.setAre((GEN_Area)null);
          }
       }
    }

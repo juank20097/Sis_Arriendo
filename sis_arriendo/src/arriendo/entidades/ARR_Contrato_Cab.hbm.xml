@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 30-jul-2015 15:46:53 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="arriendo.entidades.ARR_Contrato_Cab" table="ARR_CONTRATO_CAB">
+        <id name="cab_id" type="java.lang.Integer">
+            <column name="CAB_ID" />
+           <generator class="sequence">
+   				<param name="sequence">SEQ_ARR_Contrato_Cab</param>
+   		</generator>
+        </id>
+        <property name="cab_fecha" type="java.util.Date">
+            <column name="CAB_FECHA" />
+        </property>
+        <property name="cab_fechaini" type="java.util.Date">
+            <column name="CAB_FECHAINI" />
+        </property>
+        <property name="cab_fechafin" type="java.util.Date">
+            <column name="CAB_FECHAFIN" />
+        </property>
+        <property name="cab_arrendatario" type="java.lang.String">
+            <column name="CAB_ARRENDATARIO" />
+        </property>
+        <property name="cab_arrendador" type="java.lang.String">
+            <column name="CAB_ARRENDADOR" />
+        </property>
+        <property name="cab_observacion" type="java.lang.String">
+            <column name="CAB_OBSERVACION" />
+        </property>
+        <property name="cab_estado" type="char">
+            <column name="CAB_ESTADO" />
+        </property>
+        <list name="con_det" inverse="false" table="ARR_CONTRATO_DET" lazy="true">
+            <key>
+                <column name="CAB_ID" />
+            </key>
+            <list-index></list-index>
+            <one-to-many class="arriendo.entidades.ARR_Contrato_Det" />
+        </list>
+        <list name="intc" inverse="false" table="ARR_INTER_CLA" lazy="true">
+            <key>
+                <column name="CAB_ID" />
+            </key>
+            <list-index></list-index>
+            <one-to-many class="arriendo.entidades.ARR_Inter_Cla" />
+        </list>
+        <list name="intp" inverse="false" table="ARR_INTER_PER" lazy="true">
+            <key>
+                <column name="CAB_ID" />
+            </key>
+            <list-index></list-index>
+            <one-to-many class="arriendo.entidades.ARR_Inter_Per" />
+        </list>
+    </class>
+</hibernate-mapping>

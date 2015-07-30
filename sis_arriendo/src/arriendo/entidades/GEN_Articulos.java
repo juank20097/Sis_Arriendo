@@ -1,7 +1,7 @@
 /***********************************************************************
- * Module:  GenArticulos.java
+ * Module:  GEN_Articulos.java
  * Author:  jestevez
- * Purpose: Defines the Class GenArticulos
+ * Purpose: Defines the Class GEN_Articulos
  ***********************************************************************/
 
 package arriendo.entidades;
@@ -9,7 +9,7 @@ package arriendo.entidades;
 import java.util.*;
 
 /** @pdOid 67895388-ea28-4d6a-8185-60214a07709a */
-public class GenArticulos {
+public class GEN_Articulos {
    /** @pdOid 2923b17b-d5f4-4530-8f71-e0f5ff0e6677 */
    private Integer artId;
    /** @pdOid 4f15b7d0-6166-4c2c-b679-62d5f5f73735 */
@@ -28,11 +28,11 @@ public class GenArticulos {
       // TODO: implement
    }
    
-   /** @pdRoleInfo migr=no name=GenSitios assc=association1 mult=1..1 side=A */
-   public GenSitios sit;
+   /** @pdRoleInfo migr=no name=GEN_Sitios assc=association1 mult=1..1 side=A */
+   public GEN_Sitios sit;
    
    /** @pdOid 6653eee5-bf9b-49ee-8d61-5a874b58ee46 */
-   public GenArticulos() {
+   public GEN_Articulos() {
       // TODO: implement
    }
    
@@ -100,6 +100,31 @@ public class GenArticulos {
     * @pdOid 81c8c73f-218a-4b2d-a200-0e63ef1e8a11 */
    public void setArtEstado(char newArtEstado) {
       artEstado = newArtEstado;
+   }
+   
+   
+   /** @pdGenerated default parent getter */
+   public GEN_Sitios getSit() {
+      return sit;
+   }
+   
+   /** @pdGenerated default parent setter
+     * @param newGEN_Sitios */
+   public void setSit(GEN_Sitios newGEN_Sitios) {
+      if (this.sit == null || !this.sit.equals(newGEN_Sitios))
+      {
+         if (this.sit != null)
+         {
+            GEN_Sitios oldGEN_Sitios = this.sit;
+            this.sit = null;
+            oldGEN_Sitios.removeArt(this);
+         }
+         if (newGEN_Sitios != null)
+         {
+            this.sit = newGEN_Sitios;
+            this.sit.addArt(this);
+         }
+      }
    }
 
 }

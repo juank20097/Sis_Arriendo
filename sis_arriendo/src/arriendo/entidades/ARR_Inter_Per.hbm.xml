@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 30-jul-2015 15:46:53 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="arriendo.entidades.ARR_Inter_Per" table="ARR_INTER_PER">
+        <id name="inp_id" type="java.lang.Integer">
+            <column name="INP_ID" />
+              <generator class="sequence">
+   				<param name="sequence">SEQ_ARR_Inter_Per</param>
+   		</generator>
+        </id>
+        <many-to-one name="con_cab" class="arriendo.entidades.ARR_Contrato_Cab" fetch="join">
+            <column name="CON_CAB" />
+        </many-to-one>
+        <many-to-one name="per" class="arriendo.entidades.GEN_Persona" fetch="join">
+            <column name="PER" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

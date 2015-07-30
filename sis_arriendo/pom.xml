@@ -41,6 +41,7 @@
     <version>0.7.0</version>
     <scope>compile</scope>
 </dependency>
+
 <!-- Dependencias necesarias para un correcto funcionamiento de JSF -->
   <dependency>
 	<groupId>com.sun.faces</groupId>

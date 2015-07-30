@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 30-jul-2015 15:46:53 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="arriendo.entidades.GEN_Area" table="GEN_AREA">
+        <id name="are_id" type="java.lang.Integer">
+            <column name="ARE_ID" />
+              <generator class="sequence">
+   				<param name="sequence">SEQ_GEN_Area</param>
+   		</generator>
+        </id>
+        <property name="are_nombre" type="java.lang.String">
+            <column name="ARE_NOMBRE" />
+        </property>
+        <property name="are_ubicacion" type="java.lang.String">
+            <column name="ARE_UBICACION" />
+        </property>
+        <property name="are_descripcion" type="java.lang.String">
+            <column name="ARE_DESCRIPCION" />
+        </property>
+        <property name="are_estado" type="char">
+            <column name="ARE_ESTADO" />
+        </property>
+        <list name="sit" inverse="false" table="GEN_SITIOS" lazy="true">
+            <key>
+                <column name="ARE_ID" />
+            </key>
+            <list-index></list-index>
+            <one-to-many class="arriendo.entidades.GEN_Sitios" />
+        </list>
+    </class>
+</hibernate-mapping>

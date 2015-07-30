@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 30-jul-2015 10:13:37 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 30-jul-2015 15:46:53 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="arriendo.Entidades.GenArticulos" table="GENARTICULOS">
+    <class name="arriendo.entidades.GEN_Articulos" table="GEN_ARTICULOS">
         <id name="artId" type="java.lang.Integer">
             <column name="ARTID" />
              <generator class="sequence">
-   				<param name="sequence">seq_GenArticulos</param>
+   				<param name="sequence">SEQ_GEN_Articulos</param>
    		</generator>
         </id>
         <property name="artNombre" type="java.lang.String">
@@ -25,7 +25,7 @@
         <property name="artEstado" type="char">
             <column name="ARTESTADO" />
         </property>
-        <many-to-one name="sit" class="arriendo.Entidades.GenSitios" access="field" fetch="join">
+        <many-to-one name="sit" class="arriendo.entidades.GEN_Sitios" fetch="join">
             <column name="SIT" />
         </many-to-one>
     </class>
