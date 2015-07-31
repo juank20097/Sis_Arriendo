@@ -214,7 +214,7 @@ public class ContratosDAO {
 			p.setDet_costo(costo);
 			p.setDet_estado(estado);
 			p.setCon_cab(contrato_cab);
-			manager.insertar(p);
+			manager.actualizar(p);
 			System.out.println("Bien_editar_contratoDet");
 			contrato_cab = new ARR_Contrato_Cab();
 		} catch (Exception e) {
@@ -512,7 +512,7 @@ public class ContratosDAO {
 			p.setIte_id(id);
 			p.setIte_descripcion(descripcion);
 			p.setCla(clausulas);
-			manager.insertar(p);
+			manager.actualizar(p);
 			System.out.println("Bien_editar_items");
 			clausulas = new ARR_Clausulas();
 		} catch (Exception e) {
