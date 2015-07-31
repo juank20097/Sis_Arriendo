@@ -180,13 +180,5 @@ public class HibernateDAO {
 		}
 		return r;
 	}
-	
-
-	    /*private void manejaExcepcion(HibernateException he) throws HibernateException 
-	    { 
-	        tx.rollback(); 
-	        throw new HibernateException("Ocurrió un error en la capa de acceso a datos", he); 
-	    } 
-*/
 
 }

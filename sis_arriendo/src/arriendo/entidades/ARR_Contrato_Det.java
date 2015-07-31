@@ -67,6 +67,17 @@ public class ARR_Contrato_Det {
       det_costo = newDet_costo;
    }
    
+   /** @pdOid 37d3a117-0508-4059-8594-a0642940233d */
+   public char getDet_estado() {
+      return det_estado;
+   }
+   
+   /** @param newDet_estado
+    * @pdOid e1406a0f-f569-456f-93d0-a449ca90e342 */
+   public void setDet_estado(char newDet_estado) {
+      det_estado = newDet_estado;
+   }
+   
    
    /** @pdGenerated default parent getter */
    public GEN_Sitios getSit() {

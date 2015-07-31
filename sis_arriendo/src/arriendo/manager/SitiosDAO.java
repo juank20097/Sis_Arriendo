@@ -77,7 +77,6 @@ public class SitiosDAO {
 	 * @param estado
 	 *            Tipo char el cual almacena el dato si el Area es
 	 *            Activado/Desactivado
-	 * @return El objeto Area encontrado mediante el ID
 	 */
 	public void insertarArea(String nombre, String ubicacion,
 			String descripcion, char estado) throws Exception {

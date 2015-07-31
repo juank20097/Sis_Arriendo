@@ -18,10 +18,6 @@ public class ARR_Contrato_Cab {
    private Date cab_fechaini;
    /** @pdOid cd75a98b-0a58-4fff-90ae-b6a92ae5cd6a */
    private Date cab_fechafin;
-   /** @pdOid aa2c8ebd-56e7-4691-9c34-0801c63ae611 */
-   private String cab_arrendatario;
-   /** @pdOid 429aeacc-ae7f-42c0-93e7-e4cb36ba6441 */
-   private String cab_arrendador;
    /** @pdOid d0951824-ac27-4109-9313-2cb1f0ffea0b */
    private String cab_observacion;
    /** @pdOid 6a206325-7732-476c-bd31-099df6e118c1 */
@@ -86,28 +82,6 @@ public class ARR_Contrato_Cab {
     * @pdOid cb96193a-eedc-45ae-bf73-9d3b174b4421 */
    public void setCab_fechafin(Date newCab_fechafin) {
       cab_fechafin = newCab_fechafin;
-   }
-   
-   /** @pdOid 481477a5-57de-42d0-a12a-a6eff6525276 */
-   public String getCab_arrendatario() {
-      return cab_arrendatario;
-   }
-   
-   /** @param newCab_arrendatario
-    * @pdOid 62cbc728-bc1e-4bf1-a9f7-fd7b05d1435a */
-   public void setCab_arrendatario(String newCab_arrendatario) {
-      cab_arrendatario = newCab_arrendatario;
-   }
-   
-   /** @pdOid 6354d4cf-086c-4cca-ac87-2db0108416ab */
-   public String getCab_arrendador() {
-      return cab_arrendador;
-   }
-   
-   /** @param newCab_arrendador
-    * @pdOid f13ffc73-d0b7-47a8-ac3b-cfe3b31acb86 */
-   public void setCab_arrendador(String newCab_arrendador) {
-      cab_arrendador = newCab_arrendador;
    }
    
    /** @pdOid 8cab54dc-f9a1-497c-b009-6e2c73398630 */
