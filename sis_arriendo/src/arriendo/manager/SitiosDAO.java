@@ -3,6 +3,7 @@ package arriendo.manager;
 import java.util.List;
 
 import arriendo.entidades.GEN_Area;
+import arriendo.entidades.GEN_Articulos;
 import arriendo.entidades.GEN_Modo;
 import arriendo.entidades.GEN_Sitios;
 
@@ -23,6 +24,8 @@ public class SitiosDAO {
 	// Campos de asignacion (Sitios)
 	private GEN_Area area;
 	private GEN_Modo modo;
+	// Campos de asignacion (Articulos)
+	private GEN_Sitios sitio;
 
 	/**
 	 * Constructor para la utilizacion de metodos de la clase HibernateDAO
@@ -35,6 +38,7 @@ public class SitiosDAO {
 		manager = new HibernateDAO();
 	}// Cierre del Constructor
 
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/**
 	 * Creación de metodos para el manejo de la tabla GEN_Area
 	 * 
@@ -139,6 +143,7 @@ public class SitiosDAO {
 		}
 	}// Cierre del metodo
 
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/**
 	 * Creación de metodos para el manejo de la tabla GEN_Sitios
 	 * 
@@ -257,7 +262,7 @@ public class SitiosDAO {
 	 *            Tipo Integer el cual sirve para buscar un tipo
 	 * @return El tipo area con el dato correspondiente
 	 */
-	public GEN_Area asignarSitio(Integer id) {
+	public GEN_Area asignarArea(Integer id) {
 		try {
 			area = this.AreaByID(id);
 			System.out.println("Bien_asignar_Area");
@@ -286,6 +291,7 @@ public class SitiosDAO {
 		return modo;
 	}// Cierre del metodo
 
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/**
 	 * Creación de metodos para el manejo de la tabla GEN_Modo
 	 */
@@ -319,7 +325,8 @@ public class SitiosDAO {
 	 * @param descripcion
 	 *            Tipo String el cual almacena el enfoque para el modo
 	 */
-	public void insertarModo(String nombre, String descripcion) throws Exception {
+	public void insertarModo(String nombre, String descripcion)
+			throws Exception {
 		try {
 			GEN_Modo p = new GEN_Modo();
 			p.setMod_nombre(nombre);
@@ -343,7 +350,8 @@ public class SitiosDAO {
 	 * @param descripcion
 	 *            Tipo String el cual edita el enfoque para el modo
 	 */
-	public void editarModo(Integer id,String nombre, String descripcion) throws Exception {
+	public void editarModo(Integer id, String nombre, String descripcion)
+			throws Exception {
 		try {
 			GEN_Modo r = this.ModoByID(id);
 			r.setMod_id(id);
@@ -357,4 +365,115 @@ public class SitiosDAO {
 		}
 	}// Cierre del metodo
 
+	// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/*
+	 * Creación de metodos para el manejo de la tabla GEN_Articulos
+	 */
+
+	/**
+	 * Metodo para listar todos los Articulos existentes
+	 * 
+	 * @return La lista de todos los Articulos encontradas
+	 */
+	@SuppressWarnings("unchecked")
+	public List<GEN_Articulos> findAllArticulos() {
+		return manager.findAll(GEN_Articulos.class);
+	}// Cierre del metodo
+
+	/**
+	 * Metodo para obtener el Articulo mediante un ID
+	 * 
+	 * @param id
+	 *            Tipo integer de busqueda
+	 * @return El objeto Articulo encontrado mediante el ID
+	 */
+	public GEN_Articulos ArticuloByID(Integer id) throws Exception {
+		return (GEN_Articulos) manager.findById(GEN_Articulos.class, id);
+	}// Cierre del metodo
+
+	/**
+	 * Metodo para ingresar un Articulo a la base de datos
+	 * 
+	 * @param nombre
+	 *            Tipo String el cual almacena el nombre para denotar el
+	 *            articulo
+	 * @param descripcion
+	 *            Tipo String el cual almacena el enfoque para el articulo
+	 * @param serial
+	 *            Tipo String el cual almacena el identificador del articulo
+	 * @param valor
+	 *            Tipo String el cual almacena el costo del articulo
+	 * @param estado
+	 *            Tipo char el cual almacena el estado del articulo
+	 */
+	public void insertarArticulo(String nombre, String descripcion,
+			String serial, Float valor, char estado) throws Exception {
+		try {
+			GEN_Articulos p = new GEN_Articulos();
+			p.setArt_nombre(nombre);
+			p.setArt_descripcion(descripcion);
+			p.setArt_serial(serial);
+			p.setArt_valor_referenciado(valor);
+			p.setArt_estado(estado);
+			p.setSit(sitio);
+			manager.insertar(p);
+			System.out.println("Bien_insertar_articulo");
+		} catch (Exception e) {
+			System.out.println("Error_insertar_articulo");
+			e.printStackTrace();
+		}
+
+	}// Cierre del metodo
+
+	/**
+	 * Metodo para editar un Articulo a la base de datos
+	 * 
+	 * @param id
+	 *            Tipo Integer el cual permite la busqueda del articulo
+	 * @param nombre
+	 *            Tipo String el cual edita el nombre para denotar el articulo
+	 * @param descripcion
+	 *            Tipo String el cual edita el enfoque para el articulo
+	 * @param serial
+	 *            Tipo String el cual edita el identificador del articulo
+	 * @param valor
+	 *            Tipo String el cual edita el costo del articulo
+	 * @param estado
+	 *            Tipo char el cual edita el estado del articulo
+	 */
+	public void editarArticulo(Integer id, String nombre, String descripcion,
+			String serial, Float valor, char estado) throws Exception {
+		try {
+			GEN_Articulos r = this.ArticuloByID(id);
+			r.setArt_nombre(nombre);
+			r.setArt_descripcion(descripcion);
+			r.setArt_serial(serial);
+			r.setArt_valor_referenciado(valor);
+			r.setArt_estado(estado);
+			r.setSit(sitio);
+			manager.actualizar(r);
+			System.out.println("bien_mod_articulo");
+		} catch (Exception e) {
+			System.out.println("Error_mod_articulo");
+			e.printStackTrace();
+		}
+	}// Cierre del metodo
+
+	/**
+	 * Metodo para asignar un Sitio a un Articulo en la base de datos
+	 * 
+	 * @param id
+	 *            Tipo Integer el cual sirve para buscar un tipo
+	 * @return El tipo articulo con el dato correspondiente
+	 */
+	public GEN_Sitios asignarSitio(Integer id) {
+		try {
+			sitio = this.SitioByID(id);
+			System.out.println("Bien_asignar_Sitio");
+		} catch (Exception e) {
+			System.out.println("Mal_asignar_Sitio");
+			e.printStackTrace();
+		}
+		return sitio;
+	}// Cierre del metodo
 }

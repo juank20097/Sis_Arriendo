@@ -1,29 +1,29 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 30-jul-2015 15:46:53 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 31-jul-2015 9:40:57 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="arriendo.entidades.GEN_Articulos" table="GEN_ARTICULOS">
-        <id name="artId" type="java.lang.Integer">
-            <column name="ARTID" />
-             <generator class="sequence">
+        <id name="art_id" type="java.lang.Integer">
+            <column name="ART_ID" />
+            <generator class="sequence">
    				<param name="sequence">SEQ_GEN_Articulos</param>
    		</generator>
         </id>
-        <property name="artNombre" type="java.lang.String">
-            <column name="ARTNOMBRE" />
+        <property name="art_nombre" type="java.lang.String">
+            <column name="ART_NOMBRE" />
         </property>
-        <property name="artDescripcion" type="java.lang.String">
-            <column name="ARTDESCRIPCION" />
+        <property name="art_descripcion" type="java.lang.String">
+            <column name="ART_DESCRIPCION" />
         </property>
-        <property name="artSerial" type="java.lang.String">
-            <column name="ARTSERIAL" />
+        <property name="art_serial" type="java.lang.String">
+            <column name="ART_SERIAL" />
         </property>
-        <property name="artValorReferenciado" type="java.lang.Float">
-            <column name="ARTVALORREFERENCIADO" />
+        <property name="art_valor_referenciado" type="java.lang.Float">
+            <column name="ART_VALOR_REFERENCIADO" />
         </property>
-        <property name="artEstado" type="char">
-            <column name="ARTESTADO" />
+        <property name="art_estado" type="char">
+            <column name="ART_ESTADO" />
         </property>
         <many-to-one name="sit" class="arriendo.entidades.GEN_Sitios" fetch="join">
             <column name="SIT" />
