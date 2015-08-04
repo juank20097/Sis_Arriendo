@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 30-jul-2015 15:46:53 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 03-ago-2015 14:20:41 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="arriendo.entidades.GEN_Sitios" table="GEN_SITIOS">
         <id name="sit_identificador" type="java.lang.String">
@@ -23,21 +23,18 @@
         </property>
         <list name="art" inverse="false" table="GEN_ARTICULOS" lazy="true">
             <key>
-                <column name="SIT_IDENTIFICADOR" />
+                <column name="SIT_CAPACIDAD" />
             </key>
             <list-index></list-index>
             <one-to-many class="arriendo.entidades.GEN_Articulos" />
         </list>
         <list name="con_det" inverse="false" table="ARR_CONTRATO_DET" lazy="true">
             <key>
-                <column name="SIT_IDENTIFICADOR" />
+                <column name="SIT_CAPACIDAD" />
             </key>
             <list-index></list-index>
             <one-to-many class="arriendo.entidades.ARR_Contrato_Det" />
         </list>
-        <many-to-one name="mod" class="arriendo.entidades.GEN_Modo" fetch="join">
-            <column name="MOD" />
-        </many-to-one>
         <many-to-one name="are" class="arriendo.entidades.GEN_Area" fetch="join">
             <column name="ARE" />
         </many-to-one>

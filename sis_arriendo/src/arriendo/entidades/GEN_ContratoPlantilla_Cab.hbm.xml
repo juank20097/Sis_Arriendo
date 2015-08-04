@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 03-ago-2015 14:20:41 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="arriendo.entidades.GEN_ContratoPlantilla_Cab" table="GEN_CONTRATOPLANTILLA_CAB">
+        <id name="cpc_id" type="java.lang.Integer">
+            <column name="CPC_ID" />
+             <generator class="sequence">
+   				<param name="sequence">seq_GEN_ContratoPlantilla_Cab</param>
+   		</generator>
+        </id>
+        <property name="art_tipo" type="java.lang.String">
+            <column name="ART_TIPO" />
+        </property>
+        <property name="cpc_nombre" type="java.lang.String">
+            <column name="CPC_NOMBRE" />
+        </property>
+        <property name="cpc_descripcion" type="java.lang.String">
+            <column name="CPC_DESCRIPCION" />
+        </property>
+        <property name="cpc_estado" type="char">
+            <column name="CPC_ESTADO" />
+        </property>
+        <list name="con_p_d" inverse="false" table="GEN_CONTRATOPLANTILLACLAUSULAS_DET" lazy="true">
+            <key>
+                <column name="CPC_ID" />
+            </key>
+            <list-index></list-index>
+            <one-to-many class="arriendo.entidades.GEN_ContratoPlantillaClausulas_Det" />
+        </list>
+    </class>
+</hibernate-mapping>

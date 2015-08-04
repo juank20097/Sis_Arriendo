@@ -28,6 +28,8 @@ public class ARR_Contrato_Det {
    public GEN_Sitios sit;
    /** @pdRoleInfo migr=no name=ARR_Contrato_Cab assc=association3 mult=1..1 side=A */
    public ARR_Contrato_Cab con_cab;
+   /** @pdRoleInfo migr=no name=ARR_Contrato_Articulo assc=association14 mult=1..1 side=A */
+   public ARR_Contrato_Articulo con_art;
    
    /** @pdOid 269aff93-3eb8-4dda-bf79-b41953985d98 */
    public ARR_Contrato_Det() {
@@ -67,13 +69,13 @@ public class ARR_Contrato_Det {
       det_costo = newDet_costo;
    }
    
-   /** @pdOid 37d3a117-0508-4059-8594-a0642940233d */
+   /** @pdOid 08f7af01-2734-45ce-bd96-c841c1690e7b */
    public char getDet_estado() {
       return det_estado;
    }
    
    /** @param newDet_estado
-    * @pdOid e1406a0f-f569-456f-93d0-a449ca90e342 */
+    * @pdOid 08b42bdf-68e6-49c9-a0dd-a32f0102dc5d */
    public void setDet_estado(char newDet_estado) {
       det_estado = newDet_estado;
    }
@@ -122,6 +124,29 @@ public class ARR_Contrato_Det {
          {
             this.con_cab = newARR_Contrato_Cab;
             this.con_cab.addCon_det(this);
+         }
+      }
+   }
+   /** @pdGenerated default parent getter */
+   public ARR_Contrato_Articulo getCon_art() {
+      return con_art;
+   }
+   
+   /** @pdGenerated default parent setter
+     * @param newARR_Contrato_Articulo */
+   public void setCon_art(ARR_Contrato_Articulo newARR_Contrato_Articulo) {
+      if (this.con_art == null || !this.con_art.equals(newARR_Contrato_Articulo))
+      {
+         if (this.con_art != null)
+         {
+            ARR_Contrato_Articulo oldARR_Contrato_Articulo = this.con_art;
+            this.con_art = null;
+            oldARR_Contrato_Articulo.removeCon_det(this);
+         }
+         if (newARR_Contrato_Articulo != null)
+         {
+            this.con_art = newARR_Contrato_Articulo;
+            this.con_art.addCon_det(this);
          }
       }
    }

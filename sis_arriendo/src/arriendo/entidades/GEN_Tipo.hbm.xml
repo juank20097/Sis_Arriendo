@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 30-jul-2015 15:46:53 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 03-ago-2015 14:20:41 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="arriendo.entidades.GEN_Tipo" table="GEN_TIPO">
         <id name="tip_id" type="java.lang.Integer">
             <column name="TIP_ID" />
              <generator class="sequence">
-   				<param name="sequence">SEQ_GEN_Tipo</param>
+   				<param name="sequence">seq_GEN_Tipo</param>
    		</generator>
         </id>
         <property name="tip_tipo" type="java.lang.String">

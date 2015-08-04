@@ -14,17 +14,17 @@
   <property name="show_sql">true</property>
   <property name="hbm2ddl.auto">create-drop</property>
   <!-- Archivos de mapeo -->
-  <mapping resource="arriendo/entidades/ARR_Clausulas.hbm.xml"/>
   <mapping resource="arriendo/entidades/ARR_Contrato_Cab.hbm.xml"/>
   <mapping resource="arriendo/entidades/ARR_Contrato_Det.hbm.xml"/>
-  <mapping resource="arriendo/entidades/ARR_Inter_Cla.hbm.xml"/>
   <mapping resource="arriendo/entidades/ARR_Inter_Per.hbm.xml"/>
-  <mapping resource="arriendo/entidades/ARR_Items.hbm.xml"/>
   <mapping resource="arriendo/entidades/GEN_Area.hbm.xml"/>
   <mapping resource="arriendo/entidades/GEN_Articulos.hbm.xml"/>
-  <mapping resource="arriendo/entidades/GEN_Modo.hbm.xml"/>
   <mapping resource="arriendo/entidades/GEN_Persona.hbm.xml"/>
   <mapping resource="arriendo/entidades/GEN_Sitios.hbm.xml"/>
   <mapping resource="arriendo/entidades/GEN_Tipo.hbm.xml"/>
+  <mapping resource="arriendo/entidades/ARR_Contrato_Articulo.hbm.xml"/>
+  <mapping resource="arriendo/entidades/ARR_ContratoClausulas_Det.hbm.xml"/>
+  <mapping resource="arriendo/entidades/GEN_ContratoPlantilla_Cab.hbm.xml"/>
+  <mapping resource="arriendo/entidades/GEN_ContratoPlantillaClausulas_Det.hbm.xml"/>
  </session-factory>
 </hibernate-configuration>

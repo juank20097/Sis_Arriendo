@@ -30,8 +30,8 @@ public class ARR_Contrato_Cab {
    
    /** @pdRoleInfo migr=no name=ARR_Contrato_Det assc=association3 coll=java.util.List mult=* */
    public java.util.List<ARR_Contrato_Det> con_det;
-   /** @pdRoleInfo migr=no name=ARR_Inter_Cla assc=association4 coll=java.util.List mult=* */
-   public java.util.List<ARR_Inter_Cla> intc;
+   /** @pdRoleInfo migr=no name=ARR_ContratoClausulas_Det assc=association13 coll=java.util.List mult=* */
+   public java.util.List<ARR_ContratoClausulas_Det> con_cla_d;
    /** @pdRoleInfo migr=no name=ARR_Inter_Per assc=association10 coll=java.util.List mult=* side=A */
    public java.util.List<ARR_Inter_Per> intp;
    
@@ -170,64 +170,64 @@ public class ARR_Contrato_Cab {
       }
    }
    /** @pdGenerated default getter */
-   public java.util.List<ARR_Inter_Cla> getIntc() {
-      if (intc == null)
-         intc = new java.util.Vector<ARR_Inter_Cla>();
-      return intc;
+   public java.util.List<ARR_ContratoClausulas_Det> getCon_cla_d() {
+      if (con_cla_d == null)
+         con_cla_d = new java.util.Vector<ARR_ContratoClausulas_Det>();
+      return con_cla_d;
    }
    
    /** @pdGenerated default iterator getter */
-   public java.util.Iterator getIteratorIntc() {
-      if (intc == null)
-         intc = new java.util.Vector<ARR_Inter_Cla>();
-      return intc.iterator();
+   public java.util.Iterator getIteratorCon_cla_d() {
+      if (con_cla_d == null)
+         con_cla_d = new java.util.Vector<ARR_ContratoClausulas_Det>();
+      return con_cla_d.iterator();
    }
    
    /** @pdGenerated default setter
-     * @param newIntc */
-   public void setIntc(java.util.List<ARR_Inter_Cla> newIntc) {
-      removeAllIntc();
-      for (java.util.Iterator iter = newIntc.iterator(); iter.hasNext();)
-         addIntc((ARR_Inter_Cla)iter.next());
+     * @param newCon_cla_d */
+   public void setCon_cla_d(java.util.List<ARR_ContratoClausulas_Det> newCon_cla_d) {
+      removeAllCon_cla_d();
+      for (java.util.Iterator iter = newCon_cla_d.iterator(); iter.hasNext();)
+         addCon_cla_d((ARR_ContratoClausulas_Det)iter.next());
    }
    
    /** @pdGenerated default add
-     * @param newARR_Inter_Cla */
-   public void addIntc(ARR_Inter_Cla newARR_Inter_Cla) {
-      if (newARR_Inter_Cla == null)
+     * @param newARR_ContratoClausulas_Det */
+   public void addCon_cla_d(ARR_ContratoClausulas_Det newARR_ContratoClausulas_Det) {
+      if (newARR_ContratoClausulas_Det == null)
          return;
-      if (this.intc == null)
-         this.intc = new java.util.Vector<ARR_Inter_Cla>();
-      if (!this.intc.contains(newARR_Inter_Cla))
+      if (this.con_cla_d == null)
+         this.con_cla_d = new java.util.Vector<ARR_ContratoClausulas_Det>();
+      if (!this.con_cla_d.contains(newARR_ContratoClausulas_Det))
       {
-         this.intc.add(newARR_Inter_Cla);
-         newARR_Inter_Cla.setCon_cab(this);      
+         this.con_cla_d.add(newARR_ContratoClausulas_Det);
+         newARR_ContratoClausulas_Det.setCon_cab(this);      
       }
    }
    
    /** @pdGenerated default remove
-     * @param oldARR_Inter_Cla */
-   public void removeIntc(ARR_Inter_Cla oldARR_Inter_Cla) {
-      if (oldARR_Inter_Cla == null)
+     * @param oldARR_ContratoClausulas_Det */
+   public void removeCon_cla_d(ARR_ContratoClausulas_Det oldARR_ContratoClausulas_Det) {
+      if (oldARR_ContratoClausulas_Det == null)
          return;
-      if (this.intc != null)
-         if (this.intc.contains(oldARR_Inter_Cla))
+      if (this.con_cla_d != null)
+         if (this.con_cla_d.contains(oldARR_ContratoClausulas_Det))
          {
-            this.intc.remove(oldARR_Inter_Cla);
-            oldARR_Inter_Cla.setCon_cab((ARR_Contrato_Cab)null);
+            this.con_cla_d.remove(oldARR_ContratoClausulas_Det);
+            oldARR_ContratoClausulas_Det.setCon_cab((ARR_Contrato_Cab)null);
          }
    }
    
    /** @pdGenerated default removeAll */
-   public void removeAllIntc() {
-      if (intc != null)
+   public void removeAllCon_cla_d() {
+      if (con_cla_d != null)
       {
-         ARR_Inter_Cla oldARR_Inter_Cla;
-         for (java.util.Iterator iter = getIteratorIntc(); iter.hasNext();)
+         ARR_ContratoClausulas_Det oldARR_ContratoClausulas_Det;
+         for (java.util.Iterator iter = getIteratorCon_cla_d(); iter.hasNext();)
          {
-            oldARR_Inter_Cla = (ARR_Inter_Cla)iter.next();
+            oldARR_ContratoClausulas_Det = (ARR_ContratoClausulas_Det)iter.next();
             iter.remove();
-            oldARR_Inter_Cla.setCon_cab((ARR_Contrato_Cab)null);
+            oldARR_ContratoClausulas_Det.setCon_cab((ARR_Contrato_Cab)null);
          }
       }
    }

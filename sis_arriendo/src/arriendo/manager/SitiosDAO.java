@@ -4,7 +4,8 @@ import java.util.List;
 
 import arriendo.entidades.GEN_Area;
 import arriendo.entidades.GEN_Articulos;
-import arriendo.entidades.GEN_Modo;
+import arriendo.entidades.GEN_Institucion;
+import arriendo.entidades.GEN_Sector;
 import arriendo.entidades.GEN_Sitios;
 
 /**
@@ -23,9 +24,10 @@ public class SitiosDAO {
 
 	// Campos de asignacion (Sitios)
 	private GEN_Area area;
-	private GEN_Modo modo;
 	// Campos de asignacion (Articulos)
 	private GEN_Sitios sitio;
+	// Campos de asignacion (Sector)
+	private GEN_Institucion institucion;
 
 	/**
 	 * Constructor para la utilizacion de metodos de la clase HibernateDAO
@@ -38,7 +40,7 @@ public class SitiosDAO {
 		manager = new HibernateDAO();
 	}// Cierre del Constructor
 
-	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/**
 	 * Creación de metodos para el manejo de la tabla GEN_Area
 	 * 
@@ -142,7 +144,7 @@ public class SitiosDAO {
 		}
 	}// Cierre del metodo
 
-	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/**
 	 * Creación de metodos para el manejo de la tabla GEN_Sitios
 	 * 
@@ -211,7 +213,6 @@ public class SitiosDAO {
 			p.setSit_capacidad(capacidad);
 			p.setSit_estado(estado);
 			p.setAre(area);
-			p.setMod(modo);
 			manager.insertar(p);
 			System.out.println("Bien_insertar_area");
 		} catch (Exception e) {
@@ -245,7 +246,6 @@ public class SitiosDAO {
 			r.setSit_capacidad(capacidad);
 			r.setSit_estado(estado);
 			r.setAre(area);
-			r.setMod(modo);
 			manager.actualizar(r);
 			System.out.println("bien_mod_sitio");
 		} catch (Exception e) {
@@ -270,98 +270,6 @@ public class SitiosDAO {
 			e.printStackTrace();
 		}
 		return area;
-	}// Cierre del metodo
-
-	/**
-	 * Metodo para asignar un Modo a un Sitio en la base de datos
-	 * 
-	 * @param id
-	 *            Tipo Integer el cual sirve para buscar un tipo
-	 * @return El tipo modo con el dato correspondiente
-	 */
-	public GEN_Modo asignarModo(Integer id) {
-		try {
-			modo = this.ModoByID(id);
-			System.out.println("Bien_asignar_Modo");
-		} catch (Exception e) {
-			System.out.println("Mal_asignar_Modo");
-			e.printStackTrace();
-		}
-		return modo;
-	}// Cierre del metodo
-
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/**
-	 * Creación de metodos para el manejo de la tabla GEN_Modo
-	 */
-
-	/**
-	 * Metodo para listar todos los Modos existentes
-	 * 
-	 * @return La lista de todos los Modos encontradas
-	 */
-	@SuppressWarnings("unchecked")
-	public List<GEN_Modo> findAllModos() {
-		return manager.findAll(GEN_Modo.class);
-	}// Cierre del metodo
-
-	/**
-	 * Metodo para obtener el Modo mediante un ID
-	 * 
-	 * @param id
-	 *            Tipo integer de busqueda
-	 * @return El objeto Modo encontrado mediante el ID
-	 */
-	public GEN_Modo ModoByID(Integer id) throws Exception {
-		return (GEN_Modo) manager.findById(GEN_Modo.class, id);
-	}// Cierre del metodo
-
-	/**
-	 * Metodo para ingresar un Modo a la base de datos
-	 * 
-	 * @param nombre
-	 *            Tipo String el cual almacena el nombre para denotar el modo
-	 * @param descripcion
-	 *            Tipo String el cual almacena el enfoque para el modo
-	 */
-	public void insertarModo(String nombre, String descripcion)
-			throws Exception {
-		try {
-			GEN_Modo p = new GEN_Modo();
-			p.setMod_nombre(nombre);
-			p.setMod_descripcion(descripcion);
-			manager.insertar(p);
-			System.out.println("Bien_insertar_modo");
-		} catch (Exception e) {
-			System.out.println("Error_insertar_modo");
-			e.printStackTrace();
-		}
-
-	}// Cierre del metodo
-
-	/**
-	 * Metodo para editar un Modo a la base de datos
-	 * 
-	 * @param id
-	 *            Tipo Integer el cual permite la busqueda para editar
-	 * @param nombre
-	 *            Tipo String el cual edita el nombre para denotar el modo
-	 * @param descripcion
-	 *            Tipo String el cual edita el enfoque para el modo
-	 */
-	public void editarModo(Integer id, String nombre, String descripcion)
-			throws Exception {
-		try {
-			GEN_Modo r = this.ModoByID(id);
-			r.setMod_id(id);
-			r.setMod_nombre(nombre);
-			r.setMod_descripcion(descripcion);
-			manager.actualizar(r);
-			System.out.println("bien_mod_modo");
-		} catch (Exception e) {
-			System.out.println("Error_mod_modo");
-			e.printStackTrace();
-		}
 	}// Cierre del metodo
 
 	// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -474,5 +382,194 @@ public class SitiosDAO {
 			e.printStackTrace();
 		}
 		return sitio;
+	}// Cierre del metodo
+
+	// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/**
+	 * Creación de metodos para el manejo de la tabla GEN_Institucion
+	 * 
+	 */
+
+	/**
+	 * Metodo para listar Institucion existentes
+	 * 
+	 * @return La lista de todas las Institucion encontradas
+	 */
+	@SuppressWarnings("unchecked")
+	public List<GEN_Institucion> findAllInstituciones() {
+		return manager.findAll(GEN_Institucion.class);
+	}// Cierre del metodo
+
+	/**
+	 * Metodo para obetener Institucion mediante un ID
+	 * 
+	 * @param id
+	 *            Tipo integer de busqueda
+	 * @return El objeto Institucion encontrado mediante el ID
+	 */
+	public GEN_Institucion institucionByID(Integer id) throws Exception {
+		return (GEN_Institucion) manager.findById(GEN_Institucion.class, id);
+	}// Cierre del metodo
+
+	/**
+	 * Metodo para ingresar Entidad a la base de datos
+	 * 
+	 * @param nombre
+	 *            Tipo String el cual almacena el nombre para denotar la entidad
+	 * @param descripcion
+	 *            Tipo String el cual almacena descripcion de la entidad
+	 * @param estado
+	 *            Tipo char el cual almacena el dato si es
+	 *            (Activado/Descativado)
+	 */
+	public void insertarInstitucion(String nombre, String descripcion,
+			char estado) throws Exception {
+		try {
+			GEN_Institucion p = new GEN_Institucion();
+			p.setIns_nombre(nombre);
+			p.setIns_descripcion(descripcion);
+			p.setIns_estado(estado);
+			manager.insertar(p);
+			System.out.println("Bien_insertar_institucion");
+		} catch (Exception e) {
+			System.out.println("Error_insertar_institucion");
+			e.printStackTrace();
+		}
+
+	}// Cierre del metodo
+
+	/**
+	 * Metodo para editar Entidad a la base de datos
+	 * 
+	 * @param id
+	 *            Tipo Integer el dato para buscar la entidad
+	 * @param nombre
+	 *            Tipo String el cual almacena el nombre para denotar la entidad
+	 * @param descripcion
+	 *            Tipo String el cual almacena descripcion de la entidad
+	 * @param estado
+	 *            Tipo char el cual almacena el dato si es
+	 *            (Activado/Descativado)
+	 */
+	public void editarInstitucion(Integer id, String nombre,
+			String descripcion, char estado) throws Exception {
+		try {
+			GEN_Institucion p = this.institucionByID(id);
+			p.setIns_id(id);
+			p.setIns_nombre(nombre);
+			p.setIns_descripcion(descripcion);
+			p.setIns_estado(estado);
+			manager.actualizar(p);
+			System.out.println("Bien_editar_institucion");
+		} catch (Exception e) {
+			System.out.println("Error_editar_institucion");
+			e.printStackTrace();
+		}
+
+	}// Cierre del metodo
+
+	// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/**
+	 * Creación de metodos para el manejo de la tabla GEN_Sector
+	 * 
+	 */
+
+	/**
+	 * Metodo para listar todos los datos de la entidad
+	 * 
+	 * @return La lista de todos los datos de la entidad encontradas
+	 */
+	@SuppressWarnings("unchecked")
+	public List<GEN_Sector> findAllSector() {
+		return manager.findAll(GEN_Sector.class);
+	}// Cierre del metodo
+
+	/**
+	 * Metodo para obtener Entidad mediante un ID
+	 * 
+	 * @param id
+	 *            Tipo integer de busqueda
+	 * @return El objeto de la Entidad encontrado mediante el ID
+	 */
+	public GEN_Sector SectorByID(Integer id) throws Exception {
+		return (GEN_Sector) manager.findById(GEN_Sector.class, id);
+	}// Cierre del metodo
+
+	/**
+	 * Metodo para ingresar Entidad a la base de datos
+	 * 
+	 * @param nombre
+	 *            Tipo String el cual almacena el nombre para denotar la entidad
+	 * @param direccion
+	 *            Tipo String el cual almacena el lugar de la entidad
+	 * @param estado
+	 *            Tipo char el cual almacena el dato si es
+	 *            (Activado/Descativado)
+	 */
+	public void insertarSector(String nombre, String direccion, char estado)
+			throws Exception {
+		try {
+			GEN_Sector p = new GEN_Sector();
+			p.setSec_nombre(nombre);
+			p.setSec_direccion(direccion);
+			p.setSec_estado(estado);
+			p.setIns(institucion);
+			manager.insertar(p);
+			System.out.println("Bien_insertar_sector");
+			institucion = new GEN_Institucion();
+		} catch (Exception e) {
+			System.out.println("Error_insertar_sector");
+			e.printStackTrace();
+		}
+
+	}// Cierre del metodo
+
+	/**
+	 * Metodo para editar Entidad a la base de datos
+	 * 
+	 * @param id
+	 *            Tipo Integer el dato para buscar la entidad
+	 * @param nombre
+	 *            Tipo String el cual edita el nombre para denotar la entidad
+	 * @param direccion
+	 *            Tipo String el cual edita el lugar de la entidad
+	 * @param estado
+	 *            Tipo char el cual edita el dato si es (Activado/Descativado)
+	 */
+	public void editarSector(Integer id, String nombre, String direccion,
+			char estado) throws Exception {
+		try {
+			GEN_Sector p = new GEN_Sector();
+			p.setSec_id(id);
+			p.setSec_nombre(nombre);
+			p.setSec_direccion(direccion);
+			p.setSec_estado(estado);
+			p.setIns(institucion);
+			manager.insertar(p);
+			System.out.println("Bien_editar_sector");
+			institucion = new GEN_Institucion();
+		} catch (Exception e) {
+			System.out.println("Error_editar_sector");
+			e.printStackTrace();
+		}
+
+	}// Cierre del metodo
+	
+	/**
+	 * Metodo para asignar una Entidad a otra en la base de datos
+	 * 
+	 * @param id
+	 *            Tipo Integer el cual sirve para buscar un atributo
+	 * @return El atributo con el dato correspondiente
+	 */
+	public GEN_Institucion asignarInstitucion(Integer id) {
+		try {
+			institucion = this.institucionByID(id);
+			System.out.println("Bien_asignar_Institucion");
+		} catch (Exception e) {
+			System.out.println("Mal_asignar_Intitucion");
+			e.printStackTrace();
+		}
+		return institucion;
 	}// Cierre del metodo
 }

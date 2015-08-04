@@ -30,8 +30,6 @@ public class GEN_Sitios {
    public java.util.List<GEN_Articulos> art;
    /** @pdRoleInfo migr=no name=ARR_Contrato_Det assc=association2 coll=java.util.List mult=* */
    public java.util.List<ARR_Contrato_Det> con_det;
-   /** @pdRoleInfo migr=no name=GEN_Modo assc=association8 mult=1..1 side=A */
-   public GEN_Modo mod;
    /** @pdRoleInfo migr=no name=GEN_Area assc=association9 mult=1..1 side=A */
    public GEN_Area are;
    
@@ -217,29 +215,6 @@ public class GEN_Sitios {
             oldARR_Contrato_Det = (ARR_Contrato_Det)iter.next();
             iter.remove();
             oldARR_Contrato_Det.setSit((GEN_Sitios)null);
-         }
-      }
-   }
-   /** @pdGenerated default parent getter */
-   public GEN_Modo getMod() {
-      return mod;
-   }
-   
-   /** @pdGenerated default parent setter
-     * @param newGEN_Modo */
-   public void setMod(GEN_Modo newGEN_Modo) {
-      if (this.mod == null || !this.mod.equals(newGEN_Modo))
-      {
-         if (this.mod != null)
-         {
-            GEN_Modo oldGEN_Modo = this.mod;
-            this.mod = null;
-            oldGEN_Modo.removeSit(this);
-         }
-         if (newGEN_Modo != null)
-         {
-            this.mod = newGEN_Modo;
-            this.mod.addSit(this);
          }
       }
    }

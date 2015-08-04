@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 31-jul-2015 11:43:40 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 03-ago-2015 14:20:41 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="arriendo.entidades.ARR_Contrato_Cab" table="ARR_CONTRATO_CAB">
         <id name="cab_id" type="java.lang.Integer">
             <column name="CAB_ID" />
             <generator class="sequence">
-   				<param name="sequence">SEQ_ARR_Contrato_Cab</param>
+   				<param name="sequence">seq_ARR_Contrato_Cab</param>
    		</generator>
         </id>
         <property name="cab_fecha" type="java.util.Date">
@@ -32,12 +32,12 @@
             <list-index></list-index>
             <one-to-many class="arriendo.entidades.ARR_Contrato_Det" />
         </list>
-        <list name="intc" inverse="false" table="ARR_INTER_CLA" lazy="true">
+        <list name="con_cla_d" inverse="false" table="ARR_CONTRATOCLAUSULAS_DET" lazy="true">
             <key>
                 <column name="CAB_ID" />
             </key>
             <list-index></list-index>
-            <one-to-many class="arriendo.entidades.ARR_Inter_Cla" />
+            <one-to-many class="arriendo.entidades.ARR_ContratoClausulas_Det" />
         </list>
         <list name="intp" inverse="false" table="ARR_INTER_PER" lazy="true">
             <key>

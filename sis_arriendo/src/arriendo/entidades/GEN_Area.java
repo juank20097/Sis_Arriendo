@@ -28,6 +28,8 @@ public class GEN_Area {
    
    /** @pdRoleInfo migr=no name=GEN_Sitios assc=association9 coll=java.util.List mult=* */
    public java.util.List<GEN_Sitios> sit;
+   /** @pdRoleInfo migr=no name=GEN_Sector assc=association16 mult=1..1 side=A */
+   public GEN_Sector sec;
    
    /** @pdOid 01a3275a-097c-497b-b810-930470fcf9c6 */
    public GEN_Area() {
@@ -149,6 +151,29 @@ public class GEN_Area {
             oldGEN_Sitios = (GEN_Sitios)iter.next();
             iter.remove();
             oldGEN_Sitios.setAre((GEN_Area)null);
+         }
+      }
+   }
+   /** @pdGenerated default parent getter */
+   public GEN_Sector getSec() {
+      return sec;
+   }
+   
+   /** @pdGenerated default parent setter
+     * @param newGEN_Sector */
+   public void setSec(GEN_Sector newGEN_Sector) {
+      if (this.sec == null || !this.sec.equals(newGEN_Sector))
+      {
+         if (this.sec != null)
+         {
+            GEN_Sector oldGEN_Sector = this.sec;
+            this.sec = null;
+            oldGEN_Sector.removeAre(this);
+         }
+         if (newGEN_Sector != null)
+         {
+            this.sec = newGEN_Sector;
+            this.sec.addAre(this);
          }
       }
    }

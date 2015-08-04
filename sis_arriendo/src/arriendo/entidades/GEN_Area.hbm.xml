@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 30-jul-2015 15:46:53 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 03-ago-2015 15:42:35 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="arriendo.entidades.GEN_Area" table="GEN_AREA">
         <id name="are_id" type="java.lang.Integer">
             <column name="ARE_ID" />
-              <generator class="sequence">
-   				<param name="sequence">SEQ_GEN_Area</param>
+            <generator class="sequence">
+   				<param name="sequence">seq_GEN_Area</param>
    		</generator>
         </id>
         <property name="are_nombre" type="java.lang.String">
@@ -29,5 +29,8 @@
             <list-index></list-index>
             <one-to-many class="arriendo.entidades.GEN_Sitios" />
         </list>
+        <many-to-one name="sec" class="arriendo.entidades.GEN_Sector" fetch="join">
+            <column name="SEC" />
+        </many-to-one>
     </class>
 </hibernate-mapping>

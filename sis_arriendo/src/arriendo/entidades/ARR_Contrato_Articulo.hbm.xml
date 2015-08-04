@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 03-ago-2015 14:20:41 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="arriendo.entidades.ARR_Contrato_Articulo" table="ARR_CONTRATO_ARTICULO">
+        <id name="ca_id" type="java.lang.Integer">
+            <column name="CA_ID" />
+            <generator class="sequence">
+   				<param name="sequence">seq_ARR_Contrato_Articulo</param>
+   		</generator>
+        </id>
+        <property name="art_id" type="java.lang.Integer">
+            <column name="ART_ID" />
+        </property>
+        <property name="art_nombre" type="java.lang.String">
+            <column name="ART_NOMBRE" />
+        </property>
+        <list name="con_det" inverse="false" table="ARR_CONTRATO_DET" lazy="true">
+            <key>
+                <column name="CA_ID" />
+            </key>
+            <list-index></list-index>
+            <one-to-many class="arriendo.entidades.ARR_Contrato_Det" />
+        </list>
+    </class>
+</hibernate-mapping>
