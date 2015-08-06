@@ -82,11 +82,10 @@ public class SitiosDAO {
 	 *            Activado/Desactivado
 	 */
 	public void insertarArea(String nombre, String ubicacion,
-			String descripcion, Integer estado) throws Exception {
+			String descripcion, String estado) throws Exception {
 		try {
 			GEN_Area p = new GEN_Area();
 			p.setAre_nombre(nombre);
-			p.setAre_ubicacion(ubicacion);
 			p.setAre_descripcion(descripcion);
 			p.setAre_estado(estado);
 			manager.insertar(p);
@@ -110,15 +109,15 @@ public class SitiosDAO {
 	 * @param descripcion
 	 *            Tipo String el cual almacena la descripcion del lugar
 	 * @param estado
-	 *            Tipo Integer el cual almacena el dato si es Activado/Desactivado
+	 *            Tipo Integer el cual almacena el dato si es
+	 *            Activado/Desactivado
 	 */
 	public void editarArea(Integer id_area, String nombre, String ubicacion,
-			String descripcion, Integer estado) throws Exception {
+			String descripcion, String estado) throws Exception {
 		try {
 			GEN_Area r = this.AreaByID(id_area);
 			r.setAre_id(id_area);
 			r.setAre_nombre(nombre);
-			r.setAre_ubicacion(ubicacion);
 			r.setAre_descripcion(descripcion);
 			r.setAre_estado(estado);
 			manager.actualizar(r);
@@ -202,10 +201,12 @@ public class SitiosDAO {
 	 * @param capacidad
 	 *            Tipo Integer el cual almacena el numero de personas permitidas
 	 * @param estado
-	 *            Tipo Integer el cual almacena el dato si es Activado/Desactivado
+	 *            Tipo Integer el cual almacena el dato si es
+	 *            Activado/Desactivado
 	 */
 	public void insertarSitio(String identificador, Double costo,
-			String direccion, Integer capacidad, Integer estado) throws Exception {
+			String direccion, Integer capacidad, Integer estado)
+			throws Exception {
 		try {
 			GEN_Sitios p = new GEN_Sitios();
 			p.setSit_identificador(identificador);
@@ -238,7 +239,8 @@ public class SitiosDAO {
 	 *            Tipo Integer el cual cambia el dato si es Activado/Desactivado
 	 */
 	public void editarSitio(String identificador, Double costo,
-			String direccion, Integer capacidad, Integer estado) throws Exception {
+			String direccion, Integer capacidad, Integer estado)
+			throws Exception {
 		try {
 			GEN_Sitios r = this.SitiobyNombre(identificador);
 			r.setSit_identificador(identificador);
@@ -507,13 +509,14 @@ public class SitiosDAO {
 	 *            Tipo Integer el cual almacena el dato si es
 	 *            (Activado/Descativado)
 	 */
-	public void insertarSector(String nombre, String direccion, Integer estado)
-			throws Exception {
+	public void insertarSector(String nombre, String direccion,
+			String ubicacion, String estado) throws Exception {
 		try {
 			GEN_Sector p = new GEN_Sector();
 			p.setSec_nombre(nombre);
 			p.setSec_direccion(direccion);
 			p.setSec_estado(estado);
+			p.setSec_ubicacion(ubicacion);
 			p.setIns(institucion);
 			manager.insertar(p);
 			System.out.println("Bien_insertar_sector");
@@ -535,16 +538,18 @@ public class SitiosDAO {
 	 * @param direccion
 	 *            Tipo String el cual edita el lugar de la entidad
 	 * @param estado
-	 *            Tipo Integer el cual edita el dato si es (Activado/Descativado)
+	 *            Tipo Integer el cual edita el dato si es
+	 *            (Activado/Descativado)
 	 */
 	public void editarSector(Integer id, String nombre, String direccion,
-			Integer estado) throws Exception {
+			String ubicacion,String estado) throws Exception {
 		try {
 			GEN_Sector p = new GEN_Sector();
 			p.setSec_id(id);
 			p.setSec_nombre(nombre);
 			p.setSec_direccion(direccion);
 			p.setSec_estado(estado);
+			p.setSec_ubicacion(ubicacion);
 			p.setIns(institucion);
 			manager.insertar(p);
 			System.out.println("Bien_editar_sector");
@@ -573,82 +578,82 @@ public class SitiosDAO {
 		}
 		return institucion;
 	}// Cierre del metodo
-	
+
 	// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		/**
-		 * Creación de metodos para el manejo de la tabla GEN_Estado
-		 * 
-		 */
+	/**
+	 * Creación de metodos para el manejo de la tabla GEN_Estado
+	 * 
+	 */
 
-		/**
-		 * Metodo para listar todos los datos de la entidad
-		 * 
-		 * @return La lista de todos los datos de la entidad encontradas
-		 */
-		@SuppressWarnings("unchecked")
-		public List<GEN_Estado> findAllEstado() {
-			return manager.findAll(GEN_Estado.class);
-		}// Cierre del metodo
+	/**
+	 * Metodo para listar todos los datos de la entidad
+	 * 
+	 * @return La lista de todos los datos de la entidad encontradas
+	 */
+	@SuppressWarnings("unchecked")
+	public List<GEN_Estado> findAllEstado() {
+		return manager.findAll(GEN_Estado.class);
+	}// Cierre del metodo
 
-		/**
-		 * Metodo para obtener Entidad mediante un ID
-		 * 
-		 * @param id
-		 *            Tipo integer de busqueda
-		 * @return El objeto de la Entidad encontrado mediante el ID
-		 */
-		public GEN_Estado EstadoByID(Integer id) throws Exception {
-			return (GEN_Estado) manager.findById(GEN_Estado.class, id);
-		}// Cierre del metodo
+	/**
+	 * Metodo para obtener Entidad mediante un ID
+	 * 
+	 * @param id
+	 *            Tipo integer de busqueda
+	 * @return El objeto de la Entidad encontrado mediante el ID
+	 */
+	public GEN_Estado EstadoByID(Integer id) throws Exception {
+		return (GEN_Estado) manager.findById(GEN_Estado.class, id);
+	}// Cierre del metodo
 
-		/**
-		 * Metodo para ingresar Entidad a la base de datos
-		 * 
-		 * @param tipo
-		 *            Tipo String el cual almacena el tipo de la entidad
-		 * @param descripcion
-		 *            Tipo String el cual almacena la descripcion de la entidad
-		 */
-		public void insertarEstado(String tipo, String descripcion)
-				throws Exception {
-			try {
-				GEN_Estado p = new GEN_Estado();
-				p.setEst_tipo(tipo);
-				p.setEst_descripcion(descripcion);
-				manager.insertar(p);
-				System.out.println("Bien_insertar_estado");
-				institucion = new GEN_Institucion();
-			} catch (Exception e) {
-				System.out.println("Error_insertar_estado");
-				e.printStackTrace();
-			}
+	/**
+	 * Metodo para ingresar Entidad a la base de datos
+	 * 
+	 * @param tipo
+	 *            Tipo String el cual almacena el tipo de la entidad
+	 * @param descripcion
+	 *            Tipo String el cual almacena la descripcion de la entidad
+	 */
+	public void insertarEstado(String tipo, String descripcion)
+			throws Exception {
+		try {
+			GEN_Estado p = new GEN_Estado();
+			p.setEst_tipo(tipo);
+			p.setEst_descripcion(descripcion);
+			manager.insertar(p);
+			System.out.println("Bien_insertar_estado");
+			institucion = new GEN_Institucion();
+		} catch (Exception e) {
+			System.out.println("Error_insertar_estado");
+			e.printStackTrace();
+		}
 
-		}// Cierre del metodo
+	}// Cierre del metodo
 
-		/**
-		 * Metodo para ingresar Entidad a la base de datos
-		 * 
-		 * @param id
-		 * @param tipo
-		 *            Tipo String el cual almacena el tipo de la entidad
-		 * @param descripcion
-		 *            Tipo String el cual almacena la descripcion de la entidad
-		 */
-		public void editarEstado(Integer id,String tipo, String descripcion)
-				throws Exception {
-			try {
-				GEN_Estado p = this.EstadoByID(id);
-				p.setEst_id(id);
-				p.setEst_tipo(tipo);
-				p.setEst_descripcion(descripcion);
-				manager.actualizar(p);
-				System.out.println("Bien_editar_estado");
-				institucion = new GEN_Institucion();
-			} catch (Exception e) {
-				System.out.println("Error_editar_estado");
-				e.printStackTrace();
-			}
+	/**
+	 * Metodo para ingresar Entidad a la base de datos
+	 * 
+	 * @param id
+	 * @param tipo
+	 *            Tipo String el cual almacena el tipo de la entidad
+	 * @param descripcion
+	 *            Tipo String el cual almacena la descripcion de la entidad
+	 */
+	public void editarEstado(Integer id, String tipo, String descripcion)
+			throws Exception {
+		try {
+			GEN_Estado p = this.EstadoByID(id);
+			p.setEst_id(id);
+			p.setEst_tipo(tipo);
+			p.setEst_descripcion(descripcion);
+			manager.actualizar(p);
+			System.out.println("Bien_editar_estado");
+			institucion = new GEN_Institucion();
+		} catch (Exception e) {
+			System.out.println("Error_editar_estado");
+			e.printStackTrace();
+		}
 
-		}// Cierre del metodo
+	}// Cierre del metodo
 
 }

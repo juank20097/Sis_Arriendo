@@ -14,12 +14,10 @@ public class GEN_Area {
    private Integer are_id;
    /** @pdOid 832bf661-039d-431b-8dda-21478b6a4890 */
    private String are_nombre;
-   /** @pdOid d51e55e0-d8c0-4c76-b3a2-5079b58e24cc */
-   private String are_ubicacion;
    /** @pdOid 524ac92d-59a3-4ba8-b5da-f2cdfeac3574 */
    private String are_descripcion;
    /** @pdOid f1250a3c-63d1-478e-9548-97d3d39d2af2 */
-   private Integer are_estado;
+   private String are_estado;
    
    /** @pdOid a94e10fb-0724-4925-8d59-cb497188dff2 */
    protected void finalize() {
@@ -58,17 +56,6 @@ public class GEN_Area {
       are_nombre = newAre_nombre;
    }
    
-   /** @pdOid 9294bbc2-0ac1-49a9-bb5d-e3c90891d15c */
-   public String getAre_ubicacion() {
-      return are_ubicacion;
-   }
-   
-   /** @param newAre_ubicacion
-    * @pdOid ec327a2f-37a6-4f52-96d8-46c9de3d68c7 */
-   public void setAre_ubicacion(String newAre_ubicacion) {
-      are_ubicacion = newAre_ubicacion;
-   }
-   
    /** @pdOid 32a8247d-8088-4056-9a64-385955bc5332 */
    public String getAre_descripcion() {
       return are_descripcion;
@@ -81,13 +68,13 @@ public class GEN_Area {
    }
    
    /** @pdOid c75347a6-d217-46a8-bd9d-4469e96d67be */
-   public Integer getAre_estado() {
+   public String getAre_estado() {
       return are_estado;
    }
    
    /** @param newAre_estado
     * @pdOid 3825dcf5-a3dc-429b-98a7-92a0d2354802 */
-   public void setAre_estado(Integer newAre_estado) {
+   public void setAre_estado(String newAre_estado) {
       are_estado = newAre_estado;
    }
    

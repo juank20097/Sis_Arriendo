@@ -118,7 +118,7 @@ public class InstitucionBean {
 	 */
 	public String nuevoSitio() {
 		edicion = false;
-		return "nbici?faces-redirect=true";
+		return "ninstitucion?faces-redirect=true";
 	}
 
 	/**
@@ -161,7 +161,7 @@ public class InstitucionBean {
 		ins_descripcion = t.getIns_descripcion();
 		ins_estado = t.getIns_estado();
 		edicion = true;
-		return "eInstitucion?faces-redirect=true";
+		return "ninstitucion?faces-redirect=true";
 	}
 
 	/**

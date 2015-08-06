@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 05-ago-2015 11:07:00 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 06-ago-2015 12:25:56 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="arriendo.entidades.GEN_Sector" table="GEN_SECTOR">
         <id name="sec_id" type="java.lang.Integer">
             <column name="SEC_ID" />
-            <generator class="sequence">
+           <generator class="sequence">
    				<param name="sequence">seq_GEN_Sector</param>
    		</generator>
         </id>
@@ -16,8 +16,11 @@
         <property name="sec_direccion" type="java.lang.String">
             <column name="SEC_DIRECCION" />
         </property>
-        <property name="sec_estado" type="java.lang.Integer">
+        <property name="sec_estado" type="java.lang.String">
             <column name="SEC_ESTADO" />
+        </property>
+        <property name="sec_ubicacion" type="java.lang.String" access="field">
+            <column name="SEC_UBICACION" />
         </property>
         <list name="are" inverse="false" table="GEN_AREA" lazy="true">
             <key>
