@@ -26,25 +26,19 @@
         	<h:form id="frmbicis">
 				<p:messages closable="true"></p:messages>
 				<b:panel title="Listado" look="primary">
-					<p:dataTable id="tbb" value="#{estadoBean.}" var="bic" rows="8" emptyMessage="Sin Datos"
+					<p:dataTable id="tbb" value="#{estadoBean.listEstado}" var="est" rows="8" emptyMessage="Sin Datos"
 					scrollable="true" scrollRows="20" liveScroll="true" paginator="true" 
     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
-    					<p:column filterBy="#{bic.artNombre}" filterMatchMode="contains" headerText="NOMBRE" width="150">
-							<h:outputText value="#{bic.artNombre}"></h:outputText>
-						</p:column>
-						<p:column filterBy="#{bic.bicModelo}" filterMatchMode="contains" headerText="MODELO" width="100">
-							<h:outputText value="#{bic.bicModelo}"></h:outputText>
+    					<p:column filterBy="#{est.est_tipo}" filterMatchMode="contains" headerText="Tipo" width="150">
+							<h:outputText value="#{est.est_tipo}"></h:outputText>
 						</p:column>
 						<p:column headerText="DESCRIPCIÓN" width="350">
 							<!--p:inputTextarea value="#{bic.artDescripcion}" rows="2" cols="19" readonly="true" autoResize="false"/-->
-							<h:outputText value="#{bic.artDescripcion}"></h:outputText>
-						</p:column>
-						<p:column filterBy="#{bic.artEstado}" filterMatchMode="contains" headerText="ESTADO" width="100">
-							<h:outputText value="#{bic.artEstado}"></h:outputText>
+							<h:outputText value="#{est.est_descripcion}"></h:outputText>
 						</p:column>
 						<p:column headerText="OPCIONES" width="100">
-							<p:commandButton id="btnE" icon="ui-icon-pencil" action="#{biciBean.cargarDatosBici(bic)}">
-								<p:tooltip for="btnE" value="Editar bicicleta" trackMouse="true" />
+							<p:commandButton id="btnE" icon="ui-icon-pencil" action="#{estadoBean.cargarEstado(est)}">
+								<p:tooltip for="btnE" value="Editar estado" trackMouse="true" />
 							</p:commandButton>
 							&nbsp;&nbsp;&nbsp;
 						</p:column>

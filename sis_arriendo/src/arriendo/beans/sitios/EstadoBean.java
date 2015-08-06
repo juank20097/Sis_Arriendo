@@ -2,11 +2,10 @@ package arriendo.beans.sitios;
 
 import java.util.List;
 
-import javax.annotation.ManagedBean;
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import arriendo.entidades.GEN_Estado;
-import arriendo.entidades.GEN_Institucion;
 import arriendo.generico.Mensaje;
 import arriendo.manager.SitiosDAO;
 

@@ -12,7 +12,7 @@
   <property name="connection.pool_size">1</property>
   <!-- Otras propiedades importantes -->
   <property name="show_sql">true</property>
-  <property name="hbm2ddl.auto">create-drop</property>
+  <property name="hbm2ddl.auto">update</property>
   <!-- Archivos de mapeo -->
   <mapping resource="arriendo/entidades/ARR_Contrato_Cab.hbm.xml"/>
   <mapping resource="arriendo/entidades/ARR_Contrato_Det.hbm.xml"/>
