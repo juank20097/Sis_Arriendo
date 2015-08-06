@@ -19,7 +19,7 @@ public class GEN_ContratoPlantilla_Cab {
    /** @pdOid 3308ccbe-8c92-4fc0-b436-5edb8693d036 */
    private String cpc_descripcion;
    /** @pdOid bff1cdca-7c1b-4fcc-92e3-d56bb7b8fd2c */
-   private char cpc_estado = 1;
+   private Integer cpc_estado;
    
    /** @pdOid d69cd927-6fb7-4a76-aa34-a5fe38245df6 */
    protected void finalize() {
@@ -79,13 +79,13 @@ public class GEN_ContratoPlantilla_Cab {
    }
    
    /** @pdOid aeba00c5-2393-41e1-8d3f-5ea81e40b880 */
-   public char getCpc_estado() {
+   public Integer getCpc_estado() {
       return cpc_estado;
    }
    
    /** @param newCpc_estado
     * @pdOid 46ee46fe-b54d-48cb-94f3-6fa998ef50e5 */
-   public void setCpc_estado(char newCpc_estado) {
+   public void setCpc_estado(Integer newCpc_estado) {
       cpc_estado = newCpc_estado;
    }
    

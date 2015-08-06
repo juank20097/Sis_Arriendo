@@ -17,7 +17,7 @@ public class GEN_Institucion {
    /** @pdOid fcd64f7a-6296-4826-92d2-d5191b22a619 */
    private String ins_descripcion;
    /** @pdOid 71535b28-d92d-405e-8cfb-8c3fdbd9eb4b */
-   private char ins_estado;
+   private Integer ins_estado;
    
    /** @pdOid 728515e6-8ba8-4cbb-a0de-5df6ddcb5b8c */
    protected void finalize() {
@@ -66,13 +66,13 @@ public class GEN_Institucion {
    }
    
    /** @pdOid bf5be058-ee33-4d9a-b3e7-454eafaca5b1 */
-   public char getIns_estado() {
+   public Integer getIns_estado() {
       return ins_estado;
    }
    
    /** @param newIns_estado
     * @pdOid be5949dd-21cc-472c-b7b6-147deddbd9c1 */
-   public void setIns_estado(char newIns_estado) {
+   public void setIns_estado(Integer newIns_estado) {
       ins_estado = newIns_estado;
    }
    

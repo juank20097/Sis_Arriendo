@@ -95,7 +95,7 @@ public class PersonaDAO {
 	 *            Tipo char el cual almacena el dato de (Masculino/Femenino)
 	 */
 	public void insertarPersona(String tipo_id, String nombre, String apellido,
-			String telefono, String celular, char genero) throws Exception {
+			String telefono, String celular, String genero) throws Exception {
 		try {
 			GEN_Persona p = new GEN_Persona();
 			p.setPer_tipo_id(tipo_id);
@@ -134,7 +134,7 @@ public class PersonaDAO {
 	 *            Tipo char el cual edita el dato de (Masculino/Femenino)
 	 */
 	public void editarPersona(String id, String tipo_id, String nombre,
-			String apellido, String telefono, String celular, char genero)
+			String apellido, String telefono, String celular, String genero)
 			throws Exception {
 		try {
 			GEN_Persona p = this.PersonabyNombre(id);

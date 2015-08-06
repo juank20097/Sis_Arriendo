@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 06-ago-2015 9:46:47 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="arriendo.entidades.GEN_Estado" table="GEN_ESTADO">
+        <id name="est_id" type="java.lang.Integer">
+            <column name="EST_ID" />
+           <generator class="sequence">
+   				<param name="sequence">seq_GEN_Estado</param>
+   		</generator>
+        </id>
+        <property name="est_tipo" type="java.lang.String">
+            <column name="EST_TIPO" />
+        </property>
+        <property name="est_descripcion" type="java.lang.String">
+            <column name="EST_DESCRIPCION" />
+        </property>
+    </class>
+</hibernate-mapping>

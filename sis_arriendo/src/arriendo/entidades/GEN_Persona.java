@@ -23,7 +23,7 @@ public class GEN_Persona {
    /** @pdOid dfe71f3c-75a8-4178-ab47-507d7958fba6 */
    private String per_celular;
    /** @pdOid 5c21f9fc-5b22-40e2-8f5c-eb9f9a692fbc */
-   private char per_genero;
+   private String per_genero;
    
    /** @pdOid 99931c8d-f9b8-4c91-8909-abf6821b507f */
    protected void finalize() {
@@ -107,13 +107,13 @@ public class GEN_Persona {
    }
    
    /** @pdOid 00026c63-f886-4210-ab4d-9317de1fba5c */
-   public char getPer_genero() {
+   public String getPer_genero() {
       return per_genero;
    }
    
    /** @param newPer_genero
     * @pdOid d9cffd08-e32a-4c61-a6b6-94edaec1ec71 */
-   public void setPer_genero(char newPer_genero) {
+   public void setPer_genero(String newPer_genero) {
       per_genero = newPer_genero;
    }
    

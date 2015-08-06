@@ -17,7 +17,7 @@ public class GEN_Sector {
    /** @pdOid 9916231a-3227-4cb1-af79-f6a0ab3a485f */
    private String sec_direccion;
    /** @pdOid 37d6d1df-036f-4136-8bb9-6b95cd4b7000 */
-   private char sec_estado;
+   private Integer sec_estado;
    
    /** @pdOid d5c63bce-8878-4c31-b8a2-0c53cd8a3ab2 */
    protected void finalize() {
@@ -68,13 +68,13 @@ public class GEN_Sector {
    }
    
    /** @pdOid a8aa5b4a-12fc-450c-88c0-37eec0f33b74 */
-   public char getSec_estado() {
+   public Integer getSec_estado() {
       return sec_estado;
    }
    
    /** @param newSec_estado
     * @pdOid 4df03dfb-abcd-4345-8efc-16036c9775d2 */
-   public void setSec_estado(char newSec_estado) {
+   public void setSec_estado(Integer newSec_estado) {
       sec_estado = newSec_estado;
    }
    

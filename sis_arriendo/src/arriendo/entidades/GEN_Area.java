@@ -19,7 +19,7 @@ public class GEN_Area {
    /** @pdOid 524ac92d-59a3-4ba8-b5da-f2cdfeac3574 */
    private String are_descripcion;
    /** @pdOid f1250a3c-63d1-478e-9548-97d3d39d2af2 */
-   private char are_estado = 1;
+   private Integer are_estado;
    
    /** @pdOid a94e10fb-0724-4925-8d59-cb497188dff2 */
    protected void finalize() {
@@ -81,13 +81,13 @@ public class GEN_Area {
    }
    
    /** @pdOid c75347a6-d217-46a8-bd9d-4469e96d67be */
-   public char getAre_estado() {
+   public Integer getAre_estado() {
       return are_estado;
    }
    
    /** @param newAre_estado
     * @pdOid 3825dcf5-a3dc-429b-98a7-92a0d2354802 */
-   public void setAre_estado(char newAre_estado) {
+   public void setAre_estado(Integer newAre_estado) {
       are_estado = newAre_estado;
    }
    

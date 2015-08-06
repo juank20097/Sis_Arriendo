@@ -26,5 +26,8 @@
   <mapping resource="arriendo/entidades/ARR_ContratoClausulas_Det.hbm.xml"/>
   <mapping resource="arriendo/entidades/GEN_ContratoPlantilla_Cab.hbm.xml"/>
   <mapping resource="arriendo/entidades/GEN_ContratoPlantillaClausulas_Det.hbm.xml"/>
+  <mapping resource="arriendo/entidades/GEN_Estado.hbm.xml"/>
+  <mapping resource="arriendo/entidades/GEN_Institucion.hbm.xml"/>
+  <mapping resource="arriendo/entidades/GEN_Sector.hbm.xml"/>
  </session-factory>
 </hibernate-configuration>

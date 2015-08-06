@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 03-ago-2015 14:20:41 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 05-ago-2015 11:07:00 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="arriendo.entidades.GEN_Articulos" table="GEN_ARTICULOS">
         <id name="art_id" type="java.lang.Integer">
@@ -22,7 +22,7 @@
         <property name="art_valor_referenciado" type="java.lang.Float">
             <column name="ART_VALOR_REFERENCIADO" />
         </property>
-        <property name="art_estado" type="char">
+        <property name="art_estado" type="java.lang.Integer">
             <column name="ART_ESTADO" />
         </property>
         <many-to-one name="sit" class="arriendo.entidades.GEN_Sitios" fetch="join">

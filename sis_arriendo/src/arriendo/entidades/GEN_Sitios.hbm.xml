@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 03-ago-2015 14:20:41 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 05-ago-2015 11:07:00 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="arriendo.entidades.GEN_Sitios" table="GEN_SITIOS">
-        <id name="sit_identificador" type="java.lang.String">
+         <id name="sit_identificador" type="java.lang.String">
             <column name="SIT_IDENTIFICADOR" />
             <generator class="assigned">
    		</generator>
@@ -18,7 +18,7 @@
         <property name="sit_direccion" type="java.lang.String">
             <column name="SIT_DIRECCION" />
         </property>
-        <property name="sit_estado" type="char">
+        <property name="sit_estado" type="java.lang.Integer">
             <column name="SIT_ESTADO" />
         </property>
         <list name="art" inverse="false" table="GEN_ARTICULOS" lazy="true">

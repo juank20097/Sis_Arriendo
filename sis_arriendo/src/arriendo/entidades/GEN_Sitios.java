@@ -19,7 +19,7 @@ public class GEN_Sitios {
    /** @pdOid a0c52981-e808-4f64-911c-e4aa61fdcde0 */
    private Integer sit_capacidad;
    /** @pdOid c0175881-8fa7-40d2-acbf-79130b66b18d */
-   private char sit_estado = 1;
+   private Integer sit_estado = 1;
    
    /** @pdOid 3ac27362-b86c-4155-886d-69079f556918 */
    protected void finalize() {
@@ -83,13 +83,13 @@ public class GEN_Sitios {
    }
    
    /** @pdOid 44878a61-4328-4378-86db-6c97b6608bb3 */
-   public char getSit_estado() {
+   public Integer getSit_estado() {
       return sit_estado;
    }
    
    /** @param newSit_estado
     * @pdOid 9145b465-2d63-4feb-ba22-0ffc144eb83b */
-   public void setSit_estado(char newSit_estado) {
+   public void setSit_estado(Integer newSit_estado) {
       sit_estado = newSit_estado;
    }
    

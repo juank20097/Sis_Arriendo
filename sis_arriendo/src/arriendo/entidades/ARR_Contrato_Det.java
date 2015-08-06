@@ -17,7 +17,7 @@ public class ARR_Contrato_Det {
    /** @pdOid 8df9fec3-5a7a-4885-b0d8-7a7a1ad171fe */
    private Float det_costo;
    /** @pdOid 130743f5-3ae3-405f-891b-f5000f771b56 */
-   private char det_estado = 1;
+   private Integer det_estado;
    
    /** @pdOid 7043e8c9-7c34-4c29-b8a0-b417f2d8feeb */
    protected void finalize() {
@@ -70,13 +70,13 @@ public class ARR_Contrato_Det {
    }
    
    /** @pdOid 08f7af01-2734-45ce-bd96-c841c1690e7b */
-   public char getDet_estado() {
+   public Integer getDet_estado() {
       return det_estado;
    }
    
    /** @param newDet_estado
     * @pdOid 08b42bdf-68e6-49c9-a0dd-a32f0102dc5d */
-   public void setDet_estado(char newDet_estado) {
+   public void setDet_estado(Integer newDet_estado) {
       det_estado = newDet_estado;
    }
    
