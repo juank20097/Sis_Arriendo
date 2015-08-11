@@ -17,7 +17,7 @@ public class ARR_ContratoClausulas_Det {
    /** @pdOid e10ccb85-1604-40a3-b9bf-7b7eb0d232ae */
    private short ccd_clausula;
    /** @pdOid 67a9a8b0-d256-47e6-99fe-47cc22fa0797 */
-   private Integer ccd_estado;
+   private char ccd_estado;
    
    /** @pdOid 6de8d1d3-e1b7-4ca3-8f71-91e089279a91 */
    protected void finalize() {
@@ -66,13 +66,13 @@ public class ARR_ContratoClausulas_Det {
    }
    
    /** @pdOid af18991c-bc88-44bd-89c5-a6d8377e9f20 */
-   public Integer getCcd_estado() {
+   public char getCcd_estado() {
       return ccd_estado;
    }
    
    /** @param newCcd_estado
     * @pdOid efecb6e5-03b4-4969-8b21-6a1c96dec416 */
-   public void setCcd_estado(Integer newCcd_estado) {
+   public void setCcd_estado(char newCcd_estado) {
       ccd_estado = newCcd_estado;
    }
    

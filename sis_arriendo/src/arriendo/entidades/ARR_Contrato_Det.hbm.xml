@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 05-ago-2015 11:07:00 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 07-ago-2015 11:50:48 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="arriendo.entidades.ARR_Contrato_Det" table="ARR_CONTRATO_DET">
         <id name="det_id" type="java.lang.Integer">
             <column name="DET_ID" />
             <generator class="sequence">
-   				<param name="sequence">seq_ARR_Contrato_Det</param>
-   		</generator>
+             <param name="sequence">seq_ARR_Contrato_Det</param>
+            </generator>
         </id>
         <property name="det_observacion" type="java.lang.String">
             <column name="DET_OBSERVACION" />
@@ -16,7 +16,7 @@
         <property name="det_costo" type="java.lang.Float">
             <column name="DET_COSTO" />
         </property>
-        <property name="det_estado" type="java.lang.Integer">
+        <property name="det_estado" type="char">
             <column name="DET_ESTADO" />
         </property>
         <many-to-one name="sit" class="arriendo.entidades.GEN_Sitios" fetch="join">

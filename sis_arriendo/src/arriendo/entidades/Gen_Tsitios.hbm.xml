@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 07-ago-2015 11:50:48 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="arriendo.entidades.Gen_Tsitios" table="GEN_TSITIOS">
+        <id name="tsi_id" type="java.lang.Integer">
+            <column name="TSI_ID" />
+             <generator class="sequence">
+             <param name="sequence">seq_Gen_Tsitios</param>
+            </generator>
+        </id>
+        <property name="tsi_nombre" type="java.lang.String">
+            <column name="TSI_NOMBRE" />
+        </property>
+        <property name="tsi_descripcion" type="java.lang.String">
+            <column name="TSI_DESCRIPCION" />
+        </property>
+        <property name="tsi_estado" type="char">
+            <column name="TSI_ESTADO" />
+        </property>
+        <list name="sit" inverse="false" table="GEN_SITIOS" lazy="true">
+            <key>
+                <column name="TSI_ID" />
+            </key>
+            <list-index></list-index>
+            <one-to-many class="arriendo.entidades.GEN_Sitios" />
+        </list>
+    </class>
+</hibernate-mapping>

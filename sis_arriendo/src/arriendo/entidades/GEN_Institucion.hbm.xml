@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 05-ago-2015 11:07:00 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 07-ago-2015 11:50:48 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="arriendo.entidades.GEN_Institucion" table="GEN_INSTITUCION">
         <id name="ins_id" type="java.lang.Integer">
             <column name="INS_ID" />
              <generator class="sequence">
-   				<param name="sequence">seq_GEN_Institucion</param>
-   		</generator>
+             <param name="sequence">seq_GEN_Institucion</param>
+            </generator>
         </id>
         <property name="ins_nombre" type="java.lang.String">
             <column name="INS_NOMBRE" />
@@ -16,7 +16,7 @@
         <property name="ins_descripcion" type="java.lang.String">
             <column name="INS_DESCRIPCION" />
         </property>
-        <property name="ins_estado" type="java.lang.Integer">
+        <property name="ins_estado" type="char">
             <column name="INS_ESTADO" />
         </property>
         <list name="sec" inverse="false" table="GEN_SECTOR" lazy="true">

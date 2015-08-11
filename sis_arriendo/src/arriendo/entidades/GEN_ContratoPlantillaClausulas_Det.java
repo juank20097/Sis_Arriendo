@@ -17,7 +17,7 @@ public class GEN_ContratoPlantillaClausulas_Det {
    /** @pdOid 5ce240c5-7fea-46e7-9921-175e909486b5 */
    private String cpp_clausula;
    /** @pdOid 27c773ea-98c5-4f65-a450-1b5923cde6ae */
-   private Integer cpd_estado;
+   private char cpd_estado;
    
    /** @pdOid ff01b356-3ed2-4416-876c-215124ccc73a */
    protected void finalize() {
@@ -66,13 +66,13 @@ public class GEN_ContratoPlantillaClausulas_Det {
    }
    
    /** @pdOid 4880885a-28f7-4877-a72a-12cb8959208e */
-   public Integer getCpd_estado() {
+   public char getCpd_estado() {
       return cpd_estado;
    }
    
    /** @param newCpd_estado
     * @pdOid e7872d81-5b60-4c1b-ba5f-bfb0933d0266 */
-   public void setCpd_estado(Integer newCpd_estado) {
+   public void setCpd_estado(char newCpd_estado) {
       cpd_estado = newCpd_estado;
    }
    

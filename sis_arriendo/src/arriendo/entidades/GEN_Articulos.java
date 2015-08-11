@@ -21,7 +21,7 @@ public class GEN_Articulos {
    /** @pdOid 2170843a-895c-4dfc-922e-002fb803b5fe */
    private Float art_valor_referenciado;
    /** @pdOid 99c22630-3c62-4889-af80-194f1646b6d3 */
-   private Integer art_estado;
+   private char art_estado;
    
    /** @pdOid 7065d49a-c7c7-492e-ad20-c1a269d36e20 */
    protected void finalize() {
@@ -92,13 +92,13 @@ public class GEN_Articulos {
    }
    
    /** @pdOid abe410a7-c378-4fa3-9762-ccfe5e52b4a7 */
-   public Integer getArt_estado() {
+   public char getArt_estado() {
       return art_estado;
    }
    
    /** @param newArt_estado
     * @pdOid 81c8c73f-218a-4b2d-a200-0e63ef1e8a11 */
-   public void setArt_estado(Integer newArt_estado) {
+   public void setArt_estado(char newArt_estado) {
       art_estado = newArt_estado;
    }
    

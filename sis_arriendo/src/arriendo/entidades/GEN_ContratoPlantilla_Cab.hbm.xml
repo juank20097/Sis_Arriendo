@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 05-ago-2015 11:07:00 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 07-ago-2015 11:50:48 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="arriendo.entidades.GEN_ContratoPlantilla_Cab" table="GEN_CONTRATOPLANTILLA_CAB">
         <id name="cpc_id" type="java.lang.Integer">
             <column name="CPC_ID" />
-            <generator class="sequence">
-   				<param name="sequence">seq_GEN_ContratoPlantilla_Cab</param>
-   		</generator>
+             <generator class="sequence">
+             <param name="sequence">seq_GEN_ContratoPlantilla_Cab</param>
+            </generator>
         </id>
         <property name="art_tipo" type="java.lang.String">
             <column name="ART_TIPO" />
@@ -19,7 +19,7 @@
         <property name="cpc_descripcion" type="java.lang.String">
             <column name="CPC_DESCRIPCION" />
         </property>
-        <property name="cpc_estado" type="java.lang.Integer">
+        <property name="cpc_estado" type="char">
             <column name="CPC_ESTADO" />
         </property>
         <list name="con_p_d" inverse="false" table="GEN_CONTRATOPLANTILLACLAUSULAS_DET" lazy="true">

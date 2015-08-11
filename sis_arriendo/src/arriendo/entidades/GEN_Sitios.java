@@ -19,7 +19,7 @@ public class GEN_Sitios {
    /** @pdOid a0c52981-e808-4f64-911c-e4aa61fdcde0 */
    private Integer sit_capacidad;
    /** @pdOid c0175881-8fa7-40d2-acbf-79130b66b18d */
-   private Integer sit_estado = 1;
+   private char sit_estado;
    
    /** @pdOid 3ac27362-b86c-4155-886d-69079f556918 */
    protected void finalize() {
@@ -32,6 +32,8 @@ public class GEN_Sitios {
    public java.util.List<ARR_Contrato_Det> con_det;
    /** @pdRoleInfo migr=no name=GEN_Area assc=association9 mult=1..1 side=A */
    public GEN_Area are;
+   /** @pdRoleInfo migr=no name=Gen_Tsitios assc=association17 mult=1..1 side=A */
+   public Gen_Tsitios tsi;
    
    /** @pdOid 2375d0b3-8d53-47ac-9789-b1ed5d971603 */
    public GEN_Sitios() {
@@ -83,13 +85,13 @@ public class GEN_Sitios {
    }
    
    /** @pdOid 44878a61-4328-4378-86db-6c97b6608bb3 */
-   public Integer getSit_estado() {
+   public char getSit_estado() {
       return sit_estado;
    }
    
    /** @param newSit_estado
     * @pdOid 9145b465-2d63-4feb-ba22-0ffc144eb83b */
-   public void setSit_estado(Integer newSit_estado) {
+   public void setSit_estado(char newSit_estado) {
       sit_estado = newSit_estado;
    }
    
@@ -238,6 +240,29 @@ public class GEN_Sitios {
          {
             this.are = newGEN_Area;
             this.are.addSit(this);
+         }
+      }
+   }
+   /** @pdGenerated default parent getter */
+   public Gen_Tsitios getTsi() {
+      return tsi;
+   }
+   
+   /** @pdGenerated default parent setter
+     * @param newGen_Tsitios */
+   public void setTsi(Gen_Tsitios newGen_Tsitios) {
+      if (this.tsi == null || !this.tsi.equals(newGen_Tsitios))
+      {
+         if (this.tsi != null)
+         {
+            Gen_Tsitios oldGen_Tsitios = this.tsi;
+            this.tsi = null;
+            oldGen_Tsitios.removeSit(this);
+         }
+         if (newGen_Tsitios != null)
+         {
+            this.tsi = newGen_Tsitios;
+            this.tsi.addSit(this);
          }
       }
    }

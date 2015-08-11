@@ -1,10 +1,13 @@
 package arriendo.beans.sitios;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.ManagedBean;
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.model.SelectItem;
 
+import arriendo.entidades.GEN_Estados;
 import arriendo.entidades.GEN_Institucion;
 import arriendo.generico.Mensaje;
 import arriendo.manager.SitiosDAO;
@@ -24,7 +27,7 @@ public class InstitucionBean {
 	private Integer ins_id;
 	private String ins_nombre;
 	private String ins_descripcion;
-	private Integer ins_estado;
+	private char ins_estado;
 	private boolean edicion;
 
 	public InstitucionBean() {
@@ -63,6 +66,20 @@ public class InstitucionBean {
 	}
 
 	/**
+	 * @return the edicion
+	 */
+	public boolean isEdicion() {
+		return edicion;
+	}
+
+	/**
+	 * @param edicion the edicion to set
+	 */
+	public void setEdicion(boolean edicion) {
+		this.edicion = edicion;
+	}
+
+	/**
 	 * @return the ins_nombre
 	 */
 	public String getIns_nombre() {
@@ -95,7 +112,7 @@ public class InstitucionBean {
 	/**
 	 * @return the ins_estado
 	 */
-	public Integer getIns_estado() {
+	public char getIns_estado() {
 		return ins_estado;
 	}
 
@@ -103,7 +120,7 @@ public class InstitucionBean {
 	 * @param ins_estado
 	 *            the ins_estado to set
 	 */
-	public void setIns_estado(Integer ins_estado) {
+	public void setIns_estado(char ins_estado) {
 		this.ins_estado = ins_estado;
 	}
 
@@ -116,7 +133,7 @@ public class InstitucionBean {
 	 * 
 	 * @return
 	 */
-	public String nuevoSitio() {
+	public String nuevaInstitucion() {
 		edicion = false;
 		return "ninstitucion?faces-redirect=true";
 	}
@@ -134,8 +151,7 @@ public class InstitucionBean {
 						ins_estado);
 				Mensaje.crearMensajeINFO("Actualizado - Insitucion Modificada");
 			} else {
-				manager.insertarInstitucion(ins_nombre, ins_descripcion,
-						ins_estado);
+				manager.insertarInstitucion(ins_nombre, ins_descripcion);
 				Mensaje.crearMensajeINFO("Registrado - Insitucion Creada");
 			}
 			r = "institucion?faces-redirect=true";
@@ -173,9 +189,22 @@ public class InstitucionBean {
 		ins_id = 0;
 		ins_nombre = "";
 		ins_descripcion = "";
-		ins_estado = 1;
+		ins_estado = 'A';
 		edicion = false;
 		return "institucion?faces-redirect=true";
 	}
 
+	/**
+	 * Lista de estados
+	 */
+	public List<SelectItem> getlistEstados(){
+		List<SelectItem> lista = new ArrayList<SelectItem>();
+		List<GEN_Estados> completo = manager.findAllEstados();
+		for (GEN_Estados est : completo) {
+			lista.add(new SelectItem(est.getEst_id(), est.getEst_id()+" : "+est.getEst_nombre()));
+		}
+		return lista;
+	}
+	
+	
 }

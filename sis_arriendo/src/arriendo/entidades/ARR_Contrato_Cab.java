@@ -21,7 +21,7 @@ public class ARR_Contrato_Cab {
    /** @pdOid d0951824-ac27-4109-9313-2cb1f0ffea0b */
    private String cab_observacion;
    /** @pdOid 6a206325-7732-476c-bd31-099df6e118c1 */
-   private Integer cab_estado;
+   private char cab_estado;
    
    /** @pdOid 8675dc8e-a9a3-4a42-b43c-c30e8edb1199 */
    protected void finalize() {
@@ -96,13 +96,13 @@ public class ARR_Contrato_Cab {
    }
    
    /** @pdOid 5101e6d5-ab61-4edd-8e0a-6b8740958e95 */
-   public Integer getCab_estado() {
+   public char getCab_estado() {
       return cab_estado;
    }
    
    /** @param newCab_estado
     * @pdOid e0669d7b-9397-4553-be80-92b8654ee383 */
-   public void setCab_estado(Integer newCab_estado) {
+   public void setCab_estado(char newCab_estado) {
       cab_estado = newCab_estado;
    }
    
