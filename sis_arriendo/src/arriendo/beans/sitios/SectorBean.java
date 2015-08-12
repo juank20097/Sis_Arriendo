@@ -3,13 +3,15 @@ package arriendo.beans.sitios;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
-import org.primefaces.event.map.GeocodeEvent;
+import org.primefaces.event.map.OverlaySelectEvent;
+import org.primefaces.event.map.PointSelectEvent;
 import org.primefaces.model.map.DefaultMapModel;
-import org.primefaces.model.map.GeocodeResult;
 import org.primefaces.model.map.LatLng;
 import org.primefaces.model.map.MapModel;
 import org.primefaces.model.map.Marker;
@@ -37,17 +39,27 @@ public class SectorBean {
 	private String sec_direccion;
 	private char sec_estado;
 	private String sec_ubicacion;
+	private Integer institucion;
 	private boolean edicion;
 	
 	//mapa
 	private MapModel geoModel;
 	private String centerGeoMap = "-1.7864639,-78.1368874";
+	private Marker marca;
 	
 
 	public SectorBean() {
 		manager = new SitiosDAO();
 		edicion = false;
 		geoModel = new DefaultMapModel();
+		
+		//Shared coordinates
+        LatLng coord1 = new LatLng(-0.198157, -78.489996);
+        LatLng coord2 = new LatLng(0.410685, -78.176388);
+          
+        //Basic marker
+        geoModel.addOverlay(new Marker(coord1, "Yachay Empresa Publica"));
+        geoModel.addOverlay(new Marker(coord2, "Yachay Ciudad del Conocimiento"));
 	}
 
 	/**
@@ -108,6 +120,20 @@ public class SectorBean {
 	 */
 	public void setSec_nombre(String sec_nombre) {
 		this.sec_nombre = sec_nombre;
+	}
+
+	/**
+	 * @return the institucion
+	 */
+	public Integer getInstitucion() {
+		return institucion;
+	}
+
+	/**
+	 * @param institucion the institucion to set
+	 */
+	public void setInstitucion(Integer institucion) {
+		this.institucion = institucion;
 	}
 
 	/**
@@ -207,10 +233,10 @@ public class SectorBean {
 		try {
 			if (edicion) {
 				manager.editarSector(sec_id, sec_nombre, sec_direccion,
-						sec_ubicacion, sec_estado);
+						sec_ubicacion, institucion, sec_estado);
 				Mensaje.crearMensajeINFO("Actualizado - Insitucion Modificada");
 			} else {
-				manager.insertarSector(sec_nombre, sec_direccion, sec_ubicacion);
+				manager.insertarSector(sec_nombre, sec_direccion, sec_ubicacion, institucion);
 				Mensaje.crearMensajeINFO("Registrado - Insitucion Creada");
 			}
 			r = "sector?faces-redirect=true";
@@ -220,6 +246,7 @@ public class SectorBean {
 			sec_direccion = "";
 			sec_ubicacion = "";
 			sec_estado = 'A';
+			institucion = 0;
 			edicion = false;
 		} catch (Exception e) {
 			Mensaje.crearMensajeERROR(e.getMessage());
@@ -239,6 +266,7 @@ public class SectorBean {
 		sec_ubicacion = t.getSec_ubicacion();
 		sec_direccion = t.getSec_direccion();
 		sec_estado = t.getSec_estado();
+		institucion = t.getIns().getIns_id();
 		edicion = true;
 		return "nsector?faces-redirect=true";
 	}
@@ -255,6 +283,7 @@ public class SectorBean {
 		sec_direccion = "";
 		sec_ubicacion = "";
 		sec_estado = 'A';
+		institucion = 0;
 		edicion = false;
 		return "sector?faces-redirect=true";
 	}
@@ -273,11 +302,10 @@ public class SectorBean {
 		}
 		return lista;
 	}
-	
 	/**
 	 * Lista de instituciones
 	 * 
-	 * @return lista de todos los estados
+	 * @return lista de todos las instituciones
 	 */
 	public List<SelectItem> getlistInstitucion() {
 		List<SelectItem> lista = new ArrayList<SelectItem>();
@@ -287,19 +315,32 @@ public class SectorBean {
 		}
 		return lista;
 	}
-	
-	 public void onGeocode(GeocodeEvent event) {
-	        List<GeocodeResult> results = event.getResults();
-	         
-	        if (results != null && !results.isEmpty()) {
-	            LatLng center = results.get(0).getLatLng();
-	            centerGeoMap = center.getLat() + "," + center.getLng();
-	             
-	            for (int i = 0; i < results.size(); i++) {
-	                GeocodeResult result = results.get(i);
-	                geoModel.addOverlay(new Marker(result.getLatLng(), result.getAddress()));
-	            }
-	        }
-	    }
 
+	 /**
+	  * metodo para asignar un punto de geolocalización a sec_ubicacion
+	 * @param event
+	 */
+	public void onMarca(OverlaySelectEvent event) {
+	        marca = (Marker) event.getOverlay();
+	        setSec_ubicacion(marca.getLatlng().getLat()+","+marca.getLatlng().getLng());
+	        System.out.println(getSec_ubicacion());
+	        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Punto Seleccionado:",marca.getTitle()));
+	    }
+	
+	/**
+	  * metodo para asignar un punto de geolocalización a sec_ubicacion
+	 * @param event
+	 */
+	 public void onMarca2(PointSelectEvent event) {
+		 	LatLng latlng = event.getLatLng();
+	        setSec_ubicacion(latlng.getLat()+","+latlng.getLng());
+	        System.out.println(getSec_ubicacion());
+	        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Punto Seleccionado:","Lugar asignado"));
+	    }
+	 
+	 public String verMapa(GEN_Sectores sec){
+		 String r="";
+		 r=sec.getSec_ubicacion();
+		 return r;
+	 }
 }

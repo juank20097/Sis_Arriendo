@@ -20,7 +20,7 @@
         			<b:inputText value="#{institucionBean.ins_nombre}" required="true" requiredMessage="Campo tipo requerido"></b:inputText>
         			<h:outputLabel value="Descripción*" />
         			<p:inputTextarea value="#{institucionBean.ins_descripcion}" style="width:100%; margin-bottom:15px;" required="true" requiredMessage="Campo descripción requerido"/>
-        			<h:outputLabel value="Institución*" rendered="#{institucionBean.edicion}"/>
+        			<h:outputLabel value="Estado*" rendered="#{institucionBean.edicion}"/>
         			<b:selectOneMenu value="#{institucionBean.ins_estado}" rendered="#{institucionBean.edicion}">
         			<f:selectItems value="#{institucionBean.listEstados}"/>
         			</b:selectOneMenu>

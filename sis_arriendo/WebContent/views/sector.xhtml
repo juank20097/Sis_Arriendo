@@ -32,11 +32,14 @@
     					<p:column filterBy="#{sec.sec_nombre}" filterMatchMode="contains" headerText="NOMBRE" width="150">
 							<h:outputText value="#{sec.sec_nombre}"></h:outputText>
 						</p:column>
-						<p:column headerText="UBICACIÓN" width="150">
-							<h:outputText value="#{sec.sec_ubicacion}"></h:outputText>
+						<p:column headerText="DIRECCIÓN" width="250">
+							<h:outputText value="#{sec.sec_direccion}" />
 						</p:column>
-						<p:column headerText="DIRECCIÓN" width="300">
-							<p:inputTextarea value="#{sec.sec_direccion}" rows="2" cols="19" readonly="true" autoResize="false"/>
+						<p:column headerText="UBICACIÓN" width="150">
+							<p:commandButton id="btn" type="button" icon="ui-icon-pin-s" value="Ver Mapa" action="#{sectorBean.verMapa(sec)}" onclick="PF('dlg').show();" />
+							<p:dialog id="gmapDialog" widgetVar="dlg" width="625" height="400" modal="true">
+    					<p:gmap id="gmap" center="#{sectorBean.verMapa(sec)}" zoom="10" type="HYBRID" style="width:100%;height:400px" />
+						</p:dialog>
 						</p:column>
 						<p:column filterBy="#{sec.sec_estado}" filterMatchMode="contains" headerText="ESTADO" width="100">
 							<h:outputText value="#{sec.sec_estado}"></h:outputText>
@@ -47,6 +50,8 @@
 							</p:commandButton>
 							&nbsp;&nbsp;&nbsp;
 						</p:column>
+						
+						
     				</p:dataTable>
 				</b:panel>
 			</h:form>

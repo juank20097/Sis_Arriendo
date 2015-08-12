@@ -14,25 +14,35 @@
 	<ui:define name="contenido">
 		<br />
 		<h:form id="frmnb">
+			<p:growl id="growl" showDetail="true" />
 			<p:messages closable="true"></p:messages>
 			<b:panel title="Registro de Sectores" look="primary">
 				<b:panelGrid colSpans="2,10">
 					<h:outputLabel value="Nombre*" />
 					<b:inputText value="#{sectorBean.sec_nombre}" required="true"
 						requiredMessage="Campo tipo requerido"></b:inputText>
+					<h:outputLabel value="Dirección*" />
+					<b:inputText value="#{sectorBean.sec_direccion}" required="true"
+						requiredMessage="Campo dirección requerido" />
 					<h:outputLabel value="Ubicación*" />
-					<b:row>
 					<p:gmap id="geoGmap" widgetVar="geoMap"
 						center="#{sectorBean.centerGeoMap}" zoom="6" type="hybrid"
 						model="#{sectorBean.geoModel}" style="width:900px;height:400px">
-						<p:ajax event="geocode" listener="#{sectorBean.onGeocode}"
-							update="@this" />
+						<p:ajax event="pointSelect" listener="#{sectorBean.onMarca2}"
+							update="growl" />
+							<p:ajax event="overlaySelect" listener="#{sectorBean.onMarca}"
+							update="growl" />
 					</p:gmap>
-					</b:row><br/>
-					<h:outputLabel value="Dirección*" />
-					<p:inputTextarea value="#{sectorBean.sec_direccion}"
-						style="width:100%; margin-bottom:15px;" required="true"
-						requiredMessage="Campo dirección requerido" />
+					<h:outputLabel styleClass="mar" value="Institución*"/>
+        			<b:selectOneMenu  styleClass="mar" value="#{sectorBean.institucion}">
+        			<f:selectItem itemValue="-1" itemLabel="--Seleccione--"/>
+        			<f:selectItems value="#{sectorBean.listInstitucion}" >
+        			</f:selectItems>
+        			</b:selectOneMenu>
+        			<h:outputLabel value="Estado*" rendered="#{sectorBean.edicion}"/>
+        			<b:selectOneMenu value="#{sectorBean.sec_estado}" rendered="#{sectorBean.edicion}">
+        			<f:selectItems value="#{sectorBean.listEstados}"/>
+        			</b:selectOneMenu>
 				</b:panelGrid>
 				<br />
 				<b:commandButton value="Guardar" action="#{sectorBean.crearSector}"

@@ -28,7 +28,7 @@ public class SitiosDAO {
 
 	// Campos de asignacion (Sitios)
 	private GEN_Areas area;
-	// Campos de asignacion (Sector)
+	// Campos de asignacion (Sectores)
 	private GEN_Instituciones institucion;
 
 	/**
@@ -399,8 +399,9 @@ public class SitiosDAO {
 	 *            (Activado/Descativado)
 	 */
 	public void insertarSector(String nombre, String direccion,
-			String ubicacion) throws Exception {
+			String ubicacion, Integer institu) throws Exception {
 		try {
+			institucion = institucionByID(institu);
 			GEN_Sectores p = new GEN_Sectores();
 			p.setSec_nombre(nombre);
 			p.setSec_direccion(direccion);
@@ -431,41 +432,23 @@ public class SitiosDAO {
 	 *            (Activado/Descativado)
 	 */
 	public void editarSector(Integer id, String nombre, String direccion,
-			String ubicacion,char estado) throws Exception {
+			String ubicacion,Integer institu,char estado) throws Exception {
 		try {
-			GEN_Sectores p = new GEN_Sectores();
+			institucion = institucionByID(institu);
+			GEN_Sectores p = SectorByID(id);
 			p.setSec_id(id);
 			p.setSec_nombre(nombre);
 			p.setSec_direccion(direccion);
 			p.setSec_estado(estado);
 			p.setSec_ubicacion(ubicacion);
 			p.setIns(institucion);
-			manager.insertar(p);
+			manager.actualizar(p);
 			System.out.println("Bien_editar_sector");
-			institucion = new GEN_Instituciones();
 		} catch (Exception e) {
 			System.out.println("Error_editar_sector");
 			e.printStackTrace();
 		}
 
-	}// Cierre del metodo
-
-	/**
-	 * Metodo para asignar una Entidad a otra en la base de datos
-	 * 
-	 * @param id
-	 *            Tipo Integer el cual sirve para buscar un atributo
-	 * @return El atributo con el dato correspondiente
-	 */
-	public GEN_Instituciones asignarInstitucion(Integer id) {
-		try {
-			institucion = this.institucionByID(id);
-			System.out.println("Bien_asignar_Institucion");
-		} catch (Exception e) {
-			System.out.println("Mal_asignar_Intitucion");
-			e.printStackTrace();
-		}
-		return institucion;
 	}// Cierre del metodo
 
 	// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
