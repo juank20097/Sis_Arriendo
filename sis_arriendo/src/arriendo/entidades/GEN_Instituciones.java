@@ -1,7 +1,7 @@
 /***********************************************************************
- * Module:  GEN_Institucion.java
+ * Module:  GEN_Instituciones.java
  * Author:  jestevez
- * Purpose: Defines the Class GEN_Institucion
+ * Purpose: Defines the Class GEN_Instituciones
  ***********************************************************************/
 
 package arriendo.entidades;
@@ -9,7 +9,7 @@ package arriendo.entidades;
 import java.util.*;
 
 /** @pdOid 4b4d2594-ed14-473d-b0d3-c06e902990ed */
-public class GEN_Institucion {
+public class GEN_Instituciones {
    /** @pdOid 4088a318-34be-47b5-bc6b-50d0dc7f14da */
    private Integer ins_id;
    /** @pdOid 17e23e67-e871-431b-9692-1577cbfe9837 */
@@ -24,11 +24,11 @@ public class GEN_Institucion {
       // TODO: implement
    }
    
-   /** @pdRoleInfo migr=no name=GEN_Sector assc=association15 coll=java.util.List mult=* */
-   public java.util.List<GEN_Sector> sec;
+   /** @pdRoleInfo migr=no name=GEN_Sectores assc=association15 coll=java.util.List mult=* */
+   public java.util.List<GEN_Sectores> sec;
    
    /** @pdOid 23269cfd-0aa0-49cd-b50b-fa2c2f6565e7 */
-   public GEN_Institucion() {
+   public GEN_Instituciones() {
       // TODO: implement
    }
    
@@ -78,51 +78,51 @@ public class GEN_Institucion {
    
    
    /** @pdGenerated default getter */
-   public java.util.List<GEN_Sector> getSec() {
+   public java.util.List<GEN_Sectores> getSec() {
       if (sec == null)
-         sec = new java.util.Vector<GEN_Sector>();
+         sec = new java.util.Vector<GEN_Sectores>();
       return sec;
    }
    
    /** @pdGenerated default iterator getter */
    public java.util.Iterator getIteratorSec() {
       if (sec == null)
-         sec = new java.util.Vector<GEN_Sector>();
+         sec = new java.util.Vector<GEN_Sectores>();
       return sec.iterator();
    }
    
    /** @pdGenerated default setter
      * @param newSec */
-   public void setSec(java.util.List<GEN_Sector> newSec) {
+   public void setSec(java.util.List<GEN_Sectores> newSec) {
       removeAllSec();
       for (java.util.Iterator iter = newSec.iterator(); iter.hasNext();)
-         addSec((GEN_Sector)iter.next());
+         addSec((GEN_Sectores)iter.next());
    }
    
    /** @pdGenerated default add
-     * @param newGEN_Sector */
-   public void addSec(GEN_Sector newGEN_Sector) {
-      if (newGEN_Sector == null)
+     * @param newGEN_Sectores */
+   public void addSec(GEN_Sectores newGEN_Sectores) {
+      if (newGEN_Sectores == null)
          return;
       if (this.sec == null)
-         this.sec = new java.util.Vector<GEN_Sector>();
-      if (!this.sec.contains(newGEN_Sector))
+         this.sec = new java.util.Vector<GEN_Sectores>();
+      if (!this.sec.contains(newGEN_Sectores))
       {
-         this.sec.add(newGEN_Sector);
-         newGEN_Sector.setIns(this);      
+         this.sec.add(newGEN_Sectores);
+         newGEN_Sectores.setIns(this);      
       }
    }
    
    /** @pdGenerated default remove
-     * @param oldGEN_Sector */
-   public void removeSec(GEN_Sector oldGEN_Sector) {
-      if (oldGEN_Sector == null)
+     * @param oldGEN_Sectores */
+   public void removeSec(GEN_Sectores oldGEN_Sectores) {
+      if (oldGEN_Sectores == null)
          return;
       if (this.sec != null)
-         if (this.sec.contains(oldGEN_Sector))
+         if (this.sec.contains(oldGEN_Sectores))
          {
-            this.sec.remove(oldGEN_Sector);
-            oldGEN_Sector.setIns((GEN_Institucion)null);
+            this.sec.remove(oldGEN_Sectores);
+            oldGEN_Sectores.setIns((GEN_Instituciones)null);
          }
    }
    
@@ -130,12 +130,12 @@ public class GEN_Institucion {
    public void removeAllSec() {
       if (sec != null)
       {
-         GEN_Sector oldGEN_Sector;
+         GEN_Sectores oldGEN_Sectores;
          for (java.util.Iterator iter = getIteratorSec(); iter.hasNext();)
          {
-            oldGEN_Sector = (GEN_Sector)iter.next();
+            oldGEN_Sectores = (GEN_Sectores)iter.next();
             iter.remove();
-            oldGEN_Sector.setIns((GEN_Institucion)null);
+            oldGEN_Sectores.setIns((GEN_Instituciones)null);
          }
       }
    }

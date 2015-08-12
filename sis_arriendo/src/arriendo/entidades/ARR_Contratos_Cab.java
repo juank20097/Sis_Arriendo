@@ -1,7 +1,7 @@
 /***********************************************************************
- * Module:  ARR_Contrato_Cab.java
+ * Module:  ARR_Contratos_Cab.java
  * Author:  jestevez
- * Purpose: Defines the Class ARR_Contrato_Cab
+ * Purpose: Defines the Class ARR_Contratos_Cab
  ***********************************************************************/
 
 package arriendo.entidades;
@@ -9,7 +9,7 @@ package arriendo.entidades;
 import java.util.*;
 
 /** @pdOid 23bdef8f-3661-4629-89ca-695fd3eb0632 */
-public class ARR_Contrato_Cab {
+public class ARR_Contratos_Cab {
    /** @pdOid 9350c158-f713-4124-8d8e-1ef168c4e8d6 */
    private Integer cab_id;
    /** @pdOid a5e2bf76-04b0-487b-8119-5b833a2e1c2b */
@@ -28,15 +28,15 @@ public class ARR_Contrato_Cab {
       // TODO: implement
    }
    
-   /** @pdRoleInfo migr=no name=ARR_Contrato_Det assc=association3 coll=java.util.List mult=* */
-   public java.util.List<ARR_Contrato_Det> con_det;
+   /** @pdRoleInfo migr=no name=ARR_Contratos_Det assc=association3 coll=java.util.List mult=* */
+   public java.util.List<ARR_Contratos_Det> con_det;
    /** @pdRoleInfo migr=no name=ARR_ContratoClausulas_Det assc=association13 coll=java.util.List mult=* */
    public java.util.List<ARR_ContratoClausulas_Det> con_cla_d;
    /** @pdRoleInfo migr=no name=ARR_Inter_Per assc=association10 coll=java.util.List mult=* side=A */
    public java.util.List<ARR_Inter_Per> intp;
    
    /** @pdOid a592bcbc-56fc-40f0-b355-0d9189a9d338 */
-   public ARR_Contrato_Cab() {
+   public ARR_Contratos_Cab() {
       // TODO: implement
    }
    
@@ -108,51 +108,51 @@ public class ARR_Contrato_Cab {
    
    
    /** @pdGenerated default getter */
-   public java.util.List<ARR_Contrato_Det> getCon_det() {
+   public java.util.List<ARR_Contratos_Det> getCon_det() {
       if (con_det == null)
-         con_det = new java.util.Vector<ARR_Contrato_Det>();
+         con_det = new java.util.Vector<ARR_Contratos_Det>();
       return con_det;
    }
    
    /** @pdGenerated default iterator getter */
    public java.util.Iterator getIteratorCon_det() {
       if (con_det == null)
-         con_det = new java.util.Vector<ARR_Contrato_Det>();
+         con_det = new java.util.Vector<ARR_Contratos_Det>();
       return con_det.iterator();
    }
    
    /** @pdGenerated default setter
      * @param newCon_det */
-   public void setCon_det(java.util.List<ARR_Contrato_Det> newCon_det) {
+   public void setCon_det(java.util.List<ARR_Contratos_Det> newCon_det) {
       removeAllCon_det();
       for (java.util.Iterator iter = newCon_det.iterator(); iter.hasNext();)
-         addCon_det((ARR_Contrato_Det)iter.next());
+         addCon_det((ARR_Contratos_Det)iter.next());
    }
    
    /** @pdGenerated default add
-     * @param newARR_Contrato_Det */
-   public void addCon_det(ARR_Contrato_Det newARR_Contrato_Det) {
-      if (newARR_Contrato_Det == null)
+     * @param newARR_Contratos_Det */
+   public void addCon_det(ARR_Contratos_Det newARR_Contratos_Det) {
+      if (newARR_Contratos_Det == null)
          return;
       if (this.con_det == null)
-         this.con_det = new java.util.Vector<ARR_Contrato_Det>();
-      if (!this.con_det.contains(newARR_Contrato_Det))
+         this.con_det = new java.util.Vector<ARR_Contratos_Det>();
+      if (!this.con_det.contains(newARR_Contratos_Det))
       {
-         this.con_det.add(newARR_Contrato_Det);
-         newARR_Contrato_Det.setCon_cab(this);      
+         this.con_det.add(newARR_Contratos_Det);
+         newARR_Contratos_Det.setCon_cab(this);      
       }
    }
    
    /** @pdGenerated default remove
-     * @param oldARR_Contrato_Det */
-   public void removeCon_det(ARR_Contrato_Det oldARR_Contrato_Det) {
-      if (oldARR_Contrato_Det == null)
+     * @param oldARR_Contratos_Det */
+   public void removeCon_det(ARR_Contratos_Det oldARR_Contratos_Det) {
+      if (oldARR_Contratos_Det == null)
          return;
       if (this.con_det != null)
-         if (this.con_det.contains(oldARR_Contrato_Det))
+         if (this.con_det.contains(oldARR_Contratos_Det))
          {
-            this.con_det.remove(oldARR_Contrato_Det);
-            oldARR_Contrato_Det.setCon_cab((ARR_Contrato_Cab)null);
+            this.con_det.remove(oldARR_Contratos_Det);
+            oldARR_Contratos_Det.setCon_cab((ARR_Contratos_Cab)null);
          }
    }
    
@@ -160,12 +160,12 @@ public class ARR_Contrato_Cab {
    public void removeAllCon_det() {
       if (con_det != null)
       {
-         ARR_Contrato_Det oldARR_Contrato_Det;
+         ARR_Contratos_Det oldARR_Contratos_Det;
          for (java.util.Iterator iter = getIteratorCon_det(); iter.hasNext();)
          {
-            oldARR_Contrato_Det = (ARR_Contrato_Det)iter.next();
+            oldARR_Contratos_Det = (ARR_Contratos_Det)iter.next();
             iter.remove();
-            oldARR_Contrato_Det.setCon_cab((ARR_Contrato_Cab)null);
+            oldARR_Contratos_Det.setCon_cab((ARR_Contratos_Cab)null);
          }
       }
    }
@@ -214,7 +214,7 @@ public class ARR_Contrato_Cab {
          if (this.con_cla_d.contains(oldARR_ContratoClausulas_Det))
          {
             this.con_cla_d.remove(oldARR_ContratoClausulas_Det);
-            oldARR_ContratoClausulas_Det.setCon_cab((ARR_Contrato_Cab)null);
+            oldARR_ContratoClausulas_Det.setCon_cab((ARR_Contratos_Cab)null);
          }
    }
    
@@ -227,7 +227,7 @@ public class ARR_Contrato_Cab {
          {
             oldARR_ContratoClausulas_Det = (ARR_ContratoClausulas_Det)iter.next();
             iter.remove();
-            oldARR_ContratoClausulas_Det.setCon_cab((ARR_Contrato_Cab)null);
+            oldARR_ContratoClausulas_Det.setCon_cab((ARR_Contratos_Cab)null);
          }
       }
    }
@@ -276,7 +276,7 @@ public class ARR_Contrato_Cab {
          if (this.intp.contains(oldARR_Inter_Per))
          {
             this.intp.remove(oldARR_Inter_Per);
-            oldARR_Inter_Per.setCon_cab((ARR_Contrato_Cab)null);
+            oldARR_Inter_Per.setCon_cab((ARR_Contratos_Cab)null);
          }
    }
    
@@ -289,7 +289,7 @@ public class ARR_Contrato_Cab {
          {
             oldARR_Inter_Per = (ARR_Inter_Per)iter.next();
             iter.remove();
-            oldARR_Inter_Per.setCon_cab((ARR_Contrato_Cab)null);
+            oldARR_Inter_Per.setCon_cab((ARR_Contratos_Cab)null);
          }
       }
    }

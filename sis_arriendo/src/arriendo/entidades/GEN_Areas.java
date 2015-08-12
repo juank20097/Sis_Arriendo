@@ -1,7 +1,7 @@
 /***********************************************************************
- * Module:  GEN_Area.java
+ * Module:  GEN_Areas.java
  * Author:  jestevez
- * Purpose: Defines the Class GEN_Area
+ * Purpose: Defines the Class GEN_Areas
  ***********************************************************************/
 
 package arriendo.entidades;
@@ -9,7 +9,7 @@ package arriendo.entidades;
 import java.util.*;
 
 /** @pdOid feb47f28-54d1-446b-aa0e-a04653b54fc5 */
-public class GEN_Area {
+public class GEN_Areas {
    /** @pdOid bca0ef32-e545-4668-b1ac-ece2f37e1df1 */
    private Integer are_id;
    /** @pdOid 832bf661-039d-431b-8dda-21478b6a4890 */
@@ -26,11 +26,11 @@ public class GEN_Area {
    
    /** @pdRoleInfo migr=no name=GEN_Sitios assc=association9 coll=java.util.List mult=* */
    public java.util.List<GEN_Sitios> sit;
-   /** @pdRoleInfo migr=no name=GEN_Sector assc=association16 mult=1..1 side=A */
-   public GEN_Sector sec;
+   /** @pdRoleInfo migr=no name=GEN_Sectores assc=association16 mult=1..1 side=A */
+   public GEN_Sectores sec;
    
    /** @pdOid 01a3275a-097c-497b-b810-930470fcf9c6 */
-   public GEN_Area() {
+   public GEN_Areas() {
       // TODO: implement
    }
    
@@ -124,7 +124,7 @@ public class GEN_Area {
          if (this.sit.contains(oldGEN_Sitios))
          {
             this.sit.remove(oldGEN_Sitios);
-            oldGEN_Sitios.setAre((GEN_Area)null);
+            oldGEN_Sitios.setAre((GEN_Areas)null);
          }
    }
    
@@ -137,29 +137,29 @@ public class GEN_Area {
          {
             oldGEN_Sitios = (GEN_Sitios)iter.next();
             iter.remove();
-            oldGEN_Sitios.setAre((GEN_Area)null);
+            oldGEN_Sitios.setAre((GEN_Areas)null);
          }
       }
    }
    /** @pdGenerated default parent getter */
-   public GEN_Sector getSec() {
+   public GEN_Sectores getSec() {
       return sec;
    }
    
    /** @pdGenerated default parent setter
-     * @param newGEN_Sector */
-   public void setSec(GEN_Sector newGEN_Sector) {
-      if (this.sec == null || !this.sec.equals(newGEN_Sector))
+     * @param newGEN_Sectores */
+   public void setSec(GEN_Sectores newGEN_Sectores) {
+      if (this.sec == null || !this.sec.equals(newGEN_Sectores))
       {
          if (this.sec != null)
          {
-            GEN_Sector oldGEN_Sector = this.sec;
+            GEN_Sectores oldGEN_Sectores = this.sec;
             this.sec = null;
-            oldGEN_Sector.removeAre(this);
+            oldGEN_Sectores.removeAre(this);
          }
-         if (newGEN_Sector != null)
+         if (newGEN_Sectores != null)
          {
-            this.sec = newGEN_Sector;
+            this.sec = newGEN_Sectores;
             this.sec.addAre(this);
          }
       }

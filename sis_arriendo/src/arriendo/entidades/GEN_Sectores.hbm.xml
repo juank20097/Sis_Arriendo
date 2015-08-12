@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 07-ago-2015 11:50:48 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 12-ago-2015 9:00:28 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="arriendo.entidades.GEN_Sector" table="GEN_SECTOR">
+    <class name="arriendo.entidades.GEN_Sectores" table="GEN_SECTORES">
         <id name="sec_id" type="java.lang.Integer">
             <column name="SEC_ID" />
              <generator class="sequence">
-             <param name="sequence">seq_GEN_Sector</param>
+             <param name="sequence">seq_GEN_Sectores</param>
             </generator>
         </id>
         <property name="sec_nombre" type="java.lang.String">
@@ -22,14 +22,14 @@
         <property name="sec_ubicacion" type="java.lang.String">
             <column name="SEC_UBICACION" />
         </property>
-        <list name="are" inverse="false" table="GEN_AREA" lazy="true">
+        <list name="are" inverse="false" table="GEN_AREAS" lazy="true">
             <key>
                 <column name="SEC_ID" />
             </key>
             <list-index></list-index>
-            <one-to-many class="arriendo.entidades.GEN_Area" />
+            <one-to-many class="arriendo.entidades.GEN_Areas" />
         </list>
-        <many-to-one name="ins" class="arriendo.entidades.GEN_Institucion" fetch="join">
+        <many-to-one name="ins" class="arriendo.entidades.GEN_Instituciones" fetch="join">
             <column name="INS" />
         </many-to-one>
     </class>

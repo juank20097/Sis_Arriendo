@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 12-ago-2015 9:00:28 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <subclass name="arriendo.entidades.GEN_Funcionarios" extends="arriendo.entidades.GEN_Personas" discriminator-value="GEN_Funcionarios" lazy="false">
+        <property name="fun_gerencia" type="java.lang.String">
+            <column name="FUN_GERENCIA" />
+        </property>
+        <property name="fun_direccion" type="java.lang.String">
+            <column name="FUN_DIRECCION" />
+        </property>
+        <property name="fun_cargo" type="java.lang.String">
+            <column name="FUN_CARGO" />
+        </property>
+    </subclass>
+</hibernate-mapping>

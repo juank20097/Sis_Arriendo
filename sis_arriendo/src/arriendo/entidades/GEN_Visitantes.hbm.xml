@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 12-ago-2015 9:00:28 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <subclass name="arriendo.entidades.GEN_Visitantes" extends="arriendo.entidades.GEN_Personas" discriminator-value="GEN_Visitantes" lazy="false">
+        <property name="visPais_referencia" type="java.lang.Integer">
+            <column name="VISPAIS_REFERENCIA" />
+        </property>
+    </subclass>
+</hibernate-mapping>

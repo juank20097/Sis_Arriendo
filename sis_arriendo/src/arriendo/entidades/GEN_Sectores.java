@@ -1,7 +1,7 @@
 /***********************************************************************
- * Module:  GEN_Sector.java
+ * Module:  GEN_Sectores.java
  * Author:  jestevez
- * Purpose: Defines the Class GEN_Sector
+ * Purpose: Defines the Class GEN_Sectores
  ***********************************************************************/
 
 package arriendo.entidades;
@@ -9,7 +9,7 @@ package arriendo.entidades;
 import java.util.*;
 
 /** @pdOid 9d11dc03-c773-4afa-977a-8d2452c217be */
-public class GEN_Sector {
+public class GEN_Sectores {
    /** @pdOid c856cac0-2a99-4616-9af0-fd043ac5e07c */
    private Integer sec_id;
    /** @pdOid 664cdc30-b8aa-4e81-b9e2-887b6cb8e2dd */
@@ -26,13 +26,13 @@ public class GEN_Sector {
       // TODO: implement
    }
    
-   /** @pdRoleInfo migr=no name=GEN_Area assc=association16 coll=java.util.List mult=* */
-   public java.util.List<GEN_Area> are;
-   /** @pdRoleInfo migr=no name=GEN_Institucion assc=association15 mult=1..1 side=A */
-   public GEN_Institucion ins;
+   /** @pdRoleInfo migr=no name=GEN_Areas assc=association16 coll=java.util.List mult=* */
+   public java.util.List<GEN_Areas> are;
+   /** @pdRoleInfo migr=no name=GEN_Instituciones assc=association15 mult=1..1 side=A */
+   public GEN_Instituciones ins;
    
    /** @pdOid 2de0b5b1-b693-4636-83d1-e80aff2ad14f */
-   public GEN_Sector() {
+   public GEN_Sectores() {
       // TODO: implement
    }
    
@@ -93,51 +93,51 @@ public class GEN_Sector {
    
    
    /** @pdGenerated default getter */
-   public java.util.List<GEN_Area> getAre() {
+   public java.util.List<GEN_Areas> getAre() {
       if (are == null)
-         are = new java.util.Vector<GEN_Area>();
+         are = new java.util.Vector<GEN_Areas>();
       return are;
    }
    
    /** @pdGenerated default iterator getter */
    public java.util.Iterator getIteratorAre() {
       if (are == null)
-         are = new java.util.Vector<GEN_Area>();
+         are = new java.util.Vector<GEN_Areas>();
       return are.iterator();
    }
    
    /** @pdGenerated default setter
      * @param newAre */
-   public void setAre(java.util.List<GEN_Area> newAre) {
+   public void setAre(java.util.List<GEN_Areas> newAre) {
       removeAllAre();
       for (java.util.Iterator iter = newAre.iterator(); iter.hasNext();)
-         addAre((GEN_Area)iter.next());
+         addAre((GEN_Areas)iter.next());
    }
    
    /** @pdGenerated default add
-     * @param newGEN_Area */
-   public void addAre(GEN_Area newGEN_Area) {
-      if (newGEN_Area == null)
+     * @param newGEN_Areas */
+   public void addAre(GEN_Areas newGEN_Areas) {
+      if (newGEN_Areas == null)
          return;
       if (this.are == null)
-         this.are = new java.util.Vector<GEN_Area>();
-      if (!this.are.contains(newGEN_Area))
+         this.are = new java.util.Vector<GEN_Areas>();
+      if (!this.are.contains(newGEN_Areas))
       {
-         this.are.add(newGEN_Area);
-         newGEN_Area.setSec(this);      
+         this.are.add(newGEN_Areas);
+         newGEN_Areas.setSec(this);      
       }
    }
    
    /** @pdGenerated default remove
-     * @param oldGEN_Area */
-   public void removeAre(GEN_Area oldGEN_Area) {
-      if (oldGEN_Area == null)
+     * @param oldGEN_Areas */
+   public void removeAre(GEN_Areas oldGEN_Areas) {
+      if (oldGEN_Areas == null)
          return;
       if (this.are != null)
-         if (this.are.contains(oldGEN_Area))
+         if (this.are.contains(oldGEN_Areas))
          {
-            this.are.remove(oldGEN_Area);
-            oldGEN_Area.setSec((GEN_Sector)null);
+            this.are.remove(oldGEN_Areas);
+            oldGEN_Areas.setSec((GEN_Sectores)null);
          }
    }
    
@@ -145,34 +145,34 @@ public class GEN_Sector {
    public void removeAllAre() {
       if (are != null)
       {
-         GEN_Area oldGEN_Area;
+         GEN_Areas oldGEN_Areas;
          for (java.util.Iterator iter = getIteratorAre(); iter.hasNext();)
          {
-            oldGEN_Area = (GEN_Area)iter.next();
+            oldGEN_Areas = (GEN_Areas)iter.next();
             iter.remove();
-            oldGEN_Area.setSec((GEN_Sector)null);
+            oldGEN_Areas.setSec((GEN_Sectores)null);
          }
       }
    }
    /** @pdGenerated default parent getter */
-   public GEN_Institucion getIns() {
+   public GEN_Instituciones getIns() {
       return ins;
    }
    
    /** @pdGenerated default parent setter
-     * @param newGEN_Institucion */
-   public void setIns(GEN_Institucion newGEN_Institucion) {
-      if (this.ins == null || !this.ins.equals(newGEN_Institucion))
+     * @param newGEN_Instituciones */
+   public void setIns(GEN_Instituciones newGEN_Instituciones) {
+      if (this.ins == null || !this.ins.equals(newGEN_Instituciones))
       {
          if (this.ins != null)
          {
-            GEN_Institucion oldGEN_Institucion = this.ins;
+            GEN_Instituciones oldGEN_Instituciones = this.ins;
             this.ins = null;
-            oldGEN_Institucion.removeSec(this);
+            oldGEN_Instituciones.removeSec(this);
          }
-         if (newGEN_Institucion != null)
+         if (newGEN_Instituciones != null)
          {
-            this.ins = newGEN_Institucion;
+            this.ins = newGEN_Instituciones;
             this.ins.addSec(this);
          }
       }

@@ -12,16 +12,16 @@ import java.util.*;
 public class ARR_Inter_Per {
    /** @pdOid 68006ba9-36d8-4722-8b3f-e591febe1c4b */
    private Integer inp_id;
+   /** @pdOid 2b1d2401-1da7-4b48-999a-baa638493d95 */
+   private Integer per_id;
    
    /** @pdOid 14ad1ff2-157c-457f-8038-1301056cbca1 */
    protected void finalize() {
       // TODO: implement
    }
    
-   /** @pdRoleInfo migr=no name=ARR_Contrato_Cab assc=association10 mult=1..1 */
-   public ARR_Contrato_Cab con_cab;
-   /** @pdRoleInfo migr=no name=GEN_Persona assc=association11 mult=1..1 */
-   public GEN_Persona per;
+   /** @pdRoleInfo migr=no name=ARR_Contratos_Cab assc=association10 mult=1..1 */
+   public ARR_Contratos_Cab con_cab;
    
    /** @pdOid 67b36a12-7ab9-405c-9696-4d142edb23e4 */
    public ARR_Inter_Per() {
@@ -39,50 +39,38 @@ public class ARR_Inter_Per {
       inp_id = newInp_id;
    }
    
+   /** @pdOid f2bbb3bb-d01d-40f1-8a12-7ee1b2d0468e */
+   public Integer getPer_id() {
+      return per_id;
+   }
+   
+   /** @param newPer_id
+    * @pdOid 2879581c-1382-49a6-bcae-b65c35933564 */
+   public void setPer_id(Integer newPer_id) {
+      per_id = newPer_id;
+   }
+   
    
    /** @pdGenerated default parent getter */
-   public ARR_Contrato_Cab getCon_cab() {
+   public ARR_Contratos_Cab getCon_cab() {
       return con_cab;
    }
    
    /** @pdGenerated default parent setter
-     * @param newARR_Contrato_Cab */
-   public void setCon_cab(ARR_Contrato_Cab newARR_Contrato_Cab) {
-      if (this.con_cab == null || !this.con_cab.equals(newARR_Contrato_Cab))
+     * @param newARR_Contratos_Cab */
+   public void setCon_cab(ARR_Contratos_Cab newARR_Contratos_Cab) {
+      if (this.con_cab == null || !this.con_cab.equals(newARR_Contratos_Cab))
       {
          if (this.con_cab != null)
          {
-            ARR_Contrato_Cab oldARR_Contrato_Cab = this.con_cab;
+            ARR_Contratos_Cab oldARR_Contratos_Cab = this.con_cab;
             this.con_cab = null;
-            oldARR_Contrato_Cab.removeIntp(this);
+            oldARR_Contratos_Cab.removeIntp(this);
          }
-         if (newARR_Contrato_Cab != null)
+         if (newARR_Contratos_Cab != null)
          {
-            this.con_cab = newARR_Contrato_Cab;
+            this.con_cab = newARR_Contratos_Cab;
             this.con_cab.addIntp(this);
-         }
-      }
-   }
-   /** @pdGenerated default parent getter */
-   public GEN_Persona getPer() {
-      return per;
-   }
-   
-   /** @pdGenerated default parent setter
-     * @param newGEN_Persona */
-   public void setPer(GEN_Persona newGEN_Persona) {
-      if (this.per == null || !this.per.equals(newGEN_Persona))
-      {
-         if (this.per != null)
-         {
-            GEN_Persona oldGEN_Persona = this.per;
-            this.per = null;
-            oldGEN_Persona.removeIntp(this);
-         }
-         if (newGEN_Persona != null)
-         {
-            this.per = newGEN_Persona;
-            this.per.addIntp(this);
          }
       }
    }

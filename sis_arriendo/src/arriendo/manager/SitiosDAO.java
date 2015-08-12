@@ -2,11 +2,14 @@ package arriendo.manager;
 
 import java.util.List;
 
-import arriendo.entidades.GEN_Area;
-import arriendo.entidades.GEN_Articulos;
+
+
+
+
+import arriendo.entidades.GEN_Areas;
 import arriendo.entidades.GEN_Estados;
-import arriendo.entidades.GEN_Institucion;
-import arriendo.entidades.GEN_Sector;
+import arriendo.entidades.GEN_Instituciones;
+import arriendo.entidades.GEN_Sectores;
 import arriendo.entidades.GEN_Sitios;
 
 /**
@@ -24,11 +27,9 @@ public class SitiosDAO {
 	private HibernateDAO manager;
 
 	// Campos de asignacion (Sitios)
-	private GEN_Area area;
-	// Campos de asignacion (Articulos)
-	private GEN_Sitios sitio;
+	private GEN_Areas area;
 	// Campos de asignacion (Sector)
-	private GEN_Institucion institucion;
+	private GEN_Instituciones institucion;
 
 	/**
 	 * Constructor para la utilizacion de metodos de la clase HibernateDAO
@@ -43,7 +44,7 @@ public class SitiosDAO {
 
 	// /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/**
-	 * Creación de metodos para el manejo de la tabla GEN_Area
+	 * Creación de metodos para el manejo de la tabla GEN_Areas
 	 * 
 	 */
 
@@ -53,8 +54,8 @@ public class SitiosDAO {
 	 * @return La lista de todas las Areas encontradas
 	 */
 	@SuppressWarnings("unchecked")
-	public List<GEN_Area> findAllAreas() {
-		return manager.findAll(GEN_Area.class);
+	public List<GEN_Areas> findAllAreas() {
+		return manager.findAll(GEN_Areas.class);
 	}// Cierre del metodo
 
 	/**
@@ -64,8 +65,8 @@ public class SitiosDAO {
 	 *            Tipo integer de busqueda
 	 * @return El objeto Area encontrado mediante el ID
 	 */
-	public GEN_Area AreaByID(Integer id_area) throws Exception {
-		return (GEN_Area) manager.findById(GEN_Area.class, id_area);
+	public GEN_Areas AreaByID(Integer id_area) throws Exception {
+		return (GEN_Areas) manager.findById(GEN_Areas.class, id_area);
 	}// Cierre del metodo
 
 	/**
@@ -84,7 +85,7 @@ public class SitiosDAO {
 	public void insertarArea(String nombre, String ubicacion,
 			String descripcion) throws Exception {
 		try {
-			GEN_Area p = new GEN_Area();
+			GEN_Areas p = new GEN_Areas();
 			p.setAre_nombre(nombre);
 			p.setAre_descripcion(descripcion);
 			p.setAre_estado('A');
@@ -115,7 +116,7 @@ public class SitiosDAO {
 	public void editarArea(Integer id_area, String nombre, String ubicacion,
 			String descripcion, char estado) throws Exception {
 		try {
-			GEN_Area r = this.AreaByID(id_area);
+			GEN_Areas r = this.AreaByID(id_area);
 			r.setAre_id(id_area);
 			r.setAre_nombre(nombre);
 			r.setAre_descripcion(descripcion);
@@ -136,7 +137,7 @@ public class SitiosDAO {
 	 */
 	public void eliminarArea(Integer id_area) {
 		try {
-			manager.eliminar(GEN_Area.class, id_area);
+			manager.eliminar(GEN_Areas.class, id_area);
 			System.out.println("Eliminar_area_correcto");
 		} catch (Exception e) {
 			System.out.println("Eliminar_area_incorrecto");
@@ -182,7 +183,7 @@ public class SitiosDAO {
 		GEN_Sitios s = null;
 		List<GEN_Sitios> li = findAllSitios();
 		for (GEN_Sitios sitio : li) {
-			if (sitio.getSit_identificador().equals(nombre)) {
+			if (sitio.getSit_nombre().equals(nombre)) {
 				s = sitio;
 			}
 		}
@@ -204,12 +205,12 @@ public class SitiosDAO {
 	 *            Tipo Integer el cual almacena el dato si es
 	 *            Activado/Desactivado
 	 */
-	public void insertarSitio(String identificador, Double costo,
+	public void insertarSitio(String nombre, Double costo,
 			String direccion, Integer capacidad)
 			throws Exception {
 		try {
 			GEN_Sitios p = new GEN_Sitios();
-			p.setSit_identificador(identificador);
+			p.setSit_nombre(nombre);
 			p.setSit_costo_arriendo(costo);
 			p.setSit_direccion(direccion);
 			p.setSit_capacidad(capacidad);
@@ -227,7 +228,7 @@ public class SitiosDAO {
 	/**
 	 * Metodo para editar un Sitio a la base de datos
 	 * 
-	 * @param identificador
+	 * @param nombre
 	 *            Tipo String el cual cambia el nombre para denotar el sitio
 	 * @param costo
 	 *            Tipo Double el cual cambia el costo mensual del sitio
@@ -238,12 +239,13 @@ public class SitiosDAO {
 	 * @param estado
 	 *            Tipo Integer el cual cambia el dato si es Activado/Desactivado
 	 */
-	public void editarSitio(String identificador, Double costo,
+	public void editarSitio(Integer id,String nombre, Double costo,
 			String direccion, Integer capacidad, char estado)
 			throws Exception {
 		try {
-			GEN_Sitios r = this.SitiobyNombre(identificador);
-			r.setSit_identificador(identificador);
+			GEN_Sitios r = this.SitioByID(id);
+			r.setSit_id(id);
+			r.setSit_nombre(nombre);
 			r.setSit_costo_arriendo(costo);
 			r.setSit_direccion(direccion);
 			r.setSit_capacidad(capacidad);
@@ -264,7 +266,7 @@ public class SitiosDAO {
 	 *            Tipo Integer el cual sirve para buscar un tipo
 	 * @return El tipo area con el dato correspondiente
 	 */
-	public GEN_Area asignarArea(Integer id) {
+	public GEN_Areas asignarArea(Integer id) {
 		try {
 			area = this.AreaByID(id);
 			System.out.println("Bien_asignar_Area");
@@ -273,118 +275,6 @@ public class SitiosDAO {
 			e.printStackTrace();
 		}
 		return area;
-	}// Cierre del metodo
-
-	// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/*
-	 * Creación de metodos para el manejo de la tabla GEN_Articulos
-	 */
-
-	/**
-	 * Metodo para listar todos los Articulos existentes
-	 * 
-	 * @return La lista de todos los Articulos encontradas
-	 */
-	@SuppressWarnings("unchecked")
-	public List<GEN_Articulos> findAllArticulos() {
-		return manager.findAll(GEN_Articulos.class);
-	}// Cierre del metodo
-
-	/**
-	 * Metodo para obtener el Articulo mediante un ID
-	 * 
-	 * @param id
-	 *            Tipo integer de busqueda
-	 * @return El objeto Articulo encontrado mediante el ID
-	 */
-	public GEN_Articulos ArticuloByID(Integer id) throws Exception {
-		return (GEN_Articulos) manager.findById(GEN_Articulos.class, id);
-	}// Cierre del metodo
-
-	/**
-	 * Metodo para ingresar un Articulo a la base de datos
-	 * 
-	 * @param nombre
-	 *            Tipo String el cual almacena el nombre para denotar el
-	 *            articulo
-	 * @param descripcion
-	 *            Tipo String el cual almacena el enfoque para el articulo
-	 * @param serial
-	 *            Tipo String el cual almacena el identificador del articulo
-	 * @param valor
-	 *            Tipo String el cual almacena el costo del articulo
-	 * @param estado
-	 *            Tipo Integer el cual almacena el estado del articulo
-	 */
-	public void insertarArticulo(String nombre, String descripcion,
-			String serial, Float valor) throws Exception {
-		try {
-			GEN_Articulos p = new GEN_Articulos();
-			p.setArt_nombre(nombre);
-			p.setArt_descripcion(descripcion);
-			p.setArt_serial(serial);
-			p.setArt_valor_referenciado(valor);
-			p.setArt_estado('A');
-			p.setSit(sitio);
-			manager.insertar(p);
-			System.out.println("Bien_insertar_articulo");
-		} catch (Exception e) {
-			System.out.println("Error_insertar_articulo");
-			e.printStackTrace();
-		}
-
-	}// Cierre del metodo
-
-	/**
-	 * Metodo para editar un Articulo a la base de datos
-	 * 
-	 * @param id
-	 *            Tipo Integer el cual permite la busqueda del articulo
-	 * @param nombre
-	 *            Tipo String el cual edita el nombre para denotar el articulo
-	 * @param descripcion
-	 *            Tipo String el cual edita el enfoque para el articulo
-	 * @param serial
-	 *            Tipo String el cual edita el identificador del articulo
-	 * @param valor
-	 *            Tipo String el cual edita el costo del articulo
-	 * @param estado
-	 *            Tipo Integer el cual edita el estado del articulo
-	 */
-	public void editarArticulo(Integer id, String nombre, String descripcion,
-			String serial, Float valor, char estado) throws Exception {
-		try {
-			GEN_Articulos r = this.ArticuloByID(id);
-			r.setArt_nombre(nombre);
-			r.setArt_descripcion(descripcion);
-			r.setArt_serial(serial);
-			r.setArt_valor_referenciado(valor);
-			r.setArt_estado(estado);
-			r.setSit(sitio);
-			manager.actualizar(r);
-			System.out.println("bien_mod_articulo");
-		} catch (Exception e) {
-			System.out.println("Error_mod_articulo");
-			e.printStackTrace();
-		}
-	}// Cierre del metodo
-
-	/**
-	 * Metodo para asignar un Sitio a un Articulo en la base de datos
-	 * 
-	 * @param id
-	 *            Tipo Integer el cual sirve para buscar un tipo
-	 * @return El tipo articulo con el dato correspondiente
-	 */
-	public GEN_Sitios asignarSitio(Integer id) {
-		try {
-			sitio = this.SitioByID(id);
-			System.out.println("Bien_asignar_Sitio");
-		} catch (Exception e) {
-			System.out.println("Mal_asignar_Sitio");
-			e.printStackTrace();
-		}
-		return sitio;
 	}// Cierre del metodo
 
 	// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -399,8 +289,8 @@ public class SitiosDAO {
 	 * @return La lista de todas las Institucion encontradas
 	 */
 	@SuppressWarnings("unchecked")
-	public List<GEN_Institucion> findAllInstituciones() {
-		return manager.findAll(GEN_Institucion.class);
+	public List<GEN_Instituciones> findAllInstituciones() {
+		return manager.findAll(GEN_Instituciones.class);
 	}// Cierre del metodo
 
 	/**
@@ -410,8 +300,8 @@ public class SitiosDAO {
 	 *            Tipo integer de busqueda
 	 * @return El objeto Institucion encontrado mediante el ID
 	 */
-	public GEN_Institucion institucionByID(Integer id) throws Exception {
-		return (GEN_Institucion) manager.findById(GEN_Institucion.class, id);
+	public GEN_Instituciones institucionByID(Integer id) throws Exception {
+		return (GEN_Instituciones) manager.findById(GEN_Instituciones.class, id);
 	}// Cierre del metodo
 
 	/**
@@ -427,7 +317,7 @@ public class SitiosDAO {
 	 */
 	public void insertarInstitucion(String nombre, String descripcion) throws Exception {
 		try {
-			GEN_Institucion p = new GEN_Institucion();
+			GEN_Instituciones p = new GEN_Instituciones();
 			p.setIns_nombre(nombre);
 			p.setIns_descripcion(descripcion);
 			p.setIns_estado('A');
@@ -456,7 +346,7 @@ public class SitiosDAO {
 	public void editarInstitucion(Integer id, String nombre,
 			String descripcion, char estado) throws Exception {
 		try {
-			GEN_Institucion p = this.institucionByID(id);
+			GEN_Instituciones p = this.institucionByID(id);
 			p.setIns_id(id);
 			p.setIns_nombre(nombre);
 			p.setIns_descripcion(descripcion);
@@ -482,8 +372,8 @@ public class SitiosDAO {
 	 * @return La lista de todos los datos de la entidad encontradas
 	 */
 	@SuppressWarnings("unchecked")
-	public List<GEN_Sector> findAllSector() {
-		return manager.findAll(GEN_Sector.class);
+	public List<GEN_Sectores> findAllSector() {
+		return manager.findAll(GEN_Sectores.class);
 	}// Cierre del metodo
 
 	/**
@@ -493,8 +383,8 @@ public class SitiosDAO {
 	 *            Tipo integer de busqueda
 	 * @return El objeto de la Entidad encontrado mediante el ID
 	 */
-	public GEN_Sector SectorByID(Integer id) throws Exception {
-		return (GEN_Sector) manager.findById(GEN_Sector.class, id);
+	public GEN_Sectores SectorByID(Integer id) throws Exception {
+		return (GEN_Sectores) manager.findById(GEN_Sectores.class, id);
 	}// Cierre del metodo
 
 	/**
@@ -511,7 +401,7 @@ public class SitiosDAO {
 	public void insertarSector(String nombre, String direccion,
 			String ubicacion) throws Exception {
 		try {
-			GEN_Sector p = new GEN_Sector();
+			GEN_Sectores p = new GEN_Sectores();
 			p.setSec_nombre(nombre);
 			p.setSec_direccion(direccion);
 			p.setSec_estado('A');
@@ -519,7 +409,7 @@ public class SitiosDAO {
 			p.setIns(institucion);
 			manager.insertar(p);
 			System.out.println("Bien_insertar_sector");
-			institucion = new GEN_Institucion();
+			institucion = new GEN_Instituciones();
 		} catch (Exception e) {
 			System.out.println("Error_insertar_sector");
 			e.printStackTrace();
@@ -543,7 +433,7 @@ public class SitiosDAO {
 	public void editarSector(Integer id, String nombre, String direccion,
 			String ubicacion,char estado) throws Exception {
 		try {
-			GEN_Sector p = new GEN_Sector();
+			GEN_Sectores p = new GEN_Sectores();
 			p.setSec_id(id);
 			p.setSec_nombre(nombre);
 			p.setSec_direccion(direccion);
@@ -552,7 +442,7 @@ public class SitiosDAO {
 			p.setIns(institucion);
 			manager.insertar(p);
 			System.out.println("Bien_editar_sector");
-			institucion = new GEN_Institucion();
+			institucion = new GEN_Instituciones();
 		} catch (Exception e) {
 			System.out.println("Error_editar_sector");
 			e.printStackTrace();
@@ -567,7 +457,7 @@ public class SitiosDAO {
 	 *            Tipo Integer el cual sirve para buscar un atributo
 	 * @return El atributo con el dato correspondiente
 	 */
-	public GEN_Institucion asignarInstitucion(Integer id) {
+	public GEN_Instituciones asignarInstitucion(Integer id) {
 		try {
 			institucion = this.institucionByID(id);
 			System.out.println("Bien_asignar_Institucion");

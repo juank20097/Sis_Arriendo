@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 07-ago-2015 11:50:48 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 12-ago-2015 9:00:28 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="arriendo.entidades.GEN_ContratoPlantillaClausulas_Det" table="GEN_CONTRATOPLANTILLACLAUSULAS_DET">
         <id name="cpd_id" type="java.lang.Integer">
@@ -19,7 +19,7 @@
         <property name="cpd_estado" type="char">
             <column name="CPD_ESTADO" />
         </property>
-        <many-to-one name="con_p_c" class="arriendo.entidades.GEN_ContratoPlantilla_Cab" fetch="join">
+        <many-to-one name="con_p_c" class="arriendo.entidades.GEN_ContratoPlantillas_Cab" fetch="join">
             <column name="CON_P_C" />
         </many-to-one>
     </class>

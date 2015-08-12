@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 12-ago-2015 9:00:28 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="arriendo.entidades.GEN_Personas" table="GEN_PERSONAS" abstract="true">
+        <id name="per_id" type="java.lang.Integer">
+            <column name="PER_ID" />
+            <generator class="assigned" />
+        </id>
+        <discriminator type="string">
+            <column name="DISCR_COL" />
+        </discriminator>
+        <property name="per_tipo_id" type="java.lang.String">
+            <column name="PER_TIPO_ID" />
+        </property>
+        <property name="per_nombres" type="java.lang.String">
+            <column name="PER_NOMBRES" />
+        </property>
+        <property name="per_apellidos" type="java.lang.String">
+            <column name="PER_APELLIDOS" />
+        </property>
+        <property name="per_correo" type="java.lang.String">
+            <column name="PER_CORREO" />
+        </property>
+        <property name="per_telefono" type="java.lang.String">
+            <column name="PER_TELEFONO" />
+        </property>
+        <property name="per_celular" type="java.lang.String">
+            <column name="PER_CELULAR" />
+        </property>
+        <property name="per_nacionalidad" type="java.lang.String">
+            <column name="PER_NACIONALIDAD" />
+        </property>
+        <property name="per_genero" type="java.lang.String">
+            <column name="PER_GENERO" />
+        </property>
+        <property name="per_foto" type="byte">
+            <column name="PER_FOTO" />
+        </property>
+        <property name="per_huella" type="byte">
+            <column name="PER_HUELLA" />
+        </property>
+        <property name="per_nro_articulos" type="int">
+            <column name="PER_NRO_ARTICULOS" />
+        </property>
+    </class>
+</hibernate-mapping>

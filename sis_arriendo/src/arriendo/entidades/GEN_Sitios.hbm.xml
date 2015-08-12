@@ -1,15 +1,17 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 07-ago-2015 11:50:48 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 12-ago-2015 9:00:28 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="arriendo.entidades.GEN_Sitios" table="GEN_SITIOS">
-         <id name="sit_identificador" type="java.lang.String">
-            <column name="SIT_IDENTIFICADOR" />
-            <generator class="assigned" />
+        <id name="sit_id" type="java.lang.Integer">
+            <column name="SIT_ID" />
+            <generator class="sequence">
+             <param name="sequence">seq_GEN_Sitios</param>
+            </generator>
         </id>
-        <property name="sit_capacidad" type="java.lang.Integer">
-            <column name="SIT_CAPACIDAD" />
+        <property name="sit_nombre" type="java.lang.String" access="field">
+            <column name="SIT_NOMBRE" />
         </property>
         <property name="sit_costo_arriendo" type="java.lang.Double">
             <column name="SIT_COSTO_ARRIENDO" />
@@ -17,28 +19,31 @@
         <property name="sit_direccion" type="java.lang.String">
             <column name="SIT_DIRECCION" />
         </property>
+        <property name="sit_capacidad" type="java.lang.Integer">
+            <column name="SIT_CAPACIDAD" />
+        </property>
         <property name="sit_estado" type="char">
             <column name="SIT_ESTADO" />
         </property>
-        <list name="art" inverse="false" table="GEN_ARTICULOS" lazy="true">
+        <list name="con_det" inverse="false" table="ARR_CONTRATOS_DET" lazy="true">
             <key>
-                <column name="SIT_CAPACIDAD" />
+                <column name="SIT_ID" />
             </key>
             <list-index></list-index>
-            <one-to-many class="arriendo.entidades.GEN_Articulos" />
+            <one-to-many class="arriendo.entidades.ARR_Contratos_Det" />
         </list>
-        <list name="con_det" inverse="false" table="ARR_CONTRATO_DET" lazy="true">
-            <key>
-                <column name="SIT_CAPACIDAD" />
-            </key>
-            <list-index></list-index>
-            <one-to-many class="arriendo.entidades.ARR_Contrato_Det" />
-        </list>
-        <many-to-one name="are" class="arriendo.entidades.GEN_Area" fetch="join">
+        <many-to-one name="are" class="arriendo.entidades.GEN_Areas" fetch="join">
             <column name="ARE" />
         </many-to-one>
-        <many-to-one name="tsi" class="arriendo.entidades.Gen_Tsitios" fetch="join">
+        <many-to-one name="tsi" class="arriendo.entidades.GEN_TipoSitios" fetch="join">
             <column name="TSI" />
         </many-to-one>
+        <list name="sa" inverse="false" table="ARR_SITIOSARTICULOS" lazy="true">
+            <key>
+                <column name="SIT_ID" />
+            </key>
+            <list-index></list-index>
+            <one-to-many class="arriendo.entidades.ARR_SitiosArticulos" />
+        </list>
     </class>
 </hibernate-mapping>

@@ -24,8 +24,8 @@ public class ARR_ContratoClausulas_Det {
       // TODO: implement
    }
    
-   /** @pdRoleInfo migr=no name=ARR_Contrato_Cab assc=association13 mult=1..1 side=A */
-   public ARR_Contrato_Cab con_cab;
+   /** @pdRoleInfo migr=no name=ARR_Contratos_Cab assc=association13 mult=1..1 side=A */
+   public ARR_Contratos_Cab con_cab;
    
    /** @pdOid 5f4cf577-19ab-4ac3-9071-94d33d418a11 */
    public ARR_ContratoClausulas_Det() {
@@ -78,24 +78,24 @@ public class ARR_ContratoClausulas_Det {
    
    
    /** @pdGenerated default parent getter */
-   public ARR_Contrato_Cab getCon_cab() {
+   public ARR_Contratos_Cab getCon_cab() {
       return con_cab;
    }
    
    /** @pdGenerated default parent setter
-     * @param newARR_Contrato_Cab */
-   public void setCon_cab(ARR_Contrato_Cab newARR_Contrato_Cab) {
-      if (this.con_cab == null || !this.con_cab.equals(newARR_Contrato_Cab))
+     * @param newARR_Contratos_Cab */
+   public void setCon_cab(ARR_Contratos_Cab newARR_Contratos_Cab) {
+      if (this.con_cab == null || !this.con_cab.equals(newARR_Contratos_Cab))
       {
          if (this.con_cab != null)
          {
-            ARR_Contrato_Cab oldARR_Contrato_Cab = this.con_cab;
+            ARR_Contratos_Cab oldARR_Contratos_Cab = this.con_cab;
             this.con_cab = null;
-            oldARR_Contrato_Cab.removeCon_cla_d(this);
+            oldARR_Contratos_Cab.removeCon_cla_d(this);
          }
-         if (newARR_Contrato_Cab != null)
+         if (newARR_Contratos_Cab != null)
          {
-            this.con_cab = newARR_Contrato_Cab;
+            this.con_cab = newARR_Contratos_Cab;
             this.con_cab.addCon_cla_d(this);
          }
       }

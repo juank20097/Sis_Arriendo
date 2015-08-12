@@ -1,7 +1,7 @@
 /***********************************************************************
- * Module:  Gen_Tsitios.java
+ * Module:  GEN_TipoSitios.java
  * Author:  jestevez
- * Purpose: Defines the Class Gen_Tsitios
+ * Purpose: Defines the Class GEN_TipoSitios
  ***********************************************************************/
 
 package arriendo.entidades;
@@ -9,7 +9,7 @@ package arriendo.entidades;
 import java.util.*;
 
 /** @pdOid 38963448-3c76-4978-8111-2c79e04dc30f */
-public class Gen_Tsitios {
+public class GEN_TipoSitios {
    /** @pdOid cedbc451-77af-42ab-955f-0d158f6acc0b */
    private Integer tsi_id;
    /** @pdOid 38e905ae-d6b8-4a77-ada0-149674dfac1f */
@@ -28,7 +28,7 @@ public class Gen_Tsitios {
    public java.util.List<GEN_Sitios> sit;
    
    /** @pdOid f0f329aa-e123-458e-ace6-f12ac2ccdec5 */
-   public Gen_Tsitios() {
+   public GEN_TipoSitios() {
       // TODO: implement
    }
    
@@ -122,7 +122,7 @@ public class Gen_Tsitios {
          if (this.sit.contains(oldGEN_Sitios))
          {
             this.sit.remove(oldGEN_Sitios);
-            oldGEN_Sitios.setTsi((Gen_Tsitios)null);
+            oldGEN_Sitios.setTsi((GEN_TipoSitios)null);
          }
    }
    
@@ -135,7 +135,7 @@ public class Gen_Tsitios {
          {
             oldGEN_Sitios = (GEN_Sitios)iter.next();
             iter.remove();
-            oldGEN_Sitios.setTsi((Gen_Tsitios)null);
+            oldGEN_Sitios.setTsi((GEN_TipoSitios)null);
          }
       }
    }

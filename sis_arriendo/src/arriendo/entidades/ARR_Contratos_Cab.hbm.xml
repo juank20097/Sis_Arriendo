@@ -1,14 +1,15 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 07-ago-2015 11:50:48 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 12-ago-2015 9:00:28 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="arriendo.entidades.ARR_Contrato_Cab" table="ARR_CONTRATO_CAB">
+    <class name="arriendo.entidades.ARR_Contratos_Cab" table="ARR_CONTRATOS_CAB">
         <id name="cab_id" type="java.lang.Integer">
             <column name="CAB_ID" />
             <generator class="sequence">
-             <param name="sequence">seq_ARR_Contrato_Cab</param>
+             <param name="sequence">seq_ARR_Contratos_Cab</param>
             </generator>
+
         </id>
         <property name="cab_fecha" type="java.util.Date">
             <column name="CAB_FECHA" />
@@ -25,12 +26,12 @@
         <property name="cab_estado" type="char">
             <column name="CAB_ESTADO" />
         </property>
-        <list name="con_det" inverse="false" table="ARR_CONTRATO_DET" lazy="true">
+        <list name="con_det" inverse="false" table="ARR_CONTRATOS_DET" lazy="true">
             <key>
                 <column name="CAB_ID" />
             </key>
             <list-index></list-index>
-            <one-to-many class="arriendo.entidades.ARR_Contrato_Det" />
+            <one-to-many class="arriendo.entidades.ARR_Contratos_Det" />
         </list>
         <list name="con_cla_d" inverse="false" table="ARR_CONTRATOCLAUSULAS_DET" lazy="true">
             <key>

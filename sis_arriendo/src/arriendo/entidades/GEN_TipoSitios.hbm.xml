@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 07-ago-2015 11:50:48 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 12-ago-2015 9:44:59 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="arriendo.entidades.Gen_Tsitios" table="GEN_TSITIOS">
+    <class name="arriendo.entidades.GEN_TipoSitios" table="GEN_TIPOSITIOS">
         <id name="tsi_id" type="java.lang.Integer">
             <column name="TSI_ID" />
-             <generator class="sequence">
-             <param name="sequence">seq_Gen_Tsitios</param>
+            <generator class="sequence">
+             <param name="sequence">seq_GEN_TipoSitios</param>
             </generator>
         </id>
         <property name="tsi_nombre" type="java.lang.String">

@@ -1,14 +1,15 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 07-ago-2015 11:50:48 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 12-ago-2015 9:00:28 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="arriendo.entidades.ARR_Contrato_Det" table="ARR_CONTRATO_DET">
+    <class name="arriendo.entidades.ARR_Contratos_Det" table="ARR_CONTRATOS_DET">
         <id name="det_id" type="java.lang.Integer">
             <column name="DET_ID" />
             <generator class="sequence">
-             <param name="sequence">seq_ARR_Contrato_Det</param>
+             <param name="sequence">seq_ARR_Contratos_Det</param>
             </generator>
+
         </id>
         <property name="det_observacion" type="java.lang.String">
             <column name="DET_OBSERVACION" />
@@ -22,11 +23,15 @@
         <many-to-one name="sit" class="arriendo.entidades.GEN_Sitios" fetch="join">
             <column name="SIT" />
         </many-to-one>
-        <many-to-one name="con_cab" class="arriendo.entidades.ARR_Contrato_Cab" fetch="join">
+        <many-to-one name="con_cab" class="arriendo.entidades.ARR_Contratos_Cab" fetch="join">
             <column name="CON_CAB" />
         </many-to-one>
-        <many-to-one name="con_art" class="arriendo.entidades.ARR_Contrato_Articulo" fetch="join">
-            <column name="CON_ART" />
-        </many-to-one>
+        <list name="con_art" inverse="false" table="ARR_CONTRATOARTICULOS" lazy="true">
+            <key>
+                <column name="DET_ID" />
+            </key>
+            <list-index></list-index>
+            <one-to-many class="arriendo.entidades.ARR_ContratoArticulos" />
+        </list>
     </class>
 </hibernate-mapping>

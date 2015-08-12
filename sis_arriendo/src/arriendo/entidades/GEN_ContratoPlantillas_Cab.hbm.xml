@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 07-ago-2015 11:50:48 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 12-ago-2015 9:00:28 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="arriendo.entidades.GEN_ContratoPlantilla_Cab" table="GEN_CONTRATOPLANTILLA_CAB">
+    <class name="arriendo.entidades.GEN_ContratoPlantillas_Cab" table="GEN_CONTRATOPLANTILLAS_CAB">
         <id name="cpc_id" type="java.lang.Integer">
             <column name="CPC_ID" />
-             <generator class="sequence">
-             <param name="sequence">seq_GEN_ContratoPlantilla_Cab</param>
+              <generator class="sequence">
+             <param name="sequence">seq_GEN_ContratoPlantillas_Cab</param>
             </generator>
         </id>
         <property name="art_tipo" type="java.lang.String">

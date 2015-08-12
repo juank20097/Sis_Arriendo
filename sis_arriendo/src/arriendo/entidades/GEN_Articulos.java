@@ -28,9 +28,6 @@ public class GEN_Articulos {
       // TODO: implement
    }
    
-   /** @pdRoleInfo migr=no name=GEN_Sitios assc=association1 mult=1..1 side=A */
-   public GEN_Sitios sit;
-   
    /** @pdOid 6653eee5-bf9b-49ee-8d61-5a874b58ee46 */
    public GEN_Articulos() {
       // TODO: implement
@@ -100,31 +97,6 @@ public class GEN_Articulos {
     * @pdOid 81c8c73f-218a-4b2d-a200-0e63ef1e8a11 */
    public void setArt_estado(char newArt_estado) {
       art_estado = newArt_estado;
-   }
-   
-   
-   /** @pdGenerated default parent getter */
-   public GEN_Sitios getSit() {
-      return sit;
-   }
-   
-   /** @pdGenerated default parent setter
-     * @param newGEN_Sitios */
-   public void setSit(GEN_Sitios newGEN_Sitios) {
-      if (this.sit == null || !this.sit.equals(newGEN_Sitios))
-      {
-         if (this.sit != null)
-         {
-            GEN_Sitios oldGEN_Sitios = this.sit;
-            this.sit = null;
-            oldGEN_Sitios.removeArt(this);
-         }
-         if (newGEN_Sitios != null)
-         {
-            this.sit = newGEN_Sitios;
-            this.sit.addArt(this);
-         }
-      }
    }
 
 }

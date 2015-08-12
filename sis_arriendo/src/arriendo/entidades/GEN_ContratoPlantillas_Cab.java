@@ -1,7 +1,7 @@
 /***********************************************************************
- * Module:  GEN_ContratoPlantilla_Cab.java
+ * Module:  GEN_ContratoPlantillas_Cab.java
  * Author:  jestevez
- * Purpose: Defines the Class GEN_ContratoPlantilla_Cab
+ * Purpose: Defines the Class GEN_ContratoPlantillas_Cab
  ***********************************************************************/
 
 package arriendo.entidades;
@@ -9,7 +9,7 @@ package arriendo.entidades;
 import java.util.*;
 
 /** @pdOid e716443b-c154-47da-9764-4bb32eb8bcb6 */
-public class GEN_ContratoPlantilla_Cab {
+public class GEN_ContratoPlantillas_Cab {
    /** @pdOid 5440cc50-e0f0-47ac-8dd8-d56e707a571a */
    private Integer cpc_id;
    /** @pdOid d0ad91c7-83bd-42cd-9bbc-3f0a00c80b9e */
@@ -30,7 +30,7 @@ public class GEN_ContratoPlantilla_Cab {
    public java.util.List<GEN_ContratoPlantillaClausulas_Det> con_p_d;
    
    /** @pdOid eba15096-3678-435a-8c59-ee25ab7f5997 */
-   public GEN_ContratoPlantilla_Cab() {
+   public GEN_ContratoPlantillas_Cab() {
       // TODO: implement
    }
    
@@ -135,7 +135,7 @@ public class GEN_ContratoPlantilla_Cab {
          if (this.con_p_d.contains(oldGEN_ContratoPlantillaClausulas_Det))
          {
             this.con_p_d.remove(oldGEN_ContratoPlantillaClausulas_Det);
-            oldGEN_ContratoPlantillaClausulas_Det.setCon_p_c((GEN_ContratoPlantilla_Cab)null);
+            oldGEN_ContratoPlantillaClausulas_Det.setCon_p_c((GEN_ContratoPlantillas_Cab)null);
          }
    }
    
@@ -148,7 +148,7 @@ public class GEN_ContratoPlantilla_Cab {
          {
             oldGEN_ContratoPlantillaClausulas_Det = (GEN_ContratoPlantillaClausulas_Det)iter.next();
             iter.remove();
-            oldGEN_ContratoPlantillaClausulas_Det.setCon_p_c((GEN_ContratoPlantilla_Cab)null);
+            oldGEN_ContratoPlantillaClausulas_Det.setCon_p_c((GEN_ContratoPlantillas_Cab)null);
          }
       }
    }

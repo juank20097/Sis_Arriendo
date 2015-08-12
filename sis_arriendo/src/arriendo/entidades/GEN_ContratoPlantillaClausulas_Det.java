@@ -24,8 +24,8 @@ public class GEN_ContratoPlantillaClausulas_Det {
       // TODO: implement
    }
    
-   /** @pdRoleInfo migr=no name=GEN_ContratoPlantilla_Cab assc=association12 mult=1..1 */
-   public GEN_ContratoPlantilla_Cab con_p_c;
+   /** @pdRoleInfo migr=no name=GEN_ContratoPlantillas_Cab assc=association12 mult=1..1 */
+   public GEN_ContratoPlantillas_Cab con_p_c;
    
    /** @pdOid 0f120f7c-31cd-4d08-93b6-846ac6b0d5f4 */
    public GEN_ContratoPlantillaClausulas_Det() {
@@ -78,24 +78,24 @@ public class GEN_ContratoPlantillaClausulas_Det {
    
    
    /** @pdGenerated default parent getter */
-   public GEN_ContratoPlantilla_Cab getCon_p_c() {
+   public GEN_ContratoPlantillas_Cab getCon_p_c() {
       return con_p_c;
    }
    
    /** @pdGenerated default parent setter
-     * @param newGEN_ContratoPlantilla_Cab */
-   public void setCon_p_c(GEN_ContratoPlantilla_Cab newGEN_ContratoPlantilla_Cab) {
-      if (this.con_p_c == null || !this.con_p_c.equals(newGEN_ContratoPlantilla_Cab))
+     * @param newGEN_ContratoPlantillas_Cab */
+   public void setCon_p_c(GEN_ContratoPlantillas_Cab newGEN_ContratoPlantillas_Cab) {
+      if (this.con_p_c == null || !this.con_p_c.equals(newGEN_ContratoPlantillas_Cab))
       {
          if (this.con_p_c != null)
          {
-            GEN_ContratoPlantilla_Cab oldGEN_ContratoPlantilla_Cab = this.con_p_c;
+            GEN_ContratoPlantillas_Cab oldGEN_ContratoPlantillas_Cab = this.con_p_c;
             this.con_p_c = null;
-            oldGEN_ContratoPlantilla_Cab.removeCon_p_d(this);
+            oldGEN_ContratoPlantillas_Cab.removeCon_p_d(this);
          }
-         if (newGEN_ContratoPlantilla_Cab != null)
+         if (newGEN_ContratoPlantillas_Cab != null)
          {
-            this.con_p_c = newGEN_ContratoPlantilla_Cab;
+            this.con_p_c = newGEN_ContratoPlantillas_Cab;
             this.con_p_c.addCon_p_d(this);
          }
       }

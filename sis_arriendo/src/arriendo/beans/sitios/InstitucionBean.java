@@ -8,7 +8,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
 
 import arriendo.entidades.GEN_Estados;
-import arriendo.entidades.GEN_Institucion;
+import arriendo.entidades.GEN_Instituciones;
 import arriendo.generico.Mensaje;
 import arriendo.manager.SitiosDAO;
 
@@ -124,7 +124,7 @@ public class InstitucionBean {
 		this.ins_estado = ins_estado;
 	}
 
-	public List<GEN_Institucion> getListInstitucion() {
+	public List<GEN_Instituciones> getListInstitucion() {
 		return manager.findAllInstituciones();
 	}
 
@@ -171,7 +171,7 @@ public class InstitucionBean {
 	 * @param t
 	 * @return
 	 */
-	public String cargarInstitucion(GEN_Institucion t) {
+	public String cargarInstitucion(GEN_Instituciones t) {
 		ins_id = t.getIns_id();
 		ins_nombre = t.getIns_nombre();
 		ins_descripcion = t.getIns_descripcion();
