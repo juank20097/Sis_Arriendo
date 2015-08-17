@@ -151,12 +151,12 @@ public class GEN_Areas {
    public void setSec(GEN_Sectores newGEN_Sectores) {
       if (this.sec == null || !this.sec.equals(newGEN_Sectores))
       {
-         if (this.sec != null)
+        /* if (this.sec != null)
          {
             GEN_Sectores oldGEN_Sectores = this.sec;
             this.sec = null;
             oldGEN_Sectores.removeAre(this);
-         }
+         }*/
          if (newGEN_Sectores != null)
          {
             this.sec = newGEN_Sectores;

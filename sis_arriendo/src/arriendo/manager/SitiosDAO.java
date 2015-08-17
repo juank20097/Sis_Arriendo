@@ -2,10 +2,6 @@ package arriendo.manager;
 
 import java.util.List;
 
-
-
-
-
 import arriendo.entidades.GEN_Areas;
 import arriendo.entidades.GEN_Estados;
 import arriendo.entidades.GEN_Instituciones;
@@ -30,6 +26,8 @@ public class SitiosDAO {
 	private GEN_Areas area;
 	// Campos de asignacion (Sectores)
 	private GEN_Instituciones institucion;
+	// Campos de asignacion (Areas)
+		private GEN_Sectores sector;
 
 	/**
 	 * Constructor para la utilizacion de metodos de la clase HibernateDAO
@@ -82,13 +80,15 @@ public class SitiosDAO {
 	 *            Tipo Integer el cual almacena el dato si el Area es
 	 *            Activado/Desactivado
 	 */
-	public void insertarArea(String nombre, String ubicacion,
-			String descripcion) throws Exception {
+	public void insertarArea(String nombre, String descripcion,Integer sec)
+			throws Exception {
 		try {
+			sector = SectorByID(sec);
 			GEN_Areas p = new GEN_Areas();
 			p.setAre_nombre(nombre);
 			p.setAre_descripcion(descripcion);
 			p.setAre_estado('A');
+			p.setSec(sector);
 			manager.insertar(p);
 			System.out.println("Bien_insertar_area");
 		} catch (Exception e) {
@@ -113,14 +113,16 @@ public class SitiosDAO {
 	 *            Tipo Integer el cual almacena el dato si es
 	 *            Activado/Desactivado
 	 */
-	public void editarArea(Integer id_area, String nombre, String ubicacion,
-			String descripcion, char estado) throws Exception {
+	public void editarArea(Integer id_area, String nombre, String descripcion,
+			char estado, Integer sec) throws Exception {
 		try {
+			sector= SectorByID(sec);
 			GEN_Areas r = this.AreaByID(id_area);
 			r.setAre_id(id_area);
 			r.setAre_nombre(nombre);
 			r.setAre_descripcion(descripcion);
 			r.setAre_estado(estado);
+			r.setSec(sector);
 			manager.actualizar(r);
 			System.out.println("bien_mod_area");
 		} catch (Exception e) {
@@ -205,9 +207,8 @@ public class SitiosDAO {
 	 *            Tipo Integer el cual almacena el dato si es
 	 *            Activado/Desactivado
 	 */
-	public void insertarSitio(String nombre, Double costo,
-			String direccion, Integer capacidad)
-			throws Exception {
+	public void insertarSitio(String nombre, Double costo, String direccion,
+			Integer capacidad) throws Exception {
 		try {
 			GEN_Sitios p = new GEN_Sitios();
 			p.setSit_nombre(nombre);
@@ -239,9 +240,8 @@ public class SitiosDAO {
 	 * @param estado
 	 *            Tipo Integer el cual cambia el dato si es Activado/Desactivado
 	 */
-	public void editarSitio(Integer id,String nombre, Double costo,
-			String direccion, Integer capacidad, char estado)
-			throws Exception {
+	public void editarSitio(Integer id, String nombre, Double costo,
+			String direccion, Integer capacidad, char estado) throws Exception {
 		try {
 			GEN_Sitios r = this.SitioByID(id);
 			r.setSit_id(id);
@@ -301,7 +301,8 @@ public class SitiosDAO {
 	 * @return El objeto Institucion encontrado mediante el ID
 	 */
 	public GEN_Instituciones institucionByID(Integer id) throws Exception {
-		return (GEN_Instituciones) manager.findById(GEN_Instituciones.class, id);
+		return (GEN_Instituciones) manager
+				.findById(GEN_Instituciones.class, id);
 	}// Cierre del metodo
 
 	/**
@@ -315,7 +316,8 @@ public class SitiosDAO {
 	 *            Tipo Integer el cual almacena el dato si es
 	 *            (Activado/Descativado)
 	 */
-	public void insertarInstitucion(String nombre, String descripcion) throws Exception {
+	public void insertarInstitucion(String nombre, String descripcion)
+			throws Exception {
 		try {
 			GEN_Instituciones p = new GEN_Instituciones();
 			p.setIns_nombre(nombre);
@@ -432,7 +434,7 @@ public class SitiosDAO {
 	 *            (Activado/Descativado)
 	 */
 	public void editarSector(Integer id, String nombre, String direccion,
-			String ubicacion,Integer institu,char estado) throws Exception {
+			String ubicacion, Integer institu, char estado) throws Exception {
 		try {
 			institucion = institucionByID(institu);
 			GEN_Sectores p = SectorByID(id);
