@@ -8,11 +8,11 @@
 
 	<ui:composition template="template.xhtml">
 		<ui:define name="titulo">
-            Sector
+            Sectores
         </ui:define>
 		<ui:define name="contenido">
 			<h:form>
-				<center><h1>SECTOR</h1></center>
+				<center><h1>SECTORES</h1></center>
 				<b:row>
 					<b:column span="1">
 						<b:commandButton value="Nuevo" iconAwesome="file-o" action="#{sectorBean.nuevoSector}" />
@@ -36,10 +36,7 @@
 							<h:outputText value="#{sec.sec_direccion}" />
 						</p:column>
 						<p:column headerText="UBICACIÓN" width="150">
-							<p:commandButton id="btn" type="button" icon="ui-icon-pin-s" value="Ver Mapa" action="#{sectorBean.verMapa(sec)}" onclick="PF('dlg').show();" />
-							<p:dialog id="gmapDialog" widgetVar="dlg" width="625" height="400" modal="true">
-    					<p:gmap id="gmap" center="#{sectorBean.verMapa(sec)}" zoom="10" type="HYBRID" style="width:100%;height:400px" />
-						</p:dialog>
+							<p:commandButton id="btn" icon="ui-icon-pin-s" value="Ver Mapa" action="#{sectorBean.verMapa(sec)}" />
 						</p:column>
 						<p:column filterBy="#{sec.sec_estado}" filterMatchMode="contains" headerText="ESTADO" width="100">
 							<h:outputText value="#{sec.sec_estado}"></h:outputText>
@@ -50,11 +47,12 @@
 							</p:commandButton>
 							&nbsp;&nbsp;&nbsp;
 						</p:column>
-						
-						
     				</p:dataTable>
 				</b:panel>
 			</h:form>
+			<p:dialog id="gmapDialog" widgetVar="dlg" width="625" height="400" modal="true">
+    					<p:gmap id="gmap" model="#{sectorBean.geoModel2}" center="#{sectorBean.r}" zoom="15" type="HYBRID" style="width:100%;height:400px" />
+						</p:dialog>
         </ui:define>
 	</ui:composition>
 	

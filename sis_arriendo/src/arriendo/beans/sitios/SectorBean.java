@@ -9,6 +9,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
+import org.primefaces.context.RequestContext;
 import org.primefaces.event.map.OverlaySelectEvent;
 import org.primefaces.event.map.PointSelectEvent;
 import org.primefaces.model.map.DefaultMapModel;
@@ -44,8 +45,10 @@ public class SectorBean {
 	
 	//mapa
 	private MapModel geoModel;
+	private MapModel geoModel2;
 	private String centerGeoMap = "-1.7864639,-78.1368874";
 	private Marker marca;
+	private String r = "-1.7864639,-78.1368874";
 	
 
 	public SectorBean() {
@@ -78,6 +81,20 @@ public class SectorBean {
 	}
 
 	/**
+	 * @return the geoModel2
+	 */
+	public MapModel getGeoModel2() {
+		return geoModel2;
+	}
+
+	/**
+	 * @param geoModel2 the geoModel2 to set
+	 */
+	public void setGeoModel2(MapModel geoModel2) {
+		this.geoModel2 = geoModel2;
+	}
+
+	/**
 	 * @return the edicion
 	 */
 	public boolean isEdicion() {
@@ -90,6 +107,20 @@ public class SectorBean {
 	 */
 	public void setEdicion(boolean edicion) {
 		this.edicion = edicion;
+	}
+
+	/**
+	 * @return the r
+	 */
+	public String getR() {
+		return r;
+	}
+
+	/**
+	 * @param r the r to set
+	 */
+	public void setR(String r) {
+		this.r = r;
 	}
 
 	/**
@@ -338,9 +369,12 @@ public class SectorBean {
 	        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Punto Seleccionado:","Lugar asignado"));
 	    }
 	 
-	 public String verMapa(GEN_Sectores sec){
-		 String r="";
+	 public void verMapa(GEN_Sectores sec){
+		 RequestContext context = RequestContext.getCurrentInstance();
+		 geoModel2 = new DefaultMapModel();
 		 r=sec.getSec_ubicacion();
-		 return r;
+		 System.out.println(r);
+		 context.execute("PF('dlg').show();");
 	 }
+
 }
