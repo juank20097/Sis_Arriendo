@@ -33,11 +33,26 @@ public class SitiosBean {
 	private char sit_estado;
 
 	private Integer area;
+	private Integer tipositio;
 	private boolean edicion;
 
 	public SitiosBean() {
 		manager = new SitiosDAO();
 		edicion = false;
+	}
+
+	/**
+	 * @return the tipositio
+	 */
+	public Integer getTipositio() {
+		return tipositio;
+	}
+
+	/**
+	 * @param tipositio the tipositio to set
+	 */
+	public void setTipositio(Integer tipositio) {
+		this.tipositio = tipositio;
 	}
 
 	/**
@@ -182,20 +197,20 @@ public class SitiosBean {
 		String r = "";
 		try {
 			if (edicion) {
-				if (area==-1){
-					Mensaje.crearMensajeERROR("Seleccione un Area");
+				if (area==-1 || tipositio==-1){
+					Mensaje.crearMensajeERROR("Seleccione un Area o un Tipo de Sitio");
 					r="nsitio?faces-redirect=true";
 				} else{
-				manager.editarSitio(sit_id, sit_nombre, sit_costo_arriendo, sit_capacidad, sit_estado, area);
-				Mensaje.crearMensajeINFO("Actualizado - Area Modificada");
+				manager.editarSitio(sit_id, sit_nombre, sit_costo_arriendo, sit_capacidad, sit_estado, area, tipositio);
+				Mensaje.crearMensajeINFO("Actualizado - Sitio Modificado");
 				r = "sitio?faces-redirect=true";}
 			} else {
-				if (area==null || area==-1){
-					Mensaje.crearMensajeERROR("Seleccione un Area");
+				if (area==null || area==-1 || tipositio==null || tipositio==-1){
+					Mensaje.crearMensajeERROR("Seleccione un Area o un Tipo de Sitio");
 					r="nsitio?faces-redirect=true";
 				}else{
-				manager.insertarSitio(sit_nombre, sit_costo_arriendo, sit_capacidad, area);
-				Mensaje.crearMensajeINFO("Registrado - Area Creada");
+				manager.insertarSitio(sit_nombre, sit_costo_arriendo, sit_capacidad, area, tipositio);
+				Mensaje.crearMensajeINFO("Registrado - Sitio Creado");
 				r = "sitio?faces-redirect=true";
 				}
 			}

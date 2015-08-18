@@ -35,6 +35,12 @@
         			<f:selectItems value="#{sitiosBean.listAreas}" >
         			</f:selectItems>
         			</b:selectOneMenu>
+        			<h:outputLabel value="Tipo de Sitio*"/>
+        			<b:selectOneMenu required="true" value="#{sitiosBean.tipositio}" requiredMessage="Campo Tipo de Sitio requerido">
+        			<f:selectItem itemValue="-1" itemLabel="--Seleccione--"/>
+        			<f:selectItems value="#{sitiosBean.listTipoSitios}" >
+        			</f:selectItems>
+        			</b:selectOneMenu>
         			<h:outputLabel value="Estado*" rendered="#{sitiosBean.edicion}"/>
         			<b:selectOneMenu value="#{sitiosBean.sit_estado}" rendered="#{sitiosBean.edicion}">
         			<f:selectItems value="#{sitiosBean.listEstados}"/>

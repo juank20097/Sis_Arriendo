@@ -211,8 +211,9 @@ public class SitiosDAO {
 	 *            Activado/Desactivado
 	 */
 	public void insertarSitio(String nombre, Double costo,
-			Integer capacidad, Integer a) throws Exception {
+			Integer capacidad, Integer a, Integer ts) throws Exception {
 		try {
+			tipositio = TipoSitiosByID(ts);
 			area = AreaByID(a);
 			GEN_Sitios p = new GEN_Sitios();
 			p.setSit_nombre(nombre);
@@ -220,6 +221,7 @@ public class SitiosDAO {
 			p.setSit_capacidad(capacidad);
 			p.setSit_estado('A');
 			p.setAre(area);
+			p.setTsi(tipositio);
 			manager.insertar(p);
 			System.out.println("Bien_insertar_area");
 		} catch (Exception e) {
@@ -244,8 +246,9 @@ public class SitiosDAO {
 	 *            Tipo Integer el cual cambia el dato si es Activado/Desactivado
 	 */
 	public void editarSitio(Integer id, String nombre, Double costo,
-			Integer capacidad, char estado, Integer a) throws Exception {
+			Integer capacidad, char estado, Integer a, Integer ts) throws Exception {
 		try {
+			tipositio = TipoSitiosByID(ts);
 			area = AreaByID(a);
 			GEN_Sitios r = this.SitioByID(id);
 			r.setSit_id(id);
@@ -254,6 +257,7 @@ public class SitiosDAO {
 			r.setSit_capacidad(capacidad);
 			r.setSit_estado(estado);
 			r.setAre(area);
+			r.setTsi(tipositio);
 			manager.actualizar(r);
 			System.out.println("bien_mod_sitio");
 		} catch (Exception e) {

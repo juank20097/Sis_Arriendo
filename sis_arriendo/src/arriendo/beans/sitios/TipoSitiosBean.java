@@ -8,7 +8,6 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
 
 import arriendo.entidades.GEN_Estados;
-import arriendo.entidades.GEN_Sitios;
 import arriendo.entidades.GEN_TipoSitios;
 import arriendo.generico.Mensaje;
 import arriendo.manager.SitiosDAO;
@@ -151,10 +150,10 @@ public class TipoSitiosBean {
 		try {
 			if (edicion) {
 				manager.editarTipoSitios(tsi_id, tsi_nombre, tsi_descripcion, tsi_estado);
-				Mensaje.crearMensajeINFO("Actualizado - Insitucion Modificada");
+				Mensaje.crearMensajeINFO("Actualizado - Tipo Modificado");
 			} else {
 				manager.insertarTipoSitios(tsi_nombre, tsi_descripcion);
-				Mensaje.crearMensajeINFO("Registrado - Insitucion Creada");
+				Mensaje.crearMensajeINFO("Registrado - Tipo Creado");
 			}
 			r = "tipositio?faces-redirect=true";
 			//limpiar datos
