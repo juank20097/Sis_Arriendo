@@ -10,6 +10,7 @@ import javax.faces.model.SelectItem;
 import arriendo.entidades.GEN_Areas;
 import arriendo.entidades.GEN_Estados;
 import arriendo.entidades.GEN_Sitios;
+import arriendo.entidades.GEN_TipoSitios;
 import arriendo.generico.Mensaje;
 import arriendo.manager.SitiosDAO;
 
@@ -272,6 +273,20 @@ public class SitiosBean {
 		List<GEN_Areas> completo = manager.findAllAreas();
 		for (GEN_Areas s : completo) {
 			lista.add(new SelectItem(s.getAre_id(), s.getAre_nombre()));
+		}
+		return lista;
+	}
+	
+	/**
+	 * Lista 
+	 * 
+	 * @return lista de todas
+	 */
+	public List<SelectItem> getlistTipoSitios() {
+		List<SelectItem> lista = new ArrayList<SelectItem>();
+		List<GEN_TipoSitios> completo = manager.findAllTipoSitios();
+		for (GEN_TipoSitios s : completo) {
+			lista.add(new SelectItem(s.getTsi_id(), s.getTsi_nombre()));
 		}
 		return lista;
 	}

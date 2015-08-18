@@ -7,6 +7,7 @@ import arriendo.entidades.GEN_Estados;
 import arriendo.entidades.GEN_Instituciones;
 import arriendo.entidades.GEN_Sectores;
 import arriendo.entidades.GEN_Sitios;
+import arriendo.entidades.GEN_TipoSitios;
 
 /**
  * Clase SitiosDAO permite manejar el HibernateDAO en conveniencia a la gestion
@@ -24,10 +25,12 @@ public class SitiosDAO {
 
 	// Campos de asignacion (Sitios)
 	private GEN_Areas area;
+	private GEN_TipoSitios tipositio;
 	// Campos de asignacion (Sectores)
 	private GEN_Instituciones institucion;
 	// Campos de asignacion (Areas)
 	private GEN_Sectores sector;
+	
 
 	/**
 	 * Constructor para la utilizacion de metodos de la clase HibernateDAO
@@ -258,6 +261,93 @@ public class SitiosDAO {
 			e.printStackTrace();
 		}
 	}// Cierre del metodo
+	
+	// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		/**
+		 * Creación de metodos para el manejo de la tabla GEN_TipoSitios
+		 * 
+		 */
+
+		/**
+		 * Metodo para listar todos los Sitios existentes
+		 * 
+		 * @return La lista de todos los Sitios encontradas
+		 */
+		@SuppressWarnings("unchecked")
+		public List<GEN_TipoSitios> findAllTipoSitios() {
+			return manager.findAll(GEN_TipoSitios.class);
+		}// Cierre del metodo
+
+		/**
+		 * Metodo para obetener el Sitio mediante un ID
+		 * 
+		 * @param id_sitio
+		 *            Tipo integer de busqueda
+		 * @return El objeto Sitio encontrado mediante el ID
+		 */
+		public GEN_TipoSitios TipoSitiosByID(Integer id) throws Exception {
+			return (GEN_TipoSitios) manager.findById(GEN_TipoSitios.class, id);
+		}// Cierre del metodo
+
+
+		/**
+		 * Metodo para ingresar un Sitio a la base de datos
+		 * 
+		 * @param identificador
+		 *            Tipo String el cual almacena el nombre para denotar el sitio
+		 * @param costo
+		 *            Tipo Double el cual almacena el costo mensual del sitio
+		 * @param direccion
+		 *            Tipo String el cual almacena la ubicacion del sitio
+		 * @param capacidad
+		 *            Tipo Integer el cual almacena el numero de personas permitidas
+		 * @param estado
+		 *            Tipo Integer el cual almacena el dato si es
+		 *            Activado/Desactivado
+		 */
+		public void insertarTipoSitios(String nombre, String descripcion) throws Exception {
+			try {
+				GEN_TipoSitios p = new GEN_TipoSitios();
+				p.setTsi_nombre(nombre);
+				p.setTsi_descripcion(descripcion);
+				p.setTsi_estado('A');
+				manager.insertar(p);
+				System.out.println("Bien_insertar_tsitio");
+			} catch (Exception e) {
+				System.out.println("Error_insertar_tsitio");
+				e.printStackTrace();
+			}
+
+		}// Cierre del metodo
+
+		/**
+		 * Metodo para editar un Sitio a la base de datos
+		 * 
+		 * @param nombre
+		 *            Tipo String el cual cambia el nombre para denotar el sitio
+		 * @param costo
+		 *            Tipo Double el cual cambia el costo mensual del sitio
+		 * @param direccion
+		 *            Tipo String el cual cambia la ubicacion del sitio
+		 * @param capacidad
+		 *            Tipo Integer el cual cambia el numero de personas permitidas
+		 * @param estado
+		 *            Tipo Integer el cual cambia el dato si es Activado/Desactivado
+		 */
+		public void editarTipoSitios(Integer id, String nombre, String descripcion, char estado) throws Exception {
+			try {
+				GEN_TipoSitios r = this.TipoSitiosByID(id);
+				r.setTsi_id(id);
+				r.setTsi_nombre(nombre);
+				r.setTsi_descripcion(descripcion);
+				r.setTsi_estado(estado);
+				manager.actualizar(r);
+				System.out.println("bien_mod_tsitio");
+			} catch (Exception e) {
+				System.out.println("Error_mod_tsitio");
+				e.printStackTrace();
+			}
+		}// Cierre del metodo
 
 	// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/**
