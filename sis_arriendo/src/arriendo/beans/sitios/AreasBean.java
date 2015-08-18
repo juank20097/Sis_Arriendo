@@ -164,14 +164,23 @@ public class AreasBean {
 		String r = "";
 		try {
 			if (edicion) {
+				if (sector==-1){
+					Mensaje.crearMensajeERROR("Seleccione un Sector");
+					r="narea?faces-redirect=true";
+				} else{
 				manager.editarArea(are_id, are_nombre, are_descripcion,
 						are_estado, sector);
 				Mensaje.crearMensajeINFO("Actualizado - Area Modificada");
+				r = "area?faces-redirect=true";}
 			} else {
+				if (sector==-1 || sector==null){
+					Mensaje.crearMensajeERROR("Seleccione un Sector");
+					r="narea?faces-redirect=true";
+				} else{
 				manager.insertarArea(are_nombre, are_descripcion, sector);
 				Mensaje.crearMensajeINFO("Registrado - Area Creada");
+				r = "area?faces-redirect=true";}
 			}
-			r = "area?faces-redirect=true";
 			// limpiar datos
 			are_id = 0;
 			are_nombre = "";

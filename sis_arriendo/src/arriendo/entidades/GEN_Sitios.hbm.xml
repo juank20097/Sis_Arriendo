@@ -16,9 +16,6 @@
         <property name="sit_costo_arriendo" type="java.lang.Double">
             <column name="SIT_COSTO_ARRIENDO" />
         </property>
-        <property name="sit_direccion" type="java.lang.String">
-            <column name="SIT_DIRECCION" />
-        </property>
         <property name="sit_capacidad" type="java.lang.Integer">
             <column name="SIT_CAPACIDAD" />
         </property>

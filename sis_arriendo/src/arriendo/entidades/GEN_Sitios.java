@@ -16,8 +16,6 @@ public class GEN_Sitios {
    private String sit_nombre;
    /** @pdOid ecc06041-8f9b-4045-b88e-42b6a1202d1f */
    private Double sit_costo_arriendo;
-   /** @pdOid d39f1d49-eada-48ff-9cbc-7f67b97ba421 */
-   private String sit_direccion;
    /** @pdOid a0c52981-e808-4f64-911c-e4aa61fdcde0 */
    private Integer sit_capacidad;
    /** @pdOid c0175881-8fa7-40d2-acbf-79130b66b18d */
@@ -64,17 +62,6 @@ public class GEN_Sitios {
       sit_costo_arriendo = newSit_costo_arriendo;
    }
    
-   /** @pdOid ca5088b7-bae9-4354-afa6-01292b61eba4 */
-   public String getSit_direccion() {
-      return sit_direccion;
-   }
-   
-   /** @param newSit_direccion
-    * @pdOid cabe594d-c313-480b-a8a5-c4d5b04ed584 */
-   public void setSit_direccion(String newSit_direccion) {
-      sit_direccion = newSit_direccion;
-   }
-   
    /** @pdOid 9ef0614f-df91-42c0-8039-5a22e008f652 */
    public Integer getSit_capacidad() {
       return sit_capacidad;
@@ -97,13 +84,13 @@ public class GEN_Sitios {
       sit_estado = newSit_estado;
    }
    
-   /** @pdOid 7b72300d-6bc1-47df-a3d2-748f17a62fb6 */
+   /** @pdOid c4218a73-8104-4d6a-94a0-36ecb6c34a47 */
    public String getSit_nombre() {
       return sit_nombre;
    }
    
    /** @param newSit_nombre
-    * @pdOid adf53757-b1e8-4d15-a315-3123f425c24b */
+    * @pdOid 55eca312-0e65-453c-b838-ab1f7ee1079e */
    public void setSit_nombre(String newSit_nombre) {
       sit_nombre = newSit_nombre;
    }
@@ -181,12 +168,12 @@ public class GEN_Sitios {
    public void setAre(GEN_Areas newGEN_Areas) {
       if (this.are == null || !this.are.equals(newGEN_Areas))
       {
-         if (this.are != null)
+       /*  if (this.are != null)
          {
             GEN_Areas oldGEN_Areas = this.are;
             this.are = null;
             oldGEN_Areas.removeSit(this);
-         }
+         } */
          if (newGEN_Areas != null)
          {
             this.are = newGEN_Areas;

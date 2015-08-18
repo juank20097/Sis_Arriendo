@@ -27,7 +27,7 @@ public class SitiosDAO {
 	// Campos de asignacion (Sectores)
 	private GEN_Instituciones institucion;
 	// Campos de asignacion (Areas)
-		private GEN_Sectores sector;
+	private GEN_Sectores sector;
 
 	/**
 	 * Constructor para la utilizacion de metodos de la clase HibernateDAO
@@ -80,7 +80,7 @@ public class SitiosDAO {
 	 *            Tipo Integer el cual almacena el dato si el Area es
 	 *            Activado/Desactivado
 	 */
-	public void insertarArea(String nombre, String descripcion,Integer sec)
+	public void insertarArea(String nombre, String descripcion, Integer sec)
 			throws Exception {
 		try {
 			sector = SectorByID(sec);
@@ -116,7 +116,7 @@ public class SitiosDAO {
 	public void editarArea(Integer id_area, String nombre, String descripcion,
 			char estado, Integer sec) throws Exception {
 		try {
-			sector= SectorByID(sec);
+			sector = SectorByID(sec);
 			GEN_Areas r = this.AreaByID(id_area);
 			r.setAre_id(id_area);
 			r.setAre_nombre(nombre);
@@ -207,13 +207,13 @@ public class SitiosDAO {
 	 *            Tipo Integer el cual almacena el dato si es
 	 *            Activado/Desactivado
 	 */
-	public void insertarSitio(String nombre, Double costo, String direccion,
-			Integer capacidad) throws Exception {
+	public void insertarSitio(String nombre, Double costo,
+			Integer capacidad, Integer a) throws Exception {
 		try {
+			area = AreaByID(a);
 			GEN_Sitios p = new GEN_Sitios();
 			p.setSit_nombre(nombre);
 			p.setSit_costo_arriendo(costo);
-			p.setSit_direccion(direccion);
 			p.setSit_capacidad(capacidad);
 			p.setSit_estado('A');
 			p.setAre(area);
@@ -241,13 +241,13 @@ public class SitiosDAO {
 	 *            Tipo Integer el cual cambia el dato si es Activado/Desactivado
 	 */
 	public void editarSitio(Integer id, String nombre, Double costo,
-			String direccion, Integer capacidad, char estado) throws Exception {
+			Integer capacidad, char estado, Integer a) throws Exception {
 		try {
+			area = AreaByID(a);
 			GEN_Sitios r = this.SitioByID(id);
 			r.setSit_id(id);
 			r.setSit_nombre(nombre);
 			r.setSit_costo_arriendo(costo);
-			r.setSit_direccion(direccion);
 			r.setSit_capacidad(capacidad);
 			r.setSit_estado(estado);
 			r.setAre(area);
@@ -257,24 +257,6 @@ public class SitiosDAO {
 			System.out.println("Error_mod_sitio");
 			e.printStackTrace();
 		}
-	}// Cierre del metodo
-
-	/**
-	 * Metodo para asignar un Area a un Sitio en la base de datos
-	 * 
-	 * @param id
-	 *            Tipo Integer el cual sirve para buscar un tipo
-	 * @return El tipo area con el dato correspondiente
-	 */
-	public GEN_Areas asignarArea(Integer id) {
-		try {
-			area = this.AreaByID(id);
-			System.out.println("Bien_asignar_Area");
-		} catch (Exception e) {
-			System.out.println("Mal_asignar_Area");
-			e.printStackTrace();
-		}
-		return area;
 	}// Cierre del metodo
 
 	// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

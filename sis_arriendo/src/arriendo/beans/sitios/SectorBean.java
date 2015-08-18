@@ -263,14 +263,23 @@ public class SectorBean {
 		String r = "";
 		try {
 			if (edicion) {
+				if (institucion==-1){
+					Mensaje.crearMensajeERROR("Seleccione una Institución");
+					r="nsector?faces-redirect=true";
+				} else{
 				manager.editarSector(sec_id, sec_nombre, sec_direccion,
 						sec_ubicacion, institucion, sec_estado);
 				Mensaje.crearMensajeINFO("Actualizado - Insitucion Modificada");
+				r = "sector?faces-redirect=true";}
 			} else {
+				if (institucion==-1 || institucion ==null){
+					Mensaje.crearMensajeERROR("Seleccione una Institución");
+					r="nsector?faces-redirect=true";
+				} else{
 				manager.insertarSector(sec_nombre, sec_direccion, sec_ubicacion, institucion);
 				Mensaje.crearMensajeINFO("Registrado - Insitucion Creada");
+				r = "sector?faces-redirect=true";}
 			}
-			r = "sector?faces-redirect=true";
 			// limpiar datos
 			sec_id = 0;
 			sec_nombre = "";
