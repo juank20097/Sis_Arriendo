@@ -38,6 +38,12 @@
 						<p:column headerText="CAPACIDAD" width="100">
 							<h:outputText value="#{sit.sit_capacidad}" />
 						</p:column>
+						<p:column headerText="AREA" width="100">
+							<h:outputText value="#{sit.are.are_nombre}" />
+						</p:column>
+						<p:column headerText="TIPO SITIO" width="100">
+							<h:outputText value="#{sit.tsi.tsi_nombre}" />
+						</p:column>
 						<p:column filterBy="#{sit.sit_estado}" filterMatchMode="contains" headerText="ESTADO" width="100">
 							<h:outputText value="#{sit.sit_estado}"></h:outputText>
 						</p:column>

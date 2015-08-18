@@ -35,6 +35,9 @@
 						<p:column headerText="DESCRIPCIÓN" width="250">
 							<h:outputText value="#{are.are_descripcion}" />
 						</p:column>
+						<p:column headerText="SECTOR" filterBy="#{are.sec.sec_nombre}" width="150">
+							<h:outputText value="#{are.sec.sec_nombre}" />
+						</p:column>
 						<p:column filterBy="#{are.are_estado}" filterMatchMode="contains" headerText="ESTADO" width="100">
 							<h:outputText value="#{are.are_estado}"></h:outputText>
 						</p:column>

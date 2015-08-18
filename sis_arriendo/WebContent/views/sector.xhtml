@@ -35,11 +35,14 @@
 						<p:column headerText="DIRECCIÓN" width="250">
 							<h:outputText value="#{sec.sec_direccion}" />
 						</p:column>
-						<p:column headerText="UBICACIÓN" width="150">
+						<p:column headerText="UBICACIÓN" width="130">
 							<p:commandButton id="btn" icon="ui-icon-pin-s" value="Ver Mapa" action="#{sectorBean.verMapa(sec)}" />
 						</p:column>
 						<p:column filterBy="#{sec.sec_estado}" filterMatchMode="contains" headerText="ESTADO" width="100">
 							<h:outputText value="#{sec.sec_estado}"></h:outputText>
+						</p:column>
+						<p:column headerText="INSTITUCIÓN" filterBy="#{sec.ins.ins_nombre}" width="150">
+							<h:outputText value="#{sec.ins.ins_nombre}" />
 						</p:column>
 						<p:column headerText="OPCIONES" width="100">
 							<p:commandButton id="btnE" icon="ui-icon-pencil" action="#{sectorBean.cargarSector(sec)}">
