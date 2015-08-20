@@ -22,6 +22,9 @@
         <property name="art_valor_referenciado" type="java.lang.Float">
             <column name="ART_VALOR_REFERENCIADO" />
         </property>
+         <property name="art_imagen" type="java.lang.String">
+            <column name="ART_IMAGEN" />
+        </property>
         <property name="art_estado" type="char">
             <column name="ART_ESTADO" />
         </property>

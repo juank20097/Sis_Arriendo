@@ -11,7 +11,7 @@
   <!-- Configuracion del pool interno -->
   <property name="connection.pool_size">1</property>
   <!-- Otras propiedades importantes -->
-  <property name="show_sql">true</property>
+  <property name="show_sql">false</property>
   <property name="hbm2ddl.auto">update</property>
   <!-- Archivos de mapeo -->
   <mapping resource="arriendo/entidades/ARR_Contratos_Cab.hbm.xml"/>

@@ -45,10 +45,10 @@ public class SectorBean {
 	
 	//mapa
 	private MapModel geoModel;
-	private MapModel geoModel2;
 	private String centerGeoMap = "-1.7864639,-78.1368874";
 	private Marker marca;
-	private String r = "-1.7864639,-78.1368874";
+	
+	private GEN_Sectores sele;
 	
 
 	public SectorBean() {
@@ -63,6 +63,21 @@ public class SectorBean {
         //Basic marker
         geoModel.addOverlay(new Marker(coord1, "Yachay Empresa Publica"));
         geoModel.addOverlay(new Marker(coord2, "Yachay Ciudad del Conocimiento"));
+	}
+
+	/**
+	 * @return the sele
+	 */
+	public GEN_Sectores getSele() {
+		return sele;
+	}
+
+	/**
+	 * @param sele the sele to set
+	 */
+	public void setSele(GEN_Sectores sele) {
+		System.out.println(sele.getSec_nombre()+" - "+sele.getSec_ubicacion());
+		this.sele = sele;
 	}
 
 	/**
@@ -81,20 +96,6 @@ public class SectorBean {
 	}
 
 	/**
-	 * @return the geoModel2
-	 */
-	public MapModel getGeoModel2() {
-		return geoModel2;
-	}
-
-	/**
-	 * @param geoModel2 the geoModel2 to set
-	 */
-	public void setGeoModel2(MapModel geoModel2) {
-		this.geoModel2 = geoModel2;
-	}
-
-	/**
 	 * @return the edicion
 	 */
 	public boolean isEdicion() {
@@ -107,20 +108,6 @@ public class SectorBean {
 	 */
 	public void setEdicion(boolean edicion) {
 		this.edicion = edicion;
-	}
-
-	/**
-	 * @return the r
-	 */
-	public String getR() {
-		return r;
-	}
-
-	/**
-	 * @param r the r to set
-	 */
-	public void setR(String r) {
-		this.r = r;
 	}
 
 	/**
@@ -378,12 +365,10 @@ public class SectorBean {
 	        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Punto Seleccionado:","Lugar asignado"));
 	    }
 	 
-	 public void verMapa(GEN_Sectores sec){
-		 RequestContext context = RequestContext.getCurrentInstance();
-		 geoModel2 = new DefaultMapModel();
-		 r=sec.getSec_ubicacion();
-		 System.out.println(r);
-		 context.execute("PF('dlg').show();");
+	 public void Mapa (GEN_Sectores se){
+		 setSele(se);
+		 RequestContext.getCurrentInstance().execute("PF('dlg').show()");
+		 System.out.println(sele.getSec_ubicacion());
 	 }
 
 }

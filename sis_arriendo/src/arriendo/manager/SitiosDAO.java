@@ -3,6 +3,7 @@ package arriendo.manager;
 import java.util.List;
 
 import arriendo.entidades.GEN_Areas;
+import arriendo.entidades.GEN_Articulos;
 import arriendo.entidades.GEN_Estados;
 import arriendo.entidades.GEN_Instituciones;
 import arriendo.entidades.GEN_Sectores;
@@ -528,6 +529,97 @@ public class SitiosDAO {
 		}
 
 	}// Cierre del metodo
+	
+	// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		/**
+		 * Creación de metodos para el manejo de la tabla GEN_Sector
+		 * 
+		 */
+
+		/**
+		 * Metodo para listar todos los datos de la entidad
+		 * 
+		 * @return La lista de todos los datos de la entidad encontradas
+		 */
+		@SuppressWarnings("unchecked")
+		public List<GEN_Articulos> findAllArticulos() {
+			return manager.findAll(GEN_Articulos.class);
+		}// Cierre del metodo
+
+		/**
+		 * Metodo para obtener Entidad mediante un ID
+		 * 
+		 * @param id
+		 *            Tipo integer de busqueda
+		 * @return El objeto de la Entidad encontrado mediante el ID
+		 */
+		public GEN_Articulos ArticulosByID(Integer id) throws Exception {
+			return (GEN_Articulos) manager.findById(GEN_Articulos.class, id);
+		}// Cierre del metodo
+
+		/**
+		 * Metodo para ingresar Entidad a la base de datos
+		 * 
+		 * @param nombre
+		 *            Tipo String el cual almacena el nombre para denotar la entidad
+		 * @param direccion
+		 *            Tipo String el cual almacena el lugar de la entidad
+		 * @param estado
+		 *            Tipo Integer el cual almacena el dato si es
+		 *            (Activado/Descativado)
+		 */
+		public void insertarArticulos(String nombre, String descripcion,
+				String serial, Float valor_referencial, String imagen) throws Exception {
+			try {
+				GEN_Articulos p = new GEN_Articulos();
+				p.setArt_nombre(nombre);
+				p.setArt_descripcion(descripcion);
+				p.setArt_serial(serial);
+				p.setArt_valor_referenciado(valor_referencial);
+				p.setArt_imagen(imagen);
+				p.setArt_estado('A');
+				manager.insertar(p);
+				System.out.println("Bien_insertar_articulo");
+				institucion = new GEN_Instituciones();
+			} catch (Exception e) {
+				System.out.println("Error_insertar_articulo");
+				e.printStackTrace();
+			}
+
+		}// Cierre del metodo
+
+		/**
+		 * Metodo para editar Entidad a la base de datos
+		 * 
+		 * @param id
+		 *            Tipo Integer el dato para buscar la entidad
+		 * @param nombre
+		 *            Tipo String el cual edita el nombre para denotar la entidad
+		 * @param direccion
+		 *            Tipo String el cual edita el lugar de la entidad
+		 * @param estado
+		 *            Tipo Integer el cual edita el dato si es
+		 *            (Activado/Descativado)
+		 */
+		public void editarArticulo(Integer id, String nombre, String descripcion,
+				String serial, Float valor_referencial, String imagen, char estado) throws Exception {
+			try {
+				GEN_Articulos p = ArticulosByID(id);
+				p.setArt_id(id);
+				p.setArt_nombre(nombre);
+				p.setArt_descripcion(descripcion);
+				p.setArt_serial(serial);
+				p.setArt_valor_referenciado(valor_referencial);
+				p.setArt_imagen(imagen);
+				p.setArt_estado(estado);
+				manager.actualizar(p);
+				System.out.println("Bien_editar_articulo");
+			} catch (Exception e) {
+				System.out.println("Error_editar_articulo");
+				e.printStackTrace();
+			}
+
+		}// Cierre del metodo
 
 	// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/**
@@ -552,7 +644,7 @@ public class SitiosDAO {
 	 *            Tipo integer de busqueda
 	 * @return El objeto de la Entidad encontrado mediante el ID
 	 */
-	public GEN_Estados EstadoByID(Integer id) throws Exception {
+	public GEN_Estados EstadoByID(char id) throws Exception {
 		return (GEN_Estados) manager.findById(GEN_Estados.class, id);
 	}// Cierre del metodo
 

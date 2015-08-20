@@ -206,5 +206,16 @@ public class InstitucionBean {
 		return lista;
 	}
 	
+	public String color(char estado){
+		String r="";
+		List<GEN_Estados> li = manager.findAllEstados();
+		for (GEN_Estados es : li) {
+			if (es.getEst_id()==estado){
+				r=es.getEst_color();
+			}
+		}
+		return r;
+	}
+	
 	
 }

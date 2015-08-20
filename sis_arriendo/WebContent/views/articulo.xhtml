@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui">
+
+<ui:composition template="template.xhtml">
+	<ui:define name="titulo">
+            Articulos
+        </ui:define>
+	<ui:define name="contenido">
+		<h:form>
+			<center>
+				<h1>ARTÍCULOS</h1>
+			</center>
+			<b:row>
+				<b:column span="1">
+					<b:commandButton value="Nuevo" iconAwesome="file-o"
+						action="#{articuloBean.nuevoArticulo}" />
+				</b:column>
+				<b:column span="1">
+					<b:commandButton value="Volver" iconAwesome="angle-left"
+						action="index?faces-redirect=true" />
+				</b:column>
+			</b:row>
+		</h:form>
+		<br />
+		<h:form id="frmbicis">
+			<p:messages closable="true"></p:messages>
+			<b:panel title="Listado" look="primary">
+				<p:dataTable id="tbb" value="#{articuloBean.listArticulos}"
+					reflow="true" var="art" rows="8" emptyMessage="Sin Datos"
+					scrollable="true" scrollRows="20" liveScroll="true"
+					paginator="true"
+					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+					<p:column filterBy="#{art.art_nombre}" filterMatchMode="contains"
+						headerText="NOMBRE" width="150">
+						<h:outputText value="#{art.art_nombre}"></h:outputText>
+					</p:column>
+					<p:column headerText="DESCRIPCIÓN" width="250">
+						<!--p:inputTextarea value="#{bic.artDescripcion}" rows="2" cols="19" readonly="true" autoResize="false"/-->
+						<h:outputText value="#{art.art_descripcion}"></h:outputText>
+					</p:column>
+					<p:column headerText="SERIAL" width="100">
+						<h:outputText value="#{art.art_serial}"></h:outputText>
+					</p:column>
+					<p:column headerText="VALOR" width="100">
+						<h:outputText value="#{art.art_valor_referencial}">
+							<f:convertNumber type="currency" currencySymbol="$" />
+						</h:outputText>
+					</p:column>
+					<p:column headerText="IMAGEN" width="100">
+						<p:column style="width:32px;text-align: center">
+							<p:commandButton update=":frmbicis:carDetail"
+								oncomplete="PF('carDialog').show()" icon="ui-icon-search"
+								title="View">
+								<f:setPropertyActionListener value="#{art}"
+									target="#{articuloBean.articulo}" />
+							</p:commandButton>
+						</p:column>
+					</p:column>
+					<p:column filterBy="#{ins.ins_estado}" filterMatchMode="contains"
+						headerText="ESTADO" width="100">
+						<h:outputText value="#{ins.ins_estado}"
+							style="color:#{institucionBean.color(ins.ins_estado)}"></h:outputText>
+					</p:column>
+					<p:column headerText="OPCIONES" width="100">
+						<p:commandButton id="btnE" icon="ui-icon-pencil"
+							action="#{institucionBean.cargarInstitucion(ins)}">
+							<p:tooltip for="btnE" value="Editar institución"
+								trackMouse="true" />
+						</p:commandButton>
+							&nbsp;&nbsp;&nbsp;
+						</p:column>
+				</p:dataTable>
+			</b:panel>
+			<p:dialog widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+        <p:outputPanel id="carDetail" style="text-align:center;">
+            <p:panelGrid  columns="1">
+                <f:facet name="header">
+                    <p:graphicImage name="demo/images/car/#{articuloBean.articulo.art_imagen}"/> 
+                </f:facet>
+            </p:panelGrid>
+        </p:outputPanel>
+    </p:dialog>
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+</html>

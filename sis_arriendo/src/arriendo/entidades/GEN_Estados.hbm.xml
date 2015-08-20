@@ -15,5 +15,8 @@
         <property name="est_descripcion" type="java.lang.String">
             <column name="EST_DESCRIPCION" />
         </property>
+        <property name="est_color" type="java.lang.String">
+            <column name="EST_COLOR" />
+        </property>
     </class>
 </hibernate-mapping>

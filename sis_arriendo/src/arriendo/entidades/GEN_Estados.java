@@ -17,6 +17,8 @@ public class GEN_Estados {
    /** @pdOid 452de288-8c05-4b03-839c-d789ae40c251 */
    private String est_descripcion;
    
+   private String est_color;
+   
    /** @pdOid b851a692-1a8c-486c-987f-f72435246388 */
    protected void finalize() {
       // TODO: implement
@@ -38,7 +40,21 @@ public class GEN_Estados {
       est_id = newEst_id;
    }
    
-   /** @pdOid 4bd69054-99b5-4f27-9545-d1e9c03bbc69 */
+   /**
+ * @return the est_color
+ */
+public String getEst_color() {
+	return est_color;
+}
+
+/**
+ * @param est_color the est_color to set
+ */
+public void setEst_color(String est_color) {
+	this.est_color = est_color;
+}
+
+/** @pdOid 4bd69054-99b5-4f27-9545-d1e9c03bbc69 */
    public String getEst_nombre() {
       return est_nombre;
    }

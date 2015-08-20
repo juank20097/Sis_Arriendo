@@ -26,7 +26,7 @@
         	<h:form id="frmbicis">
 				<p:messages closable="true"></p:messages>
 				<b:panel title="Listado" look="primary">
-					<p:dataTable id="tbb" value="#{areasBean.listAreas}" var="are" rows="8" emptyMessage="Sin Datos"
+					<p:dataTable id="tbb" value="#{areasBean.listAreas}" reflow="true" var="are" rows="8" emptyMessage="Sin Datos"
 					scrollable="true" scrollRows="20" liveScroll="true" paginator="true" 
     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
     					<p:column filterBy="#{are.are_nombre}" filterMatchMode="contains" headerText="NOMBRE" width="150">
@@ -39,7 +39,7 @@
 							<h:outputText value="#{are.sec.sec_nombre}" />
 						</p:column>
 						<p:column filterBy="#{are.are_estado}" filterMatchMode="contains" headerText="ESTADO" width="100">
-							<h:outputText value="#{are.are_estado}"></h:outputText>
+							<h:outputText value="#{are.are_estado}" style="color:#{institucionBean.color(are.are_estado)}"></h:outputText>
 						</p:column>
 						<p:column headerText="OPCIONES" width="100">
 							<p:commandButton id="btnE" icon="ui-icon-pencil" action="#{areasBean.cargarArea(are)}">

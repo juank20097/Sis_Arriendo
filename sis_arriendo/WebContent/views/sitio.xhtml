@@ -26,14 +26,16 @@
         	<h:form id="frmbicis">
 				<p:messages closable="true"></p:messages>
 				<b:panel title="Listado" look="primary">
-					<p:dataTable id="tbb" value="#{sitiosBean.listSitios}" var="sit" rows="8" emptyMessage="Sin Datos"
+					<p:dataTable id="tbb" value="#{sitiosBean.listSitios}" reflow="true" var="sit" rows="8" emptyMessage="Sin Datos"
 					scrollable="true" scrollRows="20" liveScroll="true" paginator="true" 
     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
     					<p:column filterBy="#{sit.sit_nombre}" filterMatchMode="contains" headerText="NOMBRE" width="150">
 							<h:outputText value="#{sit.sit_nombre}"></h:outputText>
 						</p:column>
 						<p:column headerText="COSTO" width="100">
-							<h:outputText value="#{sit.sit_costo_arriendo}" />
+							<h:outputText value="#{sit.sit_costo_arriendo}">
+								<f:convertNumber type="currency" currencySymbol="$" />
+							</h:outputText>
 						</p:column>
 						<p:column headerText="CAPACIDAD" width="100">
 							<h:outputText value="#{sit.sit_capacidad}" />
@@ -45,7 +47,7 @@
 							<h:outputText value="#{sit.tsi.tsi_nombre}" />
 						</p:column>
 						<p:column filterBy="#{sit.sit_estado}" filterMatchMode="contains" headerText="ESTADO" width="100">
-							<h:outputText value="#{sit.sit_estado}"></h:outputText>
+							<h:outputText value="#{sit.sit_estado}" style="color:#{institucionBean.color(sit.sit_estado)}"></h:outputText>
 						</p:column>
 						<p:column headerText="OPCIONES" width="100">
 							<p:commandButton id="btnE" icon="ui-icon-pencil" action="#{sitiosBean.cargarSitio(sit)}">

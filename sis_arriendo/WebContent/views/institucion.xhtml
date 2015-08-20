@@ -26,8 +26,8 @@
         	<h:form id="frmbicis">
 				<p:messages closable="true"></p:messages>
 				<b:panel title="Listado" look="primary">
-					<p:dataTable id="tbb" value="#{institucionBean.listInstitucion}" var="ins" rows="8" emptyMessage="Sin Datos"
-					scrollable="true" scrollRows="20" liveScroll="true" paginator="true" 
+					<p:dataTable id="tbb" value="#{institucionBean.listInstitucion}" reflow="true" var="ins" rows="8" emptyMessage="Sin Datos"
+					 paginator="true" 
     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
     					<p:column filterBy="#{ins.ins_nombre}" filterMatchMode="contains" headerText="NOMBRE" width="150">
 							<h:outputText value="#{ins.ins_nombre}"></h:outputText>
@@ -37,7 +37,7 @@
 							<h:outputText value="#{ins.ins_descripcion}"></h:outputText>
 						</p:column>
 						<p:column filterBy="#{ins.ins_estado}" filterMatchMode="contains" headerText="ESTADO" width="100">
-							<h:outputText value="#{ins.ins_estado}"></h:outputText>
+							<h:outputText value="#{ins.ins_estado}" style="color:#{institucionBean.color(ins.ins_estado)}"></h:outputText>
 						</p:column>
 						<p:column headerText="OPCIONES" width="100">
 							<p:commandButton id="btnE" icon="ui-icon-pencil" action="#{institucionBean.cargarInstitucion(ins)}">

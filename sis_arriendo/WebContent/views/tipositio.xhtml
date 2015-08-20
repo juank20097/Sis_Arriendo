@@ -26,7 +26,7 @@
         	<h:form id="frmbicis">
 				<p:messages closable="true"></p:messages>
 				<b:panel title="Listado" look="primary">
-					<p:dataTable id="tbb" value="#{tipoSitiosBean.listTipoSitios}" var="tsi" rows="8" emptyMessage="Sin Datos"
+					<p:dataTable id="tbb" value="#{tipoSitiosBean.listTipoSitios}" reflow="true" var="tsi" rows="8" emptyMessage="Sin Datos"
 					scrollable="true" scrollRows="20" liveScroll="true" paginator="true" 
     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
     					<p:column filterBy="#{tsi.tsi_nombre}" filterMatchMode="contains" headerText="NOMBRE" width="150">
@@ -36,7 +36,7 @@
 							<h:outputText value="#{tsi.tsi_descripcion}" />
 						</p:column>
 						<p:column filterBy="#{tsi.tsi_estado}" filterMatchMode="contains" headerText="ESTADO" width="100">
-							<h:outputText value="#{tsi.tsi_estado}"></h:outputText>
+							<h:outputText value="#{tsi.tsi_estado}" style="color:#{institucionBean.color(tsi.tsi_estado)}"></h:outputText>
 						</p:column>
 						<p:column headerText="OPCIONES" width="100">
 							<p:commandButton id="btnE" icon="ui-icon-pencil" action="#{tipoSitiosBean.cargarTipoSitio(tsi)}">

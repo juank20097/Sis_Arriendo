@@ -26,7 +26,7 @@
         	<h:form id="frmbicis">
 				<p:messages closable="true"></p:messages>
 				<b:panel title="Listado" look="primary">
-					<p:dataTable id="tbb" value="#{sectorBean.listSector}" var="sec" rows="8" emptyMessage="Sin Datos"
+					<p:dataTable id="tbb" value="#{sectorBean.listSector}" reflow="true" var="sec" rows="8" emptyMessage="Sin Datos"
 					scrollable="true" scrollRows="20" liveScroll="true" paginator="true" 
     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
     					<p:column filterBy="#{sec.sec_nombre}" filterMatchMode="contains" headerText="NOMBRE" width="150">
@@ -36,13 +36,14 @@
 							<h:outputText value="#{sec.sec_direccion}" />
 						</p:column>
 						<p:column headerText="UBICACIÓN" width="130">
-							<p:commandButton id="btn" icon="ui-icon-pin-s" value="Ver Mapa" action="#{sectorBean.verMapa(sec)}" />
-						</p:column>
-						<p:column filterBy="#{sec.sec_estado}" filterMatchMode="contains" headerText="ESTADO" width="100">
-							<h:outputText value="#{sec.sec_estado}"></h:outputText>
+						 <p:commandButton actionListener="#{sectorBean.Mapa(sec)}" icon="ui-icon-search" title="Ver Mapa" update=":frm">
+            			</p:commandButton>
 						</p:column>
 						<p:column headerText="INSTITUCIÓN" filterBy="#{sec.ins.ins_nombre}" width="150">
 							<h:outputText value="#{sec.ins.ins_nombre}" />
+						</p:column>
+						<p:column filterBy="#{sec.sec_estado}" filterMatchMode="contains" headerText="ESTADO" width="100">
+							<h:outputText value="#{sec.sec_estado}" style="color:#{institucionBean.color(sec.sec_estado)}"></h:outputText>
 						</p:column>
 						<p:column headerText="OPCIONES" width="100">
 							<p:commandButton id="btnE" icon="ui-icon-pencil" action="#{sectorBean.cargarSector(sec)}">
@@ -53,9 +54,13 @@
     				</p:dataTable>
 				</b:panel>
 			</h:form>
-			<p:dialog id="gmapDialog" widgetVar="dlg" width="625" height="400" modal="true">
-    					<p:gmap id="gmap" model="#{sectorBean.geoModel2}" center="#{sectorBean.r}" zoom="15" type="HYBRID" style="width:100%;height:400px" />
-						</p:dialog>
+			<p:dialog widgetVar="dlg" width="625" height="400" modal="true">
+				<h:form id="frm">
+					<p:outputPanel id="carDetail" style="text-align:center;">
+	 					<p:gmap id="gmap" model="#{sectorBean.geoModel}" center="#{sectorBean.sele.sec_ubicacion}" zoom="15" type="HYBRID" style="width:100%;height:400px" />
+					</p:outputPanel>
+					</h:form>
+			</p:dialog>
         </ui:define>
 	</ui:composition>
 	
