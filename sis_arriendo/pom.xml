@@ -42,18 +42,6 @@
     <scope>compile</scope>
 </dependency>
 
-<!--  dependencias de cache de hibernate -->
-<dependency>
- <groupId>net.sf.ehcache</groupId>
- <artifactId>ehcache-core</artifactId>
- <version>2.5.7</version>
-</dependency>
-
-<dependency>
- <groupId>net.sf.ehcache</groupId>
- <artifactId>ehcache</artifactId>
- <version>2.7.0</version>
-</dependency>
 <!-- Dependencias necesarias para un correcto funcionamiento de JSF -->
   <dependency>
 	<groupId>com.sun.faces</groupId>

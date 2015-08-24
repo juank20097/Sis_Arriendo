@@ -251,7 +251,9 @@ public class AreasBean {
 		List<SelectItem> lista = new ArrayList<SelectItem>();
 		List<GEN_Sectores> completo = manager.findAllSector();
 		for (GEN_Sectores s : completo) {
+			if (s.getSec_estado()=='A'){
 			lista.add(new SelectItem(s.getSec_id(), s.getSec_nombre()));
+			}
 		}
 		return lista;
 	}

@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui">
+
+<ui:composition template="template.xhtml">
+	<ui:define name="titulo">
+            Asignación
+        </ui:define>
+	<ui:define name="contenido">
+		<h:form>
+			<center>
+				<h1>ASIGNACIÓN</h1>
+			</center>
+			<b:row>
+				<b:column span="6">
+					<b:selectOneMenu required="false" value="#{sitiosBean.tipositio}" requiredMessage="Campo Tipo de Sitio requerido">
+        			<f:selectItem itemValue="-1" itemLabel="--Seleccione--"/>
+        			<f:selectItems value="#{sitiosBean.listTipoSitios}" >
+        			</f:selectItems>
+        			</b:selectOneMenu>
+				</b:column>
+				<b:column span="6">
+					<b:selectOneMenu required="false" value="#{sitiosBean.tipositio}" requiredMessage="Campo Tipo de Sitio requerido">
+        			<f:selectItem itemValue="-1" itemLabel="--Seleccione--"/>
+        			<f:selectItems value="#{sitiosBean.listTipoSitios}" >
+        			</f:selectItems>
+        			</b:selectOneMenu>
+				</b:column>
+			</b:row>
+		</h:form>
+		<br />
+		<h:form id="frmbicis">
+			<p:messages closable="true"></p:messages>
+			<b:panel title="Listado" look="primary">
+				<p:dataTable id="tbb" value="#{institucionBean.listInstitucion}"
+					reflow="true" var="ins" rows="8" emptyMessage="Sin Datos"
+					paginator="true"
+					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+					<p:column filterBy="#{ins.ins_nombre}" filterMatchMode="contains"
+						headerText="NOMBRE" width="150">
+						<h:outputText value="#{ins.ins_nombre}"></h:outputText>
+					</p:column>
+					<p:column headerText="DESCRIPCIÓN" width="350">
+						<!--p:inputTextarea value="#{bic.artDescripcion}" rows="2" cols="19" readonly="true" autoResize="false"/-->
+						<h:outputText value="#{ins.ins_descripcion}"></h:outputText>
+					</p:column>
+					<p:column filterBy="#{ins.ins_estado}" filterMatchMode="contains"
+						headerText="ESTADO" width="100">
+						<h:outputText value="#{ins.ins_estado}"
+							style="color:#{institucionBean.color(ins.ins_estado)}"></h:outputText>
+					</p:column>
+					<p:column headerText="OPCIONES" width="100">
+						<p:commandButton id="btnE" icon="ui-icon-pencil"
+							action="#{institucionBean.cargarInstitucion(ins)}">
+							<p:tooltip for="btnE" value="Editar institución"
+								trackMouse="true" />
+						</p:commandButton>
+							&nbsp;&nbsp;&nbsp;
+						</p:column>
+				</p:dataTable>
+			</b:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+</html>

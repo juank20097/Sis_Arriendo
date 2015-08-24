@@ -127,7 +127,7 @@ public class InstitucionBean {
 	public List<GEN_Instituciones> getListInstitucion() {
 		return manager.findAllInstituciones();
 	}
-
+	
 	/**
 	 * Redirecciona a la pagina de creacion de sitios
 	 * 

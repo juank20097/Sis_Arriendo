@@ -209,6 +209,7 @@ public class ArticuloBean {
 	public List<GEN_Articulos> getListArticulos() {
 		return manager.findAllArticulos();
 	}
+	
 
 	/**
 	 * Redirecciona a la pagina de creacion de sitios

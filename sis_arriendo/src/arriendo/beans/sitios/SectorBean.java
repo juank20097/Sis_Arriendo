@@ -337,7 +337,9 @@ public class SectorBean {
 		List<SelectItem> lista = new ArrayList<SelectItem>();
 		List<GEN_Instituciones> completo = manager.findAllInstituciones();
 		for (GEN_Instituciones s : completo) {
+			if (s.getIns_estado()=='A'){
 			lista.add(new SelectItem(s.getIns_id(), s.getIns_nombre()));
+		}
 		}
 		return lista;
 	}

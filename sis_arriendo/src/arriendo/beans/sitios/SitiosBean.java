@@ -177,7 +177,7 @@ public class SitiosBean {
 	public List<GEN_Sitios> getListSitios() {
 		return manager.findAllSitios();
 	}
-
+	
 	/**
 	 * Redirecciona a la pagina de creacion de sitios
 	 * 
@@ -287,8 +287,10 @@ public class SitiosBean {
 		List<SelectItem> lista = new ArrayList<SelectItem>();
 		List<GEN_Areas> completo = manager.findAllAreas();
 		for (GEN_Areas s : completo) {
+			if (s.getAre_estado()=='A'){
 			lista.add(new SelectItem(s.getAre_id(), s.getAre_nombre()));
-		}
+			}
+			}
 		return lista;
 	}
 	
@@ -301,7 +303,9 @@ public class SitiosBean {
 		List<SelectItem> lista = new ArrayList<SelectItem>();
 		List<GEN_TipoSitios> completo = manager.findAllTipoSitios();
 		for (GEN_TipoSitios s : completo) {
+			if (s.getTsi_estado()=='A'){
 			lista.add(new SelectItem(s.getTsi_id(), s.getTsi_nombre()));
+		}
 		}
 		return lista;
 	}
