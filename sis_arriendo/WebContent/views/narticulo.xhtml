@@ -1,38 +1,56 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:b="http://bootsfaces.net/ui">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui">
 
-	<ui:composition template="template.xhtml">
-		<ui:define name="titulo">
-            Institución
+<ui:composition template="template.xhtml">
+	<ui:define name="titulo">
+            Artículos
         </ui:define>
-		<ui:define name="contenido">
-        	<br/>
-        	<h:form id="frmnb">
-        		<p:messages closable="true"></p:messages>
-        		<b:panel title="Registro de Institución" look="primary">
-        			<b:panelGrid colSpans="2,10">
-        			<h:outputLabel value="Nombre*" />
-        			<b:inputText value="#{institucionBean.ins_nombre}" required="true" requiredMessage="Campo tipo requerido"></b:inputText>
-        			<h:outputLabel value="Descripción*" />
-        			<p:inputTextarea value="#{institucionBean.ins_descripcion}" style="width:100%; margin-bottom:15px;" required="true" requiredMessage="Campo descripción requerido"/>
-        			<h:outputLabel value="Estado*" rendered="#{institucionBean.edicion}"/>
-        			<b:selectOneMenu value="#{institucionBean.ins_estado}" rendered="#{institucionBean.edicion}">
-        			<f:selectItems value="#{institucionBean.listEstados}"/>
-        			</b:selectOneMenu>
-					</b:panelGrid>
-					<br/>
-					<b:commandButton value="Guardar" action="#{institucionBean.crearInstitucion}" update="frmnb" look="info"></b:commandButton>&nbsp;&nbsp;&nbsp;
-					<h:commandButton type="button" value="Cancelar" action="#{institucionBean.cancelar}" styleClass="btn btn-info">
-					    <f:ajax />
-					</h:commandButton>
-        		</b:panel>
-        	</h:form>
-        </ui:define>
-	</ui:composition>
-	
+	<ui:define name="contenido">
+		<br />
+		<h:form id="frmnb">
+			<p:messages closable="true"></p:messages>
+			<b:panel title="Registro de Artículos" look="primary">
+				<b:panelGrid colSpans="2,10">
+				<h:outputLabel value="Nombre*" />
+				<p:inputText style="width: 100%; padding: 1%; margin-bottom: 1%;"
+					value="#{articuloBean.art_nombre}" required="true"
+					requiredMessage="Campo nombre requerido">
+					<p:ajax listener="#{articuloBean.asignarNombreImagen}" />
+				</p:inputText>
+				<h:outputLabel value="Descripcion*" />
+				<p:inputTextarea value="#{articuloBean.art_descripcion}"
+					style="width:100%; margin-bottom:15px;" required="true"
+					requiredMessage="Campo descripción requerido" />
+				<h:outputLabel value="Serial*" />
+				<b:inputText value="#{articuloBean.art_serial}" required="true"
+					requiredMessage="Campo serial requerido"></b:inputText>
+				<h:outputLabel value="Valor*" />
+				<b:inputText value="#{articuloBean.art_valor_referenciado}"
+					required="true" requiredMessage="Campo valor requerido"></b:inputText>
+				<h:outputLabel value="Imagen*" />
+    				 <p:fileUpload mode="advanced" dragDropSupport="true" sizeLimit="100000" 
+    		allowTypes="/(\.|\/)(jpe?g)$/" cancelLabel="Cancelar" uploadLabel="Subir" label="Seleccionar" fileLimit="1" fileUploadListener="#{articuloBean.ImagenServ}"/>
+				<h:outputLabel value="Estado*" rendered="#{articuloBean.edicion}" />
+				<b:selectOneMenu value="#{articuloBean.art_estado}"
+					rendered="#{articuloBean.edicion}">
+					<f:selectItems value="#{articuloBean.listEstados}" />
+				</b:selectOneMenu>
+				</b:panelGrid>
+				<br/>
+				<b:commandButton value="Guardar"
+					action="#{articuloBean.crearArticulo}" update="frmnb" look="info"></b:commandButton>&nbsp;&nbsp;&nbsp;
+					<h:commandButton type="button" value="Cancelar"
+					action="#{articuloBean.cancelar}" styleClass="btn btn-info">
+					<f:ajax />
+				</h:commandButton>
+			</b:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+
 </html>

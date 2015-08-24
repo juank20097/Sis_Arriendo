@@ -39,7 +39,7 @@
 						headerText="NOMBRE" width="150">
 						<h:outputText value="#{art.art_nombre}"></h:outputText>
 					</p:column>
-					<p:column headerText="DESCRIPCIÓN" width="250">
+					<p:column headerText="DESCRIPCIÓN" width="150">
 						<!--p:inputTextarea value="#{bic.artDescripcion}" rows="2" cols="19" readonly="true" autoResize="false"/-->
 						<h:outputText value="#{art.art_descripcion}"></h:outputText>
 					</p:column>
@@ -47,44 +47,28 @@
 						<h:outputText value="#{art.art_serial}"></h:outputText>
 					</p:column>
 					<p:column headerText="VALOR" width="100">
-						<h:outputText value="#{art.art_valor_referencial}">
+						<h:outputText value="#{art.art_valor_referenciado}">
 							<f:convertNumber type="currency" currencySymbol="$" />
 						</h:outputText>
 					</p:column>
-					<p:column headerText="IMAGEN" width="100">
-						<p:column style="width:32px;text-align: center">
-							<p:commandButton update=":frmbicis:carDetail"
-								oncomplete="PF('carDialog').show()" icon="ui-icon-search"
-								title="View">
-								<f:setPropertyActionListener value="#{art}"
-									target="#{articuloBean.articulo}" />
-							</p:commandButton>
-						</p:column>
+					<p:column headerText="IMAGEN" width="200">
+						<p:graphicImage width="150" height="150" value="/articulosImg/#{art.art_imagen}"></p:graphicImage>
 					</p:column>
-					<p:column filterBy="#{ins.ins_estado}" filterMatchMode="contains"
+					<p:column filterBy="#{art.art_estado}" filterMatchMode="contains"
 						headerText="ESTADO" width="100">
-						<h:outputText value="#{ins.ins_estado}"
-							style="color:#{institucionBean.color(ins.ins_estado)}"></h:outputText>
+						<h:outputText value="#{art.art_estado}"
+							style="color:#{institucionBean.color(art.art_estado)}"></h:outputText>
 					</p:column>
 					<p:column headerText="OPCIONES" width="100">
 						<p:commandButton id="btnE" icon="ui-icon-pencil"
-							action="#{institucionBean.cargarInstitucion(ins)}">
-							<p:tooltip for="btnE" value="Editar institución"
+							action="#{articuloBean.cargarArticulo(art)}">
+							<p:tooltip for="btnE" value="Editar Artículo"
 								trackMouse="true" />
 						</p:commandButton>
 							&nbsp;&nbsp;&nbsp;
 						</p:column>
 				</p:dataTable>
 			</b:panel>
-			<p:dialog widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
-        <p:outputPanel id="carDetail" style="text-align:center;">
-            <p:panelGrid  columns="1">
-                <f:facet name="header">
-                    <p:graphicImage name="demo/images/car/#{articuloBean.articulo.art_imagen}"/> 
-                </f:facet>
-            </p:panelGrid>
-        </p:outputPanel>
-    </p:dialog>
 		</h:form>
 	</ui:define>
 </ui:composition>

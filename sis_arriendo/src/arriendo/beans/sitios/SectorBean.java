@@ -76,7 +76,6 @@ public class SectorBean {
 	 * @param sele the sele to set
 	 */
 	public void setSele(GEN_Sectores sele) {
-		System.out.println(sele.getSec_nombre()+" - "+sele.getSec_ubicacion());
 		this.sele = sele;
 	}
 

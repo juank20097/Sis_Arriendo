@@ -1,11 +1,25 @@
 package arriendo.beans.sitios;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
+import javax.servlet.ServletContext;
+
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.UploadedFile;
 
 import arriendo.entidades.GEN_Articulos;
 import arriendo.entidades.GEN_Estados;
@@ -34,6 +48,9 @@ public class ArticuloBean {
 	private boolean edicion;
 	
 	private GEN_Articulos articulo;
+	
+	private UploadedFile file;
+	private String g;
 
 	public ArticuloBean() {
 		manager = new SitiosDAO();
@@ -215,6 +232,9 @@ public class ArticuloBean {
 				manager.editarArticulo(art_id, art_nombre, art_descripcion, art_serial, art_valor_referenciado, art_imagen, art_estado);
 				Mensaje.crearMensajeINFO("Actualizado - Insitucion Modificada");
 			} else {
+				if (art_imagen==null || art_imagen.isEmpty()){
+					art_imagen="vacio.jpg";
+				}
 				manager.insertarArticulos(art_nombre, art_descripcion, art_serial, art_valor_referenciado, art_imagen);
 				Mensaje.crearMensajeINFO("Registrado - Insitucion Creada");
 			}
@@ -245,6 +265,9 @@ public class ArticuloBean {
 		art_serial = t.getArt_serial();
 		art_valor_referenciado = t.getArt_valor_referenciado();
 		art_imagen = t.getArt_imagen();
+		if (art_imagen=="vacio.jpg"){
+		art_imagen=t.getArt_nombre();
+		}
 		art_estado = t.getArt_estado();
 		edicion = true;
 		return "narticulo?faces-redirect=true";
@@ -261,7 +284,7 @@ public class ArticuloBean {
 		art_nombre = "";
 		art_descripcion = "";
 		art_serial= "";
-		art_valor_referenciado = (float) 0.0;
+		art_valor_referenciado = null;
 		art_imagen = "";
 		art_estado = 'A';
 		edicion = false;
@@ -280,5 +303,74 @@ public class ArticuloBean {
 		}
 		return lista;
 	}
+	
+	// METODOS DE IMAGENES 
+	
+	// metodo para guardar la imagen en el servidor
+		public void ImagenServ(FileUploadEvent event) throws IOException {
+			file = event.getFile();
+			InputStream inputStream = null;
+			OutputStream outputStream = null;
+
+			if (file != null) {
+				try {
+					// Tomar PAD REAL
+					ServletContext servletContext = (ServletContext) FacesContext
+							.getCurrentInstance().getExternalContext().getContext();
+					String carpetaImagenes = (String) servletContext
+							.getRealPath(File.separatorChar + "articulosImg");
+					setArt_imagen(g);
+					System.out.println("PAD------> " + carpetaImagenes);
+					System.out.println("name------> " + getArt_imagen());
+					outputStream = new FileOutputStream(new File(carpetaImagenes
+							+ File.separatorChar + getArt_imagen()));
+					inputStream = file.getInputstream();
+
+					int read = 0;
+					byte[] bytes = new byte[1024];
+
+					while ((read = inputStream.read(bytes)) != -1) {
+						outputStream.write(bytes, 0, read);
+					}
+
+					FacesContext.getCurrentInstance().addMessage(
+							null,
+							new FacesMessage(FacesMessage.SEVERITY_INFO,
+									"Carga Correcta de Imagen", "Carga correcta"));
+
+				} catch (Exception e) {
+					FacesContext.getCurrentInstance().addMessage(
+							null,
+							new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error:",
+									"no se pudo subir la imagen"));
+					e.printStackTrace();
+				} finally {
+					if (inputStream != null) {
+						inputStream.close();
+					}
+
+					if (outputStream != null) {
+						outputStream.close();
+					}
+				}
+			} else {
+				FacesContext.getCurrentInstance().addMessage(
+						null,
+						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error:",
+								"no se pudo seleccionar la imagen"));
+			}	
+		}
+		
+		// metodo para poner el nombre a la imagen
+		public void asignarNombreImagen() {
+			if (getArt_nombre().trim().isEmpty()) {
+				System.out.println("Vacio");
+			} else {
+				DateFormat dateFormat = new SimpleDateFormat("_ddMMyyyyHHmm");
+				g="img_"+getArt_nombre()+dateFormat.format(new Date())+".jpg";
+				System.out.println(g);
+			}
+
+		}
 
 }

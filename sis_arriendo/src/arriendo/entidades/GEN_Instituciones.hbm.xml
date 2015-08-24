@@ -1,30 +1,31 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 12-ago-2015 9:00:28 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="arriendo.entidades.GEN_Instituciones" table="GEN_INSTITUCIONES">
-        <id name="ins_id" type="java.lang.Integer">
-            <column name="INS_ID" />
-              <generator class="sequence">
-             <param name="sequence">seq_GEN_Instituciones</param>
-            </generator>
-        </id>
-        <property name="ins_nombre" type="java.lang.String">
-            <column name="INS_NOMBRE" />
-        </property>
-        <property name="ins_descripcion" type="java.lang.String">
-            <column name="INS_DESCRIPCION" />
-        </property>
-        <property name="ins_estado" type="char">
-            <column name="INS_ESTADO" />
-        </property>
-        <list name="sec" inverse="false" table="GEN_SECTORES" lazy="true">
-            <key>
-                <column name="INS_ID" />
-            </key>
-            <list-index></list-index>
-            <one-to-many class="arriendo.entidades.GEN_Sectores" />
-        </list>
-    </class>
+ <class dynamic-insert="true" dynamic-update="true"
+  name="arriendo.entidades.GEN_Instituciones" table="GEN_INSTITUCIONES">
+  <id name="ins_id" type="java.lang.Integer">
+   <column name="INS_ID"/>
+   <generator class="sequence">
+    <param name="sequence">seq_GEN_Instituciones</param>
+   </generator>
+  </id>
+  <property generated="never" lazy="false" name="ins_nombre" type="java.lang.String">
+   <column name="INS_NOMBRE"/>
+  </property>
+  <property generated="never" lazy="false" name="ins_descripcion" type="java.lang.String">
+   <column name="INS_DESCRIPCION"/>
+  </property>
+  <property generated="never" lazy="false" name="ins_estado" type="char">
+   <column name="INS_ESTADO"/>
+  </property>
+  <list lazy="true" name="sec" table="GEN_SECTORES">
+   <key>
+    <column name="INS_ID"/>
+   </key>
+   <list-index base="0"/>
+   <one-to-many class="arriendo.entidades.GEN_Sectores"/>
+  </list>
+ </class>
 </hibernate-mapping>

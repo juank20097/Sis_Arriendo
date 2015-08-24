@@ -1,2 +1,2 @@
-INSERT INTO gen_estados(est_id, est_nombre, est_descripcion) VALUES ('A', 'Activado', '');
-INSERT INTO gen_estados(est_id, est_nombre, est_descripcion) VALUES ('D', 'Desactivado', '');
+INSERT INTO gen_estados(est_id, est_nombre, est_descripcion) VALUES ('A', 'Activo', '','Green');
+INSERT INTO gen_estados(est_id, est_nombre, est_descripcion) VALUES ('I', 'Inactivo', '','Red');

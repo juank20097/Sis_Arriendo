@@ -11,8 +11,14 @@
   <!-- Configuracion del pool interno -->
   <property name="connection.pool_size">1</property>
   <!-- Otras propiedades importantes -->
-  <property name="show_sql">false</property>
+  <property name="show_sql">true</property>
   <property name="hbm2ddl.auto">update</property>
+  
+   <!-- Otras propiedades importantes 
+<property name="hibernate.cache.use_second_level_cache">false</property>
+<property name="hibernate.cache.use_query_cache">true</property>
+-->
+
   <!-- Archivos de mapeo -->
   <mapping resource="arriendo/entidades/ARR_Contratos_Cab.hbm.xml"/>
   <mapping resource="arriendo/entidades/ARR_Contratos_Det.hbm.xml"/>
