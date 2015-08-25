@@ -2,6 +2,7 @@ package arriendo.manager;
 
 import java.util.List;
 
+import arriendo.entidades.ARR_SitiosArticulos;
 import arriendo.entidades.GEN_Areas;
 import arriendo.entidades.GEN_Articulos;
 import arriendo.entidades.GEN_Estados;
@@ -620,6 +621,77 @@ public class SitiosDAO {
 			}
 
 		}// Cierre del metodo
+		
+		// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+				/**
+				 * Creación de metodos para el manejo de la tabla GEN_Sector
+				 * 
+				 */
+
+				/**
+				 * Metodo para listar todos los datos de la entidad
+				 * 
+				 * @return La lista de todos los datos de la entidad encontradas
+				 */
+				@SuppressWarnings("unchecked")
+				public List<ARR_SitiosArticulos> findAllSitiosArticulos() {
+					return manager.findAll(ARR_SitiosArticulos.class);
+				}// Cierre del metodo
+
+				/**
+				 * Metodo para obtener Entidad mediante un ID
+				 * 
+				 * @param id
+				 *            Tipo integer de busqueda
+				 * @return El objeto de la Entidad encontrado mediante el ID
+				 */
+				public ARR_SitiosArticulos SArticulosByID(Integer id) throws Exception {
+					return (ARR_SitiosArticulos) manager.findById(ARR_SitiosArticulos.class, id);
+				}// Cierre del metodo
+
+				/**
+				 * Metodo para ingresar Entidad a la base de datos
+				 * 
+				 * @param nombre
+				 *            Tipo String el cual almacena el nombre para denotar la entidad
+				 * @param direccion
+				 *            Tipo String el cual almacena el lugar de la entidad
+				 * @param estado
+				 *            Tipo Integer el cual almacena el dato si es
+				 *            (Activado/Descativado)
+				 */
+				public void insertarSArticulos(Integer art_id, Integer sit_id) throws Exception {
+					try {
+						GEN_Sitios s=SitioByID(sit_id);
+						ARR_SitiosArticulos p = new ARR_SitiosArticulos();
+						p.setArt_id(art_id);
+						p.setSit(s);
+						manager.insertar(p);
+						System.out.println("Bien_insertar_sarticulo");
+					} catch (Exception e) {
+						System.out.println("Error_insertar_sarticulo");
+						e.printStackTrace();
+					}
+
+				}// Cierre del metodo
+
+				/**
+				 * Metodo para eliminar un Area en la base de datos
+				 * 
+				 * @param id_area
+				 *            Tipo Integer el cual sirve para su eliminacion
+				 */
+				public void eliminarSArticulo(Integer id) {
+					try {
+						manager.eliminar(ARR_SitiosArticulos.class, id);
+						System.out.println("Eliminar_sarticulo_correcto");
+					} catch (Exception e) {
+						System.out.println("Eliminar_sarticulo_incorrecto");
+						e.printStackTrace();
+					}
+				}// Cierre del metodo
+			
+
 
 	// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/**

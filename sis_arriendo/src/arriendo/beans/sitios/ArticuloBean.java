@@ -46,12 +46,12 @@ public class ArticuloBean {
 	private char art_estado;
 	private String art_imagen;
 	private boolean edicion;
-	
 	private GEN_Articulos articulo;
 	
+	//variables de imagenes
 	private UploadedFile file;
 	private String g;
-
+	
 	public ArticuloBean() {
 		manager = new SitiosDAO();
 		edicion = false;

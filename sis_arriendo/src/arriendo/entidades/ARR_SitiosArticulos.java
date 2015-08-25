@@ -61,12 +61,12 @@ public class ARR_SitiosArticulos {
    public void setSit(GEN_Sitios newGEN_Sitios) {
       if (this.sit == null || !this.sit.equals(newGEN_Sitios))
       {
-         if (this.sit != null)
+        /* if (this.sit != null)
          {
             GEN_Sitios oldGEN_Sitios = this.sit;
             this.sit = null;
             oldGEN_Sitios.removeSa(this);
-         }
+         } */
          if (newGEN_Sitios != null)
          {
             this.sit = newGEN_Sitios;

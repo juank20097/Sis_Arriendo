@@ -17,47 +17,46 @@
 			</center>
 			<b:row>
 				<b:column span="6">
-					<b:selectOneMenu required="false" value="#{sitiosBean.tipositio}" requiredMessage="Campo Tipo de Sitio requerido">
-        			<f:selectItem itemValue="-1" itemLabel="--Seleccione--"/>
-        			<f:selectItems value="#{sitiosBean.listTipoSitios}" >
-        			</f:selectItems>
-        			</b:selectOneMenu>
+					<p:selectOneMenu filter="true" filterMatchMode="startsWith" style="width: 100%; padding: 1%; margin-bottom: 1%;" value="#{asignacionBean.sel_sitio}">
+						<f:selectItem  itemLabel="--Seleccione--" itemValue="-1" />
+						<f:selectItems value="#{asignacionBean.listSitios2}" />
+						<p:ajax update=":frmbicis:tbb"
+							listener="#{asignacionBean.listadeUno()}">
+						</p:ajax>
+					</p:selectOneMenu>
 				</b:column>
 				<b:column span="6">
-					<b:selectOneMenu required="false" value="#{sitiosBean.tipositio}" requiredMessage="Campo Tipo de Sitio requerido">
-        			<f:selectItem itemValue="-1" itemLabel="--Seleccione--"/>
-        			<f:selectItems value="#{sitiosBean.listTipoSitios}" >
-        			</f:selectItems>
-        			</b:selectOneMenu>
+					<p:selectOneMenu filter="true" filterMatchMode="startsWith" style="width: 100%; padding: 1%; margin-bottom: 1%;" value="#{asignacionBean.sel_articulo}">
+						<f:selectItem itemValue="-1" itemLabel="--Seleccione--" />
+						<f:selectItems value="#{asignacionBean.listArticulos2}">
+						</f:selectItems>
+					</p:selectOneMenu>
 				</b:column>
 			</b:row>
+			<center>
+				<b:commandButton value="Añadir" look="primary" iconAwesome="plus"
+					actionListener="#{asignacionBean.crearSarticulo}" update=":frmbicis:tbb" />
+			</center>
 		</h:form>
 		<br />
 		<h:form id="frmbicis">
 			<p:messages closable="true"></p:messages>
 			<b:panel title="Listado" look="primary">
-				<p:dataTable id="tbb" value="#{institucionBean.listInstitucion}"
-					reflow="true" var="ins" rows="8" emptyMessage="Sin Datos"
+				<p:dataTable id="tbb" value="#{asignacionBean.sa}"
+					reflow="true" var="ars" rows="8" emptyMessage="Sin Datos"
 					paginator="true"
 					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
-					<p:column filterBy="#{ins.ins_nombre}" filterMatchMode="contains"
-						headerText="NOMBRE" width="150">
-						<h:outputText value="#{ins.ins_nombre}"></h:outputText>
+					<p:column filterBy="#{ars.sit}" filterMatchMode="contains"
+						headerText="SITIO" width="150">
+						<h:outputText value="#{ars.sit.sit_nombre}"></h:outputText>
 					</p:column>
-					<p:column headerText="DESCRIPCIÓN" width="350">
-						<!--p:inputTextarea value="#{bic.artDescripcion}" rows="2" cols="19" readonly="true" autoResize="false"/-->
-						<h:outputText value="#{ins.ins_descripcion}"></h:outputText>
-					</p:column>
-					<p:column filterBy="#{ins.ins_estado}" filterMatchMode="contains"
-						headerText="ESTADO" width="100">
-						<h:outputText value="#{ins.ins_estado}"
-							style="color:#{institucionBean.color(ins.ins_estado)}"></h:outputText>
+					<p:column filterBy="#{ars.art_id}" filterMatchMode="contains"
+						headerText="ARTÍCULO" width="150">
+						<h:outputText value="#{asignacionBean.verarticulo(ars.art_id)}"></h:outputText>
 					</p:column>
 					<p:column headerText="OPCIONES" width="100">
-						<p:commandButton id="btnE" icon="ui-icon-pencil"
-							action="#{institucionBean.cargarInstitucion(ins)}">
-							<p:tooltip for="btnE" value="Editar institución"
-								trackMouse="true" />
+						<p:commandButton id="btnE" icon="ui-icon-closethick"
+							actionListener="#{asignacionBean.eliminar(ars)}"  update=":frmbicis:tbb">
 						</p:commandButton>
 							&nbsp;&nbsp;&nbsp;
 						</p:column>
