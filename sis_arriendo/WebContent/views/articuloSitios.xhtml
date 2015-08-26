@@ -11,10 +11,11 @@
             Asignación
         </ui:define>
 	<ui:define name="contenido">
-		<h:form>
+		<h:form id="form">
 			<center>
 				<h1>ASIGNACIÓN</h1>
 			</center>
+			<br/>
 			<b:row>
 				<b:column span="6">
 					<p:selectOneMenu filter="true" filterMatchMode="startsWith" style="width: 100%; padding: 1%; margin-bottom: 1%;" value="#{asignacionBean.sel_sitio}">
@@ -26,15 +27,16 @@
 					</p:selectOneMenu>
 				</b:column>
 				<b:column span="6">
-					<p:selectOneMenu filter="true" filterMatchMode="startsWith" style="width: 100%; padding: 1%; margin-bottom: 1%;" value="#{asignacionBean.sel_articulo}">
+					<p:selectOneMenu id="sdf" filter="true" filterMatchMode="startsWith" style="width: 100%; padding: 1%; margin-bottom: 1%;" value="#{asignacionBean.sel_articulo}">
 						<f:selectItem itemValue="-1" itemLabel="--Seleccione--" />
 						<f:selectItems value="#{asignacionBean.listArticulos2}">
 						</f:selectItems>
 					</p:selectOneMenu>
 				</b:column>
 			</b:row>
+			<br/>
 			<center>
-				<b:commandButton value="Añadir" look="primary" iconAwesome="plus"
+				<b:commandButton style="width:20%;" value="Añadir" look="primary" iconAwesome="plus"
 					actionListener="#{asignacionBean.crearSarticulo}" update=":frmbicis:tbb" />
 			</center>
 		</h:form>
@@ -56,7 +58,7 @@
 					</p:column>
 					<p:column headerText="OPCIONES" width="100">
 						<p:commandButton id="btnE" icon="ui-icon-closethick"
-							actionListener="#{asignacionBean.eliminar(ars)}"  update=":frmbicis:tbb">
+							actionListener="#{asignacionBean.eliminar(ars)}"  update=":frmbicis:tbb :form:sdf">
 						</p:commandButton>
 							&nbsp;&nbsp;&nbsp;
 						</p:column>

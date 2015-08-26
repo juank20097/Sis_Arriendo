@@ -154,6 +154,7 @@ public class AsignacionBean {
 			}
 			}
 			this.listadeUno();
+			this.getlistArticulos2();
 			r = "articuloSitios";
 			// limpiar datos
 			saId=0;
@@ -172,12 +173,23 @@ public class AsignacionBean {
 		 * @return lista de todas
 		 */
 		public List<SelectItem> getlistArticulos2() {
+			int r=0;
 			List<SelectItem> lista = new ArrayList<SelectItem>();
 			List<GEN_Articulos> completo = manager.findAllArticulos();
+			List<ARR_SitiosArticulos> arr = manager.findAllSitiosArticulos();
 			for (GEN_Articulos s : completo) {
+				r=0;
 				if (s.getArt_estado()=='A'){
-				lista.add(new SelectItem(s.getArt_id(), s.getArt_nombre()));
+					for (ARR_SitiosArticulos a : arr) {
+						if (a.getArt_id()!=s.getArt_id()){
+							r++;
+						}
+					}
+					if (r==arr.size()){
+						lista.add(new SelectItem(s.getArt_id(), s.getArt_nombre()));
+					}
 				}
+				
 				}
 			return lista;
 		}
@@ -212,21 +224,10 @@ public class AsignacionBean {
 	
 	public void eliminar(ARR_SitiosArticulos a){
 		manager.eliminarSArticulo(a.getSaId());
+		this.getlistArticulos2();
 		this.listadeUno();
+		
 	}
-	
-	public String versitio(Integer id){
-		GEN_Sitios s;
-		String h="";
-		try {
-			s = manager.SitioByID(id);
-			h=s.getSit_nombre();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return h;
-		}
 	
 	public String verarticulo(Integer id){
 		GEN_Articulos s;
