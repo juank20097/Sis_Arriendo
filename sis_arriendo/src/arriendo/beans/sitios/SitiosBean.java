@@ -221,6 +221,7 @@ public class SitiosBean {
 			sit_capacidad = 0;
 			sit_estado = 'A';
 			area = 0;
+			tipositio=0;
 			edicion = false;
 		} catch (Exception e) {
 			Mensaje.crearMensajeERROR(e.getMessage());
@@ -241,6 +242,7 @@ public class SitiosBean {
 		sit_capacidad = t.getSit_capacidad();
 		sit_estado = t.getSit_estado();
 		area = t.getAre().getAre_id();
+		tipositio = t.getTsi().getTsi_id();
 		edicion = true;
 		return "nsitio?faces-redirect=true";
 	}
@@ -258,6 +260,7 @@ public class SitiosBean {
 		sit_capacidad = 0;
 		sit_estado = 'A';
 		area = 0;
+		tipositio=0;
 		edicion = false;
 		return "sitio?faces-redirect=true";
 	}
