@@ -11,6 +11,7 @@ import arriendo.entidades.ARR_ContratoClausulas_Det;
 import arriendo.entidades.GEN_Contadores;
 import arriendo.entidades.GEN_ContratoPlantillas_Cab;
 import arriendo.entidades.GEN_ContratoPlantillaClausulas_Det;
+import arriendo.entidades.GEN_Estados;
 import arriendo.entidades.GEN_Personas;
 
 
@@ -39,12 +40,12 @@ public class ManagerContratos {
 	 * @return
 	 * @throws Exception
 	 */
-	public GEN_ContratoPlantillaClausulas_Det findPlanClauDetByID(long id) throws Exception{
+	public GEN_ContratoPlantillaClausulas_Det findPlanClauDetByID(Integer id) throws Exception{
 		return (GEN_ContratoPlantillaClausulas_Det)
 				mngDao.findById(GEN_ContratoPlantillaClausulas_Det.class, id);
 	}
 	
-	public GEN_ContratoPlantillas_Cab findPlanCabByID(long id) throws Exception{
+	public GEN_ContratoPlantillas_Cab findPlanCabByID(Integer id) throws Exception{
 		return (GEN_ContratoPlantillas_Cab)
 				mngDao.findById(GEN_ContratoPlantillas_Cab.class, id);
 	}
@@ -158,7 +159,7 @@ public class ManagerContratos {
 	 * @throws Exception
 	 */
 	@SuppressWarnings("unchecked")
-	public List<GEN_ContratoPlantillaClausulas_Det> findAllClauPlanByContID(long contId){
+	public List<GEN_ContratoPlantillaClausulas_Det> findAllClauPlanByContID(Integer contId){
 		List<GEN_ContratoPlantillaClausulas_Det> resp = new ArrayList<GEN_ContratoPlantillaClausulas_Det>();
 		List<GEN_ContratoPlantillaClausulas_Det> todos = mngDao.findAll(GEN_ContratoPlantillaClausulas_Det.class);
 		for (GEN_ContratoPlantillaClausulas_Det p : todos) {
@@ -175,7 +176,7 @@ public class ManagerContratos {
 	 * @return
 	 * @throws Exception
 	 */
-	public GEN_ContratoPlantillaClausulas_Det findClausulaPLantillaDetByID(long idClau) throws Exception{
+	public GEN_ContratoPlantillaClausulas_Det findClausulaPLantillaDetByID(Integer idClau) throws Exception{
 		return (GEN_ContratoPlantillaClausulas_Det) mngDao.findById(GEN_ContratoPlantillaClausulas_Det.class, idClau);
 	}
 	
@@ -200,7 +201,7 @@ public class ManagerContratos {
 	 * @param clausula
 	 * @throws Exception
 	 */
-	public void editClausulaPlantillaContrato(long idClau, String clausula)throws Exception{
+	public void editClausulaPlantillaContrato(Integer idClau, String clausula)throws Exception{
 		GEN_ContratoPlantillaClausulas_Det clau = findClausulaPLantillaDetByID(idClau);
 		clau.setCpp_clausula(clausula);
 		mngDao.actualizar(clau);
@@ -211,7 +212,7 @@ public class ManagerContratos {
 	 * @param idClau
 	 * @throws Exception
 	 */
-	public void cambioEstadoClausulaPlantillaContrato(long idClau)throws Exception{
+	public void cambioEstadoClausulaPlantillaContrato(Integer idClau)throws Exception{
 		GEN_ContratoPlantillaClausulas_Det clau = findClausulaPLantillaDetByID(idClau);
 		if(clau.getCpd_estado()==('A')){
 			clau.setCpd_estado('I');
@@ -287,7 +288,7 @@ public class ManagerContratos {
 	}
 	
 	
-	public GEN_ContratoPlantillas_Cab plantillaContratoByID(long cpcId) throws Exception{
+	public GEN_ContratoPlantillas_Cab plantillaContratoByID(Integer cpcId) throws Exception{
 		return (GEN_ContratoPlantillas_Cab) mngDao.findById(GEN_ContratoPlantillas_Cab.class, cpcId);
 	}
 	
@@ -297,7 +298,7 @@ public class ManagerContratos {
 	 * @param tipoContrato
 	 * @return
 	 */
-	public List<ARR_ContratoClausulas_Det> cargarClausulasPorContrato(long cpId) throws Exception{
+	public List<ARR_ContratoClausulas_Det> cargarClausulasPorContrato(Integer cpId) throws Exception{
 		GEN_ContratoPlantillas_Cab plantilla =  plantillaContratoByID(cpId);
 		
 		List<GEN_ContratoPlantillaClausulas_Det> todos = findAllClauPlanByContID(plantilla.getCpc_id());
@@ -326,7 +327,7 @@ public class ManagerContratos {
 	 */
 	public ARR_Contratos_Cab crearContratoTmp(//GenPersona persona, 
 			Timestamp fechaInicio, Timestamp fechaFin, 
-			long cpId, String tipoContrato) throws Exception{
+			Integer cpId, String tipoContrato) throws Exception{
 		GEN_ContratoPlantillas_Cab plantilla =  plantillaContratoByID(cpId);
 		contTemp = new ARR_Contratos_Cab();
 		//contTemp.setConNumero("CNTB"+lastValueCont("contratobicicleta"));
@@ -449,5 +450,19 @@ public class ManagerContratos {
 		cont.setCab_observacion(descripcion);
 		mngDao.actualizar(cont);
 	}
+	/**
+	 * Creación de metodos para el manejo de la tabla GEN_Estado
+	 * 
+	 */
+
+	/**
+	 * Metodo para listar todos los datos de la entidad
+	 * 
+	 * @return La lista de todos los datos de la entidad encontradas
+	 */
+	@SuppressWarnings("unchecked")
+	public List<GEN_Estados> findAllEstados() {
+		return mngDao.findAll(GEN_Estados.class);
+	}// Cierre del metodo
 		
 }

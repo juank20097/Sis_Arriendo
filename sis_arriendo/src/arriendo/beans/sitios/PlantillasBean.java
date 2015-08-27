@@ -13,6 +13,7 @@ import javax.faces.model.SelectItem;
 
 import arriendo.entidades.GEN_ContratoPlantillas_Cab;
 import arriendo.entidades.GEN_ContratoPlantillaClausulas_Det;
+import arriendo.entidades.GEN_Estados;
 import arriendo.generico.Mensaje;
 import arriendo.manager.ManagerContratos;
 
@@ -23,13 +24,13 @@ public class PlantillasBean implements Serializable{
 	
 	private ManagerContratos mngCont;
 	/************CABECERA************/
-	private long idContPlan;
+	private Integer idContPlan;
 	private String nombre;
 	private String descripcion;
 	private char estado;
 	private GEN_ContratoPlantillas_Cab planCabTmp;
 	/************DETALLE*************/
-	private long idClauPlan;
+	private Integer idClauPlan;
 	private Integer nroClausula;
 	private String clausula;
 	/************LISTADO*************/
@@ -43,14 +44,14 @@ public class PlantillasBean implements Serializable{
 	/**
 	 * @return the idContPlan
 	 */
-	public long getIdContPlan() {
+	public Integer getIdContPlan() {
 		return idContPlan;
 	}
 
 	/**
 	 * @param idContPlan the idContPlan to set
 	 */
-	public void setIdContPlan(long idContPlan) {
+	public void setIdContPlan(Integer idContPlan) {
 		this.idContPlan = idContPlan;
 	}
 
@@ -128,14 +129,14 @@ public class PlantillasBean implements Serializable{
 	/**
 	 * @return the idClauPlan
 	 */
-	public long getIdClauPlan() {
+	public Integer getIdClauPlan() {
 		return idClauPlan;
 	}
 
 	/**
 	 * @param idClauPlan the idClauPlan to set
 	 */
-	public void setIdClauPlan(long idClauPlan) {
+	public void setIdClauPlan(Integer idClauPlan) {
 		this.idClauPlan = idClauPlan;
 	}
 
@@ -157,7 +158,7 @@ public class PlantillasBean implements Serializable{
 	 * @return the listClauDet
 	 */
 	public List<GEN_ContratoPlantillaClausulas_Det> getListClauDet() {
-		if(getIdContPlan()!=0L)
+		
 			listClauDet = mngCont.findAllClauPlanByContID(getIdContPlan());
 		return listClauDet;
 	}
@@ -283,7 +284,7 @@ public class PlantillasBean implements Serializable{
 		setNombre(p.getCpc_nombre());
 		setDescripcion(p.getCpc_descripcion());
 		setEstado(p.getCpc_estado());
-		return "ncontratos?faces-redirect=true";
+		return "econtratos?faces-redirect=true";
 	}
 	
 	/**
@@ -351,6 +352,22 @@ public class PlantillasBean implements Serializable{
 	}
 	
 	/**
+	 * Lista de estados /////////////////////metodo a
+	 * repetir//////////////////////////////
+	 * 
+	 * @return lista de todos los estados
+	 */
+	public List<SelectItem> getlistEstados() {
+		List<SelectItem> lista = new ArrayList<SelectItem>();
+		List<GEN_Estados> completo = mngCont.findAllEstados();
+		for (GEN_Estados est : completo) {
+			lista.add(new SelectItem(est.getEst_id(), est.getEst_id() + " : "
+					+ est.getEst_nombre()));
+		}
+		return lista;
+	}
+	
+	/**
 	 * Cancela la acción de editar o crear una claúsula
 	 */
 	public void cancelarClau() {
@@ -365,16 +382,5 @@ public class PlantillasBean implements Serializable{
 	public String cancelarEdPlantilla(){
 		setPlanCabTmp(null);setIdContPlan(0);setNombre("");setDescripcion("");
 		return "contratos?faces-redirect=true";
-	}
-	
-	/**
-	 * Lista de estados de plantillas
-	 * @return
-	 */
-	public List<SelectItem> listaEstados(){
-		List<SelectItem> lista = new ArrayList<SelectItem>();
-		lista.add(new SelectItem(GEN_ContratoPlantillas_Cab.ACTIVO,GEN_ContratoPlantillas_Cab.ACTIVO));
-		lista.add(new SelectItem(GEN_ContratoPlantillas_Cab.INACTIVO,GEN_ContratoPlantillas_Cab.INACTIVO));
-		return lista;
 	}
 }

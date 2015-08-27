@@ -40,7 +40,7 @@
 							<h:outputText value="#{cpc_descripcion}"/>
 						</p:column>
 						<p:column filterBy="#{plan.cpc_estado}" filterMatchMode="contains" headerText="ESTADO" width="100">
-							<h:outputText value="#{plan.cpc_estado}"></h:outputText>
+							<h:outputText value="#{plan.cpc_estado}"  style="color:#{institucionBean.color(plan.cpc_estado)}"></h:outputText>
 						</p:column>
 						<p:column headerText="OPCIONES" width="80">
 							<p:commandButton icon="ui-icon-pencil" id="btnE" action="#{plantillasBean.cargarDatosPlanCont(plan)}">
