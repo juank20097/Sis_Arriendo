@@ -17,7 +17,8 @@
 			</center>
 			<br/>
 			<b:row>
-				<b:column span="6">
+			<b:column span="1">SITIOS:</b:column>
+				<b:column span="5">
 					<p:selectOneMenu filter="true" filterMatchMode="startsWith" style="width: 100%; padding: 1%; margin-bottom: 1%;" value="#{asignacionBean.sel_sitio}">
 						<f:selectItem  itemLabel="--Seleccione--" itemValue="-1" />
 						<f:selectItems value="#{asignacionBean.listSitios2}" />
@@ -26,7 +27,8 @@
 						</p:ajax>
 					</p:selectOneMenu>
 				</b:column>
-				<b:column span="6">
+				<b:column span="1">ARTICULOS:</b:column>
+				<b:column span="5">
 					<p:selectOneMenu id="sdf" filter="true" filterMatchMode="startsWith" style="width: 100%; padding: 1%; margin-bottom: 1%;" value="#{asignacionBean.sel_articulo}">
 						<f:selectItem itemValue="-1" itemLabel="--Seleccione--" />
 						<f:selectItems value="#{asignacionBean.listArticulos2}">
