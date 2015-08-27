@@ -1,4 +1,4 @@
-package arriendo.bean.contratos;
+package arriendo.beans.sitios;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -158,8 +158,17 @@ public class PlantillasBean implements Serializable{
 	 * @return the listClauDet
 	 */
 	public List<GEN_ContratoPlantillaClausulas_Det> getListClauDet() {
-		
+		try
+		{
 			listClauDet = mngCont.findAllClauPlanByContID(getIdContPlan());
+			Mensaje.crearMensajeINFO("No hay datos");
+
+		}
+		catch(Exception e)
+		{
+			Mensaje.crearMensajeWARN(e.getMessage());
+		}
+		
 		return listClauDet;
 	}
 
@@ -347,7 +356,7 @@ public class PlantillasBean implements Serializable{
 			return "contratos?faces-redirect=true";
 		} catch (Exception e) {
 			Mensaje.crearMensajeERROR(e.getMessage());
-			return "";
+			return "contratos?faces-redirect=true";
 		}
 	}
 	

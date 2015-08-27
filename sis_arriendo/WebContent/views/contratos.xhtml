@@ -37,7 +37,7 @@
 							<h:outputText value="#{plan.cpc_nombre}"></h:outputText>
 						</p:column>
 						<p:column headerText="DESCRIPCIÓN" width="320">
-							<h:outputText value="#{cpc_descripcion}"/>
+							<h:outputText value="#{plan.cpc_descripcion}"/>
 						</p:column>
 						<p:column filterBy="#{plan.cpc_estado}" filterMatchMode="contains" headerText="ESTADO" width="100">
 							<h:outputText value="#{plan.cpc_estado}"  style="color:#{institucionBean.color(plan.cpc_estado)}"></h:outputText>
