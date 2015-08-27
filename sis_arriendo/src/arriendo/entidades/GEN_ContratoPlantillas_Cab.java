@@ -1,6 +1,6 @@
 /***********************************************************************
  * Module:  GEN_ContratoPlantillas_Cab.java
- * Author:  jestevez
+ * Author:  LUIS
  * Purpose: Defines the Class GEN_ContratoPlantillas_Cab
  ***********************************************************************/
 
@@ -12,8 +12,6 @@ import java.util.*;
 public class GEN_ContratoPlantillas_Cab {
    /** @pdOid 5440cc50-e0f0-47ac-8dd8-d56e707a571a */
    private Integer cpc_id;
-   /** @pdOid d0ad91c7-83bd-42cd-9bbc-3f0a00c80b9e */
-   private String art_tipo;
    /** @pdOid 29f8e735-9fe9-4a63-881b-3a19cff25f74 */
    private String cpc_nombre;
    /** @pdOid 3308ccbe-8c92-4fc0-b436-5edb8693d036 */
@@ -43,17 +41,6 @@ public class GEN_ContratoPlantillas_Cab {
     * @pdOid 26eecc0d-71da-47e7-8aae-f1e8851aeaec */
    public void setCpc_id(Integer newCpc_id) {
       cpc_id = newCpc_id;
-   }
-   
-   /** @pdOid 23211f26-1db3-4265-8806-76f81741b58f */
-   public String getArt_tipo() {
-      return art_tipo;
-   }
-   
-   /** @param newArt_tipo
-    * @pdOid 7e6c3131-36de-41aa-8fe0-250a5aa75cfa */
-   public void setArt_tipo(String newArt_tipo) {
-      art_tipo = newArt_tipo;
    }
    
    /** @pdOid 5b4e1f7e-5a45-4456-9642-ad31ea7793ba */

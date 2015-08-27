@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui">
+
+	<ui:composition template="template.xhtml">
+		<ui:define name="titulo">
+            Plantilla
+        </ui:define>
+        <ui:define name="contenido">
+			<h:form id="frmpmsj">
+	       		<p:messages closable="true"></p:messages>
+	       	</h:form>	
+	       	<h:form id="frmcp">
+	       		<b:panel look="primary" title="Datos de Plantilla" >
+	       			<b:row>
+	       				<b:column span="2"><h:outputLabel value="Nombre*: " /></b:column>
+	       				<b:column span="10">
+	       					<b:inputText value="#{plantillasBean.nombre}" required="true" requiredMessage="Campo nombre requerido"></b:inputText>
+	       				</b:column>
+	       			</b:row>
+	       			<b:row>
+	       				<b:column span="2"><h:outputLabel value="Descripción*: " /></b:column>
+	       				<b:column span="10">
+			       			<p:inputTextarea value="#{plantillasBean.descripcion}" style="width:100%; margin-bottom:15px;" autoResize="false" required="true" requiredMessage="Campo descripción requerido"/>
+	       				</b:column>
+	       			</b:row>
+	       			<b:row>
+	       				<b:column span="2">
+	       					<b:commandButton value="Crear plantilla" size="sm" actionListener="#{plantillasBean.crearPlantillaContrato()}" update="frmcp :frmpmsj"></b:commandButton>
+	       				</b:column>
+	       			</b:row>
+	       		</b:panel>
+	       	</h:form>
+	       	<h:form id="frmdp">
+	       		<b:panel look="primary" title="Cláusulas de Plantilla">
+	       			<b:row>
+						<b:column span="2">
+							<p:commandButton value="Añadir claúsula" type="button" icon="ui-icon-plus" onclick="PF('dlgclau').show();" />
+						</b:column>
+					</b:row>
+					<br/>
+	       			<p:dataTable value="#{plantillasBean.planCabTmp.con_p_d}" var="clau" 
+	       				emptyMessage="No se han añadido claúsulas" styleClass="table table-striped">
+	       				<p:column width="100">
+						    <f:facet name="header">Número</f:facet>
+						    <h:outputText value="#{clau.cpd_numero}"/>
+						</p:column>
+						<p:column>
+						    <f:facet name="header">Descripción</f:facet>
+						    <p:inputTextarea value="#{clau.cpp_clausula}" style="width:100%;"/>
+						</p:column>
+						<p:column width="100">
+						    <f:facet name="header">Estado</f:facet>
+						    <h:outputText value="#{clau.cpd_estado}"/>
+						</p:column>
+						<p:column width="80">
+						    <f:facet name="header">Quitar</f:facet>
+						    <p:commandButton icon="ui-icon-trash" actionListener="#{plantillasBean.quitarClauPlanCont(clau)}" update=":frmdp :frmpmsj"/>
+						</p:column>
+	       			</p:dataTable>
+	       		</b:panel>
+	       		<b:row>
+					<b:column span="1">
+						<b:commandButton value="Guardar" action="#{plantillasBean.guardarPlantCont()}" look="info"/>
+					</b:column>
+					<b:column span="1">
+						<h:commandButton type="button" value="Cancelar" action="#{plantillasBean.cancelarPlantilla()}" 
+			    			styleClass="btn btn-info">
+						    <f:ajax />
+						</h:commandButton>   
+				    </b:column>
+				</b:row>
+	       	</h:form>   	
+	       	<p:dialog header="Datos Cláusula" widgetVar="dlgclau" minHeight="200" minWidth="450" width="500" modal="true" closable="false">
+			    <h:form id="frmc">
+			    	<h:panelGrid columns="2" cellspacing="3" width="100%">
+			    		<h:outputLabel value="Número*" />
+			    		<b:inputText value="#{plantillasBean.nroClausula}"/>
+			    		<h:outputLabel value="Cláusula*" />
+			    		<p:inputTextarea value="#{plantillasBean.clausula}" style="width:100%; margin-bottom:15px;"/>
+			    		<b:commandButton value="Guardar" actionListener="#{plantillasBean.agregarClauPlanCont()}" update=":frmpmsj :frmdp"></b:commandButton>
+			    		<h:commandButton type="button" value="Cancelar" actionListener="#{plantillasBean.cancelAgregarClau}" 
+			    			styleClass="btn btn-default" onclick="PF('dlgclau').hide();">
+						    <f:ajax />
+						</h:commandButton>
+			    	</h:panelGrid>
+			    </h:form>
+			</p:dialog>
+		</ui:define>
+ 	</ui:composition>
+</html>
+

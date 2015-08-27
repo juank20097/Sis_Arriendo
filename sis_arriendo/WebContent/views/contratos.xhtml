@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui">
+
+	<ui:composition template="template.xhtml">
+		<ui:define name="titulo">
+            PLantillas de Contrato
+        </ui:define>
+		<ui:define name="contenido">
+			<h:form>
+				<center><h1>PLANTILLAS DE CONTRATOS</h1></center>
+				<b:row>
+					<b:column span="1">
+						<b:commandButton value="Nuevo" iconAwesome="file-o" action="#{plantillasBean.nuevaPlantillaContrato()}"/>
+					</b:column>
+					<b:column span="1">
+						<b:commandButton value="Volver" iconAwesome="angle-left" action="index?faces-redirect=true"/>   
+				    </b:column>
+				</b:row>
+			</h:form>
+			<br></br>
+        	<h:form id="frmbicis">
+				<p:messages closable="true"></p:messages>
+				<b:panel title="Listado" look="primary">
+					<p:dataTable id="tbp" value="#{plantillasBean.listPlanCab}" var="plan" rows="8" emptyMessage="Sin Datos" 
+						 scrollable="true" scrollRows="20" liveScroll="true" paginator="true"
+    					 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} 
+    					 {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+    					<p:column headerText="ID" width="40">
+							<h:outputText value="#{plan.cpc_id}"><f:convertNumber pattern="#0" /></h:outputText>
+						</p:column>
+    					<p:column filterBy="#{plan.cpc_nombre}" filterMatchMode="contains" headerText="NOMBRE" width="150">
+							<h:outputText value="#{plan.cpc_nombre}"></h:outputText>
+						</p:column>
+						<p:column headerText="DESCRIPCIÓN" width="320">
+							<h:outputText value="#{cpc_descripcion}"/>
+						</p:column>
+						<p:column filterBy="#{plan.cpc_estado}" filterMatchMode="contains" headerText="ESTADO" width="100">
+							<h:outputText value="#{plan.cpc_estado}"></h:outputText>
+						</p:column>
+						<p:column headerText="OPCIONES" width="80">
+							<p:commandButton icon="ui-icon-pencil" id="btnE" action="#{plantillasBean.cargarDatosPlanCont(plan)}">
+								<p:tooltip for="btnE" value="Editar Plantilla" trackMouse="true" />
+							</p:commandButton>
+						</p:column>
+    				</p:dataTable>
+				</b:panel>
+			</h:form>
+        </ui:define>
+	</ui:composition>
+	
+</html>

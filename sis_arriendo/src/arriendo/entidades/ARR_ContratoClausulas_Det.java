@@ -15,7 +15,7 @@ public class ARR_ContratoClausulas_Det {
    /** @pdOid 7a077853-6d02-4835-95db-f46b25cda627 */
    private Integer ccd_numero;
    /** @pdOid e10ccb85-1604-40a3-b9bf-7b7eb0d232ae */
-   private short ccd_clausula;
+   private String ccd_clausula;
    /** @pdOid 67a9a8b0-d256-47e6-99fe-47cc22fa0797 */
    private char ccd_estado;
    
@@ -55,13 +55,13 @@ public class ARR_ContratoClausulas_Det {
    }
    
    /** @pdOid 6fb01929-6f5f-4c0c-9f42-55075533c5d1 */
-   public short getCcd_clausula() {
+   public String getCcd_clausula() {
       return ccd_clausula;
    }
    
    /** @param newCcd_clausula
     * @pdOid 1389701e-01f2-40c8-a804-6cadf8ccabd4 */
-   public void setCcd_clausula(short newCcd_clausula) {
+   public void setCcd_clausula(String newCcd_clausula) {
       ccd_clausula = newCcd_clausula;
    }
    

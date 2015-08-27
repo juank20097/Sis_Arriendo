@@ -10,9 +10,6 @@
              <param name="sequence">seq_GEN_ContratoPlantillas_Cab</param>
             </generator>
         </id>
-        <property name="art_tipo" type="java.lang.String">
-            <column name="ART_TIPO" />
-        </property>
         <property name="cpc_nombre" type="java.lang.String">
             <column name="CPC_NOMBRE" />
         </property>
