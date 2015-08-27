@@ -9,7 +9,6 @@
           <generator class="sequence">
              <param name="sequence">seq_ARR_Inter_Per</param>
             </generator>
-
         </id>
         <property name="per_id" type="java.lang.Integer">
             <column name="PER_ID" />

@@ -12,7 +12,7 @@ import java.util.*;
 public class ARR_Inter_Per {
    /** @pdOid 68006ba9-36d8-4722-8b3f-e591febe1c4b */
    private Integer inp_id;
-   /** @pdOid 2b1d2401-1da7-4b48-999a-baa638493d95 */
+   /** @pdOid 9d8cd329-b9af-4a90-a0fd-4ca34dee1ff4 */
    private Integer per_id;
    
    /** @pdOid 14ad1ff2-157c-457f-8038-1301056cbca1 */
@@ -39,13 +39,13 @@ public class ARR_Inter_Per {
       inp_id = newInp_id;
    }
    
-   /** @pdOid f2bbb3bb-d01d-40f1-8a12-7ee1b2d0468e */
+   /** @pdOid fc5a9fca-b396-4af4-bb6c-b54aac65d20d */
    public Integer getPer_id() {
       return per_id;
    }
    
    /** @param newPer_id
-    * @pdOid 2879581c-1382-49a6-bcae-b65c35933564 */
+    * @pdOid 446fcaac-237d-4655-95be-ff35f77a5363 */
    public void setPer_id(Integer newPer_id) {
       per_id = newPer_id;
    }

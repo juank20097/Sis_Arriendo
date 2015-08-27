@@ -8,8 +8,10 @@ import java.util.List;
 
 import arriendo.entidades.ARR_Contratos_Cab;
 import arriendo.entidades.ARR_ContratoClausulas_Det;
+import arriendo.entidades.GEN_Contadores;
 import arriendo.entidades.GEN_ContratoPlantillas_Cab;
 import arriendo.entidades.GEN_ContratoPlantillaClausulas_Det;
+import arriendo.entidades.GEN_Personas;
 
 
 public class ManagerContratos {
@@ -238,9 +240,9 @@ public class ManagerContratos {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	public GenContadores findContadorByClave(String clave)throws Exception{
-		GenContadores cont = null;
-		List<GenContadores> lista = mngDao.findByParam(GenContadores.class, "o.cntClave", clave, null);
+	public GEN_Contadores findContadorByClave(String clave)throws Exception{
+		GEN_Contadores cont = null;
+		List<GEN_Contadores> lista = mngDao.findByParam(GEN_Contadores.class, "o.cntClave", clave, null);
 		if(lista == null || lista.isEmpty())
 			throw new Exception("La consulta no dió resultados");
 		cont = lista.get(0);
@@ -248,14 +250,14 @@ public class ManagerContratos {
 	}
 	
 	public Integer lastValueCont(String clave) throws Exception{
-		return findContadorByClave(clave).getCntValor();
+		return findContadorByClave(clave).getCnt_valor();
 	}
 	
 	public void plusLastValueCont(String clave) throws Exception{
-		GenContadores cont = findContadorByClave(clave);
-		Integer val = cont.getCntValor();
+		GEN_Contadores cont = findContadorByClave(clave);
+		Integer val = cont.getCnt_valor();
 		val++;
-		cont.setCntValor(val);
+		cont.setCnt_valor(val);
 		mngDao.actualizar(cont);
 	}
 	
@@ -264,13 +266,13 @@ public class ManagerContratos {
 	 * @return GenPersona
 	 * @throws Exception
 	 */
-	public GenPersona findPersonaByID(String ciRuc) throws Exception{
-		return (GenPersona) mngDao.findById(GenPersona.class, ciRuc);
+	public GEN_Personas findPersonaByID(String ciRuc) throws Exception{
+		return (GEN_Personas) mngDao.findById(GEN_Personas.class, ciRuc);
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<GenPersona> findAllPersona(){
-		return mngDao.findAll(GenPersona.class);
+	public List<GEN_Personas> findAllPersona(){
+		return mngDao.findAll(GEN_Personas.class);
 	}
 	
 	/**
@@ -361,7 +363,7 @@ public class ManagerContratos {
 			throw new Exception("Primero dede crear contrato");
 		//Setear numero de contrato
 		String nro = "CNTB"+lastValueCont("contratobicicleta");
-		contraTemp.setConNumero(nro);
+		contraTemp.setCab_numero(nro);
 		//Seteo de clausulas
 		for(ARR_ContratoClausulas_Det det : contraTemp.getCon_cla_d()){
 			det.setCon_cab(contraTemp);

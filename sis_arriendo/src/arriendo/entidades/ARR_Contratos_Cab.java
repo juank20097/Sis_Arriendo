@@ -11,7 +11,7 @@ import java.util.*;
 /** @pdOid 23bdef8f-3661-4629-89ca-695fd3eb0632 */
 public class ARR_Contratos_Cab {
    /** @pdOid 9350c158-f713-4124-8d8e-1ef168c4e8d6 */
-   private Integer cab_id;
+   private String cab_numero;
    /** @pdOid a5e2bf76-04b0-487b-8119-5b833a2e1c2b */
    private Date cab_fecha;
    /** @pdOid 2011fad8-07c0-4816-8333-3bb0f223bb30 */
@@ -41,14 +41,14 @@ public class ARR_Contratos_Cab {
    }
    
    /** @pdOid f42fd7eb-b530-4646-b5fb-1c19fdd45677 */
-   public Integer getCab_id() {
-      return cab_id;
+   public String getCab_numero() {
+      return cab_numero;
    }
    
-   /** @param newCab_id
+   /** @param newCab_numero
     * @pdOid 7a41a29a-5178-4131-8ac6-a3ad1ad97f6d */
-   public void setCab_id(Integer newCab_id) {
-      cab_id = newCab_id;
+   public void setCab_numero(String newCab_numero) {
+      cab_numero = newCab_numero;
    }
    
    /** @pdOid 6476c5a2-bbdc-488e-8fb5-ed124793db38 */

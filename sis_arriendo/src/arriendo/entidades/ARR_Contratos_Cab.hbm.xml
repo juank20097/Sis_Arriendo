@@ -4,12 +4,10 @@
 <!-- Generated 12-ago-2015 9:00:28 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="arriendo.entidades.ARR_Contratos_Cab" table="ARR_CONTRATOS_CAB">
-        <id name="cab_id" type="java.lang.Integer">
-            <column name="CAB_ID" />
-            <generator class="sequence">
-             <param name="sequence">seq_ARR_Contratos_Cab</param>
+        <id name="cab_numero" type="java.lang.String">
+            <column name="CAB_NUMERO" />
+            <generator class="assigned">
             </generator>
-
         </id>
         <property name="cab_fecha" type="java.util.Date">
             <column name="CAB_FECHA" />
