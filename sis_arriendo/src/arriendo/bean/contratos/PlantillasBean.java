@@ -1,4 +1,4 @@
-package arriendo.beans.sitios;
+package arriendo.bean.contratos;
 
 import java.io.Serializable;
 import java.util.ArrayList;
