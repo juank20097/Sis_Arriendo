@@ -336,14 +336,14 @@ public class ManagerContratos {
 	 * @param tipoContrato
 	 * @return
 	 */
-	public ARR_Contratos_Cab crearContratoTmp(//GenPersona persona, 
+	public ARR_Contratos_Cab crearContratoTmp(GEN_Personas persona, 
 			Timestamp fechaInicio, Timestamp fechaFin, 
 			Integer cpId, String tipoContrato) throws Exception{
 		GEN_ContratoPlantillas_Cab plantilla =  plantillaContratoByID(cpId);
 		contTemp = new ARR_Contratos_Cab();
-		//contTemp.setConNumero("CNTB"+lastValueCont("contratobicicleta"));
+		contTemp.setCab_numero("CNTA"+lastValueCont("contratoarriendo"));
 		contTemp.setCab_fecha(new Timestamp(new Date().getTime()));
-		//contTemp.setGenPersona(persona);
+		//contTemp.set(persona);
 		contTemp.setCab_fechaini(fechaInicio);
 		contTemp.setCab_fechafin(fechaFin);
 		contTemp.setCab_observacion(plantilla.getCpc_descripcion());
@@ -453,7 +453,7 @@ public class ManagerContratos {
 	 * @param descripcion
 	 * @throws Exception
 	 */
-	public void editarContratoCabG(String nroContrato, Timestamp fechaInicio, 
+	public void editarContratoCabG(String nroContrato,GEN_Personas persona, Timestamp fechaInicio, 
 			Timestamp fechaFin, String descripcion) throws Exception{
 		ARR_Contratos_Cab cont = findContratoByID(nroContrato);
 		cont.setCab_fechaini(fechaInicio);cont.setCab_fechafin(fechaFin);

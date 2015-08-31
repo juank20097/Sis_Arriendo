@@ -18,12 +18,15 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 
-import kioschay.model.entities.GenPersona;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import arriendo.entidades.ARR_ContratoClausulas_Det;
 import arriendo.entidades.ARR_Contratos_Cab;
-import arriendo.entidades.ARR_Inter_Per;
 import arriendo.entidades.GEN_ContratoPlantillas_Cab;
 import arriendo.entidades.GEN_Personas;
+import arriendo.generico.Mensaje;
 import arriendo.manager.ManagerContratos;
 
 @ManagedBean
@@ -33,23 +36,37 @@ public class ContratosBean implements Serializable {
 	private ManagerContratos mngCont;
 	/********** CABECERA *********/
 	private String cab_numero;
+	private String personaId;
+	private GEN_Personas persona;
 	private Date cab_fecha;
 	private Date cab_fechaini;
 	private Date cab_fechafin;
 	private String cab_observacion;
 	private char cab_estado;
 	private String cpc_tipo;
-	private GenPersona persona;
-
+	private Integer cpId;
 	private ARR_Contratos_Cab contraTemp;
+	
+	/**********CABECERA********
+	private String contNro;
+	private String personaId;
+	private GenPersona persona;
+	private String descripcion;
+	private Date fechaInicio;
+	private Date fechaFin;
+	private Date factual;
+	private String artTipo;
+	private long cpId;
+	private PreContratoCab contraTemp;
 	/********** CLAUSULAS ********/
 	private ARR_ContratoClausulas_Det clau;
+	private Integer nroClau;
+	private String clausula;
 	/********** LISTADOS *********/
 	private List<ARR_ContratoClausulas_Det> listClau;
 	private List<GEN_Personas> lstPer;
-	/*
-	private Integer nroClau;
-	private String clausula;
+	
+	
 	/********** LISTADOS *********
 	
 	 */
@@ -73,6 +90,66 @@ public class ContratosBean implements Serializable {
 	 */
 	public void setCab_numero(String cab_numero) {
 		this.cab_numero = cab_numero;
+	}
+	/**
+	 * @return the nroClau
+	 */
+	public Integer getNroClau() {
+		return nroClau;
+	}
+	/**
+	 * @param nroClau the nroClau to set
+	 */
+	public void setNroClau(Integer nroClau) {
+		this.nroClau = nroClau;
+	}
+	/**
+	 * @return the clausula
+	 */
+	public String getClausula() {
+		return clausula;
+	}
+	/**
+	 * @param clausula the clausula to set
+	 */
+	public void setClausula(String clausula) {
+		this.clausula = clausula;
+	}
+	/**
+	 * @return the cpId
+	 */
+	public Integer getCpId() {
+		return cpId;
+	}
+	/**
+	 * @param cpId the cpId to set
+	 */
+	public void setCpId(Integer cpId) {
+		this.cpId = cpId;
+	}
+	/**
+	 * @return the personaId
+	 */
+	public String getPersonaId() {
+		return personaId;
+	}
+	/**
+	 * @param personaId the personaId to set
+	 */
+	public void setPersonaId(String personaId) {
+		this.personaId = personaId;
+	}
+	/**
+	 * @return the persona
+	 */
+	public GEN_Personas getPersona() {
+		return persona;
+	}
+	/**
+	 * @param persona the persona to set
+	 */
+	public void setPersona(GEN_Personas persona) {
+		this.persona = persona;
 	}
 	/**
 	 * @return the cpc_tipo
@@ -245,7 +322,7 @@ public class ContratosBean implements Serializable {
 		List<GEN_Personas> allPers = getLstPer();
 		List<GEN_Personas> filterPers = new ArrayList<GEN_Personas>();
 		for (GEN_Personas p : allPers) {
-			if (p.getPerId().toLowerCase().contains(query.toLowerCase()))
+			if (p.getPer_id().toLowerCase().contains(query.toLowerCase()))
 				filterPers.add(p);
 		}
 		return filterPers;
@@ -286,15 +363,15 @@ public class ContratosBean implements Serializable {
 		try {
 			if (getPersona() == null) {
 				Mensaje.crearMensajeWARN("Seleccione persona de contrato");
-			} else if (getFechaFin() == null || getFechaInicio() == null) {
+			} else if (getCab_fechafin() == null || getCab_fechaini() == null) {
 				Mensaje.crearMensajeWARN("Seleccione la fecha inicio y fin para el contrato");
 			} else {
 				setContraTemp(mngCont.crearContratoTmp(getPersona(),
-						new Timestamp(getFechaInicio().getTime()),
-						new Timestamp(getFechaFin().getTime()), getCpId(),
-						getArtTipo()));
-				setContNro(getContraTemp().getConNumero());
-				setDescripcion(getContraTemp().getConDescripcion());
+						new Timestamp(getCab_fechaini().getTime()),
+						new Timestamp(getCab_fechafin().getTime()), getCpId(),
+						getCpc_tipo()));
+				setCab_numero(getContraTemp().getCab_numero());
+				setCab_observacion(getContraTemp().getCab_observacion());
 				Mensaje.crearMensajeINFO("Creación correcta");
 			}
 		} catch (Exception e) {
@@ -308,10 +385,10 @@ public class ContratosBean implements Serializable {
 	 * @param clau
 	 *            cláusula
 	 */
-	public void cargarClausula(PreContratoclausulasDet clau) {
+	public void cargarClausula(ARR_ContratoClausulas_Det clau) {
 		setClau(clau);
-		setNroClau(clau.getCcdNumero());
-		setClausula(clau.getCcdClausula());
+		setNroClau(clau.getCcd_numero());
+		setClausula(clau.getCcd_clausula());
 	}
 
 	/**
@@ -339,7 +416,7 @@ public class ContratosBean implements Serializable {
 	 */
 	public void guardarContrato() {
 		try {
-			setContNro(mngCont.guardarContratoTmp(getContraTemp()));
+			setCab_numero(mngCont.guardarContratoTmp(getContraTemp()));
 			setGuardado(true);
 			Mensaje.crearMensajeINFO("Contrato guardado de forma correcta");
 		} catch (Exception e) {
@@ -352,7 +429,7 @@ public class ContratosBean implements Serializable {
 	 */
 	public void finalizarContrato() {
 		try {
-			mngCont.finalizarContrato(getContNro());
+			mngCont.finalizarContrato(getCab_numero());
 			setFinalizado(true);
 			Mensaje.crearMensajeINFO("Finalización de contrato exitosa");
 		} catch (Exception e) {
@@ -367,7 +444,7 @@ public class ContratosBean implements Serializable {
 	 */
 	public String anularContrato() {
 		try {
-			mngCont.anularContrato(getContNro());
+			mngCont.anularContrato(getCab_numero());
 			Mensaje.crearMensajeINFO("Se anuló el contrato de forma correcta");
 			return "conbicicleta?faces-redirect=true";
 		} catch (Exception e) {
@@ -385,8 +462,8 @@ public class ContratosBean implements Serializable {
 	public String cancelarContrato() {
 		setPersona(null);
 		setPersonaId("");
-		setFechaFin(null);
-		setFechaInicio(null);
+		setCab_fechafin(null);
+		setCab_fechaini(null);
 		setGuardado(false);
 		setFinalizado(false);
 		return "conbicicleta?faces-redirect=true";
@@ -401,19 +478,19 @@ public class ContratosBean implements Serializable {
 	 *            contrato cabecera de bicicleta
 	 * @return
 	 */
-	public String cargarDatosContrato(PreContratoCab c) {
-		if (c.getConEstado().equals(PreContratoCab.INACTIVO)) {
+	public String cargarDatosContrato(ARR_Contratos_Cab c) {
+		if (c.getCab_estado()=='I') {
 			Mensaje.crearMensajeWARN("Este contrato no se puede Editar, porque ha sido ANULADO.");
 			return "";
 		} else {
-			setContNro(c.getConNumero());
-			setPersona(c.getGenPersona());
-			setPersonaId(c.getGenPersona().getPerId());
-			setFechaInicio(new Date(c.getConFechaInicio().getTime()));
-			setFechaFin(new Date(c.getConFechaFin().getTime()));
-			setDescripcion(c.getConDescripcion());
+			setCab_numero(c.getCab_numero());
+			//setPersona(c.get);
+			//setPersonaId(c.getGenPersona().getPerId());
+			setCab_fechaini(new Date(c.getCab_fechaini().getTime()));
+			setCab_fechafin(new Date(c.getCab_fechafin().getTime()));
+			setCab_observacion(c.getCab_observacion());
 			setGuardado(true);
-			if (c.getConEstado().equals(PreContratoCab.FINALIZADO))
+			if (c.getCab_estado()=='F')
 				setFinalizado(true);
 			else
 				setFinalizado(false);
@@ -438,9 +515,9 @@ public class ContratosBean implements Serializable {
 	 */
 	public void editarContratoG() {
 		try {
-			mngCont.editarContratoCabG(getContNro(), getPersona(),
-					new Timestamp(getFechaInicio().getTime()), new Timestamp(
-							getFechaFin().getTime()), getDescripcion());
+			mngCont.editarContratoCabG(getCab_numero(), getPersona(),
+					new Timestamp(getCab_fechaini().getTime()), new Timestamp(
+							getCab_fechafin().getTime()), getCab_observacion());
 			Mensaje.crearMensajeINFO("Cambios correctamente guardados");
 		} catch (Exception e) {
 			Mensaje.crearMensajeERROR(e.getMessage());
@@ -463,21 +540,21 @@ public class ContratosBean implements Serializable {
 			SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy");
 
 			Map<String, Object> parametros = new HashMap<String, Object>();
-			PreContratoCab c = mngCont.findContratoByID(getContNro());
-			parametros.put("pNumero", getContNro());
-			parametros.put("pEncabezado", c.getConDescripcion());
-			parametros.put("pPerID", c.getGenPersona().getPerId());
-			parametros.put("pApellidos", c.getGenPersona().getPerApellidos());
-			parametros.put("pNombres", c.getGenPersona().getPerNombres());
+			ARR_Contratos_Cab c = mngCont.findContratoByID(getCab_numero());
+			parametros.put("pNumero", getCab_numero());
+			parametros.put("pEncabezado", c.getCab_observacion());
+			//parametros.put("pPerID", c.getGenPersona().getPerId());
+			//parametros.put("pApellidos", c.getGenPersona().getPerApellidos());
+			//parametros.put("pNombres", c.getGenPersona().getPerNombres());
 			parametros.put("pFechaInicio",
-					formateador.format(c.getConFechaInicio()));
+					formateador.format(c.getCab_fechaini()));
 			parametros.put("pFechaFinal",
-					formateador.format(c.getConFechaFin()));
+					formateador.format(c.getCab_fechafin()));
 			parametros.put("pRutaImage", carpetaReportes + File.separatorChar
 					+ "yachay-logo1.png");
 
-			List<PreContratoclausulasDet> datos = mngCont
-					.findAllClauByNroCont(getContNro());
+			List<ARR_ContratoClausulas_Det> datos = mngCont
+					.findAllClauByNroCont(getCab_numero());
 
 			JasperPrint informe = JasperFillManager.fillReport(rutaReporte,
 					parametros, new JRBeanCollectionDataSource(datos));
@@ -520,19 +597,19 @@ public class ContratosBean implements Serializable {
 			SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy");
 
 			Map<String, Object> parametros = new HashMap<String, Object>();
-			parametros.put("pNumero", getContNro());
-			parametros.put("pEncabezado", getDescripcion());
+			parametros.put("pNumero", getCab_numero());
+			parametros.put("pEncabezado", getCab_observacion());
 			parametros.put("pPerID", getPersonaId());
-			parametros.put("pApellidos", getPersona().getPerApellidos());
-			parametros.put("pNombres", getPersona().getPerNombres());
+			//parametros.put("pApellidos", getPersona().getPerApellidos());
+			//parametros.put("pNombres", getPersona().getPerNombres());
 			parametros
-					.put("pFechaInicio", formateador.format(getFechaInicio()));
-			parametros.put("pFechaFinal", formateador.format(getFechaFin()));
+					.put("pFechaInicio", formateador.format(getCab_fechaini()));
+			parametros.put("pFechaFinal", formateador.format(getCab_fechafin()));
 			parametros.put("pRutaImage", carpetaReportes + File.separatorChar
 					+ "yachay-logo1.png");
 
-			List<PreContratoclausulasDet> datos = mngCont
-					.findAllClauByNroCont(getContNro());
+			List<ARR_ContratoClausulas_Det> datos = mngCont
+					.findAllClauByNroCont(getCab_numero());
 
 			JasperPrint informe = JasperFillManager.fillReport(rutaReporte,
 					parametros, new JRBeanCollectionDataSource(datos));

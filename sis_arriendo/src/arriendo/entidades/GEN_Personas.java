@@ -11,7 +11,7 @@ import java.util.*;
 /** @pdOid d62f6c62-1c9d-4b39-8828-6744b9876576 */
 public abstract class GEN_Personas {
    /** @pdOid fb81bd5c-37ce-4b35-aea1-71603459febe */
-   private Integer per_id;
+   private String per_id;
    /** @pdOid cae1af51-4469-4236-b93f-65bf8c311549 */
    private String per_tipo_id;
    /** @pdOid a1cefd49-bd3f-4b0c-84a3-5e67a2c14493 */
@@ -33,7 +33,7 @@ public abstract class GEN_Personas {
    /** @pdOid 8aae07d8-c73a-4bc0-a7d2-d32a3e035eca */
    private byte[] per_huella;
    /** @pdOid cd964e05-c450-4038-b45d-e5389a0f8e65 */
-   private int per_nro_articulos;
+   private Integer per_nro_articulos;
    
    /** @pdOid d7c1774f-9171-4bf4-9ff4-ae0498f64585 */
    protected void finalize() {
@@ -46,13 +46,13 @@ public abstract class GEN_Personas {
    }
    
    /** @pdOid 7699631c-97aa-41c2-9994-860b4702a4fa */
-   public Integer getPer_id() {
+   public String getPer_id() {
       return per_id;
    }
    
    /** @param newPer_id
     * @pdOid 673f3b1e-9656-417f-b7f8-5ecc2aeb3e12 */
-   public void setPer_id(Integer newPer_id) {
+   public void setPer_id(String newPer_id) {
       per_id = newPer_id;
    }
    
