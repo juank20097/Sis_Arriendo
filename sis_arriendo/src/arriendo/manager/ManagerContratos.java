@@ -235,7 +235,6 @@ public class ManagerContratos {
 	}
 		
 	/******************************CREAR CONTRATOS*******************************/
-	
 	/**Metodo para listar todos los contratos cabecera
 	 * @return
 	 */
