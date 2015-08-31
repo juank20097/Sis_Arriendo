@@ -6,8 +6,9 @@
     <class name="arriendo.entidades.GEN_Areas" table="GEN_AREAS">
         <id name="are_id" type="java.lang.Integer">
             <column name="ARE_ID" />
-            <generator class="assigned" />
-        </id>
+			<generator class="sequence">
+             <param name="sequence">seq_GEN_Areas</param>
+            </generator>        </id>
         <property name="are_nombre" type="java.lang.String">
             <column name="ARE_NOMBRE" />
         </property>

@@ -6,8 +6,10 @@
     <class name="arriendo.entidades.ARR_ContratoArticulos" table="ARR_CONTRATOARTICULOS">
         <id name="ca_id" type="java.lang.Integer">
             <column name="CA_ID" />
-            <generator class="assigned" />
-        </id>
+            <generator class="sequence">
+            <param name="sequence">seq_ARR_ContratoArticulos</param>
+            </generator>
+            </id>
         <property name="art_id" type="java.lang.Integer">
             <column name="ART_ID" />
         </property>

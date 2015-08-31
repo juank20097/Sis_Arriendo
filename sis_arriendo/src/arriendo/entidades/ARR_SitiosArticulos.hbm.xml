@@ -6,8 +6,9 @@
     <class name="arriendo.entidades.ARR_SitiosArticulos" table="ARR_SITIOSARTICULOS">
         <id name="saId" type="java.lang.Integer">
             <column name="SAID" />
-            <generator class="assigned" />
-        </id>
+ 				<generator class="sequence">
+             <param name="sequence">seq_ARR_SitiosArticulos</param>
+            </generator>        </id>
         <property name="art_id" type="java.lang.Integer">
             <column name="ART_ID" />
         </property>

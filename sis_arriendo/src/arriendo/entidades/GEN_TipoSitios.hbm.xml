@@ -6,8 +6,9 @@
     <class name="arriendo.entidades.GEN_TipoSitios" table="GEN_TIPOSITIOS">
         <id name="tsi_id" type="java.lang.Integer">
             <column name="TSI_ID" />
-            <generator class="assigned" />
-        </id>
+			 <generator class="sequence">
+             <param name="sequence">seq_GEN_TipoSitios</param>
+            </generator>        </id>
         <property name="tsi_nombre" type="java.lang.String">
             <column name="TSI_NOMBRE" />
         </property>

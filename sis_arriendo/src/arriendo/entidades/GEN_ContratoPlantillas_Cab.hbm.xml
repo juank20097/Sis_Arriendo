@@ -6,8 +6,9 @@
     <class name="arriendo.entidades.GEN_ContratoPlantillas_Cab" table="GEN_CONTRATOPLANTILLAS_CAB">
         <id name="cpc_id" type="java.lang.Integer">
             <column name="CPC_ID" />
-            <generator class="assigned" />
-        </id>
+			 <generator class="sequence">
+             <param name="sequence">seq_GEN_ContratoPlantillas_Cab</param>
+            </generator>        </id>
         <property name="cpc_nombre" type="java.lang.String">
             <column name="CPC_NOMBRE" />
         </property>

@@ -6,8 +6,9 @@
     <class name="arriendo.entidades.GEN_Contadores" table="GEN_CONTADORES">
         <id name="cnt_id" type="java.lang.Integer">
             <column name="CNT_ID" />
-            <generator class="assigned" />
-        </id>
+			 <generator class="sequence">
+             <param name="sequence">seq_GEN_Contadores</param>
+            </generator>        </id>
         <property name="cnt_clave" type="java.lang.String">
             <column name="CNT_CLAVE" />
         </property>
