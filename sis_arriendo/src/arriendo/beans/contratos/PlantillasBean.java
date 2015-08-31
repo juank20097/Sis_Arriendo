@@ -171,9 +171,15 @@ public class PlantillasBean implements Serializable{
 	 * @return the listClauDet
 	 */
 	public List<GEN_ContratoPlantillaClausulas_Det> getListClauDet() {
-
+		try
+		{
 			if(getIdContPlan()!=0L)
-			listClauDet = mngCont.findAllClauPlanByContID(planCabTmp.getCpc_id());		
+			listClauDet = mngCont.findAllClauPlanByContID(planCabTmp.getCpc_id());
+		}
+		catch(Exception e)
+		{
+			Mensaje.crearMensajeWARN(e.getMessage());
+		}
 		return listClauDet;
 	}
 
