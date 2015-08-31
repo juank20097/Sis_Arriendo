@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
                                          "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
- <session-factory>
+ <session-factory name="">
   <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
   <property name="hibernate.connection.password">root</property>
   <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/sis_arriendo</property>
@@ -35,6 +35,9 @@
   <mapping resource="arriendo/entidades/ARR_SitiosArticulos.hbm.xml"/>
   <mapping resource="arriendo/entidades/GEN_TipoSitios.hbm.xml"/>
   <mapping resource="arriendo/entidades/GEN_Contadores.hbm.xml"/>
- 
+  <mapping resource="arriendo/entidades/GEN_Docentes.hbm.xml"/>
+  <mapping resource="arriendo/entidades/GEN_Estudiantes.hbm.xml"/>
+  <mapping resource="arriendo/entidades/GEN_Funcionarios.hbm.xml"/>
+  <mapping resource="arriendo/entidades/GEN_Visitantes.hbm.xml"/>
  </session-factory>
 </hibernate-configuration>

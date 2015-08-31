@@ -8,9 +8,6 @@
             <column name="PER_ID" />
             <generator class="assigned" />
         </id>
-        <discriminator type="string">
-            <column name="DISCR_COL" />
-        </discriminator>
         <property name="per_tipo_id" type="java.lang.String">
             <column name="PER_TIPO_ID" />
         </property>

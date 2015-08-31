@@ -3,7 +3,8 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 28-ago-2015 16:21:56 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <union-subclass name="arriendo.entidades.GEN_Funcionarios" extends="arriendo.entidades.GEN_Personas" >
+    <joined-subclass name="arriendo.entidades.GEN_Funcionarios" extends="arriendo.entidades.GEN_Personas" >
+    <key column="per_id"></key>  
         <property name="fun_gerencia" type="java.lang.String">
             <column name="FUN_GERENCIA" />
         </property>
@@ -13,5 +14,5 @@
         <property name="fun_cargo" type="java.lang.String">
             <column name="FUN_CARGO" />
         </property>
-    </union-subclass>
+    </joined-subclass>
 </hibernate-mapping>

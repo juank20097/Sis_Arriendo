@@ -3,9 +3,10 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 28-ago-2015 16:21:56 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <union-subclass name="arriendo.entidades.GEN_Docentes" extends="arriendo.entidades.GEN_Personas" >
+    <joined-subclass name="arriendo.entidades.GEN_Docentes" extends="arriendo.entidades.GEN_Personas" >
+    	<key column="per_id"></key>  
         <property name="doc_titulo" type="int">
             <column name="DOC_TITULO" />
         </property>
-    </union-subclass>
+    </joined-subclass>
 </hibernate-mapping>
