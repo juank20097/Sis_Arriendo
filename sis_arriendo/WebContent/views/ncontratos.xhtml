@@ -8,7 +8,7 @@
 
 	<ui:composition template="template.xhtml">
 		<ui:define name="titulo">
-            Plantilla
+            Nueva Plantilla Contrato
         </ui:define>
         <ui:define name="contenido">
 			<h:form id="frmpmsj">
@@ -29,10 +29,19 @@
 	       				</b:column>
 	       			</b:row>
 	       			<b:row>
+	       				<b:column span="2"><h:outputLabel value="Tipo de Artículo*" /></b:column>
+	       				<b:column span="10">
+	       					<b:selectOneMenu value="#{plantillasBean.tipoContrato}">
+					            <f:selectItem itemLabel="Seleccionar.." itemValue="" />
+					            <f:selectItems value="#{plantillasBean.listaTiposContrato()}" />
+					        </b:selectOneMenu>
+	       				</b:column>
+	       			</b:row>
+	       			<b:row>
 	       				<b:column span="2">
 	       					<b:commandButton value="Guardar plantilla" size="sm" actionListener="#{plantillasBean.crearPlantillaContrato()}" update="frmcp :frmpmsj"></b:commandButton>
 	       				</b:column>
-	       			</b:row>
+	       			</b:row>	       			
 	       		</b:panel>
 	       	</h:form>
 	       	<h:form id="frmdp">
@@ -65,10 +74,10 @@
 	       		</b:panel>
 	       		<b:row>
 					<b:column span="1">
-						<b:commandButton value="Guardar" action="#{plantillasBean.guardarPlantCont()}" look="info"/>
+						<b:commandButton value="Guardar" action="#{plantillasBean.guardarPlantCont}" look="info"/>
 					</b:column>
 					<b:column span="1">
-						<h:commandButton type="button" value="Cancelar" action="#{plantillasBean.cancelarPlantilla()}" 
+						<h:commandButton type="button" value="Cancelar" action="#{plantillasBean.cancelarPlantilla}" 
 			    			styleClass="btn btn-info">
 						    <f:ajax />
 						</h:commandButton>   
@@ -82,7 +91,7 @@
 			    		<b:inputText value="#{plantillasBean.nroClausula}"/>
 			    		<h:outputLabel value="Cláusula*" />
 			    		<p:inputTextarea value="#{plantillasBean.clausula}" style="width:100%; margin-bottom:15px;"/>
-			    		<b:commandButton value="Guardar" actionListener="#{plantillasBean.agregarClauPlanCont()}" update=":frmpmsj :frmdp"></b:commandButton>
+			    		<b:commandButton value="Guardar" actionListener="#{plantillasBean.agregarClauPlanCont}" update=":frmpmsj :frmdp"></b:commandButton>
 			    		<h:commandButton type="button" value="Cancelar" actionListener="#{plantillasBean.cancelAgregarClau}" 
 			    			styleClass="btn btn-default" onclick="PF('dlgclau').hide();">
 						    <f:ajax />

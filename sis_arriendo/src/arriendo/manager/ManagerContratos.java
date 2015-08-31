@@ -76,10 +76,11 @@ public class ManagerContratos {
 	 * @param descripcion
 	 * @return PreContratoplantillaCab
 	 */
-	public GEN_ContratoPlantillas_Cab crearPantillaContratoTmp(String nombre, String descripcion) throws Exception{
+	public GEN_ContratoPlantillas_Cab crearPantillaContratoTmp(String nombre,String tipoContrato, String descripcion) throws Exception{
 		contPlanTemp=new GEN_ContratoPlantillas_Cab();
 		contPlanTemp.setCpc_estado('A');
 	    contPlanTemp.setCpc_nombre(nombre);
+	    contPlanTemp.setCpc_tipo(tipoContrato);
 	    contPlanTemp.setCpc_descripcion(descripcion);
 		contPlanTemp.setCon_p_d(new ArrayList<GEN_ContratoPlantillaClausulas_Det>());
 		return contPlanTemp;
@@ -124,12 +125,13 @@ public class ManagerContratos {
 		if(contraPlanTmp.getCon_p_d()== null || 
 				contraPlanTmp.getCon_p_d().size() == 0)
 			throw new Exception("debe ingresar claúsulas al contrato");
-		
+		System.out.println("entra2");
 		//Seteo de cláusulas
 		for (GEN_ContratoPlantillaClausulas_Det d: contraPlanTmp.getCon_p_d()) {
+			System.out.println("entra 1 23 4");
 			d.setCon_p_c(contraPlanTmp);
 		}
-		
+		System.out.println("ya mismo");
 		//guardamos la plantilla de contrato
 		mngDao.insertar(contraPlanTmp);
 		contraPlanTmp=null;
@@ -144,7 +146,8 @@ public class ManagerContratos {
 	public boolean existePlantillaContratoActiva(String tipoContrato){
 		List<GEN_ContratoPlantillas_Cab> todos = findAllContPlanCab();
 		for (GEN_ContratoPlantillas_Cab cont : todos) {
-			if(cont.getCpc_estado()==('A')){
+			if(cont.getCpc_tipo().toLowerCase().equals(tipoContrato.toLowerCase()) && 
+					cont.getCpc_estado()=='A'){
 				return true;
 			}
 		}
@@ -292,8 +295,8 @@ public class ManagerContratos {
 	 */
 	@SuppressWarnings("unchecked")
 	public List<GEN_ContratoPlantillas_Cab> plantillasContratoPorContrato(String tipoContrato){
-		List<GEN_ContratoPlantillas_Cab> listado = mngDao.findWhere(GEN_ContratoPlantillas_Cab.class, "o.artTipo='"
-				+tipoContrato+"' AND o.cpcEstado='A'", null);	
+		List<GEN_ContratoPlantillas_Cab> listado = mngDao.findWhere(GEN_ContratoPlantillas_Cab.class, "o.cpc_tipo='"
+				+tipoContrato+"' AND o.cpc_estado='A'", null);	
 		return listado;
 	}
 	
@@ -345,6 +348,7 @@ public class ManagerContratos {
 		//contTemp.set(persona);
 		contTemp.setCab_fechaini(fechaInicio);
 		contTemp.setCab_fechafin(fechaFin);
+		contTemp.setCpc_tipo(tipoContrato);
 		contTemp.setCab_observacion(plantilla.getCpc_descripcion());
 		contTemp.setCab_estado('A');
 		contTemp.setCon_cla_d(this.cargarClausulasPorContrato(cpId));

@@ -28,6 +28,7 @@ public class PlantillasBean implements Serializable{
 	private String nombre;
 	private String descripcion;
 	private char estado;
+	private String tipoContrato;
 	private GEN_ContratoPlantillas_Cab planCabTmp;
 	/************DETALLE*************/
 	private Integer idClauPlan;
@@ -97,7 +98,19 @@ public class PlantillasBean implements Serializable{
 	public void setEstado(char estado) {
 		this.estado = estado;
 	}
+	/**
+	 * @return the tipoContrato
+	 */
+	public String getTipoContrato() {
+		return tipoContrato;
+	}
 
+	/**
+	 * @param tipoContrato the tipoContrato to set
+	 */
+	public void setTipoContrato(String tipoContrato) {
+		this.tipoContrato = tipoContrato;
+	}
 	/**
 	 * @return the nroClausula
 	 */
@@ -158,16 +171,9 @@ public class PlantillasBean implements Serializable{
 	 * @return the listClauDet
 	 */
 	public List<GEN_ContratoPlantillaClausulas_Det> getListClauDet() {
-		try{
+
 			if(getIdContPlan()!=0L)
-			System.out.println(getIdContPlan());
-			System.out.println(planCabTmp.getCpc_id());
-			listClauDet = mngCont.findAllClauPlanByContID(planCabTmp.getCpc_id());
-			}
-		catch(Exception e){
-			Mensaje.crearMensajeINFO("No hay datos");
-		}
-		
+			listClauDet = mngCont.findAllClauPlanByContID(planCabTmp.getCpc_id());		
 		return listClauDet;
 	}
 
@@ -194,11 +200,13 @@ public class PlantillasBean implements Serializable{
 	public void crearPlantillaContrato(){
 		try {
 			System.out.println("entra");
-			System.out.println(nombre);
-			System.out.println(descripcion);
-			setPlanCabTmp(mngCont.crearPantillaContratoTmp(getNombre(), getDescripcion()));
+			if(getTipoContrato().isEmpty() || getTipoContrato()==null){
+				Mensaje.crearMensajeWARN("Seleccione tipo de contrato");
+			}
+			else{
+			setPlanCabTmp(mngCont.crearPantillaContratoTmp(getNombre(),  getTipoContrato(),getDescripcion()));
 			Mensaje.crearMensajeINFO("Creación correcta");
-
+			}
 		} catch (Exception e) {
 			Mensaje.crearMensajeWARN(e.getMessage());
 		}
@@ -212,7 +220,6 @@ public class PlantillasBean implements Serializable{
 			mngCont.addClausulaPlantillaContrato(getNroClausula(), getClausula());
 			Mensaje.crearMensajeINFO("Cláusula agregada correctamente");
 			setNroClausula(null);setClausula("");
-
 		} catch (Exception e) {
 			Mensaje.crearMensajeWARN(e.getMessage());
 		}
@@ -244,10 +251,10 @@ public class PlantillasBean implements Serializable{
 	 */
 	public String guardarPlantCont(){
 		try {
-			mngCont.saveContratoPlantillaTmp(getPlanCabTmp());
-		
+			System.out.println("entraaaa");
+			mngCont.saveContratoPlantillaTmp(getPlanCabTmp());		
 			Mensaje.crearMensajeINFO("Plantilla de contrato almacenada correctamente");
-			setNombre("");setDescripcion("");setPlanCabTmp(null);
+			setTipoContrato("");setNombre("");setDescripcion("");setPlanCabTmp(null);
 			return "contratos?faces-redirect=true";
 		} catch (Exception e) {
 			Mensaje.crearMensajeERROR(e.getMessage());
@@ -260,7 +267,7 @@ public class PlantillasBean implements Serializable{
 	 * @return
 	 */
 	public String cancelarPlantilla(){
-		setNombre("");setDescripcion("");setPlanCabTmp(null);
+		setTipoContrato("");setNombre("");setDescripcion("");setPlanCabTmp(null);
 		return "contratos?faces-redirect=true";
 	}
 	
@@ -287,7 +294,6 @@ public class PlantillasBean implements Serializable{
 	 * @return
 	 */
 	public String cargarDatosPlanCont(GEN_ContratoPlantillas_Cab p){
-		setPlanCabTmp(p);
 		setIdContPlan(p.getCpc_id());
 		setNombre(p.getCpc_nombre());
 		setDescripcion(p.getCpc_descripcion());
@@ -300,9 +306,9 @@ public class PlantillasBean implements Serializable{
 	 * @param d claúsula
 	 */
 	public void cargarClauPlan(GEN_ContratoPlantillaClausulas_Det d){
-		setIdClauPlan(d.getCpd_id());
-		setNroClausula(d.getCpd_numero());
-		setClausula(d.getCpp_clausula());
+		idClauPlan=d.getCpd_id();
+		nroClausula=d.getCpd_numero();
+		clausula=d.getCpp_clausula();
 	}
 	
 	/**
