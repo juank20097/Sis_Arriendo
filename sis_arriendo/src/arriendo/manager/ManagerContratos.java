@@ -235,6 +235,15 @@ public class ManagerContratos {
 	}
 		
 	/******************************CREAR CONTRATOS*******************************/
+	
+	/**Metodo para listar todos los contratos cabecera
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public List<ARR_Contratos_Cab> findAllContratos_Cab(){
+		return mngDao.findAll(ARR_Contratos_Cab.class);
+	}
+	
 	/**
 	 * Retorna el valor de un contador segun cu clave (nombre)
 	 * @param clave
@@ -276,6 +285,7 @@ public class ManagerContratos {
 		return mngDao.findAll(GEN_Personas.class);
 	}
 	
+	
 	/**
 	 * Busca Las plantillas de contrato según el tipo
 	 * @param tipoContrato
@@ -283,7 +293,8 @@ public class ManagerContratos {
 	 */
 	@SuppressWarnings("unchecked")
 	public List<GEN_ContratoPlantillas_Cab> plantillasContratoPorContrato(String tipoContrato){
-		List<GEN_ContratoPlantillas_Cab> listado = mngDao.findWhere(GEN_ContratoPlantillas_Cab.class, "o.cpc_estado='A'", null);	
+		List<GEN_ContratoPlantillas_Cab> listado = mngDao.findWhere(GEN_ContratoPlantillas_Cab.class, "o.artTipo='"
+				+tipoContrato+"' AND o.cpcEstado='A'", null);	
 		return listado;
 	}
 	

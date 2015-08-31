@@ -1,6 +1,6 @@
 /***********************************************************************
  * Module:  ARR_Contratos_Cab.java
- * Author:  jestevez
+ * Author:  LUIS
  * Purpose: Defines the Class ARR_Contratos_Cab
  ***********************************************************************/
 
@@ -22,6 +22,8 @@ public class ARR_Contratos_Cab {
    private String cab_observacion;
    /** @pdOid 6a206325-7732-476c-bd31-099df6e118c1 */
    private char cab_estado;
+   /** @pdOid 015b3c71-3328-4f60-9771-16938b21fb55 */
+   private String cpc_tipo;
    
    /** @pdOid 8675dc8e-a9a3-4a42-b43c-c30e8edb1199 */
    protected void finalize() {
@@ -104,6 +106,17 @@ public class ARR_Contratos_Cab {
     * @pdOid e0669d7b-9397-4553-be80-92b8654ee383 */
    public void setCab_estado(char newCab_estado) {
       cab_estado = newCab_estado;
+   }
+   
+   /** @pdOid 790e6105-5204-4279-936a-14c217bd6411 */
+   public String getCpc_tipo() {
+      return cpc_tipo;
+   }
+   
+   /** @param newCpc_tipo
+    * @pdOid 0f3d088d-9d00-4b9d-8b6b-06b100bcb8d9 */
+   public void setCpc_tipo(String newCpc_tipo) {
+      cpc_tipo = newCpc_tipo;
    }
    
    

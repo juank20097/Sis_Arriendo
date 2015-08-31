@@ -1,14 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 12-ago-2015 9:00:28 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 28-ago-2015 15:22:44 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="arriendo.entidades.GEN_Areas" table="GEN_AREAS">
         <id name="are_id" type="java.lang.Integer">
             <column name="ARE_ID" />
-           <generator class="sequence">
-             <param name="sequence">seq_GEN_Areas</param>
-            </generator>
+            <generator class="assigned" />
         </id>
         <property name="are_nombre" type="java.lang.String">
             <column name="ARE_NOMBRE" />

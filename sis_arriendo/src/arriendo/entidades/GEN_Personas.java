@@ -29,9 +29,9 @@ public abstract class GEN_Personas {
    /** @pdOid dd18a80b-88d0-47f5-b018-11200f4a5329 */
    private String per_genero;
    /** @pdOid 85cb1b6b-2329-46f5-a6b7-7dc91c98413d */
-   private byte per_foto;
+   private byte[] per_foto;
    /** @pdOid 8aae07d8-c73a-4bc0-a7d2-d32a3e035eca */
-   private byte per_huella;
+   private byte[] per_huella;
    /** @pdOid cd964e05-c450-4038-b45d-e5389a0f8e65 */
    private int per_nro_articulos;
    
@@ -145,24 +145,24 @@ public abstract class GEN_Personas {
    }
    
    /** @pdOid ea0b8ae2-d619-4122-8d30-c8682d316a69 */
-   public byte getPer_foto() {
+   public byte[] getPer_foto() {
       return per_foto;
    }
    
    /** @param newPer_foto
     * @pdOid 95078be9-346b-4592-8bb4-405ab1e8fd78 */
-   public void setPer_foto(byte newPer_foto) {
+   public void setPer_foto(byte[] newPer_foto) {
       per_foto = newPer_foto;
    }
    
    /** @pdOid 2ee291a2-bd90-4470-a39d-221068e1eb6b */
-   public byte getPer_huella() {
+   public byte[] getPer_huella() {
       return per_huella;
    }
    
    /** @param newPer_huella
     * @pdOid 54253094-02ce-4e95-9ca6-cd03f05a9219 */
-   public void setPer_huella(byte newPer_huella) {
+   public void setPer_huella(byte[] newPer_huella) {
       per_huella = newPer_huella;
    }
    

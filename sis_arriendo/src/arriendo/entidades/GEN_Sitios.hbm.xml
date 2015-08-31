@@ -1,16 +1,14 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 12-ago-2015 9:00:28 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 28-ago-2015 15:22:44 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="arriendo.entidades.GEN_Sitios" table="GEN_SITIOS">
         <id name="sit_id" type="java.lang.Integer">
             <column name="SIT_ID" />
-            <generator class="sequence">
-             <param name="sequence">seq_GEN_Sitios</param>
-            </generator>
+            <generator class="assigned" />
         </id>
-        <property name="sit_nombre" type="java.lang.String" access="field">
+        <property name="sit_nombre" type="java.lang.String">
             <column name="SIT_NOMBRE" />
         </property>
         <property name="sit_costo_arriendo" type="java.lang.Double">

@@ -13,7 +13,7 @@ public class ARR_Inter_Per {
    /** @pdOid 68006ba9-36d8-4722-8b3f-e591febe1c4b */
    private Integer inp_id;
    /** @pdOid 9d8cd329-b9af-4a90-a0fd-4ca34dee1ff4 */
-   private Integer per_id;
+   private String per_id;
    
    /** @pdOid 14ad1ff2-157c-457f-8038-1301056cbca1 */
    protected void finalize() {
@@ -40,13 +40,13 @@ public class ARR_Inter_Per {
    }
    
    /** @pdOid fc5a9fca-b396-4af4-bb6c-b54aac65d20d */
-   public Integer getPer_id() {
+   public String getPer_id() {
       return per_id;
    }
    
    /** @param newPer_id
     * @pdOid 446fcaac-237d-4655-95be-ff35f77a5363 */
-   public void setPer_id(Integer newPer_id) {
+   public void setPer_id(String newPer_id) {
       per_id = newPer_id;
    }
    

@@ -168,12 +168,12 @@ public class GEN_Sitios {
    public void setAre(GEN_Areas newGEN_Areas) {
       if (this.are == null || !this.are.equals(newGEN_Areas))
       {
-       /*  if (this.are != null)
+         if (this.are != null)
          {
             GEN_Areas oldGEN_Areas = this.are;
             this.are = null;
             oldGEN_Areas.removeSit(this);
-         } */
+         }
          if (newGEN_Areas != null)
          {
             this.are = newGEN_Areas;
@@ -191,12 +191,12 @@ public class GEN_Sitios {
    public void setTsi(GEN_TipoSitios newGEN_TipoSitios) {
       if (this.tsi == null || !this.tsi.equals(newGEN_TipoSitios))
       {
-        /* if (this.tsi != null)
+         if (this.tsi != null)
          {
             GEN_TipoSitios oldGEN_TipoSitios = this.tsi;
             this.tsi = null;
             oldGEN_TipoSitios.removeSit(this);
-         } */
+         }
          if (newGEN_TipoSitios != null)
          {
             this.tsi = newGEN_TipoSitios;

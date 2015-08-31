@@ -12,7 +12,7 @@
   <property name="connection.pool_size">1</property>
   <!-- Otras propiedades importantes -->
   <property name="show_sql">true</property>
-  <property name="hbm2ddl.auto">update</property>
+  <property name="hbm2ddl.auto">create-drop</property>
   <!-- Otras propiedades importantes 
 <property name="hibernate.cache.use_second_level_cache">false</property>
 <property name="hibernate.cache.use_query_cache">true</property>
@@ -32,12 +32,9 @@
   <mapping resource="arriendo/entidades/GEN_Estados.hbm.xml"/>
   <mapping resource="arriendo/entidades/GEN_Instituciones.hbm.xml"/>
   <mapping resource="arriendo/entidades/GEN_Sectores.hbm.xml"/>
-  <mapping resource="arriendo/entidades/GEN_Docentes.hbm.xml"/>
-  <mapping resource="arriendo/entidades/GEN_Estudiantes.hbm.xml"/>
-  <mapping resource="arriendo/entidades/GEN_Funcionarios.hbm.xml"/>
-  <mapping resource="arriendo/entidades/GEN_Visitantes.hbm.xml"/>
   <mapping resource="arriendo/entidades/ARR_SitiosArticulos.hbm.xml"/>
   <mapping resource="arriendo/entidades/GEN_TipoSitios.hbm.xml"/>
   <mapping resource="arriendo/entidades/GEN_Contadores.hbm.xml"/>
+ 
  </session-factory>
 </hibernate-configuration>

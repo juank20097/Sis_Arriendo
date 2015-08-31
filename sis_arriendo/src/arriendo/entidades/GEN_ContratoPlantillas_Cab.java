@@ -18,6 +18,8 @@ public class GEN_ContratoPlantillas_Cab {
    private String cpc_descripcion;
    /** @pdOid bff1cdca-7c1b-4fcc-92e3-d56bb7b8fd2c */
    private char cpc_estado;
+   /** @pdOid 2ed35a91-591f-469a-86d3-0028502c7e8f */
+   private String cpc_tipo;
    
    /** @pdOid d69cd927-6fb7-4a76-aa34-a5fe38245df6 */
    protected void finalize() {
@@ -74,6 +76,17 @@ public class GEN_ContratoPlantillas_Cab {
     * @pdOid 46ee46fe-b54d-48cb-94f3-6fa998ef50e5 */
    public void setCpc_estado(char newCpc_estado) {
       cpc_estado = newCpc_estado;
+   }
+   
+   /** @pdOid fb2e6bb3-c28c-4f57-9df6-4347fbe93d6c */
+   public String getCpc_tipo() {
+      return cpc_tipo;
+   }
+   
+   /** @param newCpc_tipo
+    * @pdOid 33818e53-a21d-4afc-96f3-6a359a6f56e6 */
+   public void setCpc_tipo(String newCpc_tipo) {
+      cpc_tipo = newCpc_tipo;
    }
    
    

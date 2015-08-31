@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 12-ago-2015 9:00:28 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 28-ago-2015 15:38:41 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="arriendo.entidades.GEN_Personas" table="GEN_PERSONAS" abstract="true">
+    <class name="arriendo.entidades.GEN_Personas" table="GEN_PERSONAS" >
         <id name="per_id" type="java.lang.Integer">
             <column name="PER_ID" />
             <generator class="assigned" />
@@ -35,10 +35,10 @@
         <property name="per_genero" type="java.lang.String">
             <column name="PER_GENERO" />
         </property>
-        <property name="per_foto" type="byte">
+         <property name="per_foto" type="binary">
             <column name="PER_FOTO" />
         </property>
-        <property name="per_huella" type="byte">
+         <property name="per_huella" type="binary">
             <column name="PER_HUELLA" />
         </property>
         <property name="per_nro_articulos" type="int">

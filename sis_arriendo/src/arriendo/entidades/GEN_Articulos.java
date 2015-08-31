@@ -24,7 +24,6 @@ public class GEN_Articulos {
    private char art_estado;
    /** @pdOid 3ee5db7a-6440-4d3a-81dc-901c8d011566 */
    private String art_imagen;
-   /** @pdOid 7db1795b-c4ba-413f-b8b7-a228fabdbf88 */
    
    /** @pdOid 7065d49a-c7c7-492e-ad20-c1a269d36e20 */
    protected void finalize() {

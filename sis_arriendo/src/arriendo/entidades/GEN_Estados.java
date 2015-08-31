@@ -16,7 +16,7 @@ public class GEN_Estados {
    private String est_nombre;
    /** @pdOid 452de288-8c05-4b03-839c-d789ae40c251 */
    private String est_descripcion;
-   
+   /** @pdOid 1028658f-4ce0-4f38-b756-f40cc2d2e23f */
    private String est_color;
    
    /** @pdOid b851a692-1a8c-486c-987f-f72435246388 */
@@ -40,21 +40,7 @@ public class GEN_Estados {
       est_id = newEst_id;
    }
    
-   /**
- * @return the est_color
- */
-public String getEst_color() {
-	return est_color;
-}
-
-/**
- * @param est_color the est_color to set
- */
-public void setEst_color(String est_color) {
-	this.est_color = est_color;
-}
-
-/** @pdOid 4bd69054-99b5-4f27-9545-d1e9c03bbc69 */
+   /** @pdOid 4bd69054-99b5-4f27-9545-d1e9c03bbc69 */
    public String getEst_nombre() {
       return est_nombre;
    }
@@ -74,6 +60,17 @@ public void setEst_color(String est_color) {
     * @pdOid e15d431a-b7a3-4fea-9c4c-0491d24ec44c */
    public void setEst_descripcion(String newEst_descripcion) {
       est_descripcion = newEst_descripcion;
+   }
+   
+   /** @pdOid 01959d10-db02-421a-a372-a38c9f197143 */
+   public String getEst_color() {
+      return est_color;
+   }
+   
+   /** @param newEst_color
+    * @pdOid c3be29a1-3a10-463b-9c9b-345ac1c62ac0 */
+   public void setEst_color(String newEst_color) {
+      est_color = newEst_color;
    }
 
 }
