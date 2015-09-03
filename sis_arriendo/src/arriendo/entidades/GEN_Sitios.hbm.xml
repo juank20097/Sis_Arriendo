@@ -12,7 +12,7 @@
         <property name="sit_nombre" type="java.lang.String">
             <column name="SIT_NOMBRE" />
         </property>
-        <property name="sit_costo_arriendo" type="java.lang.Double">
+        <property name="sit_costo_arriendo" type="java.lang.Float">
             <column name="SIT_COSTO_ARRIENDO" />
         </property>
         <property name="sit_capacidad" type="java.lang.Integer">

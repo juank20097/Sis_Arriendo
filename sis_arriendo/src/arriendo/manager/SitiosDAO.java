@@ -212,7 +212,7 @@ public class SitiosDAO {
 	 *            Tipo Integer el cual almacena el dato si es
 	 *            Activado/Desactivado
 	 */
-	public void insertarSitio(String nombre, Double costo,
+	public void insertarSitio(String nombre, Float costo,
 			Integer capacidad, Integer a, Integer ts) throws Exception {
 		try {
 			tipositio = TipoSitiosByID(ts);
@@ -247,7 +247,7 @@ public class SitiosDAO {
 	 * @param estado
 	 *            Tipo Integer el cual cambia el dato si es Activado/Desactivado
 	 */
-	public void editarSitio(Integer id, String nombre, Double costo,
+	public void editarSitio(Integer id, String nombre, Float costo,
 			Integer capacidad, char estado, Integer a, Integer ts) throws Exception {
 		try {
 			tipositio = TipoSitiosByID(ts);

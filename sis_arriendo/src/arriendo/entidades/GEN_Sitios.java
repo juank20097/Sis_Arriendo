@@ -15,7 +15,7 @@ public class GEN_Sitios {
    /** @pdOid 27af81cc-e239-4ea1-969f-ede08e243527 */
    private String sit_nombre;
    /** @pdOid ecc06041-8f9b-4045-b88e-42b6a1202d1f */
-   private Double sit_costo_arriendo;
+   private Float sit_costo_arriendo;
    /** @pdOid a0c52981-e808-4f64-911c-e4aa61fdcde0 */
    private Integer sit_capacidad;
    /** @pdOid c0175881-8fa7-40d2-acbf-79130b66b18d */
@@ -52,13 +52,13 @@ public class GEN_Sitios {
    }
    
    /** @pdOid 5e797dac-aa5e-4e7b-a1ae-0f64af61cb6f */
-   public Double getSit_costo_arriendo() {
+   public Float getSit_costo_arriendo() {
       return sit_costo_arriendo;
    }
    
    /** @param newSit_costo_arriendo
     * @pdOid 7b090366-81bd-43d0-b73a-374d2ff81616 */
-   public void setSit_costo_arriendo(Double newSit_costo_arriendo) {
+   public void setSit_costo_arriendo(Float newSit_costo_arriendo) {
       sit_costo_arriendo = newSit_costo_arriendo;
    }
    

@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui">
+
+<ui:composition template="template.xhtml">
+	<ui:define name="titulo">
+            Contrato Viviendas
+        </ui:define>
+	<ui:define name="contenido">
+		<!-- 
+        	<h:form>
+			    <p:remoteCommand name="onload" actionListener="#{contBiciBean.vSesionPermiso()}" autoRun="true" />
+			</h:form>  -->
+		<h:form id="frmpmsj">
+			<p:messages closable="true"></p:messages>
+		</h:form>
+		<h:form id="frmcbc">
+			<b:panel title="Datos de Contrato" look="primary">
+				<b:row style="margin-bottom:10px;font-style: oblique;">
+					<b:column span="2">
+						<h:outputLabel value="Cod. Contrato" style="color: #317eac;" />
+					</b:column>
+					<b:column span="4">
+						<h:outputText id="ccon" value="#{contratosBean.cab_numero}" />
+					</b:column>
+				</b:row>
+				<!-- 
+					<b:row style="margin-bottom:10px;">
+						<b:column span="2"><h:outputLabel value="DNI*" /></b:column>
+						<b:column  span="4">
+							<p:autoComplete id="acPersona"
+								value="#{contBiciBean.persona}"
+								completeMethod="#{contBiciBean.completePersona}" 
+								var="c" itemValue="#{c}"
+								itemLabel="#{c.perId}" 
+								converter="personaConverter"
+								forceSelection="false" inputStyle="width:300px; padding:6px; font-size:14px;">
+								<p:column><h:outputText value="#{c.perId}" /></p:column>
+								<p:column style="width:250px"><h:outputText value="#{c.perNombres} #{c.perApellidos}" /></p:column>
+								<f:ajax event="itemSelect" render=":frmcbc:pnom :frmpmsj"/>
+							</p:autoComplete>
+						</b:column>
+						<b:column span="2"><h:outputLabel value="Datos de Persona" style="color: #317eac;font-style: oblique;"/></b:column>
+						<b:column  span="4">
+							<h:outputText id="pnom" value="#{contBiciBean.persona.perNombres} #{contBiciBean.persona.perApellidos}" style="font-style: oblique;"/>
+						</b:column>   
+					</b:row>	-->
+				<b:row style="margin-bottom:10px;">
+					<b:column span="2">
+						<h:outputLabel value="Fecha de Inicio*" />
+					</b:column>
+					<b:column span="4">
+						<p:calendar value="#{contratosBean.cab_fechaini}"
+							mindate="#{contratosBean.factual}" pattern="dd-MM-yyyy"
+							mask="true" showOn="button" />
+					</b:column>
+					<b:column span="2">
+						<h:outputLabel value="Fecha de Fin*" />
+					</b:column>
+					<b:column span="4">
+						<p:calendar value="#{contratosBean.cab_fechafin}"
+							mindate="#{contratosBean.factual}" pattern="dd-MM-yyyy"
+							mask="true" showOn="button" />
+					</b:column>
+				</b:row>
+				<b:row style="margin-bottom:10px;">
+					<b:column span="2">
+						<h:outputLabel value="Encabezado" />
+					</b:column>
+					<b:column span="10">
+						<p:inputTextarea value="#{contratosBean.cab_observacion}"
+							style="width:100%;" />
+					</b:column>
+				</b:row>
+				<b:row>
+					<b:column span="2">
+						<h:outputLabel value="Tipo de Plantilla*" />
+					</b:column>
+					<b:column span="10">
+						<b:selectOneMenu value="#{contratosBean.cpId}" required="false">
+							<f:selectItem itemLabel="Seleccionar.." itemValue="" />
+							<f:selectItems value="#{contratosBean.listaPlantillas}" />
+						</b:selectOneMenu>
+					</b:column>
+				</b:row>
+				<b:row style="margin-bottom:10px;">
+					<b:column span="2">
+						<p:commandButton value="Crear"
+							actionListener="#{contratosBean.crearContrato()}"
+							disabled="#{contratosBean.guardado}" update="frmcbc :frmpmsj :botones:vb" />
+					</b:column>
+				</b:row>
+			</b:panel>
+			<b:panel look="primary" title="Cláusulas de Contrato">
+				<p:dataTable value="#{contratosBean.contraTemp.con_cla_d}"
+					var="clau" styleClass="table table-striped">
+					<p:column width="100">
+						<f:facet name="header">Número</f:facet>
+						<h:outputText value="#{clau.ccdNumero}" style="width:50px;" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">Descripción</f:facet>
+						<p:inputTextarea value="#{clau.ccdClausula}" readonly="true"
+							style="width:100%;" />
+					</p:column>
+					<p:column width="80">
+						<f:facet name="header">Edición</f:facet>
+						<p:commandButton icon="ui-icon-pencil"
+							actionListener="#{contratosBean.cargarClausula(clau)}"
+							disabled="#{contratosBean.guardado}"
+							oncomplete="PF('dlgclau').show();" update=":frmc" />
+					</p:column>
+				</p:dataTable>
+			</b:panel>
+			</h:form>
+			<h:form id="botones">
+			<h:panelGrid columns="2" cellpadding="3" width="450">
+			<h:commandButton id="vb" type="button" value="Siguiente"
+					action="#{contratosBean.irDetalle()}"
+					styleClass="btn btn-info" disabled="#{contratosBean.vboton}">
+					<f:ajax />
+				</h:commandButton>
+				<h:commandButton type="button" value="Cancelar"
+					action="#{contratosBean.cancelarContrato()}"
+					styleClass="btn btn-info">
+					<f:ajax />
+				</h:commandButton>
+			</h:panelGrid>
+		</h:form>
+		<p:dialog header="Datos Cláusula" widgetVar="dlgclau" minHeight="200"
+			minWidth="450" width="500" modal="true" closable="false">
+			<h:form id="frmc">
+				<h:panelGrid columns="2" cellspacing="3" width="100%">
+					<h:outputLabel value="Número" />
+					<b:inputText value="#{contratosBean.nroClau}" disabled="true" />
+					<h:outputLabel value="Cláusula*" />
+					<p:inputTextarea value="#{contratosBean.clausula}"
+						style="width:100%; margin-bottom:15px;" />
+					<b:commandButton value="Guardar"
+						actionListener="#{contratosBean.editarTextClausula()}"
+						update=":frmpmsj :frmcbc" />
+					<h:commandButton type="button" value="Cancelar"
+						actionListener="#{contratosBean.cancelEdTextClausula()}"
+						styleClass="btn btn-default" onclick="PF('dlgclau').hide();">
+						<f:ajax />
+					</h:commandButton>
+				</h:panelGrid>
+			</h:form>
+		</p:dialog>
+	</ui:define>
+</ui:composition>
+</html>
+

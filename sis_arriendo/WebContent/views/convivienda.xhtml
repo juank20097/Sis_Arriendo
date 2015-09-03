@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui">
+
+	<ui:composition template="template.xhtml">
+		<ui:define name="titulo">
+            Contratos Arriendo
+        </ui:define>
+		<ui:define name="contenido">
+			<h:form>
+				<center><h1>CONTRATOS DE ARRIENDO</h1></center>
+				<b:row>
+					<b:column span="1">
+						<b:commandButton value="Nuevo" iconAwesome="file-o" action="#{contratosBean.nuevoContrato()}"/>
+					</b:column>
+					<b:column span="1">
+						<b:commandButton value="Volver" iconAwesome="angle-left" action="index?faces-redirect=true"/>   
+				    </b:column>
+				</b:row>
+			</h:form>
+			<br></br>
+        	<h:form id="frmcbici">
+				<p:messages closable="true"></p:messages>
+				<b:panel title="Listado" look="primary">
+					<p:dataTable id="tcb" value="#{contratosBean.listaContratos}" var="cb" rows="8" emptyMessage="Sin Datos" 
+						 scrollable="true" scrollRows="20" liveScroll="true" paginator="true"
+    paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+    					<p:column headerText="NÚMERO" width="80">
+							<h:outputText value="#{cb.conNumero}"/>
+						</p:column>
+						<!--  <p:column headerText="PERSONA" width="200">
+							<h:outputText value="#{cb.genPersona.perNombres} #{cb.genPersona.perApellidos}"/>
+						</p:column>   -->
+						<p:column filterBy="#{cb.conFechaInicio}" filterMatchMode="contains" headerText="FECHA INICIO" width="160">
+							<h:outputText value="#{cb.conFechaInicio}"><f:convertDateTime pattern="MM/dd/yyyy" /></h:outputText>
+						</p:column>
+						<p:column filterBy="#{cb.conFechaFin}" filterMatchMode="contains" headerText="FECHA FIN" width="160">
+							<h:outputText value="#{cb.conFechaFin}"><f:convertDateTime pattern="MM/dd/yyyy" /></h:outputText>
+						</p:column>
+						<p:column filterBy="#{cb.conEstado}" filterMatchMode="contains" headerText="ESTADO" width="100">
+							<h:outputText value="#{cb.conEstado}"></h:outputText>
+						</p:column>
+						<p:column headerText="OPCIONES" width="90">
+							<p:commandButton icon="ui-icon-pencil" action="#{contratosBean.cargarDatosContrato(cb)}" id="btnC" update="frmcbici">
+								<p:tooltip for="btnC" value="Editar" trackMouse="true"/>
+							</p:commandButton>
+						</p:column>
+    				</p:dataTable>
+				</b:panel>
+			</h:form>
+        </ui:define>
+	</ui:composition>
+	
+</html>

@@ -24,16 +24,20 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import arriendo.entidades.ARR_ContratoClausulas_Det;
 import arriendo.entidades.ARR_Contratos_Cab;
+import arriendo.entidades.ARR_Contratos_Det;
 import arriendo.entidades.GEN_ContratoPlantillas_Cab;
 import arriendo.entidades.GEN_Personas;
+import arriendo.entidades.GEN_Sitios;
 import arriendo.generico.Mensaje;
 import arriendo.manager.ManagerContratos;
+import arriendo.manager.SitiosDAO;
 
 @ManagedBean
 @SessionScoped
 public class ContratosBean implements Serializable {
-	private static final long serialVersionUID = 2414699501306955263L;
+	private static final long serialVersionUID =  -2629525039606674631L;
 	private ManagerContratos mngCont;
+	private SitiosDAO manager;
 	/********** CABECERA *********/
 	private String cab_numero;
 	private String personaId;
@@ -41,23 +45,13 @@ public class ContratosBean implements Serializable {
 	private Date cab_fecha;
 	private Date cab_fechaini;
 	private Date cab_fechafin;
+	private Date factual;
 	private String cab_observacion;
 	private char cab_estado;
 	private String cpc_tipo;
 	private Integer cpId;
 	private ARR_Contratos_Cab contraTemp;
-	
-	/**********CABECERA********
-	private String contNro;
-	private String personaId;
-	private GenPersona persona;
-	private String descripcion;
-	private Date fechaInicio;
-	private Date fechaFin;
-	private Date factual;
-	private String artTipo;
-	private long cpId;
-	private PreContratoCab contraTemp;
+
 	/********** CLAUSULAS ********/
 	private ARR_ContratoClausulas_Det clau;
 	private Integer nroClau;
@@ -67,17 +61,26 @@ public class ContratosBean implements Serializable {
 	private List<GEN_Personas> lstPer;
 	
 	
-	/********** LISTADOS *********
+	/********** DETALLE SITIOS *********/
+	private List<ARR_Contratos_Det> list;
+	private ARR_Contratos_Det contraTempDet;
+	private String observacion;
+	private Float costo;
+	private char estado;
+	private Integer sitio_sel;
 	
-	 */
+	 
 	/******** HABILITADORES *****/
 	private boolean guardado;
 	private boolean finalizado;
+	private boolean vboton;
 
 	public ContratosBean() {
 		mngCont = new ManagerContratos();
 		guardado = false;
 		finalizado = false;
+		vboton = true;
+		list = new ArrayList<ARR_Contratos_Det>();
 	}
 	/**
 	 * @return the cab_numero
@@ -90,6 +93,62 @@ public class ContratosBean implements Serializable {
 	 */
 	public void setCab_numero(String cab_numero) {
 		this.cab_numero = cab_numero;
+	}
+	
+	/**
+	 * @return the vboton
+	 */
+	public boolean isVboton() {
+		return vboton;
+	}
+	/**
+	 * @param vboton the vboton to set
+	 */
+	public void setVboton(boolean vboton) {
+		this.vboton = vboton;
+	}
+	/**
+	 * @return the contraTempDet
+	 */
+	public ARR_Contratos_Det getContraTempDet() {
+		return contraTempDet;
+	}
+	/**
+	 * @param contraTempDet the contraTempDet to set
+	 */
+	public void setContraTempDet(ARR_Contratos_Det contraTempDet) {
+		this.contraTempDet = contraTempDet;
+	}
+	/**
+	 * @return the list
+	 */
+	public List<ARR_Contratos_Det> getList() {
+		return list;
+	}
+	/**
+	 * @param list the list to set
+	 */
+	public void setList(List<ARR_Contratos_Det> list) {
+		this.list = list;
+	}
+	/**
+	 * @return the sitio_sel
+	 */
+	public Integer getSitio_sel() {
+		return sitio_sel;
+	}
+	/**
+	 * @param sitio_sel the sitio_sel to set
+	 */
+	public void setSitio_sel(Integer sitio_sel) {
+		this.sitio_sel = sitio_sel;
+	}
+	/**
+	 * @return the factual
+	 */
+	public Date getFactual() {
+		factual = new Date();
+		return factual;
 	}
 	/**
 	 * @return the nroClau
@@ -155,6 +214,7 @@ public class ContratosBean implements Serializable {
 	 * @return the cpc_tipo
 	 */
 	public String getCpc_tipo() {
+		cpc_tipo = "GenVivienda";//TIPO DE BICICLETAS
 		return cpc_tipo;
 	}
 	/**
@@ -337,7 +397,7 @@ public class ContratosBean implements Serializable {
 		setContraTemp(null);
 		setCab_fechaini(new Date());
 		setCab_fechafin(new Date());
-		return "nconbici?faces-redirect=true";
+		return "nconvivienda?faces-redirect=true";
 	}
 
 	/**
@@ -361,17 +421,21 @@ public class ContratosBean implements Serializable {
 	 */
 	public void crearContrato() {
 		try {
-			if (getPersona() == null) {
-				Mensaje.crearMensajeWARN("Seleccione persona de contrato");
-			} else if (getCab_fechafin() == null || getCab_fechaini() == null) {
+			if (getCab_fechafin() == null || getCab_fechaini() == null) {
 				Mensaje.crearMensajeWARN("Seleccione la fecha inicio y fin para el contrato");
-			} else {
+				System.out.println(cpId);
+			} else
+			if (cpId == null || cpId == -1 || cpId==0) {
+				Mensaje.crearMensajeWARN("No se ha selleccionado una plantilla");
+			} 
+			 else {
 				setContraTemp(mngCont.crearContratoTmp(getPersona(),
 						new Timestamp(getCab_fechaini().getTime()),
 						new Timestamp(getCab_fechafin().getTime()), getCpId(),
 						getCpc_tipo()));
 				setCab_numero(getContraTemp().getCab_numero());
 				setCab_observacion(getContraTemp().getCab_observacion());
+				vboton=false;
 				Mensaje.crearMensajeINFO("Creación correcta");
 			}
 		} catch (Exception e) {
@@ -446,7 +510,7 @@ public class ContratosBean implements Serializable {
 		try {
 			mngCont.anularContrato(getCab_numero());
 			Mensaje.crearMensajeINFO("Se anuló el contrato de forma correcta");
-			return "conbicicleta?faces-redirect=true";
+			return "convivienda?faces-redirect=true";
 		} catch (Exception e) {
 			Mensaje.crearMensajeERROR(e.getMessage());
 			return "";
@@ -460,13 +524,15 @@ public class ContratosBean implements Serializable {
 	 * @return página de contratos bicicleta
 	 */
 	public String cancelarContrato() {
-		setPersona(null);
-		setPersonaId("");
+		//setPersona(null);
+		//setPersonaId("");
 		setCab_fechafin(null);
 		setCab_fechaini(null);
+		setCab_observacion(null);
+		setCpId(null);
 		setGuardado(false);
 		setFinalizado(false);
-		return "conbicicleta?faces-redirect=true";
+		return "convivienda?faces-redirect=true";
 	}
 
 	/************************************ EDICIÓN ************************************/
@@ -494,7 +560,7 @@ public class ContratosBean implements Serializable {
 				setFinalizado(true);
 			else
 				setFinalizado(false);
-			return "econbici?faces-redirect=true";
+			return "econvivienda?faces-redirect=true";
 		}
 	}
 
@@ -635,6 +701,62 @@ public class ContratosBean implements Serializable {
 			e.printStackTrace();
 		}
 
+	}
+	
+///////////////////////////////////////////////////////////////////DETALLES SITIOS////////////////////////////////////////////////////////////////
+	
+	/**
+	 * Lista 
+	 * 
+	 * @return lista de todas
+	 */
+	public List<SelectItem> getlistSitios() {
+		List<SelectItem> lista = new ArrayList<SelectItem>();
+		List<GEN_Sitios> completo = manager.findAllSitios();
+		for (GEN_Sitios s : completo) {
+			if (s.getSit_estado()=='A'){
+			lista.add(new SelectItem(s.getSit_id(), s.getSit_nombre()));
+			}
+			}
+		return lista;
+	}
+	
+	public List<ARR_Contratos_Det> addContra_Tem(){
+		System.out.println("si entra");
+		if (getSitio_sel()==null || getSitio_sel()==-1){
+			Mensaje.crearMensajeINFO("Seleccione un sitio a añadir");
+			System.out.println("se sale");
+		}else{
+			System.out.println(contraTemp.getCab_numero());
+			System.out.println(sitio_sel);
+		try {
+			contraTempDet = mngCont.crearContratoTmpDet(observacion, costo, estado, sitio_sel, getContraTemp().getCab_numero());
+			list.add(contraTempDet);
+		} catch (Exception e) {
+			Mensaje.crearMensajeINFO("no se pudo crear el detalle debido a este error: "+e);
+		}
+		}
+		System.out.println(list.size());
+		return list;
+	}
+	
+	public void quitarDet(ARR_Contratos_Det a){
+		list.remove(a);
+	}
+	
+	public String irDetalle(){
+		String r="";
+		if (contraTemp==null){
+			Mensaje.crearMensajeWARN("Debe crear un contrato antes de seguir");
+		}else{
+			r="dconvivienda?faces-redirect=true";
+	
+		}
+		return r;
+	}
+	
+	public String irContrato(){
+		return "nconvivienda?faces-redirect=true";
 	}
 
 }

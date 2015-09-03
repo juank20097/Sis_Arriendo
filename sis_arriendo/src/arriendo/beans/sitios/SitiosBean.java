@@ -28,7 +28,7 @@ public class SitiosBean {
 
 	private Integer sit_id;
 	private String sit_nombre;
-	private Double sit_costo_arriendo;
+	private Float sit_costo_arriendo;
 	private Integer sit_capacidad;
 	private char sit_estado;
 
@@ -102,7 +102,7 @@ public class SitiosBean {
 	/**
 	 * @return the sit_costo_arriendo
 	 */
-	public Double getSit_costo_arriendo() {
+	public Float getSit_costo_arriendo() {
 		return sit_costo_arriendo;
 	}
 
@@ -110,7 +110,7 @@ public class SitiosBean {
 	 * @param sit_costo_arriendo
 	 *            the sit_costo_arriendo to set
 	 */
-	public void setSit_costo_arriendo(Double sit_costo_arriendo) {
+	public void setSit_costo_arriendo(Float sit_costo_arriendo) {
 		this.sit_costo_arriendo = sit_costo_arriendo;
 	}
 
@@ -217,7 +217,7 @@ public class SitiosBean {
 			// limpiar datos
 			sit_id = 0;
 			sit_nombre = "";
-			sit_costo_arriendo = 0.0;
+			sit_costo_arriendo = (float) 0.0;
 			sit_capacidad = 0;
 			sit_estado = 'A';
 			area = 0;
@@ -256,7 +256,7 @@ public class SitiosBean {
 		// limpiar datos
 		sit_id = 0;
 		sit_nombre = "";
-		sit_costo_arriendo = 0.0;
+		sit_costo_arriendo = (float) 0.0;
 		sit_capacidad = 0;
 		sit_estado = 'A';
 		area = 0;

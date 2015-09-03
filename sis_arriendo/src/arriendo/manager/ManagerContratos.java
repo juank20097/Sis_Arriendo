@@ -8,17 +8,20 @@ import java.util.List;
 
 import arriendo.entidades.ARR_Contratos_Cab;
 import arriendo.entidades.ARR_ContratoClausulas_Det;
+import arriendo.entidades.ARR_Contratos_Det;
 import arriendo.entidades.GEN_Contadores;
 import arriendo.entidades.GEN_ContratoPlantillas_Cab;
 import arriendo.entidades.GEN_ContratoPlantillaClausulas_Det;
 import arriendo.entidades.GEN_Estados;
 import arriendo.entidades.GEN_Personas;
+import arriendo.entidades.GEN_Sitios;
 
 
 public class ManagerContratos {
 	private HibernateDAO mngDao;
 	private GEN_ContratoPlantillas_Cab contPlanTemp;
 	private ARR_Contratos_Cab contTemp;
+	private ARR_Contratos_Det contTemDet;
 	
 	public ManagerContratos() {
 		mngDao = new HibernateDAO();
@@ -57,6 +60,7 @@ public class ManagerContratos {
 	public HashMap<String,String> getMatrizTipoContrato(){
 		HashMap<String,String> mtc=new HashMap<String,String>();
 		mtc.put("Bicicletas", "GenBicicleta");
+		mtc.put("Vivienda", "GenVivienda");
 		return mtc;
 	}
 	
@@ -254,7 +258,7 @@ public class ManagerContratos {
 	@SuppressWarnings("unchecked")
 	public GEN_Contadores findContadorByClave(String clave)throws Exception{
 		GEN_Contadores cont = null;
-		List<GEN_Contadores> lista = mngDao.findByParam(GEN_Contadores.class, "o.cntClave", clave, null);
+		List<GEN_Contadores> lista = mngDao.findByParam(GEN_Contadores.class, "cnt_clave", clave, null);
 		if(lista == null || lista.isEmpty())
 			throw new Exception("La consulta no dió resultados");
 		cont = lista.get(0);
@@ -295,7 +299,7 @@ public class ManagerContratos {
 	 */
 	@SuppressWarnings("unchecked")
 	public List<GEN_ContratoPlantillas_Cab> plantillasContratoPorContrato(String tipoContrato){
-		List<GEN_ContratoPlantillas_Cab> listado = mngDao.findWhere(GEN_ContratoPlantillas_Cab.class, "o.cpc_tipo='"
+		List<GEN_ContratoPlantillas_Cab> listado = mngDao.findWhere(GEN_ContratoPlantillas_Cab.class, "cpc_tipo='"
 				+tipoContrato+"' AND o.cpc_estado='A'", null);	
 		return listado;
 	}
@@ -341,7 +345,7 @@ public class ManagerContratos {
 	public ARR_Contratos_Cab crearContratoTmp(GEN_Personas persona, 
 			Timestamp fechaInicio, Timestamp fechaFin, 
 			Integer cpId, String tipoContrato) throws Exception{
-		GEN_ContratoPlantillas_Cab plantilla =  plantillaContratoByID(cpId);
+		GEN_ContratoPlantillas_Cab plantilla = plantillaContratoByID(cpId);
 		contTemp = new ARR_Contratos_Cab();
 		contTemp.setCab_numero("CNTA"+lastValueCont("contratoarriendo"));
 		contTemp.setCab_fecha(new Timestamp(new Date().getTime()));
@@ -377,7 +381,7 @@ public class ManagerContratos {
 		if(contraTemp==null)
 			throw new Exception("Primero dede crear contrato");
 		//Setear numero de contrato
-		String nro = "CNTB"+lastValueCont("contratobicicleta");
+		String nro = "CNTA"+lastValueCont("contratoarriendo");
 		contraTemp.setCab_numero(nro);
 		//Seteo de clausulas
 		for(ARR_ContratoClausulas_Det det : contraTemp.getCon_cla_d()){
@@ -388,8 +392,7 @@ public class ManagerContratos {
 		contraTemp = null;
 		contTemp = null;
 		//Ingreso de contador
-		plusLastValueCont("contratobicicleta");
-		
+		plusLastValueCont("contratoarriendo");
 		return nro;
 	}
 	
@@ -478,5 +481,44 @@ public class ManagerContratos {
 	public List<GEN_Estados> findAllEstados() {
 		return mngDao.findAll(GEN_Estados.class);
 	}// Cierre del metodo
-		
+	
+	/******************************CREAR CONTRATOS DETALLES******************************/
+	
+	/**
+	 * Crea un contrato temporal
+	 * @param persona
+	 * @param fechaInicio
+	 * @param fechaFin
+	 * @param tipoContrato
+	 * @return
+	 */
+	public ARR_Contratos_Det crearContratoTmpDet(String observacion, Float costo, char estado,Integer sit, String cab) throws Exception{
+		GEN_Sitios s= (GEN_Sitios) mngDao.findById(GEN_Sitios.class, sit);
+		System.out.println(s.getSit_nombre());
+		ARR_Contratos_Cab c= findContratoByID(cab);
+		System.out.println(c.getCab_numero());
+		contTemDet = new ARR_Contratos_Det();
+		contTemDet.setDet_observacion(observacion);
+		contTemDet.setDet_costo(s.getSit_costo_arriendo());
+		contTemDet.setCon_cab(c);
+		contTemDet.setSit(s);
+		contTemDet.setDet_estado('A');
+		return contTemDet;
+	}
+	
+	/**
+	 * Guardar detalle temporal
+	 * @param contraTemp
+	 * @throws Exception
+	 */
+	public void guardarContratoTmpDet(ARR_Contratos_Det contraTempDet) throws Exception{
+		if(contraTempDet==null)
+			throw new Exception("Primero dede crear contrato");
+		//Ingreso de contrato
+		mngDao.insertar(contraTempDet);
+		contraTempDet = null;
+		contTemDet = null;
+		//Ingreso de contador
+		plusLastValueCont("contratoarriendo");
+	}
 }
