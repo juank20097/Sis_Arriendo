@@ -532,6 +532,7 @@ public class ContratosBean implements Serializable {
 		setCpId(null);
 		setGuardado(false);
 		setFinalizado(false);
+		setVboton(true);
 		return "convivienda?faces-redirect=true";
 	}
 
@@ -745,14 +746,7 @@ public class ContratosBean implements Serializable {
 	}
 	
 	public String irDetalle(){
-		String r="";
-		if (contraTemp==null){
-			Mensaje.crearMensajeWARN("Debe crear un contrato antes de seguir");
-		}else{
-			r="dconvivienda?faces-redirect=true";
-	
-		}
-		return r;
+		return "dconvivienda?faces-redirect=true";
 	}
 	
 	public String irContrato(){
