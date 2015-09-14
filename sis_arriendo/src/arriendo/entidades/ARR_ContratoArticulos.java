@@ -61,12 +61,12 @@ public class ARR_ContratoArticulos {
    public void setCon_det(ARR_Contratos_Det newARR_Contratos_Det) {
       if (this.con_det == null || !this.con_det.equals(newARR_Contratos_Det))
       {
-         if (this.con_det != null)
+         /*if (this.con_det != null)
          {
             ARR_Contratos_Det oldARR_Contratos_Det = this.con_det;
             this.con_det = null;
             oldARR_Contratos_Det.removeCon_art(this);
-         }
+         }*/
          if (newARR_Contratos_Det != null)
          {
             this.con_det = newARR_Contratos_Det;

@@ -164,12 +164,12 @@ public class GEN_Sectores {
    public void setIns(GEN_Instituciones newGEN_Instituciones) {
       if (this.ins == null || !this.ins.equals(newGEN_Instituciones))
       {
-         if (this.ins != null)
+         /*if (this.ins != null)
          {
             GEN_Instituciones oldGEN_Instituciones = this.ins;
             this.ins = null;
             oldGEN_Instituciones.removeSec(this);
-         }
+         }*/
          if (newGEN_Instituciones != null)
          {
             this.ins = newGEN_Instituciones;

@@ -1,16 +1,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:b="http://bootsfaces.net/ui">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui">
 
-<ui:composition template="template.xhtml">
-	<ui:define name="titulo">
-            Contrato Viviendas
+	<ui:composition template="template.xhtml">
+		<ui:define name="titulo">
+            Contratos Arriendo
         </ui:define>
-	<ui:define name="contenido">
+       <ui:define name="contenido">
 		<!-- 
         	<h:form>
 			    <p:remoteCommand name="onload" actionListener="#{contBiciBean.vSesionPermiso()}" autoRun="true" />
@@ -54,7 +54,7 @@
 						<h:outputLabel value="Fecha de Inicio*" />
 					</b:column>
 					<b:column span="4">
-						<p:calendar disabled="#{contratosBean.valor}"  value="#{contratosBean.cab_fechaini}"
+						<p:calendar disabled="#{contratosBean.valor}" value="#{contratosBean.cab_fechaini}"
 							mindate="#{contratosBean.factual}" pattern="dd-MM-yyyy"
 							mask="true" showOn="button" />
 					</b:column>
@@ -76,27 +76,9 @@
 							style="width:100%;" />
 					</b:column>
 				</b:row>
-				<b:row>
-					<b:column span="2">
-						<h:outputLabel value="Tipo de Plantilla*" />
-					</b:column>
-					<b:column span="10">
-						<b:selectOneMenu disabled="#{contratosBean.valor}" value="#{contratosBean.cpId}" required="false">
-							<f:selectItem itemLabel="Seleccionar.." itemValue="" />
-							<f:selectItems value="#{contratosBean.listaPlantillas}" />
-						</b:selectOneMenu>
-					</b:column>
-				</b:row>
-				<b:row style="margin-bottom:10px;">
-					<b:column span="2">
-						<p:commandButton disabled="#{contratosBean.valor}" value="Crear"
-							actionListener="#{contratosBean.crearContrato()}"
-							update="frmcbc :frmpmsj" />
-					</b:column>
-				</b:row>
 			</b:panel>
 			<b:panel look="primary" title="Cláusulas de Contrato">
-				<p:dataTable value="#{contratosBean.contraTemp.con_cla_d}"
+				<p:dataTable emptyMessage="Sin Datos" value="#{contratosBean.contraTemp.con_cla_d}"
 					var="clau" styleClass="table table-striped">
 					<p:column width="100">
 						<f:facet name="header">Número</f:facet>
@@ -104,7 +86,7 @@
 					</p:column>
 					<p:column>
 						<f:facet name="header">Descripción</f:facet>
-						<p:inputTextarea value="#{clau.ccdClausula}" readonly="true"
+						<p:inputTextarea disabled="#{contratosBean.valor}" value="#{clau.ccdClausula}" readonly="true"
 							style="width:100%;" />
 					</p:column>
 					<p:column width="80">
@@ -127,15 +109,15 @@
 						</p:selectOneMenu>
 					</b:column>
 					<b:column span="6">
-						<b:commandButton styleClass="btn-info" disabled="#{contratosBean.vboton}" style="width:20%;" value="Añadir" 
+						<b:commandButton disabled="#{contratosBean.vboton}" style="width:20%;" value="Añadir" look="primary"
 							iconAwesome="plus"
-							actionListener="#{contratosBean.addContra_Tem}"
+							actionListener="#{contratosBean.addContra_Tem2}"
 							update=":form:tbb" />
 					</b:column>
 				</b:row>
 
 				<br />
-				<p:dataTable value="#{contratosBean.list}" var="lis"
+				<p:dataTable value="#{contratosBean.list}" emptyMessage="Sin Datos" var="lis"
 					styleClass="table table-striped">
 					<p:column>
 						<f:facet name="header">SITIO</f:facet>
@@ -173,7 +155,7 @@
 					style="padding: .3em 0em;" styleClass="btn-info"
 					onclick="PF('cda').show();" />
 					<h:commandButton type="button" value="Cancelar"
-						action="#{contratosBean.cancelarContraton()}"
+						action="#{contratosBean.cancelarContrato()}"
 						styleClass="btn btn-info">
 						<f:ajax />
 					</h:commandButton>
@@ -207,7 +189,7 @@
 				<center>
 					<p:commandButton value="Si" styleClass="ui-confirmdialog-yes"
 						icon="ui-icon-check" oncomplete="PF('cd').hide()"
-						actionListener="#{contratosBean.guardarContrato()}"
+						actionListener="#{contratosBean.editarContratoG()}"
 						update=":frmcbc :frmpmsj" />
 					&nbsp;&nbsp;&nbsp;
 					<p:commandButton value="No" type="button"
@@ -249,6 +231,6 @@
 			</h:form>
 		</p:confirmDialog>
 	</ui:define>
-</ui:composition>
+ 	</ui:composition>
 </html>
 

@@ -91,12 +91,12 @@ public class ARR_Contratos_Det {
    public void setSit(GEN_Sitios newGEN_Sitios) {
       if (this.sit == null || !this.sit.equals(newGEN_Sitios))
       {
-         if (this.sit != null)
+        /* if (this.sit != null)
          {
             GEN_Sitios oldGEN_Sitios = this.sit;
             this.sit = null;
             oldGEN_Sitios.removeCon_det(this);
-         }
+         } */
          if (newGEN_Sitios != null)
          {
             this.sit = newGEN_Sitios;
@@ -114,12 +114,12 @@ public class ARR_Contratos_Det {
    public void setCon_cab(ARR_Contratos_Cab newARR_Contratos_Cab) {
       if (this.con_cab == null || !this.con_cab.equals(newARR_Contratos_Cab))
       {
-         if (this.con_cab != null)
+        /* if (this.con_cab != null)
          {
             ARR_Contratos_Cab oldARR_Contratos_Cab = this.con_cab;
             this.con_cab = null;
             oldARR_Contratos_Cab.removeCon_det(this);
-         }
+         } */
          if (newARR_Contratos_Cab != null)
          {
             this.con_cab = newARR_Contratos_Cab;

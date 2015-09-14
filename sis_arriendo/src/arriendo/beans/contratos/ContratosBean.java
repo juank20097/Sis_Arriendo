@@ -63,23 +63,30 @@ public class ContratosBean implements Serializable {
 	
 	/********** DETALLE SITIOS *********/
 	private List<ARR_Contratos_Det> list;
+	private List<ARR_Contratos_Det> resp;
 	private ARR_Contratos_Det contraTempDet;
 	private String observacion;
 	private Float costo;
 	private char estado;
 	private Integer sitio_sel;
+	private String num_cab;
 	
 	 
 	/******** HABILITADORES *****/
 	private boolean guardado;
 	private boolean finalizado;
 	private boolean vboton;
+	private boolean imprimir;
+	private boolean valor;
 
 	public ContratosBean() {
 		mngCont = new ManagerContratos();
-		guardado = false;
-		finalizado = false;
+		guardado = true;
+		finalizado = true;
 		vboton = true;
+		imprimir = true;
+		valor= false;
+		observacion ="";
 		list = new ArrayList<ARR_Contratos_Det>();
 	}
 	/**
@@ -96,6 +103,42 @@ public class ContratosBean implements Serializable {
 	}
 	
 	/**
+	 * @return the valor
+	 */
+	public boolean isValor() {
+		return valor;
+	}
+	/**
+	 * @param valor the valor to set
+	 */
+	public void setValor(boolean valor) {
+		this.valor = valor;
+	}
+	/**
+	 * @return the imprimir
+	 */
+	public boolean isImprimir() {
+		return imprimir;
+	}
+	/**
+	 * @param imprimir the imprimir to set
+	 */
+	public void setImprimir(boolean imprimir) {
+		this.imprimir = imprimir;
+	}
+	/**
+	 * @return the num_cab
+	 */
+	public String getNum_cab() {
+		return num_cab;
+	}
+	/**
+	 * @param num_cab the num_cab to set
+	 */
+	public void setNum_cab(String num_cab) {
+		this.num_cab = num_cab;
+	}
+	/**
 	 * @return the vboton
 	 */
 	public boolean isVboton() {
@@ -106,6 +149,54 @@ public class ContratosBean implements Serializable {
 	 */
 	public void setVboton(boolean vboton) {
 		this.vboton = vboton;
+	}
+	/**
+	 * @return the observacion
+	 */
+	public String getObservacion() {
+		return observacion;
+	}
+	/**
+	 * @param observacion the observacion to set
+	 */
+	public void setObservacion(String observacion) {
+		this.observacion = observacion;
+	}
+	/**
+	 * @return the resp
+	 */
+	public List<ARR_Contratos_Det> getResp() {
+		return resp;
+	}
+	/**
+	 * @param resp the resp to set
+	 */
+	public void setResp(List<ARR_Contratos_Det> resp) {
+		this.resp = resp;
+	}
+	/**
+	 * @return the costo
+	 */
+	public Float getCosto() {
+		return costo;
+	}
+	/**
+	 * @param costo the costo to set
+	 */
+	public void setCosto(Float costo) {
+		this.costo = costo;
+	}
+	/**
+	 * @return the estado
+	 */
+	public char getEstado() {
+		return estado;
+	}
+	/**
+	 * @param estado the estado to set
+	 */
+	public void setEstado(char estado) {
+		this.estado = estado;
 	}
 	/**
 	 * @return the contraTempDet
@@ -395,8 +486,16 @@ public class ContratosBean implements Serializable {
 	 */
 	public String nuevoContrato() {
 		setContraTemp(null);
-		setCab_fechaini(new Date());
-		setCab_fechafin(new Date());
+		setContraTempDet(null);
+		setCab_fechaini(null);
+		setCab_fechafin(null);
+		setCab_numero(null);
+		setCab_observacion(null);
+		setCab_estado('A');
+		finalizado = true;
+		imprimir= true;
+		guardado=true;
+		valor = false;
 		return "nconvivienda?faces-redirect=true";
 	}
 
@@ -426,16 +525,17 @@ public class ContratosBean implements Serializable {
 				System.out.println(cpId);
 			} else
 			if (cpId == null || cpId == -1 || cpId==0) {
-				Mensaje.crearMensajeWARN("No se ha selleccionado una plantilla");
+				Mensaje.crearMensajeWARN("No se ha seleccionado una plantilla");
 			} 
 			 else {
 				setContraTemp(mngCont.crearContratoTmp(getPersona(),
 						new Timestamp(getCab_fechaini().getTime()),
 						new Timestamp(getCab_fechafin().getTime()), getCpId(),
-						getCpc_tipo()));
+						getCpc_tipo(),getCab_observacion()));
 				setCab_numero(getContraTemp().getCab_numero());
 				setCab_observacion(getContraTemp().getCab_observacion());
 				vboton=false;
+				guardado=true;
 				Mensaje.crearMensajeINFO("Creación correcta");
 			}
 		} catch (Exception e) {
@@ -480,7 +580,8 @@ public class ContratosBean implements Serializable {
 	 */
 	public void guardarContrato() {
 		try {
-			setCab_numero(mngCont.guardarContratoTmp(getContraTemp()));
+			setCab_numero(mngCont.guardarContratoTmp(getContraTemp(), getList()));
+			setFinalizado(false);
 			setGuardado(true);
 			Mensaje.crearMensajeINFO("Contrato guardado de forma correcta");
 		} catch (Exception e) {
@@ -495,6 +596,9 @@ public class ContratosBean implements Serializable {
 		try {
 			mngCont.finalizarContrato(getCab_numero());
 			setFinalizado(true);
+			setImprimir(false);
+			setGuardado(true);
+			setValor(true);
 			Mensaje.crearMensajeINFO("Finalización de contrato exitosa");
 		} catch (Exception e) {
 			Mensaje.crearMensajeERROR(e.getMessage());
@@ -510,7 +614,7 @@ public class ContratosBean implements Serializable {
 		try {
 			mngCont.anularContrato(getCab_numero());
 			Mensaje.crearMensajeINFO("Se anuló el contrato de forma correcta");
-			return "convivienda?faces-redirect=true";
+			return "convivienda";
 		} catch (Exception e) {
 			Mensaje.crearMensajeERROR(e.getMessage());
 			return "";
@@ -523,16 +627,46 @@ public class ContratosBean implements Serializable {
 	 * 
 	 * @return página de contratos bicicleta
 	 */
-	public String cancelarContrato() {
+	public String cancelarContrato() throws Exception{
 		//setPersona(null);
 		//setPersonaId("");
 		setCab_fechafin(null);
 		setCab_fechaini(null);
 		setCab_observacion(null);
 		setCpId(null);
+		setCab_numero(null);
 		setGuardado(false);
 		setFinalizado(false);
-		setVboton(true);
+		if (resp.isEmpty()){
+			System.out.println("Nada");
+		}else{
+		for (ARR_Contratos_Det ar : resp) {
+			mngCont.insertar_contrato_det(ar);
+		}
+		}
+		list = new ArrayList<ARR_Contratos_Det>();
+		resp = new ArrayList<ARR_Contratos_Det>();
+		return "convivienda?faces-redirect=true";
+	}
+	
+
+	/**
+	 * Cancela contrato bicicletas
+	 * 
+	 * @return página de contratos bicicleta
+	 */
+	public String cancelarContraton() throws Exception{
+		//setPersona(null);
+		//setPersonaId("");
+		setCab_fechafin(null);
+		setCab_fechaini(null);
+		setCab_observacion(null);
+		setCpId(null);
+		setCab_numero(null);
+		setGuardado(false);
+		setFinalizado(false);
+		list = new ArrayList<ARR_Contratos_Det>();
+		resp = new ArrayList<ARR_Contratos_Det>();
 		return "convivienda?faces-redirect=true";
 	}
 
@@ -545,24 +679,41 @@ public class ContratosBean implements Serializable {
 	 *            contrato cabecera de bicicleta
 	 * @return
 	 */
-	public String cargarDatosContrato(ARR_Contratos_Cab c) {
+	public String cargarDatosContrato(ARR_Contratos_Cab c) throws Exception {
 		if (c.getCab_estado()=='I') {
 			Mensaje.crearMensajeWARN("Este contrato no se puede Editar, porque ha sido ANULADO.");
 			return "";
 		} else {
 			setCab_numero(c.getCab_numero());
+			setNum_cab(c.getCab_numero());
 			//setPersona(c.get);
 			//setPersonaId(c.getGenPersona().getPerId());
 			setCab_fechaini(new Date(c.getCab_fechaini().getTime()));
 			setCab_fechafin(new Date(c.getCab_fechafin().getTime()));
 			setCab_observacion(c.getCab_observacion());
-			setGuardado(true);
-			if (c.getCab_estado()=='F')
+			setGuardado(false);
+			List<ARR_Contratos_Det> cd = mngCont.findAllContratos_Det();
+			list= new ArrayList<ARR_Contratos_Det>();
+			resp= new ArrayList<ARR_Contratos_Det>();
+			System.out.println(cd.size());
+			for (ARR_Contratos_Det a : cd) {
+				if (a.getCon_cab().getCab_numero().equals(c.getCab_numero())){
+					list.add(a);
+					resp.add(a);
+					mngCont.eliminar_contrato_det(a);
+				}
+			}
+			if (c.getCab_estado()=='F'){
 				setFinalizado(true);
-			else
-				setFinalizado(false);
-			return "econvivienda?faces-redirect=true";
+				setValor(true);
+				setGuardado(true);
 		}
+			else{
+				setFinalizado(false);
+				setValor(false);
+			}
+			return "econvivienda?faces-redirect=true";	
+			}
 	}
 
 	/**
@@ -584,8 +735,10 @@ public class ContratosBean implements Serializable {
 		try {
 			mngCont.editarContratoCabG(getCab_numero(), getPersona(),
 					new Timestamp(getCab_fechaini().getTime()), new Timestamp(
-							getCab_fechafin().getTime()), getCab_observacion());
+							getCab_fechafin().getTime()), getCab_observacion(), getList());
+			resp = new ArrayList<ARR_Contratos_Det>();
 			Mensaje.crearMensajeINFO("Cambios correctamente guardados");
+			finalizado=false;
 		} catch (Exception e) {
 			Mensaje.crearMensajeERROR(e.getMessage());
 		}
@@ -722,35 +875,49 @@ public class ContratosBean implements Serializable {
 		return lista;
 	}
 	
-	public List<ARR_Contratos_Det> addContra_Tem(){
-		System.out.println("si entra");
+	/**
+	 * Metodo para insertar el sitio al contrato nuevo 
+	 * 
+	 * @return lista 
+	 */
+	public List<ARR_Contratos_Det> addContra_Tem() throws Exception{
 		if (getSitio_sel()==null || getSitio_sel()==-1){
 			Mensaje.crearMensajeINFO("Seleccione un sitio a añadir");
-			System.out.println("se sale");
 		}else{
-			System.out.println(contraTemp.getCab_numero());
-			System.out.println(sitio_sel);
-		try {
-			contraTempDet = mngCont.crearContratoTmpDet(observacion, costo, estado, sitio_sel, getContraTemp().getCab_numero());
+			contraTempDet = mngCont.crearContratoTmpDet(observacion, sitio_sel);
 			list.add(contraTempDet);
-		} catch (Exception e) {
-			Mensaje.crearMensajeINFO("no se pudo crear el detalle debido a este error: "+e);
 		}
+		vboton=true;
+		guardado=false;
+		return list;
+	}
+	
+	/**
+	 * Metodo para insertar el sitio al contrato en una edición
+	 * 
+	 * @return lista 
+	 */
+	public List<ARR_Contratos_Det> addContra_Tem2() throws Exception{
+		if (getSitio_sel()==null || getSitio_sel()==-1){
+			Mensaje.crearMensajeINFO("Seleccione un sitio a añadir");
+		}else{
+			contraTempDet = mngCont.crearContratoTmpDet(observacion, sitio_sel);
+			contraTempDet.setCon_cab(mngCont.findContratoByID(getNum_cab()));
+			list.add(contraTempDet);
 		}
-		System.out.println(list.size());
+		vboton=true;
 		return list;
 	}
 	
 	public void quitarDet(ARR_Contratos_Det a){
+		vboton=false;
 		list.remove(a);
 	}
 	
-	public String irDetalle(){
-		return "dconvivienda?faces-redirect=true";
-	}
 	
-	public String irContrato(){
-		return "nconvivienda?faces-redirect=true";
-	}
+	
+	
+	
+	
 
 }

@@ -87,12 +87,12 @@ public class ARR_ContratoClausulas_Det {
    public void setCon_cab(ARR_Contratos_Cab newARR_Contratos_Cab) {
       if (this.con_cab == null || !this.con_cab.equals(newARR_Contratos_Cab))
       {
-         if (this.con_cab != null)
+         /*if (this.con_cab != null)
          {
             ARR_Contratos_Cab oldARR_Contratos_Cab = this.con_cab;
             this.con_cab = null;
             oldARR_Contratos_Cab.removeCon_cla_d(this);
-         }
+         }*/
          if (newARR_Contratos_Cab != null)
          {
             this.con_cab = newARR_Contratos_Cab;

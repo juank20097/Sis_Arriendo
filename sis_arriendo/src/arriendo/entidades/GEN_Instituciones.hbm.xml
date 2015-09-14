@@ -6,7 +6,9 @@
     <class name="arriendo.entidades.GEN_Instituciones" table="GEN_INSTITUCIONES">
         <id name="ins_id" type="java.lang.Integer">
             <column name="INS_ID" />
-            <generator class="assigned" />
+            <generator class="sequence">
+              <param name="sequence">seq_GEN_Instituciones</param>
+             </generator>  
         </id>
         <property name="ins_nombre" type="java.lang.String">
             <column name="INS_NOMBRE" />

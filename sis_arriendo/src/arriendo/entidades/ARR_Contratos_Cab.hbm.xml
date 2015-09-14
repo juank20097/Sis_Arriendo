@@ -6,9 +6,8 @@
     <class name="arriendo.entidades.ARR_Contratos_Cab" table="ARR_CONTRATOS_CAB">
         <id name="cab_numero" type="java.lang.String">
             <column name="CAB_NUMERO" />
-			  <generator class="sequence">
-              <param name="sequence">seq_ARR_ContratoArticulos</param>
-             </generator>        </id>
+			  <generator class="assigned"/>
+        </id>
         <property name="cab_fecha" type="java.util.Date">
             <column name="CAB_FECHA" />
         </property>
