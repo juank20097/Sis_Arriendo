@@ -43,7 +43,7 @@ public class SectorBean {
 	private Integer institucion;
 	private boolean edicion;
 	
-	//mapa
+	//Datos de Mapas
 	private MapModel geoModel;
 	private String centerGeoMap = "-1.7864639,-78.1368874";
 	private Marker marca;
@@ -56,11 +56,11 @@ public class SectorBean {
 		edicion = false;
 		geoModel = new DefaultMapModel();
 		
-		//Shared coordinates
+		//Adicion de latitud y longitud del mapa de inicio
         LatLng coord1 = new LatLng(-0.198157, -78.489996);
         LatLng coord2 = new LatLng(0.410685, -78.176388);
           
-        //Basic marker
+        //Marcadores basicos de los puntos definidos
         geoModel.addOverlay(new Marker(coord1, "Yachay Empresa Publica"));
         geoModel.addOverlay(new Marker(coord2, "Yachay Ciudad del Conocimiento"));
 	}
@@ -366,6 +366,10 @@ public class SectorBean {
 	        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Punto Seleccionado:","Lugar asignado"));
 	    }
 	 
+	 /**
+	  * metodo para mostrar los mapas y sus puntos
+	 * @param se
+	 */
 	 public void Mapa (GEN_Sectores se){
 		 setSele(se);
 		 RequestContext.getCurrentInstance().execute("PF('dlg').show()");

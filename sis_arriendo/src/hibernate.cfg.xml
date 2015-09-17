@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
                                          "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
- <session-factory name="">
+ <session-factory >
   <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
   <property name="hibernate.connection.password">root</property>
   <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/sis_arriendo</property>
@@ -13,11 +13,8 @@
   <!-- Otras propiedades importantes -->
   <property name="show_sql">true</property>
   <property name="hbm2ddl.auto">update</property>
-  <!-- Otras propiedades importantes 
-<property name="hibernate.cache.use_second_level_cache">false</property>
-<property name="hibernate.cache.use_query_cache">true</property>
 
- Archivos de mapeo -->
+ <!-- Archivos de mapeo -->
   <mapping resource="arriendo/entidades/ARR_Contratos_Cab.hbm.xml"/>
   <mapping resource="arriendo/entidades/ARR_Contratos_Det.hbm.xml"/>
   <mapping resource="arriendo/entidades/ARR_Inter_Per.hbm.xml"/>

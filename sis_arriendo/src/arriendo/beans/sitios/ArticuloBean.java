@@ -212,7 +212,7 @@ public class ArticuloBean {
 	
 
 	/**
-	 * Redirecciona a la pagina de creacion de sitios
+	 * Redirecciona a la pagina de creacion de articulo
 	 * 
 	 * @return
 	 */
@@ -222,7 +222,7 @@ public class ArticuloBean {
 	}
 
 	/**
-	 * Permite la creacion o modificacion de una bicicleta
+	 * Permite la creacion o modificacion de una articulo
 	 * 
 	 * @return
 	 */
@@ -256,8 +256,11 @@ public class ArticuloBean {
 	}
 
 	/**
+	 * Metodo para cargar la entidad para su edicion
+	 * 
 	 * @param t
-	 * @return
+	 * 
+	 * @return 
 	 */
 	public String cargarArticulo(GEN_Articulos t) {
 		art_id = t.getArt_id();
@@ -305,9 +308,17 @@ public class ArticuloBean {
 		return lista;
 	}
 	
-	// METODOS DE IMAGENES 
+	/**
+	 * METODOS DE IMAGENES
+	 */
 	
-	// metodo para guardar la imagen en el servidor
+	/**
+	 * Metodo para guardar las imagenes al servidor
+	 * 
+	 * @param event
+	 * 
+	 * @return 
+	 */
 		public void ImagenServ(FileUploadEvent event) throws IOException {
 			file = event.getFile();
 			InputStream inputStream = null;
@@ -362,7 +373,10 @@ public class ArticuloBean {
 			}	
 		}
 		
-		// metodo para poner el nombre a la imagen
+		/**
+		 * Metodo para asignar nombre a las imagenes
+		 * 
+		 */
 		public void asignarNombreImagen() {
 			if (getArt_nombre().trim().isEmpty()) {
 				System.out.println("Vacio");

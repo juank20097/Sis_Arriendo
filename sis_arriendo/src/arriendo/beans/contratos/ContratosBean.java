@@ -60,7 +60,6 @@ public class ContratosBean implements Serializable {
 	private List<ARR_ContratoClausulas_Det> listClau;
 	private List<GEN_Personas> lstPer;
 	
-	
 	/********** DETALLE SITIOS *********/
 	private List<ARR_Contratos_Det> list;
 	private List<ARR_Contratos_Det> resp;
@@ -71,7 +70,6 @@ public class ContratosBean implements Serializable {
 	private Integer sitio_sel;
 	private String num_cab;
 	
-	 
 	/******** HABILITADORES *****/
 	private boolean guardado;
 	private boolean finalizado;
@@ -79,6 +77,7 @@ public class ContratosBean implements Serializable {
 	private boolean imprimir;
 	private boolean valor;
 
+	
 	public ContratosBean() {
 		mngCont = new ManagerContratos();
 		guardado = true;
@@ -429,14 +428,14 @@ public class ContratosBean implements Serializable {
 	}
 
 	/**
-	 * @return the lista
+	 * @return the lista de contactos
 	 */
 	public List<ARR_Contratos_Cab> getListaContratos() {
 		return mngCont.findAllContratos_Cab();
 	}
 
 	/**
-	 * @return the listClau
+	 * @return the lista de Contratos_Calusulas _det
 	 */
 	public List<ARR_ContratoClausulas_Det> getListClau() {
 		if (getCab_numero() != null || !getCab_numero().isEmpty())
@@ -445,13 +444,16 @@ public class ContratosBean implements Serializable {
 	}
 
 	/**
-	 * @return the lstPer
+	 * @return the lista de Personas
 	 */
 	public List<GEN_Personas> getLstPer() {
 		lstPer = mngCont.findAllPersona();
 		return lstPer;
 	}
 
+	/**
+	 * @return the lista de las Plantilla de un contrato
+	 */
 	public List<SelectItem> getListaPlantillas() {
 		List<SelectItem> rsp = new ArrayList<SelectItem>();
 		List<GEN_ContratoPlantillas_Cab> todos = mngCont
@@ -467,7 +469,7 @@ public class ContratosBean implements Serializable {
 	 * 
 	 * @param query
 	 *            dni
-	 * @return
+	 * @return lista de las personas que se asemejan 
 	 */
 	public List<GEN_Personas> completePersona(String query) {
 		List<GEN_Personas> allPers = getLstPer();
@@ -623,9 +625,9 @@ public class ContratosBean implements Serializable {
 	}
 
 	/**
-	 * Cancela contrato bicicletas
+	 * Cancela contrato arriendo de una edicion
 	 * 
-	 * @return página de contratos bicicleta
+	 * @return página de contratos arriendo
 	 */
 	public String cancelarContrato() throws Exception{
 		//setPersona(null);
@@ -651,9 +653,9 @@ public class ContratosBean implements Serializable {
 	
 
 	/**
-	 * Cancela contrato bicicletas
+	 * Cancela contrato de arriendo de una adicion
 	 * 
-	 * @return página de contratos bicicleta
+	 * @return página de contratos arriendo
 	 */
 	public String cancelarContraton() throws Exception{
 		//setPersona(null);
@@ -744,6 +746,9 @@ public class ContratosBean implements Serializable {
 		}
 	}
 
+	/**
+	 * Imprime un reporte de los datos de un contrato
+	 */
 	public void imprimirRptContrato() {
 
 		try {
@@ -801,6 +806,9 @@ public class ContratosBean implements Serializable {
 		}
 	}
 
+	/**
+	 * Muestra un reporte de los datos de un contrato
+	 */
 	public void mostrarRptContrato() {
 
 		try {
@@ -860,7 +868,7 @@ public class ContratosBean implements Serializable {
 ///////////////////////////////////////////////////////////////////DETALLES SITIOS////////////////////////////////////////////////////////////////
 	
 	/**
-	 * Lista 
+	 * Metodo de la lista de los sitios libres
 	 * 
 	 * @return lista de todas
 	 */
@@ -909,6 +917,11 @@ public class ContratosBean implements Serializable {
 		return list;
 	}
 	
+	/**
+	 * Metodo para eliminar el sitio al contrato
+	 * 
+	 * @return 
+	 */
 	public void quitarDet(ARR_Contratos_Det a){
 		vboton=false;
 		list.remove(a);

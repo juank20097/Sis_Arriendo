@@ -282,7 +282,7 @@ public class SitiosBean {
 	}
 
 	/**
-	 * Lista 
+	 * Lista de items de Areas
 	 * 
 	 * @return lista de todas
 	 */
@@ -298,7 +298,7 @@ public class SitiosBean {
 	}
 	
 	/**
-	 * Lista 
+	 * Lista de Items de TiposSitios
 	 * 
 	 * @return lista de todas
 	 */

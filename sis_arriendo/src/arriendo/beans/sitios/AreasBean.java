@@ -156,7 +156,7 @@ public class AreasBean {
 	}
 
 	/**
-	 * Permite la creacion o modificacion de un sector
+	 * Permite la creacion o modificacion de un area
 	 * 
 	 * @return
 	 */
@@ -211,7 +211,7 @@ public class AreasBean {
 	}
 
 	/**
-	 * Cancela la accion de modificar o crear area
+	 * Cancela la accion de modificar o crear 
 	 * 
 	 * @return
 	 */
@@ -245,7 +245,7 @@ public class AreasBean {
 	/**
 	 * Lista de instituciones
 	 * 
-	 * @return lista de todos las instituciones
+	 * @return lista de todos los sectores
 	 */
 	public List<SelectItem> getlistSectores() {
 		List<SelectItem> lista = new ArrayList<SelectItem>();

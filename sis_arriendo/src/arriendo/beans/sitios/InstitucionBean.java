@@ -139,7 +139,7 @@ public class InstitucionBean {
 	}
 
 	/**
-	 * Permite la creacion o modificacion de una bicicleta
+	 * Permite la creacion o modificacion de una institucion
 	 * 
 	 * @return
 	 */
@@ -168,6 +168,8 @@ public class InstitucionBean {
 	}
 
 	/**
+	 * Metodo para cargar una Intitucion para su edicion
+	 * 
 	 * @param t
 	 * @return
 	 */
@@ -196,6 +198,8 @@ public class InstitucionBean {
 
 	/**
 	 * Lista de estados
+	 * 
+	 * @return lista de items de estados
 	 */
 	public List<SelectItem> getlistEstados(){
 		List<SelectItem> lista = new ArrayList<SelectItem>();
@@ -206,6 +210,13 @@ public class InstitucionBean {
 		return lista;
 	}
 	
+	/**
+	 * Metodo para poner color 
+	 * 
+	 * @param estado
+	 * 
+	 * @return color a pintar
+	 */
 	public String color(char estado){
 		String r="";
 		List<GEN_Estados> li = manager.findAllEstados();

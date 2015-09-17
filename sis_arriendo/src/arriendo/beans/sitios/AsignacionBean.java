@@ -168,7 +168,7 @@ public class AsignacionBean {
 	
 		
 		/**
-		 * Lista 
+		 * Lista de items de articulos
 		 * 
 		 * @return lista de todas
 		 */
@@ -195,7 +195,7 @@ public class AsignacionBean {
 		}
 		
 		/**
-		 * Lista 
+		 * Lista  de items de sitios
 		 * 
 		 * @return lista de todas
 		 */
@@ -210,6 +210,11 @@ public class AsignacionBean {
 			return lista;
 		}
 
+		/**
+		 * Lista  de SitiosArticulos 
+		 * 
+		 * @return lista de todas
+		 */
 	public List<ARR_SitiosArticulos> listadeUno(){
 		sa = new ArrayList<ARR_SitiosArticulos>();
 		List<ARR_SitiosArticulos> sart = manager.findAllSitiosArticulos();
@@ -222,6 +227,11 @@ public class AsignacionBean {
 		return sa;
 	}
 	
+	/**
+	 * Metodo para eliminar un SitiArticulo
+	 * 
+	 * @return 
+	 */
 	public void eliminar(ARR_SitiosArticulos a){
 		manager.eliminarSArticulo(a.getSaId());
 		this.getlistArticulos2();
@@ -229,6 +239,11 @@ public class AsignacionBean {
 		
 	}
 	
+	/**
+	 * Metodo para poder visualizar los articulos
+	 * 
+	 * @return nombre del articulo
+	 */
 	public String verarticulo(Integer id){
 		GEN_Articulos s;
 		String h="";

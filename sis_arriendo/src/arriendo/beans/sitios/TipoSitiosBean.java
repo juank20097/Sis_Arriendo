@@ -184,7 +184,7 @@ public class TipoSitiosBean {
 	}
 
 	/**
-	 * Cancela la accion de modificar o crear area
+	 * Cancela la accion de modificar o crear 
 	 * 
 	 * @return
 	 */
@@ -199,8 +199,7 @@ public class TipoSitiosBean {
 	}
 
 	/**
-	 * Lista de estados /////////////////////metodo a
-	 * repetir//////////////////////////////
+	 * Metodo para listas todos los estados activados
 	 * 
 	 * @return lista de todos los estados
 	 */
