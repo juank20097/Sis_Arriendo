@@ -119,6 +119,9 @@
 				<br />
 				<p:dataTable value="#{contratosBean.list}" emptyMessage="Sin Datos" var="lis"
 					styleClass="table table-striped">
+					<p:column style="width:35px">
+						<p:rowToggler />
+					</p:column>
 					<p:column>
 						<f:facet name="header">SITIO</f:facet>
 						<h:outputText value="#{lis.sit.sit_nombre}" />
@@ -137,6 +140,17 @@
 							actionListener="#{contratosBean.quitarDet(lis)}"
 							update=":frmcbc:tbb" />
 					</p:column>
+					
+					<p:rowExpansion>
+					<p:dataTable emptyMessage="Sin Datos" value="#{contratosBean.lisArt}" var="art"
+					styleClass="table table-striped">
+					<p:column>
+						<f:facet name="header">ARTICULOS</f:facet>
+						<h:outputText value="#{art.art_nombre}" />
+					</p:column>
+					
+					</p:dataTable>
+					</p:rowExpansion>
 				</p:dataTable>
 			</b:panel>
 			<h:panelGrid columns="5" cellpadding="3" width="450">

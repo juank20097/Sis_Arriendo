@@ -35,11 +35,14 @@
 						<!--  <p:column headerText="PERSONA" width="200">
 							<h:outputText value="#{cb.genPersona.perNombres} #{cb.genPersona.perApellidos}"/>
 						</p:column>   -->
-						<p:column filterBy="#{cb.cab_fechainicio}" filterMatchMode="contains" headerText="FECHA INICIO" width="160">
+						<p:column filterBy="#{cb.cab_fechainicio}" filterMatchMode="contains" headerText="FECHA INICIO" width="120">
 							<h:outputText value="#{cb.cab_fechafin}"><f:convertDateTime pattern="MM/dd/yyyy" /></h:outputText>
 						</p:column>
-						<p:column filterBy="#{cb.cab_fechafin}" filterMatchMode="contains" headerText="FECHA FIN" width="160">
+						<p:column filterBy="#{cb.cab_fechafin}" filterMatchMode="contains" headerText="FECHA FIN" width="120">
 							<h:outputText value="#{cb.cab_fechafin}"><f:convertDateTime pattern="MM/dd/yyyy" /></h:outputText>
+						</p:column>
+						<p:column headerText="SITIO" width="120">
+							<h:outputText value="#{contratosBean.sitioVer(cb)}"><f:convertDateTime pattern="MM/dd/yyyy" /></h:outputText>
 						</p:column>
 						<p:column filterBy="#{cb.cab_estado}" filterMatchMode="contains" headerText="ESTADO" width="100">
 							<h:outputText value="#{cb.cab_estado}"></h:outputText>

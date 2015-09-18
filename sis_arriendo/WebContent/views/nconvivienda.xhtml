@@ -54,7 +54,8 @@
 						<h:outputLabel value="Fecha de Inicio*" />
 					</b:column>
 					<b:column span="4">
-						<p:calendar disabled="#{contratosBean.valor}"  value="#{contratosBean.cab_fechaini}"
+						<p:calendar disabled="#{contratosBean.valor}"
+							value="#{contratosBean.cab_fechaini}"
 							mindate="#{contratosBean.factual}" pattern="dd-MM-yyyy"
 							mask="true" showOn="button" />
 					</b:column>
@@ -62,7 +63,8 @@
 						<h:outputLabel value="Fecha de Fin*" />
 					</b:column>
 					<b:column span="4">
-						<p:calendar disabled="#{contratosBean.valor}" value="#{contratosBean.cab_fechafin}"
+						<p:calendar disabled="#{contratosBean.valor}"
+							value="#{contratosBean.cab_fechafin}"
 							mindate="#{contratosBean.factual}" pattern="dd-MM-yyyy"
 							mask="true" showOn="button" />
 					</b:column>
@@ -72,8 +74,8 @@
 						<h:outputLabel value="Encabezado" />
 					</b:column>
 					<b:column span="10">
-						<p:inputTextarea disabled="#{contratosBean.valor}" value="#{contratosBean.cab_observacion}"
-							style="width:100%;" />
+						<p:inputTextarea disabled="#{contratosBean.valor}"
+							value="#{contratosBean.cab_observacion}" style="width:100%;" />
 					</b:column>
 				</b:row>
 				<b:row>
@@ -81,7 +83,8 @@
 						<h:outputLabel value="Tipo de Plantilla*" />
 					</b:column>
 					<b:column span="10">
-						<b:selectOneMenu disabled="#{contratosBean.valor}" value="#{contratosBean.cpId}" required="false">
+						<b:selectOneMenu disabled="#{contratosBean.valor}"
+							value="#{contratosBean.cpId}" required="false">
 							<f:selectItem itemLabel="Seleccionar.." itemValue="" />
 							<f:selectItems value="#{contratosBean.listaPlantillas}" />
 						</b:selectOneMenu>
@@ -119,7 +122,8 @@
 			<b:panel id="tbb" look="primary" title="Asignación de Sitios">
 				<b:row>
 					<b:column span="6">
-						<p:selectOneMenu disabled="#{contratosBean.vboton}" filter="true" filterMatchMode="startsWith"
+						<p:selectOneMenu disabled="#{contratosBean.vboton}" filter="true"
+							filterMatchMode="startsWith"
 							style="width: 100%; padding: 1%; margin-bottom: 1%;"
 							value="#{contratosBean.sitio_sel}">
 							<f:selectItem itemLabel="--Seleccione--" itemValue="-1" />
@@ -127,23 +131,28 @@
 						</p:selectOneMenu>
 					</b:column>
 					<b:column span="6">
-						<b:commandButton styleClass="btn-info" disabled="#{contratosBean.vboton}" style="width:20%;" value="Añadir" 
-							iconAwesome="plus"
+						<b:commandButton styleClass="btn-info"
+							disabled="#{contratosBean.vboton}" style="width:20%;"
+							value="Añadir" iconAwesome="plus"
 							actionListener="#{contratosBean.addContra_Tem}"
 							update=":form:tbb" />
 					</b:column>
 				</b:row>
 
 				<br />
-				<p:dataTable value="#{contratosBean.list}" var="lis"
+				<p:dataTable emptyMessage="Sin Datos" value="#{contratosBean.list}" var="lis"
 					styleClass="table table-striped">
+					<p:column style="width:35px">
+						<p:rowToggler />
+					</p:column>
 					<p:column>
 						<f:facet name="header">SITIO</f:facet>
 						<h:outputText value="#{lis.sit.sit_nombre}" />
 					</p:column>
 					<p:column>
 						<f:facet name="header">OBSERVACIÓN</f:facet>
-						<p:inputText disabled="#{contratosBean.valor}" value="#{lis.det_observacion}" style="width:100%" />
+						<p:inputText disabled="#{contratosBean.valor}"
+							value="#{lis.det_observacion}" style="width:100%" />
 					</p:column>
 					<p:column>
 						<f:facet name="header">COSTO</f:facet>
@@ -151,10 +160,22 @@
 					</p:column>
 					<p:column width="100">
 						<f:facet name="header">ELIMINAR</f:facet>
-						<p:commandButton disabled="#{contratosBean.valor}" icon="ui-icon-trash"
+						<p:commandButton disabled="#{contratosBean.valor}"
+							icon="ui-icon-trash"
 							actionListener="#{contratosBean.quitarDet(lis)}"
 							update=":frmcbc:tbb" />
 					</p:column>
+
+					<p:rowExpansion>
+					<p:dataTable emptyMessage="Sin Datos" value="#{contratosBean.lisArt}" var="art"
+					styleClass="table table-striped">
+					<p:column>
+						<f:facet name="header">ARTICULOS</f:facet>
+						<h:outputText value="#{art.art_nombre}" />
+					</p:column>
+					
+					</p:dataTable>
+					</p:rowExpansion>
 				</p:dataTable>
 			</b:panel>
 			<h:panelGrid columns="5" cellpadding="3" width="450">
@@ -162,24 +183,23 @@
 					disabled="#{contratosBean.guardado}" onclick="PF('cd').show();"
 					style="padding: .3em 0em;" styleClass="btn-info" />
 				<p:commandButton value="Finalizar"
-					disabled="#{contratosBean.finalizado}"
-					style="padding: .3em 0em;" styleClass="btn-info"
-					onclick="PF('cdf').show();" />
+					disabled="#{contratosBean.finalizado}" style="padding: .3em 0em;"
+					styleClass="btn-info" onclick="PF('cdf').show();" />
 				<b:commandButton value="Imprimir"
 					action="#{contratosBean.imprimirRptContrato()}"
 					disabled="#{!contratosBean.finalizado}" look="info"
 					update=":frmpmsj" />
-					<p:commandButton value="Anular" disabled="#{contratosBean.finalizado}"
-					style="padding: .3em 0em;" styleClass="btn-info"
-					onclick="PF('cda').show();" />
-					<h:commandButton type="button" value="Cancelar"
-						action="#{contratosBean.cancelarContraton()}"
-						styleClass="btn btn-info">
-						<f:ajax />
-					</h:commandButton>
+				<p:commandButton value="Anular"
+					disabled="#{contratosBean.finalizado}" style="padding: .3em 0em;"
+					styleClass="btn-info" onclick="PF('cda').show();" />
+				<h:commandButton type="button" value="Cancelar"
+					action="#{contratosBean.cancelarContraton()}"
+					styleClass="btn btn-info">
+					<f:ajax />
+				</h:commandButton>
 			</h:panelGrid>
 		</h:form>
-		
+
 		<p:dialog header="Datos Cláusula" widgetVar="dlgclau" minHeight="200"
 			minWidth="450" width="500" modal="true" closable="false">
 			<h:form id="frmc">

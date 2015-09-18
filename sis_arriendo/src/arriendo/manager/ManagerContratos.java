@@ -9,6 +9,8 @@ import java.util.List;
 import arriendo.entidades.ARR_Contratos_Cab;
 import arriendo.entidades.ARR_ContratoClausulas_Det;
 import arriendo.entidades.ARR_Contratos_Det;
+import arriendo.entidades.ARR_SitiosArticulos;
+import arriendo.entidades.GEN_Articulos;
 import arriendo.entidades.GEN_Contadores;
 import arriendo.entidades.GEN_ContratoPlantillas_Cab;
 import arriendo.entidades.GEN_ContratoPlantillaClausulas_Det;
@@ -487,6 +489,11 @@ public class ManagerContratos {
 	
 	/******************************CREAR CONTRATOS DETALLES******************************/
 	
+	/**
+	 * Metodo para listar todos los datos de la entidad
+	 * 
+	 * @return La lista de todos los datos de la entidad encontradas
+	 */
 	@SuppressWarnings("unchecked")
 	public List<ARR_Contratos_Det> findAllContratos_Det(){
 		return mngDao.findAll(ARR_Contratos_Det.class);
@@ -510,13 +517,53 @@ public class ManagerContratos {
 		contTemDet.setDet_estado('A');
 		return contTemDet;
 	}
-	
+	/**
+	 * Metodo para eliminar de una entidad
+	 * @param cd
+	 * @return 
+	 */
 	public void eliminar_contrato_det(ARR_Contratos_Det cd) throws Exception{
 		mngDao.eliminar(ARR_Contratos_Det.class, cd.getDet_id());
 	}
 	
+	/**
+	 * Metodo para insertar  una entidad
+	 * @param cd
+	 * @return
+	 */
 	public void insertar_contrato_det (ARR_Contratos_Det cd) throws Exception{
 		mngDao.insertar(cd);
+	}
+	
+	/******************************CREAR detalles de Sitios/Articulos******************************/
+	
+	/**
+	 * Metodo para listar todos los datos de la entidad
+	 * 
+	 * @return La lista de todos los datos de la entidad encontradas
+	 */
+	@SuppressWarnings("unchecked")
+	public List<ARR_SitiosArticulos> findAllSitiosArticulos(){
+		return mngDao.findAll(ARR_SitiosArticulos.class);
+	}
+	
+	/**
+	 * Metodo para listar todos los datos de la entidad
+	 * 
+	 * @return La lista de todos los datos de la entidad encontradas
+	 */
+	@SuppressWarnings("unchecked")
+	public List<GEN_Articulos> findAllArticulos(){
+		return mngDao.findAll(GEN_Articulos.class);
+	}
+	
+	
+	public void insertar_artSit(Integer articulo, Integer sitio) throws Exception{
+		ARR_SitiosArticulos as= new ARR_SitiosArticulos();
+		as.setArt_id(articulo);
+		GEN_Sitios s = (GEN_Sitios) mngDao.findById(GEN_Sitios.class, sitio);
+		as.setSit(s);
+		mngDao.insertar(as);
 	}
 	
 	

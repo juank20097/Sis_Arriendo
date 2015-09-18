@@ -25,6 +25,8 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import arriendo.entidades.ARR_ContratoClausulas_Det;
 import arriendo.entidades.ARR_Contratos_Cab;
 import arriendo.entidades.ARR_Contratos_Det;
+import arriendo.entidades.ARR_SitiosArticulos;
+import arriendo.entidades.GEN_Articulos;
 import arriendo.entidades.GEN_ContratoPlantillas_Cab;
 import arriendo.entidades.GEN_Personas;
 import arriendo.entidades.GEN_Sitios;
@@ -69,6 +71,7 @@ public class ContratosBean implements Serializable {
 	private char estado;
 	private Integer sitio_sel;
 	private String num_cab;
+	private List<GEN_Articulos> lisArt;
 	
 	/******** HABILITADORES *****/
 	private boolean guardado;
@@ -86,6 +89,7 @@ public class ContratosBean implements Serializable {
 		imprimir = true;
 		valor= false;
 		observacion ="";
+		lisArt = new ArrayList<GEN_Articulos>();
 		list = new ArrayList<ARR_Contratos_Det>();
 	}
 	/**
@@ -101,6 +105,18 @@ public class ContratosBean implements Serializable {
 		this.cab_numero = cab_numero;
 	}
 	
+	/**
+	 * @return the lisArt
+	 */
+	public List<GEN_Articulos> getLisArt() {
+		return lisArt;
+	}
+	/**
+	 * @param lisArt the lisArt to set
+	 */
+	public void setLisArt(List<GEN_Articulos> lisArt) {
+		this.lisArt = lisArt;
+	}
 	/**
 	 * @return the valor
 	 */
@@ -498,6 +514,7 @@ public class ContratosBean implements Serializable {
 		imprimir= true;
 		guardado=true;
 		valor = false;
+		list = new ArrayList<ARR_Contratos_Det>();
 		return "nconvivienda?faces-redirect=true";
 	}
 
@@ -582,11 +599,16 @@ public class ContratosBean implements Serializable {
 	 */
 	public void guardarContrato() {
 		try {
+			if (list.isEmpty() || list==null){
+				Mensaje.crearMensajeWARN("Es necesario insertar un sitio antes de guardar");
+			}
+			else{
 			setCab_numero(mngCont.guardarContratoTmp(getContraTemp(), getList()));
 			setFinalizado(false);
 			setGuardado(true);
 			Mensaje.crearMensajeINFO("Contrato guardado de forma correcta");
-		} catch (Exception e) {
+		}
+		}catch (Exception e) {
 			Mensaje.crearMensajeERROR(e.getMessage());
 		}
 	}
@@ -705,6 +727,7 @@ public class ContratosBean implements Serializable {
 					mngCont.eliminar_contrato_det(a);
 				}
 			}
+			this.buscarArticulo(list);
 			if (c.getCab_estado()=='F'){
 				setFinalizado(true);
 				setValor(true);
@@ -735,12 +758,15 @@ public class ContratosBean implements Serializable {
 	 */
 	public void editarContratoG() {
 		try {
+			if (list.isEmpty() || list==null){
+				Mensaje.crearMensajeWARN("Es necesario insertar un sitio antes de guardar");
+			} else{
 			mngCont.editarContratoCabG(getCab_numero(), getPersona(),
 					new Timestamp(getCab_fechaini().getTime()), new Timestamp(
 							getCab_fechafin().getTime()), getCab_observacion(), getList());
 			resp = new ArrayList<ARR_Contratos_Det>();
 			Mensaje.crearMensajeINFO("Cambios correctamente guardados");
-			finalizado=false;
+			finalizado=false; }
 		} catch (Exception e) {
 			Mensaje.crearMensajeERROR(e.getMessage());
 		}
@@ -889,12 +915,14 @@ public class ContratosBean implements Serializable {
 	 * @return lista 
 	 */
 	public List<ARR_Contratos_Det> addContra_Tem() throws Exception{
+		lisArt = new ArrayList<GEN_Articulos>();
 		if (getSitio_sel()==null || getSitio_sel()==-1){
 			Mensaje.crearMensajeINFO("Seleccione un sitio a añadir");
 		}else{
 			contraTempDet = mngCont.crearContratoTmpDet(observacion, sitio_sel);
 			list.add(contraTempDet);
 		}
+		this.buscarArticulo(list);
 		vboton=true;
 		guardado=false;
 		return list;
@@ -906,6 +934,8 @@ public class ContratosBean implements Serializable {
 	 * @return lista 
 	 */
 	public List<ARR_Contratos_Det> addContra_Tem2() throws Exception{
+		lisArt = new ArrayList<GEN_Articulos>();
+		
 		if (getSitio_sel()==null || getSitio_sel()==-1){
 			Mensaje.crearMensajeINFO("Seleccione un sitio a añadir");
 		}else{
@@ -913,13 +943,14 @@ public class ContratosBean implements Serializable {
 			contraTempDet.setCon_cab(mngCont.findContratoByID(getNum_cab()));
 			list.add(contraTempDet);
 		}
+		this.buscarArticulo(list);
 		vboton=true;
 		return list;
 	}
 	
 	/**
 	 * Metodo para eliminar el sitio al contrato
-	 * 
+	 * @param a
 	 * @return 
 	 */
 	public void quitarDet(ARR_Contratos_Det a){
@@ -927,6 +958,48 @@ public class ContratosBean implements Serializable {
 		list.remove(a);
 	}
 	
+	/**
+	 * Metodo para mostrar el sitio en los contratos cabecera
+	 * @param cc
+	 * @return 
+	 */
+	public String sitioVer(ARR_Contratos_Cab cc){
+		String r="";
+		List<ARR_Contratos_Det> l=mngCont.findAllContratos_Det();
+		for (ARR_Contratos_Det cd : l) {
+			if (cc.getCab_numero()==cd.getCon_cab().getCab_numero()){
+				r=cd.sit.getSit_nombre();
+			}
+		}
+		return r;
+	}
+	
+	/**
+	 * Metodo para listar los articulos correcpondientes a un sitio
+	 * 
+	 * @return 
+	 */
+	public void buscarArticulo(List<ARR_Contratos_Det> l){
+		lisArt = new ArrayList<GEN_Articulos>();
+		List<ARR_SitiosArticulos> a= new ArrayList<ARR_SitiosArticulos>();
+		List<ARR_SitiosArticulos> sa= mngCont.findAllSitiosArticulos();
+		List<GEN_Articulos> art= mngCont.findAllArticulos();
+		for (ARR_Contratos_Det acd : l) {
+			for (ARR_SitiosArticulos s : sa) {
+				if (acd.sit.getSit_id()==s.getSit().getSit_id()){
+					a.add(s);
+				}
+			}
+		}
+		for (GEN_Articulos g : art) {
+			for (ARR_SitiosArticulos j: a){
+				if(j.getArt_id()==g.getArt_id()){
+					lisArt.add(g);
+				}
+			}
+			
+		}
+	}
 	
 	
 	
