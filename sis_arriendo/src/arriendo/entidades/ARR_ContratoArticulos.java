@@ -15,6 +15,7 @@ public class ARR_ContratoArticulos {
    /** @pdOid 7679dbb0-b601-4a53-8eb7-8f7444d1c0e6 */
    private Integer art_id;
    
+   
    /** @pdOid 98e3d13f-e8e8-4066-ad9f-4bb4640131f1 */
    protected void finalize() {
       // TODO: implement

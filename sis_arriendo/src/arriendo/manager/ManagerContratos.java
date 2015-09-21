@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import arriendo.entidades.ARR_ContratoArticulos;
 import arriendo.entidades.ARR_Contratos_Cab;
 import arriendo.entidades.ARR_ContratoClausulas_Det;
 import arriendo.entidades.ARR_Contratos_Det;
@@ -424,9 +425,12 @@ public class ManagerContratos {
 	 * @param nroContrato
 	 * @throws Exception
 	 */
-	public void finalizarContrato(String nroContrato) throws Exception{
+	public void finalizarContrato(String nroContrato, List<GEN_Articulos> a) throws Exception{
 		ARR_Contratos_Cab c = findContratoByID(nroContrato);
 		c.setCab_estado('F');
+		for (GEN_Articulos art : a) {
+			this.insertar_conArt(art.getArt_id(), contTemDet);
+		}
 		mngDao.actualizar(c);
 	}
 	
@@ -558,11 +562,10 @@ public class ManagerContratos {
 	}
 	
 	
-	public void insertar_artSit(Integer articulo, Integer sitio) throws Exception{
-		ARR_SitiosArticulos as= new ARR_SitiosArticulos();
+	public void insertar_conArt(Integer articulo, ARR_Contratos_Det con_det) throws Exception{
+		ARR_ContratoArticulos as= new ARR_ContratoArticulos();
 		as.setArt_id(articulo);
-		GEN_Sitios s = (GEN_Sitios) mngDao.findById(GEN_Sitios.class, sitio);
-		as.setSit(s);
+		as.setCon_det(con_det);
 		mngDao.insertar(as);
 	}
 	

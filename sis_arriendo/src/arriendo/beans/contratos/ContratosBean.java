@@ -618,7 +618,7 @@ public class ContratosBean implements Serializable {
 	 */
 	public void finalizarContrato() {
 		try {
-			mngCont.finalizarContrato(getCab_numero());
+			mngCont.finalizarContrato(getCab_numero(),lisArt);
 			setFinalizado(true);
 			setImprimir(false);
 			setGuardado(true);
@@ -638,12 +638,11 @@ public class ContratosBean implements Serializable {
 		try {
 			mngCont.anularContrato(getCab_numero());
 			Mensaje.crearMensajeINFO("Se anuló el contrato de forma correcta");
-			return "convivienda";
+			return "convivienda?faces-redirect=true";
 		} catch (Exception e) {
 			Mensaje.crearMensajeERROR(e.getMessage());
 			return "";
 		}
-
 	}
 
 	/**
@@ -704,10 +703,42 @@ public class ContratosBean implements Serializable {
 	 * @return
 	 */
 	public String cargarDatosContrato(ARR_Contratos_Cab c) throws Exception {
+		String r="";
 		if (c.getCab_estado()=='I') {
 			Mensaje.crearMensajeWARN("Este contrato no se puede Editar, porque ha sido ANULADO.");
-			return "";
-		} else {
+			r="";
+		} if (c.getCab_estado()=='F'){
+			setCab_numero(c.getCab_numero());
+			setNum_cab(c.getCab_numero());
+			//setPersona(c.get);
+			//setPersonaId(c.getGenPersona().getPerId());
+			setCab_fechaini(new Date(c.getCab_fechaini().getTime()));
+			setCab_fechafin(new Date(c.getCab_fechafin().getTime()));
+			setCab_observacion(c.getCab_observacion());
+			setGuardado(false);
+			List<ARR_Contratos_Det> cd = mngCont.findAllContratos_Det();
+			list= new ArrayList<ARR_Contratos_Det>();
+			resp= new ArrayList<ARR_Contratos_Det>();
+			System.out.println(cd.size());
+			for (ARR_Contratos_Det a : cd) {
+				if (a.getCon_cab().getCab_numero().equals(c.getCab_numero())){
+					list.add(a);
+					resp.add(a);
+				}
+			}
+			this.buscarArticulo(list);
+			if (c.getCab_estado()=='F'){
+				setFinalizado(true);
+				setValor(true);
+				setGuardado(true);
+		}
+			else{
+				setFinalizado(true);
+				setValor(false);
+			}
+			r= "econvivienda?faces-redirect=true";
+		}
+		if (c.getCab_estado()=='A') {
 			setCab_numero(c.getCab_numero());
 			setNum_cab(c.getCab_numero());
 			//setPersona(c.get);
@@ -734,11 +765,12 @@ public class ContratosBean implements Serializable {
 				setGuardado(true);
 		}
 			else{
-				setFinalizado(false);
+				setFinalizado(true);
 				setValor(false);
 			}
-			return "econvivienda?faces-redirect=true";	
+			r = "econvivienda?faces-redirect=true";	
 			}
+		return r;
 	}
 
 	/**
