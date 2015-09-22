@@ -557,6 +557,16 @@ public class ManagerContratos {
 	 * @return La lista de todos los datos de la entidad encontradas
 	 */
 	@SuppressWarnings("unchecked")
+	public List<ARR_ContratoArticulos> findAllContratoArticulo(){
+		return mngDao.findAll(ARR_ContratoArticulos.class);
+	}
+	
+	/**
+	 * Metodo para listar todos los datos de la entidad
+	 * 
+	 * @return La lista de todos los datos de la entidad encontradas
+	 */
+	@SuppressWarnings("unchecked")
 	public List<GEN_Articulos> findAllArticulos(){
 		return mngDao.findAll(GEN_Articulos.class);
 	}
@@ -566,8 +576,11 @@ public class ManagerContratos {
 		ARR_ContratoArticulos as= new ARR_ContratoArticulos();
 		as.setArt_id(articulo);
 		as.setCon_det(con_det);
+		as.setCa_estado('A');
 		mngDao.insertar(as);
 	}
+	
+	
 	
 	
 }

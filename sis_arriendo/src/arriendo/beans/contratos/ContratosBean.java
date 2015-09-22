@@ -22,6 +22,7 @@ import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import arriendo.entidades.ARR_ContratoArticulos;
 import arriendo.entidades.ARR_ContratoClausulas_Det;
 import arriendo.entidades.ARR_Contratos_Cab;
 import arriendo.entidades.ARR_Contratos_Det;
@@ -64,6 +65,7 @@ public class ContratosBean implements Serializable {
 	
 	/********** DETALLE SITIOS *********/
 	private List<ARR_Contratos_Det> list;
+	private List<ARR_ContratoArticulos> list2;
 	private List<ARR_Contratos_Det> resp;
 	private ARR_Contratos_Det contraTempDet;
 	private String observacion;
@@ -91,6 +93,7 @@ public class ContratosBean implements Serializable {
 		observacion ="";
 		lisArt = new ArrayList<GEN_Articulos>();
 		list = new ArrayList<ARR_Contratos_Det>();
+		list2 = new ArrayList<ARR_ContratoArticulos>();
 	}
 	/**
 	 * @return the cab_numero
@@ -660,7 +663,7 @@ public class ContratosBean implements Serializable {
 		setCab_numero(null);
 		setGuardado(false);
 		setFinalizado(false);
-		if (resp.isEmpty()){
+		if (resp==null){
 			System.out.println("Nada");
 		}else{
 		for (ARR_Contratos_Det ar : resp) {
@@ -688,8 +691,6 @@ public class ContratosBean implements Serializable {
 		setCab_numero(null);
 		setGuardado(false);
 		setFinalizado(false);
-		list = new ArrayList<ARR_Contratos_Det>();
-		resp = new ArrayList<ARR_Contratos_Det>();
 		return "convivienda?faces-redirect=true";
 	}
 
@@ -708,6 +709,7 @@ public class ContratosBean implements Serializable {
 			Mensaje.crearMensajeWARN("Este contrato no se puede Editar, porque ha sido ANULADO.");
 			r="";
 		} if (c.getCab_estado()=='F'){
+			System.out.println("Estado:F");
 			setCab_numero(c.getCab_numero());
 			setNum_cab(c.getCab_numero());
 			//setPersona(c.get);
@@ -715,30 +717,22 @@ public class ContratosBean implements Serializable {
 			setCab_fechaini(new Date(c.getCab_fechaini().getTime()));
 			setCab_fechafin(new Date(c.getCab_fechafin().getTime()));
 			setCab_observacion(c.getCab_observacion());
-			setGuardado(false);
-			List<ARR_Contratos_Det> cd = mngCont.findAllContratos_Det();
-			list= new ArrayList<ARR_Contratos_Det>();
-			resp= new ArrayList<ARR_Contratos_Det>();
-			System.out.println(cd.size());
-			for (ARR_Contratos_Det a : cd) {
-				if (a.getCon_cab().getCab_numero().equals(c.getCab_numero())){
-					list.add(a);
-					resp.add(a);
+			List<ARR_ContratoArticulos> cd = mngCont.findAllContratoArticulo();
+			list2= new ArrayList<ARR_ContratoArticulos>();
+			for (ARR_ContratoArticulos a : cd) {
+				if (a.getCa_estado()=='A' && a.getCon_det().getCon_cab().getCab_numero().equals(c.getCab_numero())){
+					list2.add(a);
 				}
 			}
-			this.buscarArticulo(list);
-			if (c.getCab_estado()=='F'){
-				setFinalizado(true);
-				setValor(true);
-				setGuardado(true);
-		}
-			else{
-				setFinalizado(true);
-				setValor(false);
-			}
+			this.buscarArticulo2(list2);
+			setFinalizado(true);
+			setValor(true);
+			setGuardado(true);
+			
 			r= "econvivienda?faces-redirect=true";
 		}
 		if (c.getCab_estado()=='A') {
+			System.out.println("Estado:A");
 			setCab_numero(c.getCab_numero());
 			setNum_cab(c.getCab_numero());
 			//setPersona(c.get);
@@ -759,15 +753,8 @@ public class ContratosBean implements Serializable {
 				}
 			}
 			this.buscarArticulo(list);
-			if (c.getCab_estado()=='F'){
-				setFinalizado(true);
-				setValor(true);
-				setGuardado(true);
-		}
-			else{
-				setFinalizado(true);
-				setValor(false);
-			}
+			setFinalizado(true);
+			setValor(false);
 			r = "econvivienda?faces-redirect=true";	
 			}
 		return r;
@@ -1007,7 +994,7 @@ public class ContratosBean implements Serializable {
 	}
 	
 	/**
-	 * Metodo para listar los articulos correcpondientes a un sitio
+	 * Metodo para listar los articulos correcpondientes a un sitio de un contrato activado
 	 * 
 	 * @return 
 	 */
@@ -1031,6 +1018,24 @@ public class ContratosBean implements Serializable {
 			}
 			
 		}
+	}
+	
+	/**
+	 * Metodo para listar los articulos correcpondientes a un sitio de un contrato finalizado
+	 * 
+	 * @return 
+	 */
+	public void buscarArticulo2(List<ARR_ContratoArticulos> l){
+		lisArt = new ArrayList<GEN_Articulos>();
+		List<GEN_Articulos> art= mngCont.findAllArticulos();
+		for (ARR_ContratoArticulos ca : l) {
+			for (GEN_Articulos g : art) {
+				if(ca.getArt_id()==g.getArt_id()){
+					lisArt.add(g);
+				}
+		}
+		}
+		
 	}
 	
 	

@@ -15,6 +15,7 @@ public class ARR_ContratoArticulos {
    /** @pdOid 7679dbb0-b601-4a53-8eb7-8f7444d1c0e6 */
    private Integer art_id;
    
+   private char ca_estado;
    
    /** @pdOid 98e3d13f-e8e8-4066-ad9f-4bb4640131f1 */
    protected void finalize() {
@@ -34,7 +35,21 @@ public class ARR_ContratoArticulos {
       return ca_id;
    }
    
-   /** @param newCa_id
+   /**
+ * @return the ca_estado
+ */
+public char getCa_estado() {
+	return ca_estado;
+}
+
+/**
+ * @param ca_estado the ca_estado to set
+ */
+public void setCa_estado(char ca_estado) {
+	this.ca_estado = ca_estado;
+}
+
+/** @param newCa_id
     * @pdOid 5a40c601-15f5-4e18-9e41-7a4951af8c1a */
    public void setCa_id(Integer newCa_id) {
       ca_id = newCa_id;

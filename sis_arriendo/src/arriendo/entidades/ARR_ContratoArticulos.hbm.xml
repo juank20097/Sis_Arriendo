@@ -13,6 +13,9 @@
         <property name="art_id" type="java.lang.Integer">
             <column name="ART_ID" />
         </property>
+         <property name="ca_estado" type="char">
+            <column name="CA_ESTADO" />
+        </property>
         <many-to-one name="con_det" class="arriendo.entidades.ARR_Contratos_Det" fetch="join">
             <column name="CON_DET" />
         </many-to-one>
