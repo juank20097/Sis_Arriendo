@@ -418,6 +418,20 @@ public class ManagerContratos {
 		ARR_Contratos_Cab c = findContratoByID(nroContrato);
 		c.setCab_estado('I');
 		mngDao.actualizar(c);
+		List<ARR_Contratos_Det> r = findAllContratos_Det();
+		for (ARR_Contratos_Det cd : r) {
+			if (cd.getCon_cab().getCab_numero().equals(nroContrato)){
+				cd.setDet_estado('I');
+				mngDao.actualizar(cd);
+			}
+		}
+		List<ARR_ContratoArticulos> ca = findAllContratoArticulo();
+		for (ARR_ContratoArticulos t : ca) {
+			if (t.getCon_det().getCon_cab().getCab_numero().equals(nroContrato)){
+				t.setCa_estado('I');
+				mngDao.actualizar(t);
+			}
+		}
 	}
 	
 	/**
@@ -580,7 +594,15 @@ public class ManagerContratos {
 		mngDao.insertar(as);
 	}
 	
-	
+	/**
+	 * Metodo para listar todos los datos de la entidad
+	 * 
+	 * @return La lista de todos los datos de la entidad encontradas
+	 */
+	@SuppressWarnings("unchecked")
+	public List<GEN_Sitios> findAllSitios(){
+		return mngDao.findAll(GEN_Sitios.class);
+	}
 	
 	
 }

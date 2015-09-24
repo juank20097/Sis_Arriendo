@@ -165,7 +165,7 @@
 					action="#{contratosBean.imprimirRptContrato()}"
 					disabled="#{!contratosBean.finalizado}" look="info"
 					update=":frmpmsj" />
-					<p:commandButton value="Anular" disabled="#{contratosBean.finalizado}"
+					<p:commandButton value="Anular" disabled="#{contratosBean.anulado}"
 					style="padding: .3em 0em;" styleClass="btn-info"
 					onclick="PF('cda').show();" />
 					<h:commandButton type="button" value="Cancelar"
