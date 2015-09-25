@@ -1,3 +1,5 @@
 INSERT INTO gen_estados(est_id, est_nombre, est_descripcion,EST_COLOR) VALUES ('A', 'Activo', '','Green');
 INSERT INTO gen_estados(est_id, est_nombre, est_descripcion,EST_COLOR) VALUES ('I', 'Inactivo', '','Red');
 INSERT INTO gen_estados(est_id, est_nombre, est_descripcion,EST_COLOR) VALUES ('F', 'Finalizado', '','Yellow');
+
+INSERT INTO gen_contadores VALUES (2, 'contratoarriendo', '0');
