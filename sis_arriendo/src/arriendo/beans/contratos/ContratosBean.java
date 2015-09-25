@@ -1138,6 +1138,7 @@ public class ContratosBean implements Serializable {
 		vboton = false;
 		list.remove(a);
 		valorSitio="";
+		this.actualizarList();
 	}
 
 	/**

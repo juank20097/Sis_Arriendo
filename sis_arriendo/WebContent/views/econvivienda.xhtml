@@ -53,7 +53,7 @@
 					<b:column span="2">
 						<h:outputLabel value="Fecha de Inicio*" />
 					</b:column>
-					<b:column span="4">
+					<b:column span="3">
 						<p:calendar disabled="#{contratosBean.valor}" value="#{contratosBean.cab_fechaini}"
 							mindate="#{contratosBean.factual}" pattern="dd-MM-yyyy"
 							mask="true" showOn="button" />
@@ -61,10 +61,15 @@
 					<b:column span="2">
 						<h:outputLabel value="Fecha de Fin*" />
 					</b:column>
-					<b:column span="4">
+					<b:column span="3">
 						<p:calendar disabled="#{contratosBean.valor}" value="#{contratosBean.cab_fechafin}"
 							mindate="#{contratosBean.factual}" pattern="dd-MM-yyyy"
 							mask="true" showOn="button" />
+					</b:column>
+					<b:column span="2">
+						<p:commandButton value="Filtrar"
+							actionListener="#{contratosBean.actualizarList}"
+							update="frmcbc:tbb " />
 					</b:column>
 				</b:row>
 				<b:row style="margin-bottom:10px;">
@@ -105,7 +110,7 @@
 							style="width: 100%; padding: 1%; margin-bottom: 1%;"
 							value="#{contratosBean.sitio_sel}">
 							<f:selectItem itemLabel="--Seleccione--" itemValue="-1" />
-							<f:selectItems value="#{asignacionBean.listSitios2}" />
+							<f:selectItems value="#{contratosBean.listS}" />
 						</p:selectOneMenu>
 					</b:column>
 					<b:column span="6">
