@@ -171,14 +171,11 @@ public class PlantillasBean implements Serializable{
 	 * @return the listClauDet
 	 */
 	public List<GEN_ContratoPlantillaClausulas_Det> getListClauDet() {
-		try
-		{
-			if(getIdContPlan()!=0L)
-			listClauDet = mngCont.findAllClauPlanByContID(planCabTmp.getCpc_id());
-		}
-		catch(Exception e)
-		{
-			Mensaje.crearMensajeWARN(e.getMessage());
+		List<GEN_ContratoPlantillaClausulas_Det> cpd = mngCont.findAllPlanClauDet();
+		for (GEN_ContratoPlantillaClausulas_Det p : cpd) {
+			if (p.getCon_p_c().getCpc_id()==planCabTmp.getCpc_id()){
+				listClauDet.add(p);
+			}
 		}
 		return listClauDet;
 	}
@@ -257,7 +254,6 @@ public class PlantillasBean implements Serializable{
 	 */
 	public String guardarPlantCont(){
 		try {
-			System.out.println("entraaaa");
 			mngCont.saveContratoPlantillaTmp(getPlanCabTmp());		
 			Mensaje.crearMensajeINFO("Plantilla de contrato almacenada correctamente");
 			setTipoContrato("");setNombre("");setDescripcion("");setPlanCabTmp(null);
@@ -315,6 +311,7 @@ public class PlantillasBean implements Serializable{
 		idClauPlan=d.getCpd_id();
 		nroClausula=d.getCpd_numero();
 		clausula=d.getCpp_clausula();
+		
 	}
 	
 	/**

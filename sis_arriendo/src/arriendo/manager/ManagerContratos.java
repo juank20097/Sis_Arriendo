@@ -132,13 +132,16 @@ public class ManagerContratos {
 		if(contraPlanTmp.getCon_p_d()== null || 
 				contraPlanTmp.getCon_p_d().size() == 0)
 			throw new Exception("debe ingresar claúsulas al contrato");
-		System.out.println("entra2");
+		
+		for (GEN_ContratoPlantillaClausulas_Det cpd : contraPlanTmp.con_p_d) {
+			mngDao.insertar(cpd);
+		}
+		
 		//Seteo de cláusulas
 		for (GEN_ContratoPlantillaClausulas_Det d: contraPlanTmp.getCon_p_d()) {
-			System.out.println("entra 1 23 4");
 			d.setCon_p_c(contraPlanTmp);
 		}
-		System.out.println("ya mismo");
+		
 		//guardamos la plantilla de contrato
 		mngDao.insertar(contraPlanTmp);
 		contraPlanTmp=null;
@@ -446,6 +449,13 @@ public class ManagerContratos {
 			this.insertar_conArt(art.getArt_id(), contTemDet);
 		}
 		mngDao.actualizar(c);
+		List<ARR_Contratos_Det> r = findAllContratos_Det();
+		for (ARR_Contratos_Det cd : r) {
+			if (cd.getCon_cab().getCab_numero().equals(nroContrato)){
+				cd.setDet_estado('F');
+				mngDao.actualizar(cd);
+			}
+		}
 	}
 	
 	/******************************EDITAR CONTRATOS******************************/

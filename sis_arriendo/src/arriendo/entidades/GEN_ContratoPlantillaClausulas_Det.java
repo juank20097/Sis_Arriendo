@@ -87,12 +87,12 @@ public class GEN_ContratoPlantillaClausulas_Det {
    public void setCon_p_c(GEN_ContratoPlantillas_Cab newGEN_ContratoPlantillas_Cab) {
       if (this.con_p_c == null || !this.con_p_c.equals(newGEN_ContratoPlantillas_Cab))
       {
-         if (this.con_p_c != null)
+         /*if (this.con_p_c != null)
          {
             GEN_ContratoPlantillas_Cab oldGEN_ContratoPlantillas_Cab = this.con_p_c;
             this.con_p_c = null;
             oldGEN_ContratoPlantillas_Cab.removeCon_p_d(this);
-         }
+         }*/
          if (newGEN_ContratoPlantillas_Cab != null)
          {
             this.con_p_c = newGEN_ContratoPlantillas_Cab;

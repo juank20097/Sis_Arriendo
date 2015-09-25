@@ -33,7 +33,6 @@ import arriendo.entidades.GEN_Personas;
 import arriendo.entidades.GEN_Sitios;
 import arriendo.generico.Mensaje;
 import arriendo.manager.ManagerContratos;
-import arriendo.manager.SitiosDAO;
 
 @ManagedBean
 @SessionScoped
@@ -637,10 +636,14 @@ public class ContratosBean implements Serializable {
 	 */
 	public void crearContrato() {
 		try {
-			if (getCab_fechafin() == null || getCab_fechaini() == null) {
+			if (getCab_fechafin() == null || getCab_fechaini() == null ) {
 				Mensaje.crearMensajeWARN("Seleccione la fecha inicio y fin para el contrato");
 				System.out.println(cpId);
-			} else if (cpId == null || cpId == -1 || cpId == 0) {
+			}
+			else if (getCab_fechafin().before(getCab_fechaini())){
+				Mensaje.crearMensajeWARN("Seleccione bien la fecha");
+			}
+			else if (cpId == null || cpId == -1 || cpId == 0) {
 				Mensaje.crearMensajeWARN("No se ha seleccionado una plantilla");
 			} else {
 				setContraTemp(mngCont.crearContratoTmp(getPersona(),
@@ -695,9 +698,16 @@ public class ContratosBean implements Serializable {
 	 */
 	public void guardarContrato() {
 		try {
+			List<ARR_Contratos_Det> g = mngCont.findAllContratos_Det();
+			for (ARR_Contratos_Det c : g) {
+				if (c.getDet_estado()=='F' && (cab_fechaini.after(c.getCon_cab().getCab_fechaini()) && cab_fechaini.before(c.getCon_cab().getCab_fechafin())) || (cab_fechafin.after(c.getCon_cab().getCab_fechaini()) && cab_fechafin.before(c.getCon_cab().getCab_fechafin()))){
+					Mensaje.crearMensajeWARN("No se puede guardar el sitio en esas fechas");
+				}	
+			}
 			if (list.isEmpty() || list == null) {
 				Mensaje.crearMensajeWARN("Es necesario insertar un sitio antes de guardar");
-			} else {
+			}
+			 else {
 				setCab_numero(mngCont.guardarContratoTmp(getContraTemp(),
 						getList()));
 				setFinalizado(false);
@@ -1028,7 +1038,6 @@ public class ContratosBean implements Serializable {
 	 * @return lista de todas
 	 */
 	public List<SelectItem> getlistS() {
-		
 		List<SelectItem> lista = new ArrayList<SelectItem>();
 		List<GEN_Sitios> completo = mngCont.findAllSitios();
 		List<ARR_Contratos_Det> cd = mngCont.findAllContratos_Det();
@@ -1036,16 +1045,25 @@ public class ContratosBean implements Serializable {
 				if (s.getSit_estado()=='A' ){
 					int h=0;
 					for (ARR_Contratos_Det f : cd) {
+						if (f.getDet_estado()=='F'){
 						if ((f.getSit().getSit_id()!=s.getSit_id()) || ((cab_fechaini.before(f.getCon_cab().getCab_fechaini())) && cab_fechafin.before(f.getCon_cab().getCab_fechaini()) || (cab_fechaini.after(f.con_cab.getCab_fechafin()) && cab_fechafin.after(f.con_cab.getCab_fechafin())))){
 							{
 							h++;
 							}
 						}
+					}else{
+						h++;
 					}
+					}
+					
 					if (h==cd.size()){
 						lista.add(new SelectItem(s.getSit_id(), s.getSit_nombre()));
 					}
-				}
+					
+					
+					
+					}
+			
 			}
 		return lista;
 	}
@@ -1181,6 +1199,11 @@ public class ContratosBean implements Serializable {
 
 	}
 	
+	/**
+	 * Metodo para actualizar toda las listas de sitios
+	 * 
+	 * @return
+	 */
 	public void actualizarList(){
 		this.getlistS();
 	}
