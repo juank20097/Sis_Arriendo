@@ -614,5 +614,8 @@ public class ManagerContratos {
 		return mngDao.findAll(GEN_Sitios.class);
 	}
 	
+	public List<ARR_Contratos_Det> detallesFinalizadosBySitio(String nombreSitio){
+		return mngDao.findWhere(ARR_Contratos_Det.class, "det_estado='F' AND o.sit.sit_nombre='"+nombreSitio+"'", "det_id");
+	}
 	
 }
